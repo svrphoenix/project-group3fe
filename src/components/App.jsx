@@ -1,5 +1,7 @@
 import { Routes } from 'react-router-dom';
 
-export const App = () => {
+const App = () => {
   <Routes></Routes>;
 };
+
+export default App;
