@@ -4,8 +4,9 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import { App } from 'components/App';
+import App from 'components/App';
 import { store, persistor } from 'redux/store';
+import { GlobalStyle } from 'components/GlobalStyle';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -13,6 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter basename="/project-group2fe">
           <App />
+          <GlobalStyle />
         </BrowserRouter>
       </PersistGate>
     </Provider>
