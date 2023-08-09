@@ -2,11 +2,8 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { logoutReset } from './slice';
 
-axios.defaults.baseURL = 'https://646f943e09ff19b1208781fe.mockapi.io/'; //адреса задеплоєного бекенду
-const data = {
-  token:
-    'eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5MTU5OTY0NiwiaWF0IjoxNjkxNTk5NjQ2fQ.uFKrrqjwxx5YM5c94mwrLCYI_vCu7FxNueN3G-a94gU',
-};
+axios.defaults.baseURL = ''; //адреса задеплоєного бекенду
+axios.defaults.baseURL = 'https://646f943e09ff19b1208781fe.mockapi.io/';
 
 const currentToken = {
   set(token) {
@@ -22,8 +19,7 @@ const register = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       console.log('register operation');
-      // const { data } = await axios.post('/users/register', credentials);
-      const { data } = await axios.post('/users', credentials);
+      const { data } = await axios.post('/users/register', credentials);
       currentToken.set(data.token);
       return data;
     } catch (error) {
@@ -34,8 +30,7 @@ const register = createAsyncThunk(
 
 const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   try {
-    // const { data } = await axios.post('/users/login', credentials);
-    data.user = credentials; //видалити
+    const { data } = await axios.post('/users/login', credentials);
     currentToken.set(data.token);
     return data;
   } catch (error) {
@@ -44,10 +39,10 @@ const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
 });
 
 const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
-  thunkAPI.dispatch(logoutReset()); 
+  thunkAPI.dispatch(logoutReset());
 
   try {
-    // await axios.post('/users/logout');
+    await axios.post('/users/logout');
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   } finally {
