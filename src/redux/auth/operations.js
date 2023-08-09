@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { logoutReset } from './slice';
 
 axios.defaults.baseURL = ''; //адреса задеплоєного бекенду
+axios.defaults.baseURL = 'https://646f943e09ff19b1208781fe.mockapi.io/';
 
 const currentToken = {
   set(token) {
@@ -16,6 +18,7 @@ const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     try {
+      console.log('register operation');
       const { data } = await axios.post('/users/register', credentials);
       currentToken.set(data.token);
       return data;
@@ -36,11 +39,14 @@ const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
 });
 
 const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  thunkAPI.dispatch(logoutReset());
+
   try {
     await axios.post('/users/logout');
-    currentToken.unset();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
+  } finally {
+    currentToken.unset();
   }
 });
 
