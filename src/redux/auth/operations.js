@@ -11,6 +11,7 @@ const currentToken = {
   },
   unset() {
     axios.defaults.headers.common.Authorization = '';
+    delete axios.defaults.headers.common.Authorization;
   },
 };
 
@@ -30,7 +31,12 @@ const register = createAsyncThunk(
 
 const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   try {
-    const { data } = await axios.post('/users/login', credentials);
+    // const { data } = await axios.post('/users/login', credentials);
+    const data = {
+      user: { name: 'cdvd', email: 'vdfvfdbvg' },
+      token: 'vdfvfgbfij58ut86586 ',
+    };
+    console.log(data);
     currentToken.set(data.token);
     return data;
   } catch (error) {
@@ -62,7 +68,11 @@ const refreshCurrentUser = createAsyncThunk(
 
     currentToken.set(persistedToken);
     try {
-      const { data } = await axios.get('/users/current');
+      // const { data } = await axios.get('/users/current');
+      const data = {
+        user: { name: 'cdvd', email: 'vdfvfdbvg' },
+        token: 'vdfvfgbfij58ut86586 ',
+      };
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
