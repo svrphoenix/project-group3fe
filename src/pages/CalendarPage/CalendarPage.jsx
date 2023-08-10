@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
 
 const CalendarPage = () => {
-  return <></>;
+  return (
+    <>
+      <div>Calendar</div>
+    </>
+  );
 };
 
 CalendarPage.propTypes = {};

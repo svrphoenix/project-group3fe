@@ -1,9 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
-import MainLayout from 'pages/MainLayout/MainLayout';
+import { lazy, Suspense, useEffect } from 'react';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
+import useAuth from 'hooks/useAuth';
+import { useDispatch } from 'react-redux';
+import { refreshCurrentUser } from 'redux/auth/operations';
 
+const MainLayout = lazy(() => import('../pages/MainLayout/MainLayout'));
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
@@ -15,68 +18,93 @@ const StatisticsPage = lazy(() =>
 const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 
 const App = () => {
+  const { isLoggedIn } = useAuth();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(refreshCurrentUser());
+  }, [dispatch]);
+
+  const isLoginLayout = (
+    <Route
+      path="/"
+      element={
+        <RestrictedRoute redirectTo="/calendar" component={<MainLayout />} />
+      }
+    >
+      <Route
+        path="/calendar"
+        element={<PrivateRoute redirectTo="/" component={<CalendarPage />} />}
+      >
+        <Route
+          path="month/:currentDate"
+          element={
+            <PrivateRoute redirectTo="/" component={<div>ChoosedMonth</div>} />
+          }
+        />
+      </Route>
+      <Route
+        path="/account"
+        element={<PrivateRoute redirectTo="/" component={<AccountPage />} />}
+      />
+      <Route
+        path="/statistics"
+        element={<PrivateRoute redirectTo="/" component={<StatisticsPage />} />}
+      />
+      <Route
+        path="*"
+        element={<RestrictedRoute redirectTo="/" component={<NotFound />} />}
+      />
+    </Route>
+  );
+
+  const notAuthorizedLayout = (
+    <>
+      <Route path="/" element={<MainPage />} />
+      <Route
+        path="/register"
+        element={
+          <RestrictedRoute
+            redirectTo="/calendar"
+            component={<RegisterPage />}
+          />
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <RestrictedRoute redirectTo="/calendar" component={<LoginPage />} />
+        }
+      />
+      <Route
+        path="/calendar"
+        element={<PrivateRoute redirectTo="/" component={<CalendarPage />} />}
+      >
+        <Route
+          path="month/:currentDate"
+          element={
+            <PrivateRoute redirectTo="/" component={<div>ChoosedMonth</div>} />
+          }
+        />
+      </Route>
+      <Route
+        path="/account"
+        element={<PrivateRoute redirectTo="/" component={<AccountPage />} />}
+      />
+      <Route
+        path="/statistics"
+        element={<PrivateRoute redirectTo="/" component={<StatisticsPage />} />}
+      />
+      <Route
+        path="*"
+        element={<RestrictedRoute redirectTo="/" component={<NotFound />} />}
+      />
+    </>
+  );
+
   return (
     <Suspense fallback={<div>LOADING....</div>}>
-      <Routes>
-        <Route path="/" element={<MainLayout />}>
-          <Route index element={<MainPage />} />
-          <Route
-            path="/register"
-            element={
-              <RestrictedRoute
-                redirectTo="/calendar"
-                component={<RegisterPage />}
-              />
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <RestrictedRoute
-                redirectTo="/calendar"
-                component={<LoginPage />}
-              />
-            }
-          />
-          <Route
-            path="/calendar"
-            element={
-              <PrivateRoute redirectTo="/login" component={<CalendarPage />} />
-            }
-          >
-            <Route
-              path="month/:currentDate"
-              element={
-                <PrivateRoute
-                  redirectTo="/login"
-                  component={<div>ChoosedMonth</div>}
-                />
-              }
-            />
-          </Route>
-          <Route
-            path="/account"
-            element={
-              <PrivateRoute redirectTo="/login" component={<AccountPage />} />
-            }
-          />
-          <Route
-            path="/statistics"
-            element={
-              <PrivateRoute
-                redirectTo="/login"
-                component={<StatisticsPage />}
-              />
-            }
-          />
-          <Route
-            path="*"
-            element={
-              <RestrictedRoute redirectTo="/" component={<NotFound />} />
-            }
-          />
-        </Route>
-      </Routes>
+      <Routes>{isLoggedIn ? isLoginLayout : notAuthorizedLayout}</Routes>
     </Suspense>
   );
 };
