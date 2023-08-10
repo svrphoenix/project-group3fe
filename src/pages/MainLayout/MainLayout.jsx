@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
+import { Suspense } from 'react';
 import { useDispatch } from 'react-redux';
+import { Outlet } from 'react-router-dom';
 import { logout } from 'redux/auth/operations';
 
 const MainLayout = () => {
@@ -13,6 +15,9 @@ const MainLayout = () => {
             Logout
           </button>
         </div>
+        <Suspense fallback={<div>LOADING....</div>}>
+          <Outlet />
+        </Suspense>
       </div>
     </>
   );
