@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
 
 const AccountPage = () => {
-  return <></>;
+  return (
+    <>
+      <div>Account</div>
+    </>
+  );
 };
 
 AccountPage.propTypes = {};

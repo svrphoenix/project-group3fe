@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { logoutReset } from './slice';
 
 axios.defaults.baseURL = ''; //адреса задеплоєного бекенду
+axios.defaults.baseURL = 'https://646f943e09ff19b1208781fe.mockapi.io/';
 
 const currentToken = {
   set(token) {
@@ -9,6 +11,7 @@ const currentToken = {
   },
   unset() {
     axios.defaults.headers.common.Authorization = '';
+    delete axios.defaults.headers.common.Authorization;
   },
 };
 
@@ -16,6 +19,7 @@ const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     try {
+      console.log('register operation');
       const { data } = await axios.post('/users/register', credentials);
       currentToken.set(data.token);
       return data;
@@ -27,7 +31,12 @@ const register = createAsyncThunk(
 
 const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   try {
-    const { data } = await axios.post('/users/login', credentials);
+    // const { data } = await axios.post('/users/login', credentials);
+    const data = {
+      user: { name: 'cdvd', email: 'vdfvfdbvg' },
+      token: 'vdfvfgbfij58ut86586 ',
+    };
+    console.log(data);
     currentToken.set(data.token);
     return data;
   } catch (error) {
@@ -36,11 +45,14 @@ const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
 });
 
 const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  thunkAPI.dispatch(logoutReset());
+
   try {
     await axios.post('/users/logout');
-    currentToken.unset();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
+  } finally {
+    currentToken.unset();
   }
 });
 
@@ -56,7 +68,11 @@ const refreshCurrentUser = createAsyncThunk(
 
     currentToken.set(persistedToken);
     try {
-      const { data } = await axios.get('/users/current');
+      // const { data } = await axios.get('/users/current');
+      const data = {
+        user: { name: 'cdvd', email: 'vdfvfdbvg' },
+        token: 'vdfvfgbfij58ut86586 ',
+      };
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -1,8 +1,8 @@
 {
-  "name": "project-group2fe",
+  "name": "project-group3fe",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://svrphoenix.github.io/project-group2fe/",
+  "homepage": "https://svrphoenix.github.io/project-group3fe/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.3",
@@ -47,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
