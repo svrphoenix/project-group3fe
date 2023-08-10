@@ -29,7 +29,7 @@ export const AuthSection = () => {
               </SC.NavLinkBtn>
             </SC.NavItem>
             <SC.NavItem>
-              <SC.NavLink to={'/signup'}>Sign up</SC.NavLink>
+              <SC.NavLink to={'/register'}>Sign up</SC.NavLink>
             </SC.NavItem>
           </SC.NavList>
         </SC.HeroWrapper>

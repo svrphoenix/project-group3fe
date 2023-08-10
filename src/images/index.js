@@ -22,10 +22,18 @@ import logox2 from '../images/logo/GOOSE-m@2.png';
 import logoXl from '../images/logo/GOOSE.png';
 import logox2Xl from '../images/logo/GOOSE@2.png';
 
+import defaultAvatar from '../images/icons/avatarDefault.svg';
+
 import { ReactComponent as LoginIcon } from '../images/icons/login.svg';
+import { ReactComponent as StarIcon } from '../images/icons/star.svg';
+import { ReactComponent as LarrIcon } from '../images/icons/larrow.svg';
+import { ReactComponent as RarrIcon } from '../images/icons/rarrow.svg';
 
 export const SVG = {
   LoginIcon,
+  StarIcon,
+  LarrIcon,
+  RarrIcon,
 };
 export const IMG = {
   all,
@@ -50,4 +58,5 @@ export const IMG = {
   logox2,
   logoXl,
   logox2Xl,
+  defaultAvatar,
 };

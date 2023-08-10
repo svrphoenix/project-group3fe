@@ -180,3 +180,51 @@ export const ItemImg = styled.img`
     margin-top: 0;
   }
 `;
+
+export const SectionReview = styled.section`
+  padding-top: 64px;
+  padding-bottom: 64px;
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
+    padding-bottom: 100px;
+  }
+  @media screen and (min-width: 1440px) {
+    padding-top: 100px;
+    padding-bottom: 120px;
+  }
+`;
+
+export const ReviewTitle = styled.h2`
+  color: #3e85f3;
+  font-family: 'Inter Bold';
+  font-size: 28px;
+  line-height: 1.14;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 40px;
+  @media screen and (min-width: 768px) {
+    font-size: 40px;
+    line-height: 1.1;
+    margin-bottom: 50px;
+  }
+`;
+
+export const SliderBtnWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 32px;
+`;
+
+export const NextBtn = styled.button`
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+`;
+
+export const PrevBtn = styled.button`
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+`;
