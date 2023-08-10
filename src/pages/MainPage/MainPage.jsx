@@ -6,7 +6,14 @@ const MainPage = () => {
     <>
       <div>
         MainPage
-        <div style={{ paddingTop: 20, display: 'flex', gap: 10 }}>
+        <div
+          style={{
+            paddingTop: 20,
+            display: 'flex',
+            gap: 10,
+            backgroundColor: 'red',
+          }}
+        >
           <NavLink to="/login">toLogin</NavLink>
           <NavLink to="/register">toRegister</NavLink>
         </div>

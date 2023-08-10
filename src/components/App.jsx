@@ -29,7 +29,8 @@ const App = () => {
     <Route
       path="/"
       element={
-        <RestrictedRoute redirectTo="/calendar" component={<MainLayout />} />
+        <MainLayout />
+        // <RestrictedRoute redirectTo="/calendar" component={<MainLayout />} />
       }
     >
       <Route
