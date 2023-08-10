@@ -1,7 +1,9 @@
-import { Routes } from 'react-router-dom';
+// import { Routes } from 'react-router-dom';
+import MainPage from 'pages/MainPage/MainPage';
 
 const App = () => {
-  <Routes></Routes>;
+  // <Routes></Routes>;
+  return <MainPage />;
 };
 
 export default App;
