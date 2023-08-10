@@ -89,6 +89,13 @@ export const NavLinkBtn = styled(Link)`
   box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
   padding: 15px 29px;
   color: #3e85f3;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    color: #3777da;
+    background-color: #ebf2fd;
+  }
 `;
 
 export const Section = styled.section`
