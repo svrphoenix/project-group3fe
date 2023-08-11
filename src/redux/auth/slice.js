@@ -38,6 +38,10 @@ const authSlice = createSlice({
       .addCase(logout.fulfilled, (state, _) => {
         state.isLoading = false;
       })
+      .addCase(refreshCurrentUser.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.user = payload.user;
+      })
       .addMatcher(
         isAnyOf(
           register.pending,
@@ -57,11 +61,7 @@ const authSlice = createSlice({
         handleRejected
       )
       .addMatcher(
-        isAnyOf(
-          register.fulfilled,
-          login.fulfilled,
-          refreshCurrentUser.fulfilled
-        ),
+        isAnyOf(register.fulfilled, login.fulfilled),
         handleFulfilledUser
       );
   },
