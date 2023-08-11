@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { login } from 'redux/auth/operations';
@@ -15,6 +15,6 @@ const LoginPage = () => {
   );
 };
 
-LoginPage.propTypes = {};
+// LoginPage.propTypes = {};
 
 export default LoginPage;
