@@ -1,7 +1,6 @@
 
 import { AuthNavigate } from 'components/authNavigate/AuthNavigate';
-import { RegisterForm } from 'components/registerForm/RegisterForm';
-import PropTypes from 'prop-types';
+import RegisterForm from 'components/registerForm/RegisterForm';
 import { StyledLayout } from './RegisterPage.styled';
 
 
@@ -13,7 +12,5 @@ const RegisterPage = () => {
     </StyledLayout>
   );
 };
-
-// RegisterPage.propTypes = {};
 
 export default RegisterPage;

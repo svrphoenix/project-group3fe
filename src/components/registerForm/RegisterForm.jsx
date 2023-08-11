@@ -19,7 +19,7 @@ import { register } from 'redux/auth/operations';
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
-    .min(2, 'Too Short!')
+    .min(3, 'Too Short!')
     .max(20, 'Too Long!')
     .required('Please enter your name'),
   email: Yup.string()
@@ -32,7 +32,7 @@ const SignupSchema = Yup.object().shape({
     .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,30}$/),
 });
 
-export const RegisterForm = () => {
+const RegisterForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [usedEmail, setUsedEmail] = useState(false);
@@ -184,3 +184,5 @@ export const RegisterForm = () => {
         </Formik>
     </StyledContainer>)
 };
+
+export default RegisterForm;
