@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkproject_group3fe=self.webpackChunkproject_group3fe||[]).push([[664],{6664:function(e,n,r){r.r(n);var c=r(9434),u=r(1087),t=r(1645),i=r(184);n.default=function(){var e=(0,c.I0)();return(0,i.jsxs)(i.Fragment,{children:[(0,i.jsx)("div",{children:"Login"}),(0,i.jsx)(u.OL,{to:"/calendar",onClick:function(){return e((0,t.x4)())},children:"Login user"})]})}}}]);
-//# sourceMappingURL=664.6037c057.chunk.js.map
