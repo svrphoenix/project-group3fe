@@ -9,7 +9,7 @@ const LoginPage = () => {
     <>
       <div>Login</div>
       <NavLink
-        to="/calendar"
+        to="/calendar/month/:currentDate"
         onClick={() =>
           dispatch(
             login({

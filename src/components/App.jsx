@@ -5,7 +5,6 @@ import { RestrictedRoute } from './RestrictedRoute';
 import { useDispatch } from 'react-redux';
 import { refreshCurrentUser } from 'redux/auth/operations';
 import { SharedLayout } from './SharedLayout';
-import useAuth from 'hooks/useAuth';
 
 const MainLayout = lazy(() => import('../pages/MainLayout/MainLayout'));
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
@@ -20,7 +19,6 @@ const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 
 const App = () => {
   const dispatch = useDispatch();
-  const { isLoggedIn } = useAuth();
 
   useEffect(() => {
     dispatch(refreshCurrentUser());
@@ -88,15 +86,8 @@ const App = () => {
               <PrivateRoute redirectTo="/" component={<StatisticsPage />} />
             }
           />
-          <Route
-            path="*"
-            element={<PrivateRoute redirectTo="/" component={<NotFound />} />}
-          />
         </Route>
-        <Route
-          path="*"
-          element={<RestrictedRoute redirectTo="/" component={<NotFound />} />}
-        />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );
