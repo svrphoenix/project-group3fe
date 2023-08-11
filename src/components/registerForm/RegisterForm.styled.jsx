@@ -174,8 +174,10 @@ export const StyledButton = styled.button`
   @media (min-width: 375px) {
     padding: 14px 103px;
   }
-  @media (min-width: 375px) {
+  @media (min-width: 768px) {
     margin-top: 30px;
+    font-size: 18px;
+  line-height: 1.33;
   }
 `;
 

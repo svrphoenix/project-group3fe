@@ -3,6 +3,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import {
     StyledButton,
     StyledContainer,
@@ -11,7 +12,6 @@ import {
     StyledForm,
     StyledFormDiv,
     StyledHeader,
-    StyledIconLogin,
     Styledlabel,
     StyledRequired,
 } from './RegisterForm.styled';
@@ -20,19 +20,22 @@ import { register } from 'redux/auth/operations';
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Too Short!')
-    .max(30, 'Too Long!')
+    .max(20, 'Too Long!')
     .required('Please enter your name'),
   email: Yup.string()
     .email('This is an ERROR email')
-    .required('Please enter your email'),
+    .required('Please enter your email')
+    .matches(/^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/),
   password: Yup.string()
     .min(8, 'Need to be more than 8 symbols!')
-    .required('Please enter your password'),
+    .required('Please enter your password')
+    .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,30}$/),
 });
 
 export const RegisterForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [usedEmail, setUsedEmail] = useState(false);
 
     return  (<StyledContainer>
         <StyledHeader>Sign Up</StyledHeader>
@@ -43,7 +46,7 @@ export const RegisterForm = () => {
                 password: '',
             }}
             validateOnChange={false}
-            validateOnBlur={false}
+            validateOnBlur={true}
             validationSchema={SignupSchema}
             onSubmit={async(values, { resetForm }) => {
                 try {
@@ -53,11 +56,14 @@ export const RegisterForm = () => {
                             email: values.email,
                             password: values.password,
                         }));
+                    console.log(response.payload);
                     if (response.meta.requestStatus !== "rejected") {
                         resetForm();
                         navigate("/calendar");
                     } else {
-                        alert(response.error.message);
+                        if (response.payload.includes("409")) {
+                            setUsedEmail(true);
+                        }
                     }
                 } catch (error) {
                     console.log(error)
@@ -65,8 +71,7 @@ export const RegisterForm = () => {
         
             }}
         >
-            {({ errors, touched, isValid }) => {
-                console.log(isValid);
+            {({ errors, touched }) => {
                 return (
                     <StyledForm>
                         <StyledFormDiv>
@@ -77,7 +82,7 @@ export const RegisterForm = () => {
                                         touched.name &&
                                         'empty') ||
                                     (errors.name && touched.name && 'error') ||
-                                    null
+                                    (touched.name && 'okay')
                                 }
                             >
                                 Name
@@ -90,7 +95,7 @@ export const RegisterForm = () => {
                                         touched.name &&
                                         'empty') ||
                                     (errors.name && touched.name && 'error') ||
-                                    null
+                                    (touched.name && 'okay')
                                 }
                             />
                             {(errors.name === 'Please enter your name' && touched.name && (
@@ -107,7 +112,8 @@ export const RegisterForm = () => {
                                     (errors.email === 'Please enter your email' &&
                                         touched.email &&
                                         'empty') ||
-                                    (errors.email === 'This is an ERROR email' && 'error')
+                                    (((errors.email && (errors.email === "This is an ERROR email" || errors.email.includes("match"))) || usedEmail) && 'error') ||
+                                    (touched.email && 'okay')
                                 }
                             >
                                 Email
@@ -120,15 +126,19 @@ export const RegisterForm = () => {
                                     (errors.email === 'Please enter your email' &&
                                         touched.email &&
                                         'empty') ||
-                                    (errors.email === 'This is an ERROR email' && 'error')
+                                    (((errors.email && (errors.email === "This is an ERROR email" || errors.email.includes("match"))) || usedEmail) && 'error') ||
+                                    (touched.email && 'okay')
                                 }
                             />
                             {(errors.email === 'Please enter your email' && touched.email && (
                                 <StyledRequired>{errors.email}</StyledRequired>
                             )) ||
-                                (errors.email === 'This is an ERROR email' && (
-                                    <StyledError>{errors.email}</StyledError>
-                                ))}
+                            (errors.email && (errors.email === "This is an ERROR email" || errors.email.includes("match"))&& (
+                                <StyledError>This is an ERROR email</StyledError>
+                            )) ||
+                            (usedEmail && (
+                                <StyledError>This user is already exist</StyledError>
+                            ))}
                         </StyledFormDiv>
                         <StyledFormDiv>
                             <Styledlabel
@@ -138,7 +148,7 @@ export const RegisterForm = () => {
                                         touched.password &&
                                         'empty') ||
                                     (errors.password && touched.password && 'error') ||
-                                    null
+                                    (touched.password && 'okay')
                                 }
                             >
                                 Password
@@ -152,26 +162,22 @@ export const RegisterForm = () => {
                                         touched.password &&
                                         'empty') ||
                                     (errors.password && touched.password && 'error') ||
-                                    null
+                                    (touched.password && 'okay')
                                 }
                             />
                             {(errors.password === 'Please enter your password' &&
                                 touched.password && (
                                     <StyledRequired>{errors.password}</StyledRequired>
                                 )) ||
+                                (errors.password && errors.password.includes('password must match the following') && touched.password && (
+                                    <StyledError>This password should contain  at least eight characters and at least one number and one letter</StyledError>
+                                )) ||
                                 (errors.password && touched.password && (
                                     <StyledError>{errors.password}</StyledError>
-                                ))}
+                                ))
+                            }
                         </StyledFormDiv>
-                        <StyledButton type="submit">Sign Up
-                            {/* <img src="../../../public/favicon/favicon-32x32.png" alt=""></img> */}
-                            <StyledIconLogin>
-                                {/* <symbol id="icon-login" viewBox="0 0 32 32">
-      <path stroke-linejoin="round" stroke-linecap="round" stroke-width="3.2" d="M20 4h1.6c2.24 0 3.36 0 4.216.436a3.996 3.996 0 0 1 1.748 1.748C28 7.04 28 8.16 28 10.4v11.2c0 2.24 0 3.36-.436 4.216a4.001 4.001 0 0 1-1.748 1.748C24.96 28 23.84 28 21.6 28H20M13.333 9.333 20 16m0 0-6.667 6.667M20 16H4"/>
-    </symbol> */}
-                                {/* <use href="../../../public/sprite.svg#icon-login"></use> */}
-                            </StyledIconLogin>
-                        </StyledButton>
+                        <StyledButton type="submit">Sign Up</StyledButton>
                     </StyledForm>
                 );
             }}

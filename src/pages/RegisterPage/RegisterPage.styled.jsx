@@ -8,7 +8,10 @@ export const StyledLayout = styled.div`
   justify-content: center;
   align-items: center;
   background: #dcebf7;
-  @media (min-width: 375px) {
-    padding: 155px 20px 156px 20px;
+  @media (min-width: 768px) {
+    padding-top: 227px;
+  }
+  @media (min-width: 1440px) {
+    padding-top: 124px;
   }
 `;
