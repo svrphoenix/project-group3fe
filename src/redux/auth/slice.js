@@ -10,6 +10,7 @@ const initialState = {
 
 const handlePending = (state, _) => {
   state.isLoading = true;
+  state.error = '';
 };
 
 const handleRejected = (state, { payload }) => {
@@ -19,7 +20,6 @@ const handleRejected = (state, { payload }) => {
 
 const handleFulfilledUser = (state, { payload }) => {
   state.isLoading = false;
-  state.error = '';
   state.user = payload.user;
   state.token = payload.token;
 };

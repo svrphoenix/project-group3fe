@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const AccountPage = () => {
   return (
@@ -8,6 +8,6 @@ const AccountPage = () => {
   );
 };
 
-AccountPage.propTypes = {};
+// AccountPage.propTypes = {};
 
 export default AccountPage;
