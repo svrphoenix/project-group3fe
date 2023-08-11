@@ -2,8 +2,8 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { logoutReset } from './slice';
 
-axios.defaults.baseURL = ''; //адреса задеплоєного бекенду
-axios.defaults.baseURL = 'https://646f943e09ff19b1208781fe.mockapi.io/';
+// axios.defaults.baseURL = ''; //адреса задеплоєного бекенду
+axios.defaults.baseURL = 'https://goose-backend.onrender.com';
 
 const currentToken = {
   set(token) {
@@ -31,11 +31,7 @@ const register = createAsyncThunk(
 
 const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   try {
-    // const { data } = await axios.post('/users/login', credentials);
-    const data = {
-      user: { name: 'cdvd', email: 'vdfvfdbvg' },
-      token: 'vdfvfgbfij58ut86586 ',
-    };
+    const { data } = await axios.post('/users/login', credentials);
     console.log(data);
     currentToken.set(data.token);
     return data;
@@ -60,19 +56,17 @@ const refreshCurrentUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
+    console.log(state);
     const persistedToken = state.auth.token;
-
+    console.log('refreshUser');
     if (persistedToken === null) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
 
     currentToken.set(persistedToken);
     try {
-      // const { data } = await axios.get('/users/current');
-      const data = {
-        user: { name: 'cdvd', email: 'vdfvfdbvg' },
-        token: 'vdfvfgbfij58ut86586 ',
-      };
+      const { data } = await axios.get('/users/current');
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
