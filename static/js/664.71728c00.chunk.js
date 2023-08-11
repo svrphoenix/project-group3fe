@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkproject_group3fe=self.webpackChunkproject_group3fe||[]).push([[664],{6664:function(e,r,n){n.r(r);var t=n(9434),u=n(1087),c=n(1645),i=n(184);r.default=function(){var e=(0,t.I0)();return(0,i.jsxs)(i.Fragment,{children:[(0,i.jsx)("div",{children:"Login"}),(0,i.jsx)(u.OL,{to:"/calendar",onClick:function(){return e((0,c.x4)({email:"test2@i.ua",password:"123456Qw"}))},children:"Login user"})]})}}}]);
-//# sourceMappingURL=664.71728c00.chunk.js.map
