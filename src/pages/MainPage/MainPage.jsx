@@ -1,9 +1,16 @@
-import PropTypes from 'prop-types';
+import { AuthSection } from 'components/MainPage/AuthSection';
+import { Description } from 'components/MainPage/Description';
+import { ReviewsSlider } from 'components/MainPage/ReviewsSlider';
 
 const MainPage = () => {
-  return <></>;
+  return (
+    <>
+      <AuthSection />
+      <Description />
+      <ReviewsSlider />
+    </>
+  );
 };
 
-MainPage.propTypes = {};
 
 export default MainPage;
