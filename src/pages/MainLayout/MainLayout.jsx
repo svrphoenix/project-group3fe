@@ -10,11 +10,11 @@ const MainLayout = () => {
   const dispatch = useDispatch();
   return (
     <>
-      <SideBarMob />
+      {/* <SideBarMob /> */}
       <MainContainer>
         <SideBar />
         <ContentWrapper>
-          <Header />
+          {/* <Header /> */}
           <Suspense fallback={<div>LOADING....</div>}>
             <Outlet />
           </Suspense>
