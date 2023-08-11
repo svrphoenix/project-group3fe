@@ -16,7 +16,8 @@ const NotFound = ({ history }) => {
   return (
     <Container>
       <ErrorImagesContainer>
-        <ErrorImage src="/images/6325263" alt="404 Error" />
+        <ErrorImage src="/images/4-4" alt="404 Error" />
+        <ErrorImage src="/images/Gus" alt="404 Error" />
       </ErrorImagesContainer>
       <Heading>We're sorry, the page you requested could not be found.</Heading>
       <p>Please go back to the homepage.</p>
