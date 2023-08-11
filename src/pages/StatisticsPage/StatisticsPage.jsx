@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const StatisticsPage = () => {
   return <>Statistics</>;
 };
 
-StatisticsPage.propTypes = {};
+// StatisticsPage.propTypes = {};
 
 export default StatisticsPage;

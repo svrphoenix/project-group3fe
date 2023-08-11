@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Suspense } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
@@ -24,6 +24,6 @@ const MainLayout = () => {
   );
 };
 
-MainLayout.propTypes = {};
+// MainLayout.propTypes = {};
 
 export default MainLayout;

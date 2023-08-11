@@ -1,27 +1,16 @@
-import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import { AuthSection } from 'components/MainPage/AuthSection';
+import { Description } from 'components/MainPage/Description';
+import { ReviewsSlider } from 'components/MainPage/ReviewsSlider';
 
 const MainPage = () => {
   return (
     <>
-      <div>
-        MainPage
-        <div
-          style={{
-            paddingTop: 20,
-            display: 'flex',
-            gap: 10,
-            backgroundColor: 'red',
-          }}
-        >
-          <NavLink to="/login">toLogin</NavLink>
-          <NavLink to="/register">toRegister</NavLink>
-        </div>
-      </div>
+      <AuthSection />
+      <Description />
+      <ReviewsSlider />
     </>
   );
 };
 
-MainPage.propTypes = {};
 
 export default MainPage;

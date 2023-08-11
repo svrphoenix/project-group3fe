@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const NotFound = () => {
   return <div>Not Found</div>;
 };
 
-NotFound.propTypes = {};
+// NotFound.propTypes = {};
 
 export default NotFound;

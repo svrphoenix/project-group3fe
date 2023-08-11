@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const CalendarPage = () => {
   return (
@@ -10,4 +10,4 @@ const CalendarPage = () => {
 
 CalendarPage.propTypes = {};
 
-export default CalendarPage;
+// export default CalendarPage;
