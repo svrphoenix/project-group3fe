@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const RegisterPage = () => {
   return <></>;
 };
 
-RegisterPage.propTypes = {};
+// RegisterPage.propTypes = {};
 
 export default RegisterPage;

@@ -18,7 +18,7 @@ const StatisticsPage = lazy(() =>
 const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 
 const App = () => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, isRefreshing } = useAuth();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,7 +29,8 @@ const App = () => {
     <Route
       path="/"
       element={
-        <RestrictedRoute redirectTo="/calendar" component={<MainLayout />} />
+        <MainLayout />
+        // <RestrictedRoute redirectTo="/calendar" component={<MainLayout />} />
       }
     >
       <Route
@@ -104,7 +105,11 @@ const App = () => {
 
   return (
     <Suspense fallback={<div>LOADING....</div>}>
-      <Routes>{isLoggedIn ? isLoginLayout : notAuthorizedLayout}</Routes>
+      {isRefreshing ? (
+        <div>Loader</div>
+      ) : (
+        <Routes>{isLoggedIn ? isLoginLayout : notAuthorizedLayout}</Routes>
+      )}
     </Suspense>
   );
 };
