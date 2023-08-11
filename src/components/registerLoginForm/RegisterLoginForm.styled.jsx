@@ -117,9 +117,9 @@ export const StyledField = styled(Field)`
   font-size: 14px;
   font-style: normal;
   line-height: 1.3;
+  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
-    border-radius: 8px;
     border: 1px solid #111;
   }
   &::placeholder {
@@ -135,13 +135,37 @@ export const StyledField = styled(Field)`
   }
 `;
 
+export const StyledFieldPassword = styled(StyledField)`
+  font-family: Inter Bold;
+  font-weight: 900;
+  letter-spacing: 6px;
+  &::placeholder {
+    padding-top:6px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0px;
+    
+  }
+`
+
+export const StyledFieldPasswordLogin = styled(StyledFieldPassword)`
+  &::placeholder {
+    font-family: Inter Bold;
+    font-weight: 900;
+    letter-spacing: 6px;
+    line-height: 1.28;
+  }
+`
+
 export const StyledRequired = styled.div`
   color: #3e85f3;
-  font-family: Inter, sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 18px;
+  font-family: Inter Regular;
+  font-size: 12px;
+  line-height: 1.16;
+  @media (min-width: 768px) {
+    font-size: 14px;
+    line-height: 1.3;
+  }
 `;
 
 export const StyledError = styled(StyledRequired)`
@@ -152,7 +176,6 @@ export const StyledButton = styled.button`
   display: flex;
   width: 100%;
   padding: 14px;
-  flex-direction: column;
   align-items: center;
   gap: 10px;
   border-radius: 16px;
@@ -166,23 +189,18 @@ export const StyledButton = styled.button`
   line-height: 1.28;
   letter-spacing: -0.28px;
   margin-top: 12px;
+  justify-content: center;
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1),
+  box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
     background: #2b78ef;
     box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
   }
-  @media (min-width: 375px) {
-    padding: 14px 103px;
-  }
   @media (min-width: 768px) {
     margin-top: 30px;
     font-size: 18px;
-  line-height: 1.33;
+    letter-spacing: -0.36px;
+    line-height: 1.33;
   }
 `;
-
-export const StyledIconLogin = styled.svg`
-  fill: #FFF;
-  width: 20px;
-  height:20px;
-`

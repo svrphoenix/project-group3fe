@@ -28,12 +28,14 @@ import { ReactComponent as LoginIcon } from '../images/icons/login.svg';
 import { ReactComponent as StarIcon } from '../images/icons/star.svg';
 import { ReactComponent as LarrIcon } from '../images/icons/larrow.svg';
 import { ReactComponent as RarrIcon } from '../images/icons/rarrow.svg';
+import { ReactComponent as LoginWhiteIcon } from '../images/icons/loginWhite.svg';
 
 export const SVG = {
   LoginIcon,
   StarIcon,
   LarrIcon,
   RarrIcon,
+  LoginWhiteIcon,
 };
 export const IMG = {
   all,

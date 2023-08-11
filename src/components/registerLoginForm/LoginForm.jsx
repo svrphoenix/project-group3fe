@@ -9,64 +9,59 @@ import {
     StyledContainer,
     StyledError,
     StyledField,
+    StyledFieldPasswordLogin,
     StyledForm,
     StyledFormDiv,
     StyledHeader,
     Styledlabel,
     StyledRequired,
-} from './RegisterForm.styled';
-import { register } from 'redux/auth/operations';
+} from './RegisterLoginForm.styled';
+import { login } from 'redux/auth/operations';
+import { SVG } from 'images';
 
-const SignupSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(3, 'Too Short!')
-    .max(20, 'Too Long!')
-    .required('Please enter your name'),
+const LoginSchema = Yup.object().shape({
   email: Yup.string()
     .email('This is an ERROR email')
     .required('Please enter your email')
-    .matches(/^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/),
+    .matches(/^[a-z0-9.]+@[a-z]+\.[a-z]{2,3}$/),
   password: Yup.string()
     .min(8, 'Need to be more than 8 symbols!')
     .required('Please enter your password')
     .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,30}$/),
 });
 
-const RegisterForm = () => {
+const LoginForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [usedEmail, setUsedEmail] = useState(false);
+    const [noUser, setNoUser] = useState(false);
 
     return  (<StyledContainer>
-        <StyledHeader>Sign Up</StyledHeader>
+        <StyledHeader>Log In</StyledHeader>
         <Formik
             initialValues={{
-                name: '',
                 email: '',
                 password: '',
             }}
             validateOnChange={false}
             validateOnBlur={true}
-            validationSchema={SignupSchema}
-            onSubmit={async(values, { resetForm }) => {
+            validationSchema={LoginSchema}
+            onSubmit={async (values, { resetForm }) => {
                 try {
                     const response = await dispatch(
-                        register({
-                            name: values.name,
+                        login({
                             email: values.email,
                             password: values.password,
                         }));
-                    console.log(response.payload);
                     if (response.meta.requestStatus !== "rejected") {
                         resetForm();
                         navigate("/calendar");
                     } else {
-                        if (response.payload.includes("409")) {
-                            setUsedEmail(true);
+                        if (response.payload.includes("401")) {
+                            setNoUser(true);
                         }
                     }
                 } catch (error) {
-                    console.log(error)
+                    alert("Sorry, problem at server")
                 }
         
             }}
@@ -76,43 +71,12 @@ const RegisterForm = () => {
                     <StyledForm>
                         <StyledFormDiv>
                             <Styledlabel
-                                htmlFor="name"
-                                $validate={
-                                    (errors.name === 'Please enter your name' &&
-                                        touched.name &&
-                                        'empty') ||
-                                    (errors.name && touched.name && 'error') ||
-                                    (touched.name && 'okay')
-                                }
-                            >
-                                Name
-                            </Styledlabel>
-                            <StyledField
-                                name="name"
-                                placeholder="Enter your name"
-                                $validate={
-                                    (errors.name === 'Please enter your name' &&
-                                        touched.name &&
-                                        'empty') ||
-                                    (errors.name && touched.name && 'error') ||
-                                    (touched.name && 'okay')
-                                }
-                            />
-                            {(errors.name === 'Please enter your name' && touched.name && (
-                                <StyledRequired>{errors.name}</StyledRequired>
-                            )) ||
-                                (errors.name && touched.name && (
-                                    <StyledError>{errors.name}</StyledError>
-                                ))}
-                        </StyledFormDiv>
-                        <StyledFormDiv>
-                            <Styledlabel
                                 htmlFor="email"
                                 $validate={
                                     (errors.email === 'Please enter your email' &&
                                         touched.email &&
                                         'empty') ||
-                                    (((errors.email && (errors.email === "This is an ERROR email" || errors.email.includes("match"))) || usedEmail) && 'error') ||
+                                    (((errors.email && (errors.email === "This is an ERROR email" || errors.email.includes("match")))||noUser) && 'error') ||
                                     (touched.email && 'okay')
                                 }
                             >
@@ -121,23 +85,23 @@ const RegisterForm = () => {
                             <StyledField
                                 name="email"
                                 type="email"
-                                placeholder="Enter email"
+                                placeholder="nadiia@gmail.com"
                                 $validate={
                                     (errors.email === 'Please enter your email' &&
                                         touched.email &&
                                         'empty') ||
-                                    (((errors.email && (errors.email === "This is an ERROR email" || errors.email.includes("match"))) || usedEmail) && 'error') ||
+                                    (((errors.email && (errors.email === "This is an ERROR email" || errors.email.includes("match")))||noUser) && 'error') ||
                                     (touched.email && 'okay')
                                 }
                             />
                             {(errors.email === 'Please enter your email' && touched.email && (
                                 <StyledRequired>{errors.email}</StyledRequired>
                             )) ||
-                            (errors.email && (errors.email === "This is an ERROR email" || errors.email.includes("match"))&& (
-                                <StyledError>This is an ERROR email</StyledError>
+                                (errors.email && (errors.email === "This is an ERROR email" || errors.email.includes("match")) && (
+                                    <StyledError>This is an ERROR email</StyledError>
                             )) ||
-                            (usedEmail && (
-                                <StyledError>This user is already exist</StyledError>
+                            (noUser && (
+                                 <StyledError>Email or password is uncorrect</StyledError>
                             ))}
                         </StyledFormDiv>
                         <StyledFormDiv>
@@ -147,21 +111,21 @@ const RegisterForm = () => {
                                     (errors.password === 'Please enter your password' &&
                                         touched.password &&
                                         'empty') ||
-                                    (errors.password && touched.password && 'error') ||
+                                    (((errors.password && touched.password)||noUser) && 'error') ||
                                     (touched.password && 'okay')
                                 }
                             >
                                 Password
                             </Styledlabel>
-                            <StyledField
+                            <StyledFieldPasswordLogin
                                 name="password"
                                 type="password"
-                                placeholder="Enter password"
+                                placeholder="•••••••"
                                 $validate={
                                     (errors.password === 'Please enter your password' &&
                                         touched.password &&
                                         'empty') ||
-                                    (errors.password && touched.password && 'error') ||
+                                    (((errors.password && touched.password)||noUser) && 'error') ||
                                     (touched.password && 'okay')
                                 }
                             />
@@ -174,10 +138,14 @@ const RegisterForm = () => {
                                 )) ||
                                 (errors.password && touched.password && (
                                     <StyledError>{errors.password}</StyledError>
+                                )) || (noUser && (
+                                <StyledError>Email or password is uncorrect</StyledError>
                                 ))
                             }
                         </StyledFormDiv>
-                        <StyledButton type="submit">Sign Up</StyledButton>
+                        <StyledButton type="submit">Log In
+                            <SVG.LoginWhiteIcon />
+                        </StyledButton>
                     </StyledForm>
                 );
             }}
@@ -185,4 +153,4 @@ const RegisterForm = () => {
     </StyledContainer>)
 };
 
-export default RegisterForm;
+export default LoginForm;
