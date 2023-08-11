@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const FeedbackForm = props => {
+export const FeedbackForm = ({ review }) => {
   const [reviewText, setReviewText] = useState('');
 
   const onSubmit = e => {
@@ -12,24 +12,31 @@ export const FeedbackForm = props => {
       <button className="closeBtn" type="button"></button>
       <div className="starRate"></div>
       <div className="">
-        <button type="button"></button>
-        <button type="submit"></button>
+        {review && (
+          <>
+            <button type="button"></button>
+            <button type="submit"></button>
+          </>
+        )}
         <label htmlFor="reviewTextAreaId">
           Review
           <textarea
             id="reviewTextAreaId"
-            name="reviewContent"
             rows={4}
             cols={40}
             readOnly={false}
-            value={reviewText}
+            value={review || reviewText}
             onChange={e => setReviewText(e.target.value)}
           />
         </label>
-        <div>
-          <button type="submit">Save</button>
-          <button type="button">Cancel</button>
-        </div>
+        {!review && (
+          <>
+            <button type="submit" onSubmit={reviewText}>
+              Save
+            </button>
+            <button type="button">Cancel</button>
+          </>
+        )}
       </div>
     </form>
   );
