@@ -1,12 +1,5 @@
 import styled from 'styled-components';
 
-// const accentColor = '3E85F3';
-// const primaryTxtColor = '111111';
-// const secondaryTxtColor = '343434';
-// const grayscaleColor = 'rgba(52, 52, 52, 0.50)';
-// const activePageColor = 'E3F3FF';
-// const whiteColor = 'FFFFFF';
-
 export const SideBarBox = styled.div`
   display: flex;
   flex-direction: column;

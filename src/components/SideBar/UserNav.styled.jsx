@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-const accentColor = '3E85F3';
+const accentColor = '#3E85F3';
 const grayscaleColor = 'rgba(52, 52, 52, 0.50)';
-const activePageColor = 'E3F3FF';
+const activePageColor = '#E3F3FF';
 const animate = '250ms cubic-bezier(0.4, 0, 0.2, 1)';
 
 export const UserNavWrapper = styled.div``;

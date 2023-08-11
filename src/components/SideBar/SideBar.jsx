@@ -1,6 +1,7 @@
 import { SideBarBox, TopWrapper } from './SideBar.styled';
 import SideBarLogo from './SideBarLogo';
 import UserNav from './UserNav';
+import LogoutBtn from './LogoutBtn';
 
 const SideBar = () => {
   return (
@@ -9,7 +10,7 @@ const SideBar = () => {
         <SideBarLogo />
         <UserNav />
       </TopWrapper>
-      {/* <LogoutBtn /> */}
+      <LogoutBtn />
     </SideBarBox>
   );
 };

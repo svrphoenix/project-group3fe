@@ -1,5 +1,5 @@
-import gooseDesktop1x from '../../img/sidebar-and-header/goose-desktop@1x.webp';
-import gooseDesktop2x from '../../img/sidebar-and-header/goose-desktop@2x.webp';
+import gooseDesktop1x from './sidebar-and-header-images/goose-desktop@1x.webp';
+import gooseDesktop2x from './sidebar-and-header-images/goose-desktop@2x.webp';
 import { SideBarLogoWrapper, LogoImg, LogoTxt } from './SideBarLogo.styled';
 
 const SideBarLogo = () => {
