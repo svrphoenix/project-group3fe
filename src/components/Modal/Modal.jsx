@@ -1,10 +1,32 @@
+import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import * as SC from './Modal.style';
 
-export const Modal = ({ Children }) => {
+export const Modal = ({ children, onToggleModal }) => {
+  useEffect(() => {
+    const handleKeyDown = e => {
+      if (e.code === 'Escape') {
+        onToggleModal();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onToggleModal]);
+
+  const onBackdropClick = e => {
+    if (e.target === e.currentTarget) {
+      onToggleModal();
+    }
+  };
+
   return createPortal(
-    <div className="modalBackdrop">
-      <div className="modalContent">{Children}</div>
-    </div>,
-    document.querySelector('#popup-root')
+    <SC.ModalBackdrop onClick={onBackdropClick}>
+      <SC.ModalContent>{children}</SC.ModalContent>
+    </SC.ModalBackdrop>,
+    document.querySelector('#modal-root')
   );
 };
