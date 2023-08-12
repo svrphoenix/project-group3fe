@@ -7,13 +7,25 @@ import {
   TxtWrapper,
   Motivator,
   HeaderMenuWrapper,
-  FeedbackBtn,
+  AddFeedbackBtn,
   UserInfoWrapper,
   ThemeToggleBtn,
-  ThemeToggleImg,
+  Vector,
+  UserInfo,
+  UserName,
+  UserAvatar,
 } from './Header.styled';
 import GooseMentor1x from './header-img/goose-mentor-desktop@1x.webp';
 import GooseMentor2x from './header-img/goose-mentor-desktop@2x.webp';
+import SVG from './header-img/header-icons.svg';
+
+const ThemeToggleIcon = ({ sprite, spriteId }) => {
+  return (
+    <Vector>
+      <use href={`${sprite}#${spriteId}`} />
+    </Vector>
+  );
+};
 
 const Header = () => {
   return (
@@ -22,7 +34,7 @@ const Header = () => {
         <Title>Calendar</Title>
       </HeaderTitleWrapperNoGoose>
 
-      <HeaderTitleWrapperGoose>
+      {/* <HeaderTitleWrapperGoose>
         <picture>
           <source
             srcSet={`${GooseMentor1x} 1x, ${GooseMentor2x} 2x`}
@@ -41,18 +53,18 @@ const Header = () => {
             <span>Let go</span> of the past and focus on the present!
           </Motivator>
         </TxtWrapper>
-      </HeaderTitleWrapperGoose>
+      </HeaderTitleWrapperGoose> */}
 
       <HeaderMenuWrapper>
-        <FeedbackBtn>Feedback</FeedbackBtn>
+        <AddFeedbackBtn>Feedback</AddFeedbackBtn>
         <UserInfoWrapper>
           <ThemeToggleBtn>
-            <ThemeToggleImg
-              src={`${MoonIcon}`}
-              alt="Moon"
-              aria-label="Toggle theme"
-            />
+            <ThemeToggleIcon sprite={SVG} spriteId="moon-icon" />
           </ThemeToggleBtn>
+          <UserInfo>
+            <UserName>Olexandr</UserName>
+            <UserAvatar>O</UserAvatar>
+          </UserInfo>
         </UserInfoWrapper>
       </HeaderMenuWrapper>
     </HeaderContainer>

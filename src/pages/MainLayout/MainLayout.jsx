@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom';
 // import { logout } from 'redux/auth/operations';
 import { MainContainer, ContentWrapper } from './MainLayout.styled';
 import SideBar from 'components/SideBar/SideBar';
+import Header from 'components/Header/Header';
 
 const MainLayout = () => {
   // const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const MainLayout = () => {
       <MainContainer>
         <SideBar />
         <ContentWrapper>
-          {/* <Header /> */}
+          <Header />
           <Suspense fallback={<div>LOADING....</div>}>
             <Outlet />
           </Suspense>
