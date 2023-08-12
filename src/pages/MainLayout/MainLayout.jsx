@@ -6,6 +6,7 @@ import { logout } from 'redux/auth/operations';
 
 const MainLayout = () => {
   const dispatch = useDispatch();
+
   return (
     <>
       <div>
