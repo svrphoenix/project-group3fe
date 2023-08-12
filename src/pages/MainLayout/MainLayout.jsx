@@ -1,13 +1,13 @@
 // import PropTypes from 'prop-types';
 import { Suspense } from 'react';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
-import { logout } from 'redux/auth/operations';
+// import { logout } from 'redux/auth/operations';
 import { MainContainer, ContentWrapper } from './MainLayout.styled';
 import SideBar from 'components/SideBar/SideBar';
 
 const MainLayout = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   return (
     <>

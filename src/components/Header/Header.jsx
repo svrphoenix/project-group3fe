@@ -14,8 +14,6 @@ import {
 } from './Header.styled';
 import GooseMentor1x from './header-img/goose-mentor-desktop@1x.webp';
 import GooseMentor2x from './header-img/goose-mentor-desktop@2x.webp';
-import SunIcon from './header-img/sun-icon.svg';
-import MoonIcon from './header-img/moon-icon.svg';
 
 const Header = () => {
   return (
