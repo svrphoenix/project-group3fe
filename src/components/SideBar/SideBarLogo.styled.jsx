@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const accentColor = '3E85F3';
+const accentColor = '#3E85F3';
 
 export const SideBarLogoWrapper = styled.div`
   display: flex;
