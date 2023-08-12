@@ -93,8 +93,8 @@ export const NavLinkBtn = styled(Link)`
     background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
-    color: #3777da;
-    background-color: #ebf2fd;
+    color: #fff;
+    background-color: #345ea1;
   }
 `;
 

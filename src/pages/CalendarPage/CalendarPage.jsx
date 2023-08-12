@@ -10,4 +10,4 @@ const CalendarPage = () => {
 
 CalendarPage.propTypes = {};
 
-// export default CalendarPage;
+export default CalendarPage;

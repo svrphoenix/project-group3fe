@@ -8,6 +8,7 @@ import SideBar from 'components/SideBar/SideBar';
 
 const MainLayout = () => {
   const dispatch = useDispatch();
+
   return (
     <>
       {/* <SideBarMob /> */}
