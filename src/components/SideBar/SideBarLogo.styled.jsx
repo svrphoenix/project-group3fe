@@ -31,7 +31,7 @@ export const LogoTxt = styled.p`
   color: ${accentColor};
   text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
     0px 47px 355px rgba(0, 0, 0, 0.07);
-  font-family: Inter;
+  font-family: 'Inter Bold';
   font-size: 16px;
   font-style: normal;
   font-weight: 700;

@@ -4,9 +4,18 @@ import {
   UserNavList,
   UserNavItem,
   UserNavLink,
-  UserNavIcon,
+  Vector,
   UserNavTxt,
 } from './UserNav.styled';
+import SVG from './sidebar-and-header-images/sidebar-nav-icons.svg';
+
+const UserNavIcon = ({ sprite, spriteId }) => {
+  return (
+    <Vector>
+      <use href={`${sprite}#${spriteId}`} />
+    </Vector>
+  );
+};
 
 const UserNav = () => {
   return (
@@ -15,26 +24,20 @@ const UserNav = () => {
       <UserNavList>
         <UserNavItem>
           <UserNavLink to="account">
-            <UserNavIcon>
-              <use href="./sidebar-and-header-images/sidebar-nav-icons.svg#user-icon"></use>
-            </UserNavIcon>
+            <UserNavIcon sprite={SVG} spriteId="user-icon" />
             <UserNavTxt>My account</UserNavTxt>
           </UserNavLink>
         </UserNavItem>
         <UserNavItem>
           <UserNavLink to="calendar">
-            <UserNavIcon>
-              <use href="./sidebar-and-header-images/sidebar-nav-icons.svg#calendar-icon"></use>
-            </UserNavIcon>
-            <UserNavTxt>My account</UserNavTxt>
+            <UserNavIcon sprite={SVG} spriteId="calendar-icon" />
+            <UserNavTxt>Calendar</UserNavTxt>
           </UserNavLink>
         </UserNavItem>
         <UserNavItem>
           <UserNavLink to="statistics">
-            <UserNavIcon>
-              <use href="./sidebar-and-header-images/sidebar-nav-icons.svg#chart-icon"></use>
-            </UserNavIcon>
-            <UserNavTxt>My account</UserNavTxt>
+            <UserNavIcon sprite={SVG} spriteId="chart-icon" />
+            <UserNavTxt>Statistics</UserNavTxt>
           </UserNavLink>
         </UserNavItem>
       </UserNavList>

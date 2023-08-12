@@ -6,9 +6,13 @@ const whiteColor = '#FFFFFF';
 const animate = '250ms cubic-bezier(0.4, 0, 0.2, 1)';
 
 export const Btn = styled.button`
+  cursor: pointer;
   display: flex;
+  align-items: center;
   gap: 6px;
+  width: 131px;
   padding: 14px 28px;
+  border: none;
   border-radius: 16px;
   background-color: ${accentColor};
   box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
@@ -16,6 +20,7 @@ export const Btn = styled.button`
 
   @media screen and (min-width: 768px) {
     gap: 11px;
+    width: 141px;
     padding: 16px 23px;
   }
 
@@ -27,7 +32,7 @@ export const Btn = styled.button`
 
 export const Txt = styled.p`
   color: ${whiteColor};
-  font-family: Inter;
+  font-family: 'Inter SemiBold';
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -41,9 +46,10 @@ export const Txt = styled.p`
   }
 `;
 
-export const Img = styled.svg`
+export const Vector = styled.svg`
   width: 18px;
   height: 18px;
+  fill: ${whiteColor};
 
   @media screen and (min-width: 768px) {
     width: 20px;
