@@ -49,3 +49,15 @@ export const UserAvatar = styled.p`
     font-size: 18px;
   }
 `;
+
+export const UserAvatarImg = styled.img`
+  width: 32px;
+  height: 32px;
+  border: 1.8px solid ${accentColor};
+  border-radius: 50%;
+
+  @media screen and (min-width: 768px) {
+    width: 44px;
+    height: 44px;
+  }
+`;
