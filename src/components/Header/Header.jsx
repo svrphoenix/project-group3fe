@@ -7,25 +7,13 @@ import {
   TxtWrapper,
   Motivator,
   HeaderMenuWrapper,
-  AddFeedbackBtn,
   UserInfoWrapper,
-  ThemeToggleBtn,
-  Vector,
-  UserInfo,
-  UserName,
-  UserAvatar,
 } from './Header.styled';
 import GooseMentor1x from './header-img/goose-mentor-desktop@1x.webp';
 import GooseMentor2x from './header-img/goose-mentor-desktop@2x.webp';
-import SVG from './header-img/header-icons.svg';
-
-const ThemeToggleIcon = ({ sprite, spriteId }) => {
-  return (
-    <Vector>
-      <use href={`${sprite}#${spriteId}`} />
-    </Vector>
-  );
-};
+import AddFeedbackBtn from './AddFeedbackBtn';
+import ThemeToggleBtn from './ThemeToggleBtn';
+import UserInfo from './UserInfo';
 
 const Header = () => {
   return (
@@ -56,15 +44,10 @@ const Header = () => {
       </HeaderTitleWrapperGoose> */}
 
       <HeaderMenuWrapper>
-        <AddFeedbackBtn>Feedback</AddFeedbackBtn>
+        <AddFeedbackBtn />
         <UserInfoWrapper>
-          <ThemeToggleBtn>
-            <ThemeToggleIcon sprite={SVG} spriteId="moon-icon" />
-          </ThemeToggleBtn>
-          <UserInfo>
-            <UserName>Olexandr</UserName>
-            <UserAvatar>O</UserAvatar>
-          </UserInfo>
+          <ThemeToggleBtn />
+          <UserInfo />
         </UserInfoWrapper>
       </HeaderMenuWrapper>
     </HeaderContainer>
