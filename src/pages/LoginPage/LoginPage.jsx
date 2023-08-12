@@ -1,30 +1,15 @@
-// import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { login } from 'redux/auth/operations';
+import { AuthNavigate } from 'components/authNavigate/AuthNavigate';
+import LoginForm from 'components/registerLoginForm/LoginForm';
+import { StyledLayout } from './LoginPage.styled';
 
 const LoginPage = () => {
-  const dispatch = useDispatch();
   return (
-    <>
-      <div>Login</div>
-      <NavLink
-        to="/calendar/month/:currentDate"
-        onClick={() =>
-          dispatch(
-            login({
-              email: 'test2@i.ua',
-              password: '123456Qw',
-            })
-          )
-        }
-      >
-        Login user
-      </NavLink>
-    </>
+    <StyledLayout>
+      <LoginForm />
+      <AuthNavigate path="/register" text="Sign Up"/>
+    </StyledLayout>
+      
   );
 };
-
-// LoginPage.propTypes = {};
 
 export default LoginPage;

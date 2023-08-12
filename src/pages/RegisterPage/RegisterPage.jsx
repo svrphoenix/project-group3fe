@@ -1,6 +1,6 @@
 
 import { AuthNavigate } from 'components/authNavigate/AuthNavigate';
-import RegisterForm from 'components/registerForm/RegisterForm';
+import RegisterForm from 'components/registerLoginForm/RegisterForm';
 import { StyledLayout } from './RegisterPage.styled';
 
 

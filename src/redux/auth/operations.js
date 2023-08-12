@@ -19,7 +19,6 @@ const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     try {
-      console.log('register operation');
       const { data } = await axios.post('/users/register', credentials);
       currentToken.set(data.token);
       return data;
@@ -32,7 +31,6 @@ const register = createAsyncThunk(
 const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   try {
     const { data } = await axios.post('/users/login', credentials);
-    console.log(data);
     currentToken.set(data.token);
     return data;
   } catch (error) {
