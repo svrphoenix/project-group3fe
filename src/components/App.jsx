@@ -19,7 +19,7 @@ const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 
 const App = () => {
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     dispatch(refreshCurrentUser());
   }, [dispatch]);
