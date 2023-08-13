@@ -9,13 +9,15 @@ import {
     StyledContainer,
     StyledError,
     StyledField,
+    StyledFieldPassword,
     StyledForm,
     StyledFormDiv,
     StyledHeader,
     Styledlabel,
     StyledRequired,
-} from './RegisterForm.styled';
+} from './RegisterLoginForm.styled';
 import { register } from 'redux/auth/operations';
+import { SVG } from 'images';
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -25,7 +27,7 @@ const SignupSchema = Yup.object().shape({
   email: Yup.string()
     .email('This is an ERROR email')
     .required('Please enter your email')
-    .matches(/^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/),
+    .matches(/^[a-z0-9.]+@[a-z]+\.[a-z]{2,3}$/),
   password: Yup.string()
     .min(8, 'Need to be more than 8 symbols!')
     .required('Please enter your password')
@@ -56,7 +58,6 @@ const RegisterForm = () => {
                             email: values.email,
                             password: values.password,
                         }));
-                    console.log(response.payload);
                     if (response.meta.requestStatus !== "rejected") {
                         resetForm();
                         navigate("/calendar");
@@ -66,7 +67,7 @@ const RegisterForm = () => {
                         }
                     }
                 } catch (error) {
-                    console.log(error)
+                    alert("Sorry, problem at server")
                 }
         
             }}
@@ -153,7 +154,7 @@ const RegisterForm = () => {
                             >
                                 Password
                             </Styledlabel>
-                            <StyledField
+                            <StyledFieldPassword
                                 name="password"
                                 type="password"
                                 placeholder="Enter password"
@@ -177,7 +178,9 @@ const RegisterForm = () => {
                                 ))
                             }
                         </StyledFormDiv>
-                        <StyledButton type="submit">Sign Up</StyledButton>
+                        <StyledButton type="submit">Sign Up
+                            <SVG.LoginWhiteIcon />
+                        </StyledButton>
                     </StyledForm>
                 );
             }}

@@ -16,7 +16,7 @@ export const Review = ({
           <SC.ReviewAvatar src={avatar} alt={name} width="50" />
           <SC.ReviewWrapperGrade>
             <SC.ReviewUsername>{name}</SC.ReviewUsername>
-            <StarRating rating={rating} />
+            <StarRating rating={rating} readOnly />
           </SC.ReviewWrapperGrade>
         </SC.ReviewWrapperUser>
         <SC.ReviewText>{review}</SC.ReviewText>

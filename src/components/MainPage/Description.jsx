@@ -1,3 +1,4 @@
+import { FeedbackButton } from 'components/FeedbackButton/FeedbackButton';
 import * as SC from './MainPage.styled';
 const { descriptions } = require('./constant');
 
@@ -10,6 +11,7 @@ export const Description = () => {
             return (
               <SC.ListItem key={title}>
                 <SC.ItemWrapper>
+                  <FeedbackButton />
                   <SC.ItemNumber>{inx + 1}.</SC.ItemNumber>
                   {badge && <SC.ItemBadge>{badge}</SC.ItemBadge>}
                   <SC.ItemTitle>{title}</SC.ItemTitle>
