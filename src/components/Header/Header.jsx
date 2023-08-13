@@ -19,11 +19,21 @@ import { useLocation } from 'react-router-dom';
 
 const Header = () => {
   const location = useLocation();
-  let activePage = '';
+  // let activePage = '';
 
-  location.pathname.includes('account') && (activePage = 'User Profile');
-  location.pathname.includes('calendar') && (activePage = 'Calendar');
-  location.pathname.includes('statistics') && (activePage = 'Statistics');
+  // location.pathname.includes('account') && (activePage = 'User Profile');
+  // location.pathname.includes('calendar') && (activePage = 'Calendar');
+  // location.pathname.includes('statistics') && (activePage = 'Statistics');
+
+  const pageConfig = [
+    { path: 'account', page: 'User Profile' },
+    { path: 'calendar', page: 'Calendar' },
+    { path: 'statistics', page: 'Statistics' },
+  ];
+
+  const activePage = pageConfig.find(item =>
+    location.pathname.includes(item.path)
+  ).page;
 
   // switch (location.pathname) {
   //   case '/account':
