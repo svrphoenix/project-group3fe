@@ -11,11 +11,11 @@ import SVG from './sidebar-and-header-images/sidebar-nav-icons.svg';
 import AddSvg from 'components/AddSvg/AddSvg';
 
 const UserNav = () => {
-  const navListConfig = [
-    { linkTo: 'account', iconId: 'user-icon', linkName: 'My account' },
-    { linkTo: 'calendar', iconId: 'calendar-icon', linkName: 'Calendar' },
-    { linkTo: 'statistics', iconId: 'user-icon', linkName: 'My account' },
-  ];
+  // const navListConfig = [
+  //   { linkTo: 'account', iconId: 'user-icon', linkName: 'My account' },
+  //   { linkTo: 'calendar', iconId: 'calendar-icon', linkName: 'Calendar' },
+  //   { linkTo: 'statistics', iconId: 'user-icon', linkName: 'My account' },
+  // ];
 
   return (
     <UserNavWrapper>
