@@ -1,4 +1,5 @@
 // import PropTypes from 'prop-types';
+
 import { Suspense } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
