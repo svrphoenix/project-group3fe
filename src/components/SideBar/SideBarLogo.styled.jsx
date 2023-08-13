@@ -49,3 +49,18 @@ export const LogoTxt = styled.p`
     font-size: 24px;
   }
 `;
+
+export const Vector = styled.svg`
+  margin-left: auto;
+  width: 24px;
+  height: 24px;
+
+  @media screen and (min-width: 768px) {
+    width: 34px;
+    height: 34px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    display: none;
+  }
+`;

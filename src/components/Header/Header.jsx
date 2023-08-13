@@ -21,19 +21,23 @@ const Header = () => {
   const location = useLocation();
   let activePage = '';
 
-  switch (location.pathname) {
-    case '/account':
-      activePage = 'User Profile';
-      break;
-    case '/calendar':
-      activePage = 'Calendar';
-      break;
-    case '/statistics':
-      activePage = 'Statistics';
-      break;
-    default:
-      activePage = 'My account';
-  }
+  location.pathname.includes('account') && (activePage = 'User Profile');
+  location.pathname.includes('calendar') && (activePage = 'Calendar');
+  location.pathname.includes('statistics') && (activePage = 'Statistics');
+
+  // switch (location.pathname) {
+  //   case '/account':
+  //     activePage = 'User Profile';
+  //     break;
+  //   case '/calendar':
+  //     activePage = 'Calendar';
+  //     break;
+  //   case '/statistics':
+  //     activePage = 'Statistics';
+  //     break;
+  //   default:
+  //     activePage = 'My account';
+  // }
 
   return (
     <HeaderContainer>

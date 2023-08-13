@@ -6,6 +6,7 @@ import { Outlet } from 'react-router-dom';
 import { MainContainer, ContentWrapper } from './MainLayout.styled';
 import SideBar from 'components/SideBar/SideBar';
 import Header from 'components/Header/Header';
+import SideBarMob from 'components/SideBar/SideBarMob';
 
 const MainLayout = () => {
   // const dispatch = useDispatch();
