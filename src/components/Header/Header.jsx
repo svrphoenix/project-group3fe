@@ -11,10 +11,12 @@ import {
 } from './Header.styled';
 // import GooseMentor1x from './header-img/goose-mentor-desktop@1x.webp';
 // import GooseMentor2x from './header-img/goose-mentor-desktop@2x.webp';
-import AddFeedbackBtn from './AddFeedbackBtn';
+// import AddFeedbackBtn from './AddFeedbackBtn';
 import ThemeToggleBtn from './ThemeToggleBtn';
 import UserInfo from './UserInfo';
 import { useLocation } from 'react-router-dom';
+
+import { FeedbackButton } from 'components/FeedbackButton/FeedbackButton';
 
 const Header = () => {
   const location = useLocation();
@@ -76,7 +78,8 @@ const Header = () => {
       </HeaderTitleWrapperGoose> */}
 
       <HeaderMenuWrapper>
-        <AddFeedbackBtn />
+        <FeedbackButton />
+        {/* <AddFeedbackBtn /> */}
         <UserInfoWrapper>
           <ThemeToggleBtn />
           <UserInfo />
