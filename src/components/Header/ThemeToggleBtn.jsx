@@ -1,18 +1,11 @@
 import SVG from './header-img/header-icons.svg';
 import { Button, Vector } from './ThemeToggleBtn.styled';
-
-const ThemeToggleIcon = ({ sprite, spriteId }) => {
-  return (
-    <Vector>
-      <use href={`${sprite}#${spriteId}`} />
-    </Vector>
-  );
-};
+import AddSvg from 'components/AddSvg/AddSvg';
 
 const ThemeToggleBtn = () => {
   return (
     <Button type="button" aria-label="Switch color theme">
-      <ThemeToggleIcon sprite={SVG} spriteId="moon-icon" />
+      <AddSvg component={Vector} sprite={SVG} spriteId="moon-icon" />
     </Button>
   );
 };
