@@ -2,14 +2,7 @@ import SVG from './sidebar-and-header-images/sidebar-nav-icons.svg';
 import { Btn, Txt, Vector } from './LogoutBtn.styled';
 import { logout } from 'redux/auth/operations';
 import { useDispatch } from 'react-redux';
-
-const LogOutIcon = ({ sprite, spriteId }) => {
-  return (
-    <Vector>
-      <use href={`${sprite}#${spriteId}`} />
-    </Vector>
-  );
-};
+import AddSvg from 'components/AddSvg/AddSvg';
 
 const LogoutBtn = () => {
   const dispatch = useDispatch();
@@ -17,7 +10,7 @@ const LogoutBtn = () => {
   return (
     <Btn type="submit" onClick={() => dispatch(logout())}>
       <Txt>Log out </Txt>
-      <LogOutIcon sprite={SVG} spriteId="logout-icon" />
+      <AddSvg component={Vector} sprite={SVG} spriteId="logout-icon" />
     </Btn>
   );
 };

@@ -7,14 +7,7 @@ import {
   Vector,
 } from './SideBarLogo.styled';
 import SVG from './sidebar-and-header-images/sidebar-nav-icons.svg';
-
-const CrossIcon = ({ sprite, spriteId }) => {
-  return (
-    <Vector>
-      <use href={`${sprite}#${spriteId}`} />
-    </Vector>
-  );
-};
+import AddSvg from 'components/AddSvg/AddSvg';
 
 const SideBarLogo = () => {
   return (
@@ -30,7 +23,7 @@ const SideBarLogo = () => {
       <LogoTxt>
         G<span>oo</span>seTrack
       </LogoTxt>
-      <CrossIcon sprite={SVG} spriteId="cross-icon" />
+      <AddSvg component={Vector} sprite={SVG} spriteId="cross-icon" />
     </SideBarLogoWrapper>
   );
 };

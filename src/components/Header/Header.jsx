@@ -14,7 +14,6 @@ import GooseMentor2x from './header-img/goose-mentor-desktop@2x.webp';
 import AddFeedbackBtn from './AddFeedbackBtn';
 import ThemeToggleBtn from './ThemeToggleBtn';
 import UserInfo from './UserInfo';
-
 import { useLocation } from 'react-router-dom';
 
 const Header = () => {
