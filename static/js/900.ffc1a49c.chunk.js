@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkproject_group3fe=self.webpackChunkproject_group3fe||[]).push([[900],{8900:function(e,r,c){c.r(r);var n=c(3329);r.default=function(){return(0,n.jsx)(n.Fragment,{children:(0,n.jsx)("div",{children:"Account"})})}}}]);
+//# sourceMappingURL=900.ffc1a49c.chunk.js.map
