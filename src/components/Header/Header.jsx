@@ -15,11 +15,30 @@ import AddFeedbackBtn from './AddFeedbackBtn';
 import ThemeToggleBtn from './ThemeToggleBtn';
 import UserInfo from './UserInfo';
 
+import { useLocation } from 'react-router-dom';
+
 const Header = () => {
+  const location = useLocation();
+  let activePage = '';
+
+  switch (location.pathname) {
+    case '/account':
+      activePage = 'User Profile';
+      break;
+    case '/calendar':
+      activePage = 'Calendar';
+      break;
+    case '/statistics':
+      activePage = 'Statistics';
+      break;
+    default:
+      activePage = 'My account';
+  }
+
   return (
     <HeaderContainer>
       <HeaderTitleWrapperNoGoose>
-        <Title>Calendar</Title>
+        <Title>{activePage}</Title>
       </HeaderTitleWrapperNoGoose>
 
       {/* <HeaderTitleWrapperGoose>

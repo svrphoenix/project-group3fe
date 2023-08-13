@@ -10,7 +10,7 @@ export const Btn = styled.button`
   display: flex;
   align-items: center;
   gap: 6px;
-  width: 131px;
+  min-width: 131px;
   padding: 14px 28px;
   border: none;
   border-radius: 16px;
@@ -20,7 +20,7 @@ export const Btn = styled.button`
 
   @media screen and (min-width: 768px) {
     gap: 11px;
-    width: 141px;
+    min-width: 141px;
     padding: 16px 23px;
   }
 

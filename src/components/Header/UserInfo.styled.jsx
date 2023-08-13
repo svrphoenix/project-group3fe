@@ -33,7 +33,6 @@ export const UserAvatar = styled.p`
   align-items: center;
   width: 32px;
   height: 32px;
-  border: 1.8px solid ${accentColor};
   border-radius: 50%;
   color: ${whiteColor};
   background-color: ${accentColor};

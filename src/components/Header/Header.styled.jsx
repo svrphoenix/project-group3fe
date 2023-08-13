@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
 const titleColor = '#111';
+const accentColor = '#3E85F3';
 
 export const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   margin-bottom: 64px;
 
   @media screen and (min-width: 1440px) {
@@ -16,8 +18,7 @@ export const HeaderTitleWrapperNoGoose = styled.div`
   display: none;
 
   @media screen and (min-width: 1440px) {
-    display: flex;
-    align-items: center;
+    display: block;
   }
 `;
 
@@ -32,13 +33,39 @@ export const Title = styled.h1`
   line-height: 32px;
 `;
 
-export const HeaderTitleWrapperGoose = styled.div``;
+export const HeaderTitleWrapperGoose = styled.div`
+  display: none;
 
-export const GooseMentorImg = styled.img``;
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+`;
 
-export const TxtWrapper = styled.div``;
+export const GooseMentorImg = styled.img`
+  width: 64px;
+  height: 60px;
+`;
 
-export const Motivator = styled.p``;
+export const TxtWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const Motivator = styled.p`
+  color: ${titleColor};
+  font-family: 'Inter SemiBold';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 18px;
+
+  & > span {
+    color: ${accentColor};
+  }
+`;
 
 export const HeaderMenuWrapper = styled.div`
   display: flex;
