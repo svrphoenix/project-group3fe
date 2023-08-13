@@ -32,7 +32,12 @@ const authSlice = createSlice({
       state.user = null;
       state.token = null;
     },
+    refreshTokens(state, { payload }) {
+      state.user.refresh_token = payload.refresh_token;
+      state.token = payload.token;
+    },
   },
+
   extraReducers: builder => {
     builder
       .addCase(logout.fulfilled, (state, _) => {
@@ -68,4 +73,4 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
-export const { logoutReset } = authSlice.actions;
+export const { logoutReset, refreshTokens } = authSlice.actions;

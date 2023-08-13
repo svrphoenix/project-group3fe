@@ -19,6 +19,8 @@ const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 
 const App = () => {
   const dispatch = useDispatch();
+  // const store = useStore();
+  // configureAxios(store);
 
   useEffect(() => {
     dispatch(refreshCurrentUser());
