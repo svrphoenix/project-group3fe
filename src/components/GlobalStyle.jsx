@@ -13,76 +13,76 @@ import CoolveticaRegular from '../fonts/Coolvetica-Regular.ttf';
 import CoolveticaRegularItalic from '../fonts/Coolvetica-RegularItalic.ttf';
 
 export const GlobalStyle = createGlobalStyle`
-@font-face { 
+@font-face {
   font-family: 'Inter SemiBold';
   src: url(${InterSemiBold}) format('truetype');
   font-style: normal;
   font-weight: 600;
-  font-display: fallback; 
+  font-display: fallback;
 }
-@font-face { 
+@font-face {
   font-family: 'Inter SemiBold Italic';
   src: url(${InterSemiBoldItalic}) format('truetype');
   font-style: italic;
   font-weight: 600;
-  font-display: fallback; 
+  font-display: fallback;
 }
-@font-face { 
+@font-face {
   font-family: 'Inter Bold';
   src: url(${InterBold}) format('truetype');
   font-style: normal;
   font-weight: 700;
-  font-display: fallback; 
+  font-display: fallback;
 }
-@font-face { 
+@font-face {
   font-family: 'Inter Bold Italic';
   src: url(${InterBoldItalic}) format('truetype');
   font-style: italic;
   font-weight: 700;
-  font-display: fallback; 
+  font-display: fallback;
 }
-@font-face { 
+@font-face {
   font-family: 'Inter Regular';
   src: url(${InterRegular}) format('truetype');
   font-style: normal;
   font-weight: 400;
-  font-display: fallback; 
+  font-display: fallback;
 }
-@font-face { 
+@font-face {
   font-family: 'Inter Medium';
   src: url(${InterMedium}) format('truetype');
   font-style: normal;
   font-weight: 500;
-  font-display: fallback; 
+  font-display: fallback;
 }
-@font-face { 
+@font-face {
   font-family: 'Poppins Medium';
   src: url(${PoppinsMedium}) format('truetype');
   font-style: normal;
   font-weight: 500;
-  font-display: fallback; 
+  font-display: fallback;
 }
-@font-face { 
+@font-face {
   font-family: 'Poppins Regular';
   src: url(${PoppinsRegular}) format('truetype');
   font-style: normal;
   font-weight: 400;
-  font-display: fallback; 
+  font-display: fallback;
 }
-@font-face { 
+@font-face {
   font-family: 'Coolvetica Regular';
   src: url(${CoolveticaRegular}) format('truetype');
   font-style: normal;
   font-weight: 400;
-  font-display: fallback; 
+  font-display: fallback;
 
 }
-@font-face { 
+@font-face {
   font-family: 'Coolvetica Regular Italic';
   src: url(${CoolveticaRegularItalic}) format('truetype');
   font-style: italic;
   font-weight: 400;
-  font-display: fallback; 
+  font-display: fallback;
 
 }
 
@@ -114,4 +114,9 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
-}`;
+}
+
+.hidden{
+  overflow: hidden;
+}
+`;
