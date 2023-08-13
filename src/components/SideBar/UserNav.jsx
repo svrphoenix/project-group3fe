@@ -14,31 +14,21 @@ const UserNav = () => {
   const navListConfig = [
     { linkTo: 'account', iconId: 'user-icon', linkName: 'My account' },
     { linkTo: 'calendar', iconId: 'calendar-icon', linkName: 'Calendar' },
-    { linkTo: 'statistics', iconId: 'user-icon', linkName: 'My account' },
+    { linkTo: 'statistics', iconId: 'chart-icon', linkName: 'Statistics' },
   ];
 
   return (
     <UserNavWrapper>
       <UserNavHeading>User Panel</UserNavHeading>
       <UserNavList>
-        <UserNavItem>
-          <UserNavLink to="account">
-            <AddSvg component={Vector} sprite={SVG} spriteId="user-icon" />
-            <UserNavTxt>My account</UserNavTxt>
-          </UserNavLink>
-        </UserNavItem>
-        <UserNavItem>
-          <UserNavLink to="calendar">
-            <AddSvg component={Vector} sprite={SVG} spriteId="calendar-icon" />
-            <UserNavTxt>Calendar</UserNavTxt>
-          </UserNavLink>
-        </UserNavItem>
-        <UserNavItem>
-          <UserNavLink to="statistics">
-            <AddSvg component={Vector} sprite={SVG} spriteId="chart-icon" />
-            <UserNavTxt>Statistics</UserNavTxt>
-          </UserNavLink>
-        </UserNavItem>
+        {navListConfig.map(({ linkTo, iconId, linkName }) => (
+          <UserNavItem key={`${linkTo}`}>
+            <UserNavLink to={`${linkTo}`}>
+              <AddSvg component={Vector} sprite={SVG} spriteId={`${iconId}`} />
+              <UserNavTxt>{linkName}</UserNavTxt>
+            </UserNavLink>
+          </UserNavItem>
+        ))}
       </UserNavList>
     </UserNavWrapper>
   );
