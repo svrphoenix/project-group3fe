@@ -6,7 +6,7 @@ import * as SC from './FeedbackButton.style';
 
 export const FeedbackButton = () => {
   const [showModal, setShowModal] = useState(false);
-  let review = '';
+  let review = 'review';
 
   const onToggleModal = () => {
     setShowModal(!showModal);

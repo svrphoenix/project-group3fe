@@ -12,6 +12,10 @@ export const CloseBtn = styled.div`
   height: 25px;
   cursor: pointer;
   z-index: 10;
+  transition: all 0.3s;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 export const Label = styled.label`
@@ -28,6 +32,7 @@ export const Label = styled.label`
 export const Textarea = styled.textarea`
   width: 100%;
   padding: 12px;
+  margin-top: 8px;
   border-radius: 8px;
   border: none;
   resize: none;
@@ -36,6 +41,9 @@ export const Textarea = styled.textarea`
   line-height: 18px;
   color: #343434;
   background: #f6f6f6;
+  &:focus-visible {
+    outline: none;
+  }
 `;
 
 export const ReviewBtnWrapper = styled.div`
@@ -43,13 +51,28 @@ export const ReviewBtnWrapper = styled.div`
   gap: 10px;
 `;
 
-export const ReviewBtn = styled.button`
+const ReviewBtn = styled.button`
   padding: 8px 20px 8px 20px;
   width: 100%;
   height: 42px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    box-shadow: 2px 2px 2px 1px rgba(62, 133, 243, 0.4);
+    transform: scale(1.05);
+  }
+`;
+
+export const MainReviewBtn = styled(ReviewBtn)`
+  background: #3e85f3;
+  color: #fff;
+`;
+
+export const CancelReviewBtn = styled(ReviewBtn)`
+  background: #e5edfa;
+  color: #343434;
 `;
 
 export const EditBtnWrapper = styled.div`
@@ -60,7 +83,7 @@ export const EditBtnWrapper = styled.div`
   right: 0;
 `;
 
-export const EditBtn = styled.button`
+const EditBtnGroup = styled.button`
   display: flex;
   width: 30px;
   height: 30px;
@@ -69,4 +92,20 @@ export const EditBtn = styled.button`
   align-items: center;
   border-radius: 50%;
   border: none;
+  transition: all 0.3s;
+  &:hover {
+    box-shadow: 0px 1px 2px 1px rgba(62, 133, 243, 0.1),
+      0px -1px 2px 1px rgba(62, 133, 243, 0.1),
+      1px 0px 2px 1px rgba(62, 133, 243, 0.1),
+      -1px 0px 2px 1px rgba(62, 133, 243, 0.1);
+    transform: scale(1.05);
+  }
+`;
+
+export const EditBtn = styled(EditBtnGroup)`
+  background: #e5edfa;
+`;
+
+export const DeleteBtn = styled(EditBtnGroup)`
+  background: rgba(234, 61, 101, 0.2);
 `;

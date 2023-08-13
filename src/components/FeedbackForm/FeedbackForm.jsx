@@ -7,14 +7,32 @@ import { StarRate } from './StarRate';
 import * as SC from './FeedbackForm.style';
 
 export const FeedbackForm = ({ review, close }) => {
-  const [reviewText, setReviewText] = useState('');
+  const [reviewText, setReviewText] = useState(review);
+  const [readOnly, setReadOnly] = useState(!!reviewText);
+  const [rate, setRate] = useState(0);
 
   const onSubmit = async e => {
     e.preventDefault();
+
     try {
-      await axios.patch('/user', { review });
+      await axios.patch('/user', { review: reviewText, rate });
     } catch (error) {}
     close();
+  };
+
+  const onEditReview = () => {
+    setReadOnly(false);
+  };
+
+  const deleteReview = async e => {
+    setReviewText('');
+    setRate(0);
+    try {
+      await onSubmit(e);
+      close();
+    } catch (error) {
+      console.error('An error occurred while submitting the review:', error);
+    }
   };
 
   return (
@@ -24,17 +42,25 @@ export const FeedbackForm = ({ review, close }) => {
       </SC.CloseBtn>
       <SC.Label>
         Raiting
-        <StarRate />
+        <StarRate isSelectable={!readOnly} rate={rate} setRate={setRate} />
       </SC.Label>
       <SC.Label htmlFor="reviewTextAreaId">
         {review && (
           <SC.EditBtnWrapper>
-            <SC.EditBtn type="button" aria-label="Edit review">
+            <SC.EditBtn
+              type="button"
+              onClick={onEditReview}
+              aria-label="Edit review"
+            >
               <Pencil />
             </SC.EditBtn>
-            <SC.EditBtn type="submit" aria-label="Delete review">
+            <SC.DeleteBtn
+              type="button"
+              onClick={deleteReview}
+              aria-label="Delete review"
+            >
               <Trash />
-            </SC.EditBtn>
+            </SC.DeleteBtn>
           </SC.EditBtnWrapper>
         )}
         Review
@@ -43,19 +69,20 @@ export const FeedbackForm = ({ review, close }) => {
           rows={6}
           cols={40}
           placeholder="Enter text"
-          readOnly={false}
-          value={review || reviewText}
+          maxLength={300}
+          readOnly={readOnly}
+          value={reviewText}
           onChange={e => setReviewText(e.target.value)}
         />
       </SC.Label>
-      {!review && (
+      {!readOnly && (
         <SC.ReviewBtnWrapper>
-          <SC.ReviewBtn type="submit" onSubmit={onSubmit}>
-            Save
-          </SC.ReviewBtn>
-          <SC.ReviewBtn type="button" onClick={close}>
+          <SC.MainReviewBtn type="submit" onSubmit={onSubmit}>
+            {!review ? 'Save' : 'Edit'}
+          </SC.MainReviewBtn>
+          <SC.CancelReviewBtn type="button" onClick={close}>
             Cancel
-          </SC.ReviewBtn>
+          </SC.CancelReviewBtn>
         </SC.ReviewBtnWrapper>
       )}
     </SC.Form>
