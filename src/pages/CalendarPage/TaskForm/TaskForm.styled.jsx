@@ -1,11 +1,5 @@
 import styled from 'styled-components';
-import svg from '../../../../public/sprite.svg'
-
-const iconClock = ({ color, size }) => (
-  <svg fill={color} width={size} height={size}>
-    <use href={ ${svg}#icon-clock } />
-  </svg>
-);
+import svg from '../../../../public/sprite.svg';
 
 export const StyledTaskForm = styled.form`
   width: 100%;
@@ -24,6 +18,12 @@ export const StyledTaskInput = styled.input`
   margin-top: 8px;
   margin-bottom: 8px;
   padding: 15px 15px;
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
 `;
 
 export const RadioButtonGorup = styled.div`
@@ -48,10 +48,6 @@ export const AddButton = styled.button`
 
 export const CancelBtn = styled.button`
   cursor: pointer;
-`;
-
-export const ClockIcon = styled(iconClock)`
-  fill: red;
 `;
 
 export const ClockWrapp = styled.div`
