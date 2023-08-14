@@ -54,6 +54,7 @@ const App = () => {
             <RestrictedRoute redirectTo="/calendar" component={<LoginPage />} />
           }
         />
+
         <Route element={<MainLayout />}>
           <Route
             path="/calendar"
@@ -93,6 +94,7 @@ const App = () => {
             }
           />
         </Route>
+
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
