@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { refreshCurrentUser } from 'redux/auth/operations';
 import { SharedLayout } from './SharedLayout';
 import useAuth from 'hooks/useAuth';
+import { Loader } from './Loader/Loader';
 
 const MainLayout = lazy(() => import('../pages/MainLayout/MainLayout'));
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
@@ -28,7 +29,7 @@ const App = () => {
   }, [dispatch]);
 
   return isLoading ? (
-    <div>App loading</div>
+    <Loader />
   ) : (
     <Routes>
       <Route path="/" element={<SharedLayout />}>

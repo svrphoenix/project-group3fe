@@ -5,8 +5,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import './styles.css';
 
-import App from 'components/App';
 import { store, persistor } from 'redux/store';
+import configureAxios from 'api/setupInterceptors';
+import App from 'components/App';
 import { GlobalStyle } from 'components/GlobalStyle';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -21,3 +22,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </Provider>
   // </React.StrictMode>
 );
+
+configureAxios(store);
