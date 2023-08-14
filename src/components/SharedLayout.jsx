@@ -1,14 +1,15 @@
 import useAuth from 'hooks/useAuth';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router';
+import { Loader } from './Loader/Loader';
 
 export const SharedLayout = () => {
-  const { isRefreshing } = useAuth();
+  const { isLoading } = useAuth();
 
-  return isRefreshing ? (
-    <div>Loading</div>
+  return isLoading ? (
+    <Loader />
   ) : (
-    <Suspense fallback={<div>LOADING....</div>}>
+    <Suspense fallback={<Loader />}>
       <Outlet />
     </Suspense>
   );
