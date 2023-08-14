@@ -16,3 +16,5 @@ const TaskModal = () => {
         // </Modal>
     );
 };
+
+export default TaskModal;
