@@ -1,58 +1,91 @@
-import { Formik } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+
 import {
-  StyledTaskForm,
-  StyledTaskLabel,
-  StyledTaskInput,
+  TaskFormStyled,
+  TaskLabelStyled,
+  TaskInputStyled,
   Wrapper,
   RadioButtonGorup,
   RadioButtonLabel,
   RadioButtonInput,
   AddButton,
   CancelBtn,
+  ButtonIcon,
+  Errors,
 } from './TaskForm.styled';
 
-const TaskForm = ({ closeModal }) => {
-  const dispatch = useDispatch();
-  const currentDate = new Date().toISOString().slice(0, 10);
-
+const TaskForm = () => {
   return (
-    <Formik>
-      <StyledTaskForm
-        onSubmit={e => {
-          e.preventDefault();
-        }}
-      >
-        <StyledTaskLabel>
-          <StyledTaskInput />
-        </StyledTaskLabel>
-      </StyledTaskForm>
+    <TaskFormStyled>
+      <TaskLabelStyled htmlFor="title">
+        Title
+        <TaskInputStyled
+          type="text"
+          name="title"
+          id="title"
+          placeholder="Enter text"
+        />
+        <Errors>Error message</Errors>
+      </TaskLabelStyled>
+
       <Wrapper>
-        <StyledTaskLabel>
-          <StyledTaskInput />
-        </StyledTaskLabel>
-        <StyledTaskLabel>
-          <StyledTaskInput />
-        </StyledTaskLabel>
-          </Wrapper>
-          <RadioButtonGorup>
-              <RadioButtonLabel>
-                  <RadioButtonInput/>
-              </RadioButtonLabel>
-          </RadioButtonGorup>
-    </Formik>
+        <TaskLabelStyled htmlFor="start">
+          Start
+          <TaskInputStyled
+            type="time"
+            step="60"
+            name="start"
+            id="start"
+            placeholder="Select time"
+          />
+          <Errors>Error message</Errors>
+        </TaskLabelStyled>
+
+        <TaskLabelStyled htmlFor="end">
+          End
+          <TaskInputStyled
+            type="time"
+            step="60"
+            name="end"
+            id="end"
+            placeholder="Select time"
+          />
+          <Errors>Error message</Errors>
+        </TaskLabelStyled>
+      </Wrapper>
+
+      <RadioButtonGorup>
+        {['low', 'medium', 'high'].map(priority => (
+          <RadioButtonLabel key={priority}>
+            <RadioButtonInput type="radio" value={priority} name="priority" />
+            {priority}
+          </RadioButtonLabel>
+        ))}
+      </RadioButtonGorup>
+
+      <Wrapper>
+        <ButtonIcon>
+          {/* <Pencil width="18" height="18" fill="none" stroke="#ffffff" /> */}
+          Edit
+        </ButtonIcon>
+        <AddButton
+          aria-label="Button add"
+          type="submit"
+          style={{ width: '50%' }}
+        >
+          {/* <Plus width="20" height="20" fill="none" stroke="#ffffff" /> */}
+          Add
+        </AddButton>
+        <CancelBtn
+          aria-label="Button cancel"
+          type="button"
+          style={{ width: '50%' }}
+        >
+          Cancel
+        </CancelBtn>
+      </Wrapper>
+    </TaskFormStyled>
   );
 };
 
 export default TaskForm;
-
-// export const StyledTaskForm = styled.form`
-// export const StyledTaskLabel = styled.label`
-// export const StyledTaskInput = styled.input`
-// export const RadioButtonGorup = styled.div`
-// export const RadioButtonLabel = styled.label``;
-// export const RadioButtonInput = styled.input`
-// export const AddButton = styled.button`
-// export const CancelBtn = styled.button`
-// export const ClockIcon = styled(IconClock)`
-// export const ClockWrapp = styled.div`

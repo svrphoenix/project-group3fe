@@ -1,19 +1,18 @@
 import styled from 'styled-components';
-import svg from '../../../../public/sprite.svg';
 
-export const StyledTaskForm = styled.form`
+export const TaskFormStyled = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
 `;
 
-export const StyledTaskLabel = styled.label`
+export const TaskLabelStyled = styled.label`
   width: 100%;
   display: flex;
   flex-direction: column;
 `;
 
-export const StyledTaskInput = styled.input`
+export const TaskInputStyled = styled.input`
   width: 100%;
   margin-top: 8px;
   margin-bottom: 8px;
@@ -53,4 +52,31 @@ export const CancelBtn = styled.button`
 export const ClockWrapp = styled.div`
   width: 17px;
   height: 17px;
+`;
+
+export const ButtonIcon = styled.button`
+  flex-grow: 1;
+  height: 42px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 12px;
+  padding: 14px;
+  background: #3e85f3;
+  border-radius: 8px;
+  border: none;
+  color: green;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.02em;
+`;
+
+export const Errors = styled.span`
+  position: absolute;
+  min-height: 14px;
+  margin-top: 4px;
+  margin-bottom: 2px;
+  color: purple;
 `;
