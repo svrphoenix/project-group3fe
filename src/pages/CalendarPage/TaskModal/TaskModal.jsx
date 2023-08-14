@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Modal } from 'components/Modal/Modal';
 import TaskForm from '../TaskForm/TaskForm';
 
+
 export const TaskModal = ({ status, ...props }) => {
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
 
