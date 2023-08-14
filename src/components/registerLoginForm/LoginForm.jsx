@@ -13,7 +13,6 @@ import {
   StyledError,
   StyledField,
   StyledFieldPassword,
-  StyledFieldPasswordLogin,
   StyledForm,
   StyledFormDiv,
   StyledHeader,
@@ -24,6 +23,7 @@ import { login } from 'redux/auth/operations';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { SVG } from 'images';
+import { Loader } from 'components/Loader/Loader';
 
 const theme = createTheme({
   palette: {
@@ -48,7 +48,8 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [noUser, setNoUser] = useState(false);
-    const [visibility, setVisibility] = useState(false);
+  const [visibility, setVisibility] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <StyledContainer>
@@ -63,6 +64,7 @@ const LoginForm = () => {
         validationSchema={LoginSchema}
         onSubmit={async (values, { resetForm }) => {
           try {
+            setIsLoading(true);
             const response = await dispatch(
               login({
                 email: values.email,
@@ -77,121 +79,127 @@ const LoginForm = () => {
                 setNoUser(true);
               }
             }
+            setIsLoading(false);
           } catch (error) {
+            setIsLoading(false);
             alert('Sorry, problem at server');
           }
         }}
       >
         {({ errors, touched }) => {
-          return (
-            <StyledForm>
-              <StyledFormDiv>
-                <Styledlabel
-                  htmlFor="email"
-                  $validate={
-                    (errors.email === 'Please enter your email' &&
-                      touched.email &&
-                      'empty') ||
-                    (((errors.email &&
-                      (errors.email === 'This is an ERROR email' ||
-                        errors.email.includes('match'))) ||
-                      noUser) &&
-                      'error') ||
-                    (touched.email && 'okay')
-                  }
-                >
-                  Email
-                </Styledlabel>
-                <StyledField
-                  name="email"
-                  type="email"
-                  placeholder="nadiia@gmail.com"
-                  $validate={
-                    (errors.email === 'Please enter your email' &&
-                      touched.email &&
-                      'empty') ||
-                    (((errors.email &&
-                      (errors.email === 'This is an ERROR email' ||
-                        errors.email.includes('match'))) ||
-                      noUser) &&
-                      'error') ||
-                    (touched.email && 'okay')
-                  }
-                />
-                {(errors.email === 'Please enter your email' &&
-                  touched.email && (
-                    <StyledRequired>{errors.email}</StyledRequired>
-                  )) ||
-                  (errors.email &&
-                    (errors.email === 'This is an ERROR email' ||
-                      errors.email.includes('match')) && (
-                      <StyledError>This is an ERROR email</StyledError>
+          if (isLoading) {
+            return <Loader />
+          } else {
+            return (
+              <StyledForm>
+                <StyledFormDiv>
+                  <Styledlabel
+                    htmlFor="email"
+                    $validate={
+                      (errors.email === 'Please enter your email' &&
+                        touched.email &&
+                        'empty') ||
+                      (((errors.email &&
+                        (errors.email === 'This is an ERROR email' ||
+                          errors.email.includes('match'))) ||
+                        noUser) &&
+                        'error') ||
+                      (touched.email && 'okay')
+                    }
+                  >
+                    Email
+                  </Styledlabel>
+                  <StyledField
+                    name="email"
+                    type="email"
+                    placeholder="nadiia@gmail.com"
+                    $validate={
+                      (errors.email === 'Please enter your email' &&
+                        touched.email &&
+                        'empty') ||
+                      (((errors.email &&
+                        (errors.email === 'This is an ERROR email' ||
+                          errors.email.includes('match'))) ||
+                        noUser) &&
+                        'error') ||
+                      (touched.email && 'okay')
+                    }
+                  />
+                  {(errors.email === 'Please enter your email' &&
+                    touched.email && (
+                      <StyledRequired>{errors.email}</StyledRequired>
                     )) ||
-                  (noUser && (
-                    <StyledError>Email or password is uncorrect</StyledError>
-                  ))|| (touched.email&&
-                  <StyledCorrect>This is an CORRECT email</StyledCorrect>)}
-              </StyledFormDiv>
-              <StyledFormDiv>
-                <Styledlabel
-                  htmlFor="password"
-                  $validate={
+                    (errors.email &&
+                      (errors.email === 'This is an ERROR email' ||
+                        errors.email.includes('match')) && (
+                        <StyledError>This is an ERROR email</StyledError>
+                      )) ||
+                    (noUser && (
+                      <StyledError>Email or password is uncorrect</StyledError>
+                    )) || (touched.email &&
+                      <StyledCorrect>This is an CORRECT email</StyledCorrect>)}
+                </StyledFormDiv>
+                <StyledFormDiv>
+                  <Styledlabel
+                    htmlFor="password"
+                    $validate={
+                      (errors.password === 'Please enter your password' &&
+                        touched.password &&
+                        'empty') ||
+                      (((errors.password && touched.password) || noUser) &&
+                        'error') ||
+                      (touched.password && 'okay')
+                    }
+                  >
+                    Password
+                  </Styledlabel>
+                  <StyledContainerPassword $validate={
                     (errors.password === 'Please enter your password' &&
                       touched.password &&
                       'empty') ||
-                    (((errors.password && touched.password) || noUser) &&
-                      'error') ||
+                    (errors.password && touched.password && 'error') ||
                     (touched.password && 'okay')
-                  }
-                >
-                  Password
-                </Styledlabel>
-                <StyledContainerPassword $validate={
-                                    (errors.password === 'Please enter your password' &&
-                                        touched.password &&
-                                        'empty') ||
-                                    (errors.password && touched.password && 'error') ||
-                                    (touched.password && 'okay')
-                                }>
-                                <StyledFieldPassword
-                                    name="password"
-                                    type={!visibility?"password":"text" }
-                                placeholder="• • • • • • •"
-                                />
-                                <StyledButtonVisibility type="button" onClick={() => { setVisibility(!visibility) }}>
-                                    <ThemeProvider theme={theme}>
-                                        {!visibility ? <Visibility color="primary"/>: <VisibilityOff color="primary"/>}
-                                    </ThemeProvider>
-                                </StyledButtonVisibility>
-                            </StyledContainerPassword>
-                {(errors.password === 'Please enter your password' &&
-                  touched.password && (
-                    <StyledRequired>{errors.password}</StyledRequired>
-                  )) ||
-                  (errors.password &&
-                    errors.password.includes(
-                      'password must match the following'
-                    ) &&
+                  }>
+                    <StyledFieldPassword
+                      name="password"
+                      type={!visibility ? "password" : "text"}
+                      placeholder="• • • • • • •"
+                    />
+                    <StyledButtonVisibility type="button" onClick={() => { setVisibility(!visibility) }}>
+                      <ThemeProvider theme={theme}>
+                        {!visibility ? <Visibility color="primary" /> : <VisibilityOff color="primary" />}
+                      </ThemeProvider>
+                    </StyledButtonVisibility>
+                  </StyledContainerPassword>
+                  {(errors.password === 'Please enter your password' &&
                     touched.password && (
-                      <StyledError>
-                        This password should contain at least eight characters
-                        and at least one number and one letter
-                      </StyledError>
+                      <StyledRequired>{errors.password}</StyledRequired>
                     )) ||
-                  (errors.password && touched.password && (
-                    <StyledError>{errors.password}</StyledError>
-                  )) ||
-                  (noUser && (
-                    <StyledError>Email or password is uncorrect</StyledError>
-                  )) || (touched.password&&
-                  <StyledCorrect>This is an CORRECT password</StyledCorrect>)}
-              </StyledFormDiv>
-              <StyledButton type="submit">
-                Log In
-                <SVG.LoginWhiteIcon />
-              </StyledButton>
-            </StyledForm>
-          );
+                    (errors.password &&
+                      errors.password.includes(
+                        'password must match the following'
+                      ) &&
+                      touched.password && (
+                        <StyledError>
+                          This password should contain at least eight characters
+                          and at least one number and one letter
+                        </StyledError>
+                      )) ||
+                    (errors.password && touched.password && (
+                      <StyledError>{errors.password}</StyledError>
+                    )) ||
+                    (noUser && (
+                      <StyledError>Email or password is uncorrect</StyledError>
+                    )) || (touched.password &&
+                      <StyledCorrect>This is an CORRECT password</StyledCorrect>)}
+                </StyledFormDiv>
+                <StyledButton type="submit">
+                  Log In
+                  <SVG.LoginWhiteIcon />
+                </StyledButton>
+              </StyledForm>
+            );
+          }
         }}
       </Formik>
     </StyledContainer>
