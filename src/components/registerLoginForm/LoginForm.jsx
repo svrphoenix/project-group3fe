@@ -6,9 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import {
   StyledButton,
+  StyledButtonVisibility,
   StyledContainer,
+  StyledContainerPassword,
+  StyledCorrect,
   StyledError,
   StyledField,
+  StyledFieldPassword,
   StyledFieldPasswordLogin,
   StyledForm,
   StyledFormDiv,
@@ -17,7 +21,17 @@ import {
   StyledRequired,
 } from './RegisterLoginForm.styled';
 import { login } from 'redux/auth/operations';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { SVG } from 'images';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#8D9698'
+    }
+  },
+});
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -34,6 +48,7 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [noUser, setNoUser] = useState(false);
+    const [visibility, setVisibility] = useState(false);
 
   return (
     <StyledContainer>
@@ -114,7 +129,8 @@ const LoginForm = () => {
                     )) ||
                   (noUser && (
                     <StyledError>Email or password is uncorrect</StyledError>
-                  ))}
+                  ))|| (touched.email&&
+                  <StyledCorrect>This is an CORRECT email</StyledCorrect>)}
               </StyledFormDiv>
               <StyledFormDiv>
                 <Styledlabel
@@ -130,19 +146,24 @@ const LoginForm = () => {
                 >
                   Password
                 </Styledlabel>
-                <StyledFieldPasswordLogin
-                  name="password"
-                  type="password"
-                  placeholder="•••••••"
-                  $validate={
-                    (errors.password === 'Please enter your password' &&
-                      touched.password &&
-                      'empty') ||
-                    (((errors.password && touched.password) || noUser) &&
-                      'error') ||
-                    (touched.password && 'okay')
-                  }
-                />
+                <StyledContainerPassword $validate={
+                                    (errors.password === 'Please enter your password' &&
+                                        touched.password &&
+                                        'empty') ||
+                                    (errors.password && touched.password && 'error') ||
+                                    (touched.password && 'okay')
+                                }>
+                                <StyledFieldPassword
+                                    name="password"
+                                    type={!visibility?"password":"text" }
+                                placeholder="• • • • • • •"
+                                />
+                                <StyledButtonVisibility type="button" onClick={() => { setVisibility(!visibility) }}>
+                                    <ThemeProvider theme={theme}>
+                                        {!visibility ? <Visibility color="primary"/>: <VisibilityOff color="primary"/>}
+                                    </ThemeProvider>
+                                </StyledButtonVisibility>
+                            </StyledContainerPassword>
                 {(errors.password === 'Please enter your password' &&
                   touched.password && (
                     <StyledRequired>{errors.password}</StyledRequired>
@@ -162,7 +183,8 @@ const LoginForm = () => {
                   )) ||
                   (noUser && (
                     <StyledError>Email or password is uncorrect</StyledError>
-                  ))}
+                  )) || (touched.password&&
+                  <StyledCorrect>This is an CORRECT password</StyledCorrect>)}
               </StyledFormDiv>
               <StyledButton type="submit">
                 Log In

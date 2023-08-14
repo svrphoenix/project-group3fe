@@ -1,12 +1,15 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Field, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import {
     StyledButton,
+    StyledButtonVisibility,
     StyledContainer,
+    StyledContainerPassword,
+    StyledCorrect,
     StyledError,
     StyledField,
     StyledFieldPassword,
@@ -17,7 +20,17 @@ import {
     StyledRequired,
 } from './RegisterLoginForm.styled';
 import { register } from 'redux/auth/operations';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { SVG } from 'images';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#8D9698'
+    }
+  },
+});
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -38,6 +51,9 @@ const RegisterForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [usedEmail, setUsedEmail] = useState(false);
+    const [visibility, setVisibility] = useState(false);
+
+    
 
     return  (<StyledContainer>
         <StyledHeader>Sign Up</StyledHeader>
@@ -104,7 +120,8 @@ const RegisterForm = () => {
                             )) ||
                                 (errors.name && touched.name && (
                                     <StyledError>{errors.name}</StyledError>
-                                ))}
+                                ))||(touched.name&&
+                            <StyledCorrect>This is an CORRECT name</StyledCorrect>)}
                         </StyledFormDiv>
                         <StyledFormDiv>
                             <Styledlabel
@@ -139,9 +156,10 @@ const RegisterForm = () => {
                             )) ||
                             (usedEmail && (
                                 <StyledError>This user is already exist</StyledError>
-                            ))}
+                                )) ||( touched.email&&
+                            <StyledCorrect>This is an CORRECT email</StyledCorrect>)}
                         </StyledFormDiv>
-                        <StyledFormDiv>
+                        <StyledFormDiv >
                             <Styledlabel
                                 htmlFor="password"
                                 $validate={
@@ -154,18 +172,24 @@ const RegisterForm = () => {
                             >
                                 Password
                             </Styledlabel>
-                            <StyledFieldPassword
-                                name="password"
-                                type="password"
-                                placeholder="Enter password"
-                                $validate={
+                            <StyledContainerPassword $validate={
                                     (errors.password === 'Please enter your password' &&
                                         touched.password &&
                                         'empty') ||
                                     (errors.password && touched.password && 'error') ||
                                     (touched.password && 'okay')
-                                }
-                            />
+                                }>
+                                <StyledFieldPassword
+                                    name="password"
+                                    type={!visibility?"password":"text" }
+                                placeholder="Enter password"
+                                />
+                                <StyledButtonVisibility type="button" onClick={() => { setVisibility(!visibility) }}>
+                                    <ThemeProvider theme={theme}>
+                                        {!visibility ? <Visibility color="primary"/>: <VisibilityOff color="primary"/>}
+                                    </ThemeProvider>
+                                </StyledButtonVisibility>
+                            </StyledContainerPassword>
                             {(errors.password === 'Please enter your password' &&
                                 touched.password && (
                                     <StyledRequired>{errors.password}</StyledRequired>
@@ -175,7 +199,8 @@ const RegisterForm = () => {
                                 )) ||
                                 (errors.password && touched.password && (
                                     <StyledError>{errors.password}</StyledError>
-                                ))
+                                )) || (  touched.password &&
+                            <StyledCorrect>This is an CORRECT password</StyledCorrect>)
                             }
                         </StyledFormDiv>
                         <StyledButton type="submit">Sign Up
