@@ -24,7 +24,7 @@ function configureAxios(store) {
       if (error.response.status === 401 && !originalConfig._retry) {
         originalConfig._retry = true;
 
-        const refreshToken = store.getState().auth.user?.refresh_token || '';
+        const refreshToken = store.getState().auth?.refreshToken || '';
         try {
           const { data } = await axiosInstance.post('/users/refresh', {
             refresh_token: refreshToken,
