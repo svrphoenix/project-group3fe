@@ -1,12 +1,36 @@
-import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
+import api from 'api/api';
 
 export const postReview = createAsyncThunk(
-  'users/current',
-  async (_, thunkAPI) => {
+  'reviews/post',
+  async (credentials, thunkAPI) => {
     try {
-      const { data } = await axios.patch('/users/current');
+      const { data } = await api.post('/reviews', credentials);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateReview = createAsyncThunk(
+  'reviews/update',
+  async (credentials, thunkAPI) => {
+    const { id, ...body } = credentials;
+    try {
+      const { data } = await api.patch(`reviews/${id}`, body);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteReview = createAsyncThunk(
+  'reviews/delete',
+  async (id, thunkAPI) => {
+    try {
+      const { data } = await api.delete(`reviews/${id}`);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

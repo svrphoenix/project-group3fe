@@ -1,33 +1,52 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchReview } from './operations';
+import { deleteReview, postReview, updateReview } from './operations';
 
 const handlePending = state => {
-  state.user.isLoading = true;
+  state.isLoading = true;
 };
 
-const handleRejected = (state, action) => {
-  state.user.isLoading = false;
-  state.user.error = action.payload;
+const handleRejected = (state, { payload }) => {
+  state.isLoading = false;
+  state.error = payload;
+};
+
+const handleFulfilled = (state, { payload }) => {
+  state.isLoading = false;
+  state.error = null;
+  state.user.comment = payload.comment;
+  state.user.rating = payload.rating;
+  state.user.id = payload._id;
+};
+
+const handleDeleteFulfilled = (state, { payload }) => {
+  state.isLoading = false;
+  state.error = null;
+  state.user.comment = '';
+  state.user.rating = 0;
+  state.user.id = null;
 };
 
 const reviewSlice = createSlice({
   name: 'review',
   initialState: {
     user: {
-      rate: 0,
-      review: '',
-      isLoading: false,
-      error: null,
+      id: null,
+      rating: 0,
+      comment: '',
     },
+    isLoading: false,
+    error: null,
   },
   extraReducers: {
-    [fetchReview.pending]: handlePending,
-    [fetchReview.rejected]: handleRejected,
-    [fetchReview.fulfilled](state, action) {
-      state.review.isLoading = false;
-      state.review.error = null;
-      state.review.review = action.payload;
-    },
+    [postReview.pending]: handlePending,
+    [updateReview.pending]: handlePending,
+    [deleteReview.pending]: handlePending,
+    [postReview.rejected]: handleRejected,
+    [updateReview.rejected]: handleRejected,
+    [deleteReview.rejected]: handleRejected,
+    [postReview.fulfilled]: handleFulfilled,
+    [updateReview.fulfilled]: handleFulfilled,
+    [deleteReview.fulfilled]: handleDeleteFulfilled,
   },
 });
 
