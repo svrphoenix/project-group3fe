@@ -1,20 +1,26 @@
-import { useDispatch } from "react-redux";
-import TaskForm from "../TaskForm/TaskForm";
+import React, { useState } from 'react';
+import { Modal } from 'components/Modal/Modal';
+import TaskForm from '../TaskForm/TaskForm';
 
-// import Modal
+export const TaskModal = ({ status, ...props }) => {
+  const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
 
+  const openModal = () => {
+    setIsTaskModalOpen(true);
+  };
 
+  const closeModal = () => {
+    setIsTaskModalOpen(false);
+  };
 
-const TaskModal = () => {
-    const dispatch = useDispatch();
-    const closeModal = () => { };
-
-    return (
-        // <Modal onClose={closeModal}>
-        <TaskForm closeModal={closeModal } {...props} />
-
-        // </Modal>
-    );
+  return (
+    <>
+      <button onClick={openModal}>+ Add task</button>
+      {isTaskModalOpen && (
+        <Modal onToggleModal={closeModal}>
+          <TaskForm closeModal={closeModal} {...props} />
+        </Modal>
+      )}
+    </>
+  );
 };
-
-export default TaskModal;
