@@ -5,6 +5,8 @@ import { RestrictedRoute } from './RestrictedRoute';
 import { useDispatch } from 'react-redux';
 import { refreshCurrentUser } from 'redux/auth/operations';
 import { SharedLayout } from './SharedLayout';
+import useAuth from 'hooks/useAuth';
+import { Loader } from './Loader/Loader';
 
 const MainLayout = lazy(() => import('../pages/MainLayout/MainLayout'));
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
@@ -19,12 +21,16 @@ const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 
 const App = () => {
   const dispatch = useDispatch();
-  
+
+  const { isLoading } = useAuth();
+
   useEffect(() => {
     dispatch(refreshCurrentUser());
   }, [dispatch]);
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route
@@ -48,6 +54,7 @@ const App = () => {
             <RestrictedRoute redirectTo="/calendar" component={<LoginPage />} />
           }
         />
+
         <Route element={<MainLayout />}>
           <Route
             path="/calendar"
@@ -87,6 +94,7 @@ const App = () => {
             }
           />
         </Route>
+
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
