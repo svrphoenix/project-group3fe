@@ -1,14 +1,14 @@
 import Ratings from 'react-ratings-declarative';
 import { ReactComponent as Star } from 'images/icons/star.svg';
 
-export const StarRate = ({ isSelectable, rate, setRate }) => {
+export const StarRating = ({ isSelectable, rating, setRating }) => {
   const changeRating = newRating => {
-    setRate(newRating);
+    setRating('rating', newRating);
   };
 
   return (
     <Ratings
-      rating={rate}
+      rating={rating}
       {...(isSelectable && { changeRating })}
       widgetDimensions="24px"
       widgetSpacings="0"
