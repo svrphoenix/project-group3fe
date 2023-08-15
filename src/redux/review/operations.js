@@ -1,6 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from 'api/api';
 
+export const getReview = createAsyncThunk(
+  'reviews/get',
+  async (id, thunkAPI) => {
+    try {
+      const { data } = await api.get(`reviews/${id}`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const postReview = createAsyncThunk(
   'reviews/post',
   async (credentials, thunkAPI) => {
