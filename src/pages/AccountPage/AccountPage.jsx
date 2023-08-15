@@ -1,11 +1,9 @@
+import { UserForm } from 'components/UserForm/UserForm';
+
 // import PropTypes from 'prop-types';
 
 const AccountPage = () => {
-  return (
-    <>
-      <div>Account</div>
-    </>
-  );
+  return <UserForm />;
 };
 
 // AccountPage.propTypes = {};

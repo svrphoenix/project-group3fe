@@ -1,13 +1,15 @@
 // import PropTypes from 'prop-types';
 
+import { CalendarToolbar } from 'components/Calendar/CalendarToolbar/CalendarToolbar';
+
 const CalendarPage = () => {
   return (
     <>
-      <div>Calendar</div>
+      <CalendarToolbar />
     </>
   );
 };
 
-CalendarPage.propTypes = {};
+// CalendarPage.propTypes = {};
 
 export default CalendarPage;
