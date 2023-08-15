@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectError, selectUser } from 'redux/review/selectors';
+import { selectUser } from 'redux/auth/selectors';
+import { selectError, selectUserReview } from 'redux/review/selectors';
 import * as reviewOperations from 'redux/review/operations';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ReactComponent as CloseIcon } from 'images/icons/x-close.svg';
 import { ReactComponent as Pencil } from 'images/icons/pencil-01.svg';
 import { ReactComponent as Trash } from 'images/icons/trash-2.svg';
@@ -11,11 +12,16 @@ import * as Yup from 'yup';
 import * as SC from './FeedbackForm.style';
 
 export const FeedbackForm = ({ close }) => {
-  const currentUser = useSelector(selectUser);
+  const registeredUser = useSelector(selectUser);
+  const currentUser = useSelector(selectUserReview);
   const error = useSelector(selectError);
   const dispatch = useDispatch();
 
   const [readOnly, setReadOnly] = useState(!!currentUser.comment);
+
+  useEffect(() => {
+    dispatch(reviewOperations.getReview(registeredUser._id));
+  }, [registeredUser._id, dispatch]);
 
   const initialValues = {
     comment: currentUser.comment,
