@@ -23,13 +23,19 @@ export const FeedbackForm = ({ close }) => {
   };
 
   const onSubmitFeedback = values => {
+    const catchError = ({ type }) => {
+      if (type === 'reviews/post/fulfilled') {
+        close();
+      }
+    };
+
     if (!currentUser.comment) {
       dispatch(
         reviewOperations.postReview({
           comment: values.comment,
           rating: values.rating,
         })
-      );
+      ).then(catchError);
     } else {
       dispatch(
         reviewOperations.updateReview({
@@ -37,9 +43,8 @@ export const FeedbackForm = ({ close }) => {
           comment: values.comment,
           rating: values.rating,
         })
-      );
+      ).then(catchError);
     }
-    close();
   };
 
   const onDeleteReview = e => {
@@ -68,9 +73,8 @@ export const FeedbackForm = ({ close }) => {
         validationSchema={FeedbackSchema}
         onSubmit={onSubmitFeedback}
         validateOnChange={false}
-        validateOnBlur={true}
       >
-        {({ errors, touched, values, setFieldValue }) => {
+        {({ values, setFieldValue }) => {
           return !error ? (
             <SC.FeedbackForm>
               <SC.CloseBtn
