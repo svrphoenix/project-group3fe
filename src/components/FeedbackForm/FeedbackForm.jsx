@@ -71,7 +71,6 @@ export const FeedbackForm = ({ close }) => {
         validateOnBlur={true}
       >
         {({ errors, touched, values, setFieldValue }) => {
-          console.log(errors, touched);
           return !error ? (
             <SC.FeedbackForm>
               <SC.CloseBtn
