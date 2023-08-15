@@ -1,54 +1,48 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { toast } from 'react-hot-toast';
+import api from "../../api/api"
 
-const BASE_URL = 'api/tasks'; // спільний URL
+const BASE_URL = 'api/tasks';
 
-export const getAllTasks = createAsyncThunk(
-  'tasks/fetchAllTasks',
-  async (date, thunkAPI) => {
-    try {
-      const response = await axios.get(
-        `${BASE_URL}?month=${date.month}&year=${date.year}`
-      );
+export const getAllTasks = createAsyncThunk('tasks/getAll', async (date, thunkAPI) => {
+  try {
+    const response = await api.get(
+      `${BASE_URL}?month=${date.month}&year=${date.year}`
+    );
 
-      if (response.status !== 200) {
-        throw new Error('Failed to fetch tasks due to server error');
-      }
-
-      return response.data;
-    } catch (error) {
-      toast.error('Failed to fetch all tasks: ' + error.message);
-      return thunkAPI.rejectWithValue(error.message);
+    if (response.status !== 200) {
+      throw new Error('Failed to fetch tasks due to server error');
     }
+
+    return response.data;
+  } catch (error) {
+    toast.error('Failed to fetch all tasks: ' + error.message);
+    return thunkAPI.rejectWithValue(error.message);
   }
-);
+});
 
-export const getDayTasks = createAsyncThunk(
-  'tasks/fetchDayTasks',
-  async (date, thunkAPI) => {
-    try {
-      const response = await axios.get(
-        `${BASE_URL}?month=${date.month}&day=${date.day}&year=${date.year}`
-      );
+export const getDayTasks = createAsyncThunk('tasks/getAll', async (date, thunkAPI) => {
+  try {
+    const response = await api.get(
+      `${BASE_URL}?month=${date.month}&day=${date.day}&year=${date.year}`
+    );
 
-      if (response.status !== 200) {
-        throw new Error('Failed to fetch daily tasks due to server error');
-      }
-
-      return response.data;
-    } catch (error) {
-      toast.error('Failed to fetch tasks for the day: ' + error.message);
-      return thunkAPI.rejectWithValue(error.message);
+    if (response.status !== 200) {
+      throw new Error('Failed to fetch daily tasks due to server error');
     }
+
+    return response.data;
+  } catch (error) {
+    toast.error('Failed to fetch tasks for the day: ' + error.message);
+    return thunkAPI.rejectWithValue(error.message);
   }
-);
+});
 
 export const addTask = createAsyncThunk(
   'tasks/addTask',
   async (task, thunkAPI) => {
     try {
-      const response = await axios.post(BASE_URL, task);
+      const response = await api.post(BASE_URL, task);
 
       if (response.status !== 201) {
         throw new Error('Failed to add task due to server error');
@@ -63,10 +57,10 @@ export const addTask = createAsyncThunk(
 );
 
 export const deleteTask = createAsyncThunk(
-  'tasks/delTask',
+  'tasks/removeTask',
   async (taskId, thunkAPI) => {
     try {
-      const response = await axios.delete(`${BASE_URL}/${taskId}`);
+      const response = await api.delete(`${BASE_URL}/${taskId}`);
 
       if (response.status !== 200) {
         throw new Error('Failed to delete task due to server error');
@@ -82,10 +76,10 @@ export const deleteTask = createAsyncThunk(
 );
 
 export const patchTask = createAsyncThunk(
-  'tasks/patchTask',
+  'tasks/updateTask',
   async ({ id, task }, thunkAPI) => {
     try {
-      const response = await axios.patch(`${BASE_URL}/${id}`, task);
+      const response = await api.patch(`${BASE_URL}/${id}`, task);
 
       if (response.status !== 200) {
         throw new Error('Failed to update task due to server error');
