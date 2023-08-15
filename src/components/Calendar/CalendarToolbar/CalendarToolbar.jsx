@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { PeriodPaginator } from '../PeriodPaginator/PeriodPaginator';
 import { PeriodTypeSelect } from '../PeriodTypeSelect/PeriodTypeSelect';
+import { MonthCalendarHead } from '../MonthCalendarHead/MonthCalendarHead';
+import { DayCalendarHead } from '../DayCalendarHead/DayCalendarHead';
 import * as SC from './CalendarToolbar.styled';
 import {
   startOfWeek,
@@ -8,12 +10,12 @@ import {
   eachDayOfInterval,
   format,
   isSameDay,
+  addDays,
 } from 'date-fns';
 import PropTypes from 'prop-types';
 
 export const CalendarToolbar = ({ type = 'day' }) => {
-  // const [currentDate, setCurrentDate] = useState(new Date());
-  const [currentDate] = useState(new Date());
+  const [currentDate, setCurrentDate] = useState(new Date());
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -34,11 +36,29 @@ export const CalendarToolbar = ({ type = 'day' }) => {
     start: startDayOfWeek,
     end: endDayOfWeek,
   });
+  const prevHandler = () => {
+    type === 'month'
+      ? setCurrentDate(
+          prevDate => new Date(prevDate.getFullYear(), prevDate.getMonth() - 1)
+        )
+      : setCurrentDate(prevDate => addDays(prevDate, -1));
+  };
+  const nextHandler = () => {
+    type === 'month'
+      ? setCurrentDate(
+          prevDate => new Date(prevDate.getFullYear(), prevDate.getMonth() + 1)
+        )
+      : setCurrentDate(prevDate => addDays(prevDate, 1));
+  };
 
   return (
     <>
       <SC.CalendarToolbarWrapper>
-        <PeriodPaginator date={formatedDate} />
+        <PeriodPaginator
+          date={formatedDate}
+          prevHandler={prevHandler}
+          nextHandler={nextHandler}
+        />
         <PeriodTypeSelect type={type} />
       </SC.CalendarToolbarWrapper>
       <SC.DaysOfWeekWrapper>
@@ -46,16 +66,14 @@ export const CalendarToolbar = ({ type = 'day' }) => {
           const isActive = isSameDay(day, currentDate);
 
           return type === 'month' ? (
-            <SC.Day key={day}>
-              {width > 768 ? format(day, 'EEE') : format(day, 'EEEEE')}
-            </SC.Day>
+            <MonthCalendarHead key={day} day={day} width={width} />
           ) : (
-            <SC.Day key={day}>
-              {width > 768 ? format(day, 'EEE') : format(day, 'EEEEE')}
-              <SC.DayNumber className={isActive ? 'current-date' : null}>
-                {format(day, 'd')}
-              </SC.DayNumber>
-            </SC.Day>
+            <DayCalendarHead
+              key={day}
+              day={day}
+              width={width}
+              isActive={isActive}
+            />
           );
         })}
       </SC.DaysOfWeekWrapper>
