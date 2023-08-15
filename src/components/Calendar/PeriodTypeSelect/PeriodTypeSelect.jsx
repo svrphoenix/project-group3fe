@@ -15,6 +15,7 @@ export const PeriodTypeSelect = ({ type }) => {
         className={type === 'month' ? 'active' : null}
         type="button"
         onClick={BtnMonthHandler}
+        disabled={type === 'month' ? 'disabled' : null}
       >
         Month
       </Button>
@@ -22,6 +23,7 @@ export const PeriodTypeSelect = ({ type }) => {
         className={type === 'day' ? 'active' : null}
         type="button"
         onClick={BtnDayHandler}
+        disabled={type === 'day' ? 'disabled' : null}
       >
         Day
       </Button>

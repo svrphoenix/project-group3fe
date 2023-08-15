@@ -2,13 +2,7 @@ import { SVG } from 'images';
 import * as SC from './PeriodPaginator.styled';
 import PropTypes from 'prop-types';
 
-export const PeriodPaginator = ({ date }) => {
-  const nextHandler = () => {
-    console.log('Next Month');
-  };
-  const prevHandler = () => {
-    console.log('Previous Month');
-  };
+export const PeriodPaginator = ({ date, prevHandler, nextHandler }) => {
   return (
     <SC.PeriodPaginatorWrapper>
       <SC.PeriodPaginatorDisplay>{date}</SC.PeriodPaginatorDisplay>
@@ -26,4 +20,6 @@ export const PeriodPaginator = ({ date }) => {
 
 PeriodPaginator.propTypes = {
   date: PropTypes.string.isRequired,
+  prevHandler: PropTypes.func.isRequired,
+  nextHandler: PropTypes.func.isRequired,
 };

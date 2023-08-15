@@ -1,6 +1,7 @@
 import { AuthSection } from 'components/MainPage/AuthSection';
 import { Description } from 'components/MainPage/Description';
 import { ReviewsSlider } from 'components/MainPage/ReviewsSlider';
+import { ScrollToTop } from 'components/ScrollToTop/ScrollToTop';
 
 const MainPage = () => {
   return (
@@ -8,6 +9,7 @@ const MainPage = () => {
       <AuthSection />
       <Description />
       <ReviewsSlider />
+      <ScrollToTop />
     </main>
   );
 };
