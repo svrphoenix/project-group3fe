@@ -27,6 +27,7 @@ export const Heading = styled.h1`
   font-style: normal;
   font-weight: 500;
   line-height: 18px;
+  width: 387px;
 `;
 
 export const Errortext = styled.div`
@@ -138,4 +139,4 @@ export const Button = styled.button`
 
 export const ErrorImagesContainer = styled.div``;
 
-export const textimg = styled.div``;
+export const TextImgError = styled.div``;
