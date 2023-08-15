@@ -1,10 +1,12 @@
 import React from 'react';
+import { ReactComponent as Gus } from 'images/404NotFound/Gus_svg.svg';
+import Gusbig from 'images/404NotFound/Gus.jpg';
 import {
   Container,
   ErrorImagesContainer,
   Heading,
   Button,
-  StyledErrorImage,
+  // StyledErrorImage,
   Errortext,
 } from './NotFound.styled';
 
@@ -18,21 +20,18 @@ const NotFound = () => {
   return (
     <Container>
       <ErrorImagesContainer>
-        <textImgError>
-          <Errortext> 4</Errortext>
-          {isMobile ? (
-            <StyledErrorImage
-              src="../../../images/404NotFound/Gus-svg.svg"
-              alt="404 Error"
-            />
-          ) : (
-            <StyledErrorImage
-              src="../../../images/404NotFound/Gus.jpg"
-              alt="404 Error"
-            />
-          )}
-          <Errortext> 4</Errortext>
-        </textImgError>
+        <Errortext> 4</Errortext>
+        {isMobile ? (
+          <div styled={{ width: '24px', height: '24px' }}>
+            <Gus />
+          </div>
+        ) : (
+          <div styled={{ width: '24px', height: '24px' }}>
+            <Gus />
+          </div>
+        )}
+
+        <Errortext> 4</Errortext>
       </ErrorImagesContainer>
       <Heading>
         We're sorry, the page you requested could not be found. Please go back
