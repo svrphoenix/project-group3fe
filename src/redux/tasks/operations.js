@@ -1,42 +1,48 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-hot-toast';
-import api from "../../api/api"
+import api from '../../api/api';
 
 const BASE_URL = 'api/tasks';
 
-export const getAllTasks = createAsyncThunk('tasks/getAll', async (date, thunkAPI) => {
-  try {
-    const response = await api.get(
-      `${BASE_URL}?month=${date.month}&year=${date.year}`
-    );
+export const getAllTasks = createAsyncThunk(
+  'tasks/getAll',
+  async (date, thunkAPI) => {
+    try {
+      const response = await api.get(
+        `${BASE_URL}?month=${date.month}&year=${date.year}`
+      );
 
-    if (response.status !== 200) {
-      throw new Error('Failed to fetch tasks due to server error');
+      if (response.status !== 200) {
+        throw new Error('Failed to fetch tasks due to server error');
+      }
+
+      return response.data;
+    } catch (error) {
+      toast.error('Failed to fetch all tasks: ' + error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
-
-    return response.data;
-  } catch (error) {
-    toast.error('Failed to fetch all tasks: ' + error.message);
-    return thunkAPI.rejectWithValue(error.message);
   }
-});
+);
 
-export const getDayTasks = createAsyncThunk('tasks/getAll', async (date, thunkAPI) => {
-  try {
-    const response = await api.get(
-      `${BASE_URL}?month=${date.month}&day=${date.day}&year=${date.year}`
-    );
+export const getDayTasks = createAsyncThunk(
+  'tasks/getAll',
+  async (date, thunkAPI) => {
+    try {
+      const response = await api.get(
+        `${BASE_URL}?month=${date.month}&day=${date.day}&year=${date.year}`
+      );
 
-    if (response.status !== 200) {
-      throw new Error('Failed to fetch daily tasks due to server error');
+      if (response.status !== 200) {
+        throw new Error('Failed to fetch daily tasks due to server error');
+      }
+
+      return response.data;
+    } catch (error) {
+      toast.error('Failed to fetch tasks for the day: ' + error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
-
-    return response.data;
-  } catch (error) {
-    toast.error('Failed to fetch tasks for the day: ' + error.message);
-    return thunkAPI.rejectWithValue(error.message);
   }
-});
+);
 
 export const addTask = createAsyncThunk(
   'tasks/addTask',
