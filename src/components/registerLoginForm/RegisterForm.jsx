@@ -24,6 +24,7 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { SVG } from 'images';
 import { Loader } from 'components/Loader/Loader';
+import { toast } from 'react-hot-toast';
 
 const theme = createTheme({
   palette: {
@@ -80,13 +81,14 @@ const RegisterForm = () => {
                         navigate("/calendar");
                     } else {
                         if (response.payload.includes("409")) {
+                            toast.error("This user is already exist");
                             setUsedEmail(true);
                         }
                     }
                     setIsLoading(false);
                 } catch (error) {
                     setIsLoading(false);
-                    alert("Sorry, problem at server");
+                    toast.error("Sorry, problem at server");
                 }
         
             }}
