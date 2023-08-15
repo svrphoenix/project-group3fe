@@ -1,12 +1,14 @@
 import { AuthNavigate } from 'components/authNavigate/AuthNavigate';
 import LoginForm from 'components/registerLoginForm/LoginForm';
-import { StyledLayout } from './LoginPage.styled';
+import { StyledLayout, StyledSharedContainer } from './LoginPage.styled';
 
 const LoginPage = () => {
   return (
     <StyledLayout>
-      <LoginForm />
-      <AuthNavigate path="/register" text="Sign Up"/>
+      <StyledSharedContainer>
+        <LoginForm />
+        <AuthNavigate path="/register" text="Sign Up"/>
+      </StyledSharedContainer>
     </StyledLayout>
       
   );
