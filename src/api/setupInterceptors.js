@@ -1,6 +1,5 @@
 import axiosInstance from './api';
-// import TokenService from './token.service';
-import { logoutReset, refreshTokens } from 'redux/auth/slice';
+import { refreshTokens } from 'redux/auth/slice';
 
 function configureAxios({ getState, dispatch }) {
   axiosInstance.interceptors.request.use(
@@ -24,22 +23,16 @@ function configureAxios({ getState, dispatch }) {
       if (error.response.status === 401 && !originalConfig._retry) {
         originalConfig._retry = true;
 
-        const refreshToken = getState().auth.refreshToken || '';
+        const refreshToken = getState().auth.refreshToken;
         try {
           const { data } = await axiosInstance.post('/users/refresh', {
             refresh_token: refreshToken,
           });
-
           dispatch(refreshTokens(data));
-
           axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
           return axiosInstance(originalConfig);
         } catch (error) {
-          if (error.response.status === 403) {
-            dispatch(logoutReset());
-          } else {
-            originalConfig._retry = true;
-          }
+          originalConfig._retry = true;
           return Promise.reject(error);
         }
       }

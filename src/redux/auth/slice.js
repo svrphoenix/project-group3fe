@@ -36,7 +36,7 @@ const authSlice = createSlice({
       state.token = null;
       state.refreshToken = null;
     },
-    
+
     refreshTokens(state, { payload }) {
       state.refreshToken = payload.refresh_token;
       state.token = payload.token;
