@@ -22,8 +22,8 @@ const handleRejected = (state, { payload }) => {
 const handleFulfilledUser = (state, { payload }) => {
   state.isLoading = false;
   state.refreshToken = payload.user.refresh_token;
-  delete payload.user.refresh_token;
-  state.user = payload.user;
+  const { refresh_token, ...user } = payload.user;
+  state.user = user;
   state.token = payload.token;
 };
 
@@ -49,10 +49,9 @@ const authSlice = createSlice({
       })
       .addCase(refreshCurrentUser.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        // state.user = payload.user;
         state.refreshToken = payload.user.refresh_token;
-        delete payload.user.refresh_token;
-        state.user = payload.user;
+        const { refresh_token, ...user } = payload.user;
+        state.user = user;
       })
       .addMatcher(
         isAnyOf(
