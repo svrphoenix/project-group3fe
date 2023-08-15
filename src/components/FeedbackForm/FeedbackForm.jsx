@@ -21,6 +21,10 @@ export const FeedbackForm = ({ close }) => {
     dispatch(reviewOperations.getReview());
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(reviewOperations.getReview());
+  }, [dispatch]);
+
   const checkErrorForCloseModal = ({ type }) => {
     const operation = null;
     if (type === `reviews/${operation}/fulfilled`) {
