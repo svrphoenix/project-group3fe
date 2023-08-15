@@ -1,18 +1,21 @@
 import React from 'react';
 import { ReactComponent as Gus } from 'images/404NotFound/Gus_svg.svg';
-import Gusbig from 'images/404NotFound/Gus.jpg';
 import {
   Container,
   ErrorImagesContainer,
   Heading,
   Button,
-  // StyledErrorImage,
   Errortext,
+  ImgMob,
+  Images,
 } from './NotFound.styled';
+import { useNavigate } from 'react-router-dom';
 
 const NotFound = () => {
+  const navigate = useNavigate();
+
   const handleBackToHome = () => {
-    window.location.href = '/';
+    navigate('/');
   };
 
   const isMobile = window.innerWidth <= 375;
@@ -22,13 +25,19 @@ const NotFound = () => {
       <ErrorImagesContainer>
         <Errortext> 4</Errortext>
         {isMobile ? (
-          <div styled={{ width: '24px', height: '24px' }}>
-            <Gus />
-          </div>
+          <ImgMob>
+            <Gus
+              style={{ width: '81px', height: '188px' }}
+              viewBox="0 0 81 188"
+            />
+          </ImgMob>
         ) : (
-          <div styled={{ width: '24px', height: '24px' }}>
-            <Gus />
-          </div>
+          <Images>
+            <Gus
+              style={{ width: '178px', height: '414px' }}
+              viewBox="0 0 178 414"
+            />
+          </Images>
         )}
 
         <Errortext> 4</Errortext>

@@ -28,6 +28,25 @@ export const Heading = styled.h1`
   font-weight: 500;
   line-height: 18px;
   width: 387px;
+  margin-top: 80px;
+
+  @media (max-width: 768px) {
+    color: rgba(17, 17, 17, 0.7);
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+  }
+
+  @media (max-width: 375px) {
+    color: rgba(17, 17, 17, 0.7);
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+  }
 `;
 
 export const Errortext = styled.div`
@@ -43,7 +62,6 @@ export const Errortext = styled.div`
     color: #3e85f3;
     text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
       0px 47px 355px rgba(0, 0, 0, 0.07);
-    font-family: Inter;
     font-size: 200px;
     font-style: normal;
     font-weight: 700;
@@ -54,34 +72,10 @@ export const Errortext = styled.div`
     color: #3e85f3;
     text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
       0px 47px 355px rgba(0, 0, 0, 0.07);
-    font-family: Inter;
     font-size: 100px;
     font-style: normal;
     font-weight: 700;
     line-height: 150px;
-  }
-`;
-
-export const StyledErrorImage = styled.img`
-  width: 178px;
-  height: 414px;
-  transform: rotate(-31deg);
-  flex-shrink: 0;
-
-  @media (max-width: 768px);
-   {
-    width: 178px;
-    height: 414px;
-    transform: rotate(-31.558deg);
-    flex-shrink: 0;
-  }
-
-  @media (max-width: 375px);
-   {
-    width: 81px;
-    height: 188px;
-    transform: rotate(-31deg);
-    flex-shrink: 0;
   }
 `;
 
@@ -93,12 +87,15 @@ export const Button = styled.button`
   gap: 10px;
   border-radius: 16px;
   background: #3e85f3;
-  box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
   color: #fff;
   font-size: 18px;
+  font-style: normal;
   font-weight: 600;
   line-height: 24px;
   letter-spacing: -0.36px;
+  box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
+  border: none;
+  margin-top: 32px;
 
   @media (max-width: 768px);
    {
@@ -109,7 +106,6 @@ export const Button = styled.button`
     gap: 10px;
     border-radius: 16px;
     background: #3e85f3;
-    box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
     color: #fff;
     font-size: 18px;
     font-style: normal;
@@ -127,16 +123,55 @@ export const Button = styled.button`
     gap: 10px;
     border-radius: 16px;
     background: #3e85f3;
-    box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
     color: #fff;
     font-size: 18px;
     font-style: normal;
     font-weight: 600;
     line-height: 24px;
     letter-spacing: -0.36px;
+    margin-top: 24px;
   }
 `;
 
-export const ErrorImagesContainer = styled.div``;
+export const ErrorImagesContainer = styled.div`
+  display: inline-flex;
+  text-align: center;
+  margin-bottom: -200px;
+`;
 
-export const TextImgError = styled.div``;
+export const ImgMob = styled.div`
+  width: 178px;
+  height: 414px;
+
+  @media (max-width: 768px);
+   {
+    width: 178px;
+    height: 414px;
+  }
+
+  @media (max-width: 375px);
+   {
+    width: 81px;
+    height: 188px;
+`;
+
+export const Images = styled.div`
+  width: 178px;
+  height: 414px;
+
+  align-items: center;
+
+  @media (max-width: 768px);
+   {
+    width: 178px;
+    height: 414px;
+    align-items: center;
+  }
+
+  @media (max-width: 375px);
+   {
+    width: 81px;
+    height: 188px;
+    align-items: center;
+  }
+`;
