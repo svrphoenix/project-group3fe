@@ -37,16 +37,19 @@ const reviewSlice = createSlice({
     isLoading: false,
     error: null,
   },
-  extraReducers: {
-    [postReview.pending]: handlePending,
-    [updateReview.pending]: handlePending,
-    [deleteReview.pending]: handlePending,
-    [postReview.rejected]: handleRejected,
-    [updateReview.rejected]: handleRejected,
-    [deleteReview.rejected]: handleRejected,
-    [postReview.fulfilled]: handleFulfilled,
-    [updateReview.fulfilled]: handleFulfilled,
-    [deleteReview.fulfilled]: handleDeleteFulfilled,
+  extraReducers: builder => {
+    builder
+      .addCase(postReview.pending, handlePending)
+      .addCase(updateReview.pending, handlePending)
+      .addCase(deleteReview.pending, handlePending)
+
+      .addCase(postReview.rejected, handleRejected)
+      .addCase(updateReview.rejected, handleRejected)
+      .addCase(deleteReview.rejected, handleRejected)
+
+      .addCase(postReview.fulfilled, handleFulfilled)
+      .addCase(updateReview.fulfilled, handleFulfilled)
+      .addCase(deleteReview.fulfilled, handleDeleteFulfilled);
   },
 });
 

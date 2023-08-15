@@ -3,7 +3,7 @@ import { ReactComponent as Star } from 'images/icons/star.svg';
 
 export const StarRating = ({ isSelectable, rating, setRating }) => {
   const changeRating = newRating => {
-    setRating(newRating);
+    setRating('rating', newRating);
   };
 
   return (
