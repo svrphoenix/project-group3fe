@@ -74,6 +74,9 @@ export const NavLink = styled(Link)`
   font-size: 12px;
   line-height: 1.17;
   text-decoration-line: underline;
+  &:hover {
+    text-decoration: initial;
+  }
   @media screen and (min-width: 768px) {
     font-size: 14px;
     line-height: 1.29;
@@ -106,6 +109,11 @@ export const ListItem = styled.li`
   &:not(:first-child) {
     margin-top: 64px;
   }
+  @media screen and (min-width: 768px) {
+    &:nth-child(2n) > div {
+      margin-left: auto;
+    }
+  }
   @media screen and (min-width: 1440px) {
     display: flex;
     justify-content: space-between;
@@ -113,7 +121,7 @@ export const ListItem = styled.li`
     &:nth-child(2n + 1) {
       padding-left: 77px;
     }
-    &&:nth-child(2n) {
+    &:nth-child(2n) {
       flex-direction: row-reverse;
       padding-right: 77px;
     }
