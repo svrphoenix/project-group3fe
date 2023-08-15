@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { deleteReview, postReview, updateReview } from './operations';
+import {
+  deleteReview,
+  postReview,
+  updateReview,
+  getReview,
+} from './operations';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -18,7 +23,7 @@ const handleFulfilled = (state, { payload }) => {
   state.user.id = payload._id;
 };
 
-const handleDeleteFulfilled = (state, { payload }) => {
+const handleDeleteFulfilled = state => {
   state.isLoading = false;
   state.error = null;
   state.user.comment = '';
@@ -39,14 +44,17 @@ const reviewSlice = createSlice({
   },
   extraReducers: builder => {
     builder
+      .addCase(getReview.pending, handlePending)
       .addCase(postReview.pending, handlePending)
       .addCase(updateReview.pending, handlePending)
       .addCase(deleteReview.pending, handlePending)
 
+      .addCase(getReview.rejected, handleRejected)
       .addCase(postReview.rejected, handleRejected)
       .addCase(updateReview.rejected, handleRejected)
       .addCase(deleteReview.rejected, handleRejected)
 
+      .addCase(getReview.fulfilled, handleFulfilled)
       .addCase(postReview.fulfilled, handleFulfilled)
       .addCase(updateReview.fulfilled, handleFulfilled)
       .addCase(deleteReview.fulfilled, handleDeleteFulfilled);
