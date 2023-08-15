@@ -56,7 +56,7 @@ export const Errortext = styled.div`
   font-size: 200px;
   font-style: normal;
   font-weight: 700;
-  line-height: 250px;
+  height: 250px;
 
   @media (max-width: 768px) {
     color: #3e85f3;
@@ -65,7 +65,7 @@ export const Errortext = styled.div`
     font-size: 200px;
     font-style: normal;
     font-weight: 700;
-    line-height: 250px;
+    height: 250px;
   }
 
   @media (max-width: 375px) {
@@ -76,6 +76,7 @@ export const Errortext = styled.div`
     font-style: normal;
     font-weight: 700;
     line-height: 150px;
+    height: 150px;
   }
 `;
 
@@ -97,8 +98,7 @@ export const Button = styled.button`
   border: none;
   margin-top: 32px;
 
-  @media (max-width: 768px);
-   {
+  @media (max-width: 768px) {
     display: inline-flex;
     padding: 16px 48px;
     flex-direction: column;
@@ -114,8 +114,7 @@ export const Button = styled.button`
     letter-spacing: -0.36px;
   }
 
-  @media (max-width: 375px);
-   {
+  @media (max-width: 375px) {
     display: inline-flex;
     padding: 14px 32px;
     flex-direction: column;
@@ -136,42 +135,28 @@ export const Button = styled.button`
 export const ErrorImagesContainer = styled.div`
   display: inline-flex;
   text-align: center;
-  margin-bottom: -200px;
+  width: 503px;
+  height: 250px;
+
+  media (max-width: 768px) {
+    width: 503px;
+    height: 250px;
+  }
+
+  @media (max-width: 375px) {
+    width: 252px;
+    height: 150px;
+  }
 `;
 
 export const ImgMob = styled.div`
-  width: 178px;
-  height: 414px;
-
-  @media (max-width: 768px);
-   {
-    width: 178px;
-    height: 414px;
-  }
-
-  @media (max-width: 375px);
-   {
+  @media (max-width: 375px) {
     width: 81px;
     height: 188px;
+  }
 `;
 
 export const Images = styled.div`
   width: 178px;
   height: 414px;
-
-  align-items: center;
-
-  @media (max-width: 768px);
-   {
-    width: 178px;
-    height: 414px;
-    align-items: center;
-  }
-
-  @media (max-width: 375px);
-   {
-    width: 81px;
-    height: 188px;
-    align-items: center;
-  }
 `;

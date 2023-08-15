@@ -1,5 +1,6 @@
 import React from 'react';
 import { ReactComponent as Gus } from 'images/404NotFound/Gus_svg.svg';
+import GusBig from '../../images/404NotFound/Gus.jpg';
 import {
   Container,
   ErrorImagesContainer,
@@ -26,17 +27,11 @@ const NotFound = () => {
         <Errortext> 4</Errortext>
         {isMobile ? (
           <ImgMob>
-            <Gus
-              style={{ width: '81px', height: '188px' }}
-              viewBox="0 0 81 188"
-            />
+            <Gus />
           </ImgMob>
         ) : (
           <Images>
-            <Gus
-              style={{ width: '178px', height: '414px' }}
-              viewBox="0 0 178 414"
-            />
+            <img alt="NotFound" src={GusBig} />
           </Images>
         )}
 
