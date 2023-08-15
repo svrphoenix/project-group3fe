@@ -4,11 +4,11 @@ import { ReviewsSlider } from 'components/MainPage/ReviewsSlider';
 
 const MainPage = () => {
   return (
-    <>
+    <main>
       <AuthSection />
       <Description />
       <ReviewsSlider />
-    </>
+    </main>
   );
 };
 
