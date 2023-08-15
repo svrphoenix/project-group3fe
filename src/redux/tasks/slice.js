@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   addTask,
   deleteTask,
-  getAllTasks,
+  // getAllTasks,
   getDayTasks,
   patchTask,
 } from './operations';
@@ -36,12 +36,12 @@ export const taskSlice = createSlice({
       })
       .addCase(addTask.rejected, loadingFailed)
 
-      .addCase(getAllTasks.pending, startLoading)
-      .addCase(getAllTasks.fulfilled, (state, { payload }) => {
-        state.tasks = payload;
-        state.isLoading = false;
-      })
-      .addCase(getAllTasks.rejected, loadingFailed)
+      // .addCase(getAllTasks.pending, startLoading)
+      // .addCase(getAllTasks.fulfilled, (state, { payload }) => {
+      //   state.tasks = payload;
+      //   state.isLoading = false;
+      // })
+      // .addCase(getAllTasks.rejected, loadingFailed)
 
       .addCase(deleteTask.pending, startLoading)
       .addCase(deleteTask.fulfilled, (state, { payload }) => {
