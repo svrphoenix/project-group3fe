@@ -1,16 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   Container,
   ErrorImagesContainer,
   Heading,
   Button,
   StyledErrorImage,
+  Errortext,
 } from './NotFound.styled';
 
-const NotFound = ({ history }) => {
+const NotFound = () => {
   const handleBackToHome = () => {
-    history.push('/');
+    window.location.href = '/';
   };
 
   const isMobile = window.innerWidth <= 375;
@@ -18,15 +18,21 @@ const NotFound = ({ history }) => {
   return (
     <Container>
       <ErrorImagesContainer>
-        <div>4 4</div>
-        {isMobile ? (
-          <StyledErrorImage
-            src="/images/mobile-svg-image.svg"
-            alt="404 Error"
-          />
-        ) : (
-          <StyledErrorImage src="/images/Gus" alt="404 Error" />
-        )}
+        <textImgError>
+          <Errortext> 4</Errortext>
+          {isMobile ? (
+            <StyledErrorImage
+              src="../../../images/404NotFound/Gus-svg.svg"
+              alt="404 Error"
+            />
+          ) : (
+            <StyledErrorImage
+              src="../../../images/404NotFound/Gus.jpg"
+              alt="404 Error"
+            />
+          )}
+          <Errortext> 4</Errortext>
+        </textImgError>
       </ErrorImagesContainer>
       <Heading>
         We're sorry, the page you requested could not be found. Please go back
@@ -35,10 +41,6 @@ const NotFound = ({ history }) => {
       <Button onClick={handleBackToHome}>Back to Home</Button>
     </Container>
   );
-};
-
-NotFound.propTypes = {
-  history: PropTypes.object.isRequired,
 };
 
 export default NotFound;
