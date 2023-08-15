@@ -14,11 +14,27 @@ import {
 } from './UserForm.styled';
 import { FileUploadComponent, createElement } from './FileUploadComponent';
 import { useRef, useState } from 'react';
+import useAuth from 'hooks/useAuth';
+import { formatDate } from './formatDate';
+import { useDispatch } from 'react-redux';
+import { updateUser } from 'redux/auth/operations';
 
 export const UserForm = () => {
+  const { user } = useAuth();
+  const dispatch = useDispatch();
+
   const [startDate, setStartDate] = useState(new Date());
+  const [userName, setUserName] = useState(user.name);
+  const [userEmail, setUserEmail] = useState(user.email);
+  const [userPhone, setUserPhone] = useState(user.phone || '');
+  const [userSype, setUserSype] = useState(user.skype || '');
   const fileInputRef = useRef(null);
   const fileListRef = useRef(null);
+
+  // const todayDate = new Date().toISOString().slice(0, 10);
+  // console.log(todayDate);
+  console.log(user);
+  // console.log(startDate);
 
   const handleFiles = event => {
     const img = createElement(event);
@@ -39,7 +55,24 @@ export const UserForm = () => {
           skype: '',
         }}
         onSubmit={async values => {
-          console.log(values);
+          console.log(typeof userName, userName);
+          // console.log(startDate);
+          // console.log(userEmail);
+          // console.log(userPhone);
+          // console.log(userSype);
+          const formattedDate = formatDate(startDate);
+          // console.log(formattedDate);
+          // 38 (123) 456 78 90
+          //  birthday: '',
+          // birthdayRegex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[01])$/;
+          const body = {
+            name: userName,
+            email: userEmail,
+            phone: userPhone,
+            skype: userSype,
+          };
+
+          dispatch(updateUser(body));
         }}
       >
         <Form>
@@ -55,7 +88,13 @@ export const UserForm = () => {
           <StyledLabelWrapp>
             <FormField>
               <StyledLabelText>User Name</StyledLabelText>
-              <Field id="name" name="name" placeholder="Name" />
+              <Field
+                id="name"
+                name="name"
+                placeholder="Name"
+                value={userName}
+                onChange={evt => setUserName(evt.target.value)}
+              />
               <ErrorMessage name="name" component="div" />
             </FormField>
 
@@ -70,7 +109,8 @@ export const UserForm = () => {
               <StyledDatePicker
                 selected={startDate}
                 onChange={date => setStartDate(date)}
-                dateFormat="yyyy/mm/dd"
+                dateFormat="yyyy/MM/dd"
+                name="birthday"
               />
               <ErrorMessage name="birthday" component="div" />
             </FormField>
@@ -82,6 +122,8 @@ export const UserForm = () => {
                 name="email"
                 placeholder="example.com"
                 type="email"
+                value={userEmail}
+                onChange={evt => setUserEmail(evt.target.value)}
               />
               <ErrorMessage name="email" component="div" />
             </FormField>
@@ -93,6 +135,8 @@ export const UserForm = () => {
                 name="phone"
                 placeholder="38 (097) 222 33 77"
                 type="tel"
+                value={userPhone}
+                onChange={evt => setUserPhone(evt.target.value)}
               />
               <ErrorMessage name="phone" component="div" />
             </FormField>
@@ -104,6 +148,8 @@ export const UserForm = () => {
                 name="skype"
                 placeholder="38 (097) 222 33 77"
                 type="text"
+                value={userSype}
+                onChange={evt => setUserSype(evt.target.value)}
               />
               <ErrorMessage name="skype" component="div" />
             </FormField>
