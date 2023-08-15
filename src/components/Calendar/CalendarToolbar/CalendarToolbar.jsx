@@ -12,7 +12,8 @@ import {
 import PropTypes from 'prop-types';
 
 export const CalendarToolbar = ({ type = 'day' }) => {
-  const [currentDate, setCurrentDate] = useState(new Date());
+  // const [currentDate, setCurrentDate] = useState(new Date());
+  const [currentDate] = useState(new Date());
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
