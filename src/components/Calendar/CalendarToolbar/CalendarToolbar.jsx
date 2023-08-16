@@ -16,6 +16,7 @@ import {
 import PropTypes from 'prop-types';
 import { useNavigate, useParams } from 'react-router';
 import { CalendarTable } from '../CalendarTable/CalendarTable';
+import { ComponentChooseDay } from 'components/ComponentChooseDay/ComponentChooseDay';
 
 export const CalendarToolbar = ({ type = 'month' }) => {
   const { currentDay } = useParams();
@@ -106,6 +107,7 @@ export const CalendarToolbar = ({ type = 'month' }) => {
         })}
       </SC.DaysOfWeekWrapper>
       {type === 'month' && <CalendarTable currentDate={currentDate} />}
+      {type === 'day' && <ComponentChooseDay />}
     </>
   );
 };
