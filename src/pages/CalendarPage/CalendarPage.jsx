@@ -4,7 +4,7 @@ import { Outlet, useNavigate } from 'react-router';
 
 const navigateToChoosedMonth = navigate => {
   const formattedCurrentMonth = format(new Date(), 'MMMM').toLowerCase();
-  navigate(`month/${formattedCurrentMonth}`);
+  navigate(`/calendar/month/${formattedCurrentMonth}`);
 };
 
 const CalendarPage = () => {
