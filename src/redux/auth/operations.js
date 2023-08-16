@@ -24,11 +24,12 @@ const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
 });
 
 const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
-  thunkAPI.dispatch(logoutReset());
   try {
     await authService.logout();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
+  } finally {
+    thunkAPI.dispatch(logoutReset());
   }
 });
 
