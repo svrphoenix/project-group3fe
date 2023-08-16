@@ -17,9 +17,15 @@ export const FeedbackForm = ({ close }) => {
 
   const [readOnly, setReadOnly] = useState(!!currentUser.comment);
 
-  const initialValues = {
-    comment: currentUser.comment,
-    rating: currentUser.rating,
+  useEffect(() => {
+    dispatch(reviewOperations.getReview());
+  }, [dispatch]);
+
+  const checkErrorForCloseModal = ({ type }) => {
+    const operation = null;
+    if (type === `reviews/${operation}/fulfilled`) {
+      close();
+    }
   };
 
   const onSubmitFeedback = values => {
