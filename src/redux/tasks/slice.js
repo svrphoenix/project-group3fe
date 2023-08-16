@@ -22,7 +22,6 @@ export const taskSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(addTask.rejected, loadingFailed)
-
       .addCase(deleteTask.pending, startLoading)
       .addCase(deleteTask.fulfilled, (state, { payload }) => {
         state.tasks = state.tasks.filter(task => task._id !== payload);
@@ -37,7 +36,12 @@ export const taskSlice = createSlice({
         );
         state.isLoading = false;
       })
-      .addCase(patchTask.rejected, loadingFailed);
+      .addCase(patchTask.rejected, loadingFailed)
+      .addCase(logout, state => {
+        state.tasks = [];
+        state.isLoading = false;
+        state.error = null;
+      });
   },
 });
 
