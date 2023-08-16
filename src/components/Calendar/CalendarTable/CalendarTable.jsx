@@ -32,9 +32,7 @@ export const CalendarTable = ({ currentDate }) => {
             className={isCurrentMonth(day) ? '' : 'inactive'}
           >
             {isCurrentMonth(day) && (
-              <SC.NavLink
-                to={`/calendar/month/day/${format(day, 'yyyy-MM-dd')}`}
-              >
+              <SC.NavLink to={`/calendar/day/${format(day, 'yyyy-MM-dd')}`}>
                 <SC.Number className={isActive(day) ? 'active' : ''}>
                   {format(day, 'd')}
                 </SC.Number>
