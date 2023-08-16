@@ -6,8 +6,6 @@ import * as SC from './StatisticsPage.styled';
 const StatisticsPage = () => {
   return (
     <>
-      <h1>Statistics</h1>
-
       <SC.StatisticsDiv>
         <SC.StatisticsHeaderDiv>
           {/* <PeriodPaginator /> */}
