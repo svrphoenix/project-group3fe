@@ -5,7 +5,7 @@ import {
   StyledAvatarWrapper,
   StyledBtnLink,
 } from './UserForm.styled';
-import { AddIcon } from './AddIcon';
+import { AddIcon } from './Icons';
 import useAuth from 'hooks/useAuth';
 
 export const FileUploadComponent = ({
@@ -14,6 +14,7 @@ export const FileUploadComponent = ({
   fileListRef,
 }) => {
   const { user } = useAuth();
+  const firstLetterUserName = user.name.charAt(0).toUpperCase();
 
   const handleFileSelect = () => {
     if (fileInputRef.current) {
@@ -39,9 +40,7 @@ export const FileUploadComponent = ({
         {user.avatarURL ? (
           <img src={user.avatarURL} alt="avatar" />
         ) : (
-          <StyledAvatarText>
-            {user.name.charAt(0).toUpperCase()}
-          </StyledAvatarText>
+          <StyledAvatarText>{firstLetterUserName}</StyledAvatarText>
         )}
       </StyledAvatarContainer>
     </StyledAvatarWrapper>

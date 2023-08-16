@@ -19,6 +19,7 @@ import useAuth from 'hooks/useAuth';
 import { formatDate } from './formatDate';
 import { useDispatch } from 'react-redux';
 import { updateUser } from 'redux/auth/operations';
+import { ChevronDownIcon } from './Icons';
 
 const UserSchema = Yup.object().shape({
   // name: Yup.string().required('Please enter your name'),
@@ -86,12 +87,12 @@ export const UserForm = () => {
           // 38 (123) 456 78 90
           //  birthday: '',
           // birthdayRegex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[01])$/;
-          const body = {
-            name: userName,
-            email: userEmail,
-            phone: userPhone,
-            skype: userSype,
-          };
+          // const body = {
+          //   name: userName,
+          //   email: userEmail,
+          //   phone: userPhone,
+          //   skype: userSype,
+          // };
 
           // dispatch(updateUser(data));
         }}
@@ -121,18 +122,13 @@ export const UserForm = () => {
 
             <FormField>
               <StyledLabelText>Birthday</StyledLabelText>
-              {/* <Field
-                // type="date"
-                id="birthday"
-                name="birthday"
-                placeholder="25/08/1995"
-              /> */}
               <StyledDatePicker
                 selected={startDate}
                 onChange={date => setStartDate(date)}
                 dateFormat="yyyy-MM-dd"
                 name="birthday"
               />
+              <ChevronDownIcon color="#111111" size={18} />
               <ErrorMessage name="birthday" component="div" />
             </FormField>
 
