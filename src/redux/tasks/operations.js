@@ -25,7 +25,7 @@ export const getAllTasks = createAsyncThunk(
 );
 
 export const getDayTasks = createAsyncThunk(
-  'tasks/getAll',
+  'tasks/getDayTasks',
   async (date, thunkAPI) => {
     try {
       const response = await api.get(

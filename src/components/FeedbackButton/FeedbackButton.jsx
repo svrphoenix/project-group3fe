@@ -1,7 +1,7 @@
 import { Modal } from 'components/Modal/Modal';
 import { FeedbackForm } from 'components/FeedbackForm/FeedbackForm';
 import useModalToggle from 'hooks/useModalToggle';
-import * as SC from './FeedbackButton.style';
+import * as SC from './FeedbackButton.styled';
 
 export const FeedbackButton = () => {
   const { showModal, onToggleModal } = useModalToggle();
