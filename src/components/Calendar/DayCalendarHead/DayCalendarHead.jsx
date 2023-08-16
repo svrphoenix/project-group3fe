@@ -2,9 +2,9 @@ import { format } from 'date-fns';
 import * as SC from './DayCalendarHead.styled';
 import PropTypes from 'prop-types';
 
-export const DayCalendarHead = ({ width, day, isActive }) => {
+export const DayCalendarHead = ({ width, day, isActive, onClick }) => {
   return (
-    <SC.Day key={day}>
+    <SC.Day onClick={onClick} key={day}>
       {width > 768 ? format(day, 'EEE') : format(day, 'EEEEE')}
       <SC.DayNumber className={isActive ? 'current-date' : null}>
         {format(day, 'd')}
