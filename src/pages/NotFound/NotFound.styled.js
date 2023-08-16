@@ -46,10 +46,44 @@ export const Heading = styled.h1`
     font-style: normal;
     font-weight: 500;
     line-height: 18px;
+    width: 281px;
   }
 `;
 
-export const Errortext = styled.div`
+export const ErrortextLeft = styled.div`
+  color: #3e85f3;
+  text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
+    0px 47px 355px rgba(0, 0, 0, 0.07);
+  font-size: 200px;
+  font-style: normal;
+  font-weight: 700;
+  height: 250px;
+  margin-right: 220px;
+
+  @media (max-width: 768px) {
+    color: #3e85f3;
+    text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
+      0px 47px 355px rgba(0, 0, 0, 0.07);
+    font-size: 200px;
+    font-style: normal;
+    font-weight: 700;
+    height: 250px;
+  }
+
+  @media (max-width: 375px) {
+    color: #3e85f3;
+    text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
+      0px 47px 355px rgba(0, 0, 0, 0.07);
+    font-size: 100px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150px;
+    height: 150px;
+    margin-right: 100px;
+  }
+`;
+
+export const ErrortextRight = styled.div`
   color: #3e85f3;
   text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
     0px 47px 355px rgba(0, 0, 0, 0.07);
@@ -94,9 +128,14 @@ export const Button = styled.button`
   font-weight: 600;
   line-height: 24px;
   letter-spacing: -0.36px;
-  box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
   border: none;
   margin-top: 32px;
+  cursor: pointer;
+transition: box-shadow 0.25s, transform 0.25s;
+
+  &:hover {
+    box-shadow: 8px 4px 24px 0px rgba(136, 165, 191, 0.48);
+
 
   @media (max-width: 768px) {
     display: inline-flex;
@@ -112,11 +151,17 @@ export const Button = styled.button`
     font-weight: 600;
     line-height: 24px;
     letter-spacing: -0.36px;
+    cursor: pointer;
+transition: box-shadow 0.25s, transform 0.25s;
+
+  &:hover {
+    box-shadow: 8px 4px 24px 0px rgba(136, 165, 191, 0.48);
+
   }
 
   @media (max-width: 375px) {
     display: inline-flex;
-    padding: 14px 32px;
+    // padding: 14px 32px;
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
@@ -128,7 +173,13 @@ export const Button = styled.button`
     font-weight: 600;
     line-height: 24px;
     letter-spacing: -0.36px;
-    margin-top: 24px;
+    // margin-top: 24px;
+    cursor: pointer;
+transition: box-shadow 0.25s, transform 0.25s;
+
+  &:hover {
+    box-shadow: 8px 4px 24px 0px rgba(136, 165, 191, 0.48);
+
   }
 `;
 
@@ -137,15 +188,27 @@ export const ErrorImagesContainer = styled.div`
   text-align: center;
   width: 503px;
   height: 250px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 
   media (max-width: 768px) {
     width: 503px;
     height: 250px;
+    justify-content: center;
+    align-items: center;
   }
 
   @media (max-width: 375px) {
     width: 252px;
     height: 150px;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
@@ -157,6 +220,10 @@ export const ImgMob = styled.div`
 `;
 
 export const Images = styled.div`
-  width: 178px;
-  height: 414px;
+  // width: 420px;
+  // height: 365px;
+`;
+export const img = styled.div`
+  width: 420px;
+  height: 365px;
 `;
