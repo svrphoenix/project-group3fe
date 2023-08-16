@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const SideBarBox = styled.div`
   display: none;
+  background-color: #fff;
 
   @media screen and (min-width: 1440px) {
     display: flex;

@@ -3,15 +3,20 @@ import styled from 'styled-components';
 export const StyledLayout = styled.div`
   margin: 0 auto;
   width: 100%;
-  padding: 155px 15px 156px 15px;
+  height: 100vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background: #dcebf7;
-  @media (min-width: 768px) {
-    padding-top: 227px;
-  }
-  @media (min-width: 1440px) {
-    padding-top: 124px;
-  }
+  position: relative;
 `;
+
+export const StyledSharedContainer = styled.div`
+  position: absolute;
+  top: 50%;              
+  left: 50%;         
+  width: 100%;
+  padding: 0 15px;       
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+`
