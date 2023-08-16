@@ -24,6 +24,7 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { SVG } from 'images';
 import { Loader } from 'components/Loader/Loader';
+import { toast } from 'react-hot-toast';
 
 const theme = createTheme({
   palette: {
@@ -71,18 +72,24 @@ const LoginForm = () => {
                 password: values.password,
               })
             );
+            console.log(response)
             if (response.meta.requestStatus !== 'rejected') {
               resetForm();
               navigate('/calendar/month/:currentDate');
             } else {
               if (response.payload.includes('401')) {
+                console.log("emaiiil")
+                toast.error("Email or password is uncorrect");
                 setNoUser(true);
+              } else {
+                toast.error("Sorry, problem at server");
               }
+              
             }
             setIsLoading(false);
           } catch (error) {
             setIsLoading(false);
-            alert('Sorry, problem at server');
+            toast.error("Sorry, problem at server");
           }
         }}
       >
