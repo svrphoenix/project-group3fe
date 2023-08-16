@@ -1,21 +1,28 @@
+import { getDate, getMonth, getYear, parseISO } from 'date-fns';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import * as tasksOperations from 'redux/tasks/operations';
 import { selectTasks } from 'redux/tasks/selectors';
 import { useParams } from 'react-router-dom';
-import { getDate, getMonth, getYear, parseISO } from 'date-fns';
+import useModalToggle from 'hooks/useModalToggle';
 import { ReactComponent as PlusCircle } from 'images/icons/plus-circle.svg';
 import { ReactComponent as Remove } from 'images/icons/arrow-circle-broken-right.svg';
 import { ReactComponent as Pencil } from 'images/icons/pencil-task.svg';
 import { ReactComponent as Trash } from 'images/icons/trash-task.svg';
 import * as SC from './ComponentChooseDay.styled';
+import { Modal } from 'components/Modal/Modal';
 
 export const ComponentChooseDay = () => {
+  const { showModal, onToggleModal } = useModalToggle();
   // const tasks = useSelector(selectTasks);
   const tasks = [
-    { _id: 1, title: 'Choose Day', priority: 'important' },
-    { _id: 2, title: 'Choose Day2', priority: 'medium' },
-    { _id: 3, title: 'Choose Day3', priority: 'low' },
+    {
+      _id: 1,
+      title: 'Choose DayChoose DayChoose DayChoose Day',
+      priority: 'High',
+    },
+    { _id: 2, title: 'Choose Day2', priority: 'Medium' },
+    { _id: 3, title: 'Choose Day3', priority: 'Low' },
   ];
 
   const dispatch = useDispatch();
@@ -35,43 +42,63 @@ export const ComponentChooseDay = () => {
   //     dispatch(tasksOperations.getDayTasks());
   //   }, [dispatch]);
 
+  const removeTask = () => {
+    console.log('removeTask');
+  };
+  const editTask = () => {
+    console.log('editTask');
+  };
+  const deleteTask = () => {
+    console.log('deleteTask');
+  };
+
   return (
     <SC.DaystasksWrapper>
       <SC.DaysTasksContainer>
         <SC.TasksHeader>
           <SC.TasksTitle>To do</SC.TasksTitle>
-          <PlusCircle />
+          <SC.IconBtn onClick={onToggleModal} aria-label="add task">
+            <PlusCircle />
+          </SC.IconBtn>
         </SC.TasksHeader>
         <SC.TasksBox>
           {tasks.map(task => (
             <SC.TaskItem key={task._id}>
               <SC.TaskDescr>{task.title}</SC.TaskDescr>
               <SC.TaskInfo>
-                <SC.Avatar />
-                <SC.Priority
-                  style={{
-                    background:
-                      task.priority === 'important'
-                        ? 'red'
-                        : task.priority === 'medium'
-                        ? 'orange'
-                        : task.priority === 'low'
-                        ? 'gray'
-                        : 'black',
-                  }}
-                >
-                  {task.priority}
-                </SC.Priority>
+                <SC.AvatarWrapper>
+                  <SC.Avatar />
+                  <SC.Priority
+                    style={{
+                      background:
+                        task.priority === 'High'
+                          ? '#EA3D65'
+                          : task.priority === 'Medium'
+                          ? '#F3B249'
+                          : task.priority === 'Low'
+                          ? '#72C2F8'
+                          : null,
+                    }}
+                  >
+                    {task.priority}
+                  </SC.Priority>
+                </SC.AvatarWrapper>
                 <SC.ControlPanel>
-                  <Remove />
-                  <Pencil />
-                  <Trash />
+                  <SC.IconBtn onClick={removeTask} aria-label="remove task">
+                    <Remove />
+                  </SC.IconBtn>
+                  <SC.IconBtn onClick={editTask} aria-label="edit task">
+                    <Pencil />
+                  </SC.IconBtn>
+                  <SC.IconBtn onClick={deleteTask} aria-label="delete task">
+                    <Trash />
+                  </SC.IconBtn>
                 </SC.ControlPanel>
               </SC.TaskInfo>
             </SC.TaskItem>
           ))}
         </SC.TasksBox>
-        <SC.CreateTasksBtn>Add task</SC.CreateTasksBtn>
+        <SC.CreateTasksBtn onClick={onToggleModal}>Add task</SC.CreateTasksBtn>
       </SC.DaysTasksContainer>
       <SC.DaysTasksContainer>
         <SC.TasksHeader>
@@ -101,6 +128,8 @@ export const ComponentChooseDay = () => {
         </SC.TasksBox>
         <SC.CreateTasksBtn>Add task</SC.CreateTasksBtn>
       </SC.DaysTasksContainer>
+
+      {showModal && <Modal onToggleModal={onToggleModal}></Modal>}
     </SC.DaystasksWrapper>
   );
 };
