@@ -52,6 +52,30 @@ const LoginForm = () => {
   const [visibility, setVisibility] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const handleSubmit = async (values, { resetForm }) => {
+    try {
+            setIsLoading(true);
+            const response = await dispatch(
+              login({
+                email: values.email,
+                password: values.password,
+              })
+            );
+            if (response.meta.requestStatus !== 'rejected') {
+              resetForm();
+              navigate('/calendar/month/:currentDate');
+            } else {
+              if (response.payload.includes('401')||response.payload.includes('403')) {
+                setNoUser(true);
+              } 
+            }
+            setIsLoading(false);
+          } catch (error) {
+            setIsLoading(false);
+            toast.error("Sorry, problem at server");
+          }
+  }
+
   return (
     <StyledContainer>
       <StyledHeader>Log In</StyledHeader>
@@ -63,35 +87,7 @@ const LoginForm = () => {
         validateOnChange={false}
         validateOnBlur={true}
         validationSchema={LoginSchema}
-        onSubmit={async (values, { resetForm }) => {
-          try {
-            setIsLoading(true);
-            const response = await dispatch(
-              login({
-                email: values.email,
-                password: values.password,
-              })
-            );
-            console.log(response)
-            if (response.meta.requestStatus !== 'rejected') {
-              resetForm();
-              navigate('/calendar/month/:currentDate');
-            } else {
-              if (response.payload.includes('401')) {
-                console.log("emaiiil")
-                toast.error("Email or password is uncorrect");
-                setNoUser(true);
-              } else {
-                toast.error("Sorry, problem at server");
-              }
-              
-            }
-            setIsLoading(false);
-          } catch (error) {
-            setIsLoading(false);
-            toast.error("Sorry, problem at server");
-          }
-        }}
+        onSubmit={handleSubmit}
       >
         {({ errors, touched }) => {
           if (isLoading) {
@@ -164,7 +160,7 @@ const LoginForm = () => {
                     (errors.password === 'Please enter your password' &&
                       touched.password &&
                       'empty') ||
-                    (errors.password && touched.password && 'error') ||
+                    (((errors.password && touched.password)||noUser) && 'error') ||
                     (touched.password && 'okay')
                   }>
                     <StyledFieldPassword

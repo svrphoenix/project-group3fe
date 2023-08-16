@@ -56,6 +56,30 @@ const RegisterForm = () => {
     const [visibility, setVisibility] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
+    const handleSubmit = async (values, { resetForm }) => {
+        try {
+            setIsLoading(true);
+            const response = await dispatch(
+                register({
+                    name: values.name,
+                    email: values.email,
+                    password: values.password,
+                }));
+            if (response.meta.requestStatus !== "rejected") {
+                resetForm();
+                navigate("/calendar");
+            } else {
+                if (response.payload.includes("409")) {
+                    setUsedEmail(true);
+                }
+            }
+            setIsLoading(false);
+        } catch (error) {
+            setIsLoading(false);
+            toast.error("Sorry, problem at server");
+        }
+    }
+
     return (<StyledContainer>
         <StyledHeader>Sign Up</StyledHeader>
         <Formik
@@ -67,31 +91,7 @@ const RegisterForm = () => {
             validateOnChange={false}
             validateOnBlur={true}
             validationSchema={SignupSchema}
-            onSubmit={async (values, { resetForm }) => {
-                try {
-                    setIsLoading(true);
-                    const response = await dispatch(
-                        register({
-                            name: values.name,
-                            email: values.email,
-                            password: values.password,
-                        }));
-                    if (response.meta.requestStatus !== "rejected") {
-                        resetForm();
-                        navigate("/calendar");
-                    } else {
-                        if (response.payload.includes("409")) {
-                            toast.error("This user is already exist");
-                            setUsedEmail(true);
-                        }
-                    }
-                    setIsLoading(false);
-                } catch (error) {
-                    setIsLoading(false);
-                    toast.error("Sorry, problem at server");
-                }
-        
-            }}
+            onSubmit={handleSubmit}
         >
             {({ errors, touched }) => {
                 if (isLoading) {
