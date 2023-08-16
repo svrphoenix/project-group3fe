@@ -71,7 +71,7 @@ const App = () => {
             }
           />
           <Route
-            path="/calendar/month/day/:currentDay"
+            path="/calendar/day/:currentDay"
             element={<PrivateRoute redirectTo="/" component={<ChoosedDay />} />}
           />
           <Route
