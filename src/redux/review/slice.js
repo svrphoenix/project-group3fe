@@ -20,7 +20,6 @@ const handleFulfilled = (state, { payload }) => {
   state.error = null;
   state.user.comment = payload.comment;
   state.user.rating = payload.rating;
-  state.user.id = payload._id;
 };
 
 const handleDeleteFulfilled = state => {
@@ -28,14 +27,12 @@ const handleDeleteFulfilled = state => {
   state.error = null;
   state.user.comment = '';
   state.user.rating = 0;
-  state.user.id = null;
 };
 
 const reviewSlice = createSlice({
   name: 'review',
   initialState: {
     user: {
-      id: null,
       rating: 0,
       comment: '',
     },
@@ -46,7 +43,6 @@ const reviewSlice = createSlice({
     resetReviewState(state) {
       state.user.comment = '';
       state.user.rating = 0;
-      state.user.id = null;
     },
   },
   extraReducers: builder => {
