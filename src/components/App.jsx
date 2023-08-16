@@ -7,6 +7,8 @@ import { refreshCurrentUser } from 'redux/auth/operations';
 import { SharedLayout } from './SharedLayout';
 import useAuth from 'hooks/useAuth';
 import { Loader } from './Loader/Loader';
+import { ChoosedMonth } from './ChoosedMonth/ChoosedMonth';
+import { ChoosedDay } from './ChoosedDay/ChoosedDay';
 
 const MainLayout = lazy(() => import('../pages/MainLayout/MainLayout'));
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
@@ -65,19 +67,13 @@ const App = () => {
             <Route
               path="month/:currentDate"
               element={
-                <PrivateRoute
-                  redirectTo="/"
-                  component={<div>ChoosedMonth</div>}
-                />
+                <PrivateRoute redirectTo="/" component={<ChoosedMonth />} />
               }
             />
             <Route
               path="month/day/:currentDay"
               element={
-                <PrivateRoute
-                  redirectTo="/"
-                  component={<div>ChoosedDay</div>}
-                />
+                <PrivateRoute redirectTo="/" component={<ChoosedDay />} />
               }
             />
           </Route>

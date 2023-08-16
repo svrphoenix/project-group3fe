@@ -1,26 +1,26 @@
-// import PropTypes from 'prop-types';
-
-import { CalendarToolbar } from 'components/Calendar/CalendarToolbar/CalendarToolbar';
 import { format } from 'date-fns';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import { Suspense, useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router';
+
+const navigateToChoosedMonth = navigate => {
+  const formattedCurrentMonth = format(new Date(), 'MMMM').toLowerCase();
+  navigate(`month/${formattedCurrentMonth}`);
+};
 
 const CalendarPage = () => {
   const navigate = useNavigate();
-  // const [today, setToday] = useState(new Date());
-  const formatedCurrentDay = format(new Date(), 'MMMM').toLowerCase();
 
   useEffect(() => {
-    navigate(`month/${formatedCurrentDay}`);
-  }, [navigate, formatedCurrentDay]);
+    navigateToChoosedMonth(navigate);
+  }, []); // eslint-disable-line
 
   return (
     <>
-      <CalendarToolbar />
+      <Suspense fallback={<div>Loading ....</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
-
-// CalendarPage.propTypes = {};
 
 export default CalendarPage;

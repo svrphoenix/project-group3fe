@@ -11,11 +11,18 @@ import {
   format,
   isSameDay,
   addDays,
+  parse,
 } from 'date-fns';
 import PropTypes from 'prop-types';
+import { useNavigate, useParams } from 'react-router';
+import { CalendarTable } from '../CalendarTable/CalendarTable';
 
-export const CalendarToolbar = ({ type = 'day' }) => {
-  const [currentDate, setCurrentDate] = useState(new Date());
+export const CalendarToolbar = ({ type = 'month' }) => {
+  const { currentDay } = useParams();
+  const navigate = useNavigate();
+  const initialDate =
+    type === 'day' ? parse(currentDay, 'yyyy-MM-dd', new Date()) : new Date();
+  const [currentDate, setCurrentDate] = useState(initialDate);
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -27,8 +34,8 @@ export const CalendarToolbar = ({ type = 'day' }) => {
 
   const formatedDate =
     type === 'month'
-      ? format(currentDate, 'MMMM')
-      : format(currentDate, 'd MMMM');
+      ? format(currentDate, 'MMMM yyyy')
+      : format(currentDate, 'dd MMMM yyyy');
 
   const startDayOfWeek = startOfWeek(currentDate, { weekStartsOn: 1 });
   const endDayOfWeek = endOfWeek(currentDate, { weekStartsOn: 1 });
@@ -36,19 +43,40 @@ export const CalendarToolbar = ({ type = 'day' }) => {
     start: startDayOfWeek,
     end: endDayOfWeek,
   });
+  const prevHandleMonth = () => {
+    const prevDate = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth() - 1
+    );
+    setCurrentDate(prevDate);
+    navigate(`/calendar/month/${format(prevDate, 'MMMM').toLowerCase()}`);
+  };
+
+  const prevHandleDay = () => {
+    const prevDate = addDays(currentDate, -1);
+    setCurrentDate(prevDate);
+    navigate(`/calendar/month/day/${format(prevDate, 'yyyy-MM-dd')}`);
+  };
+
+  const nextHandleMonth = () => {
+    const nextDate = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth() + 1
+    );
+    setCurrentDate(nextDate);
+    navigate(`/calendar/month/${format(nextDate, 'MMMM').toLowerCase()}`);
+  };
+
+  const nextHandleDay = () => {
+    const nextDate = addDays(currentDate, 1);
+    setCurrentDate(nextDate);
+    navigate(`/calendar/month/day/${format(nextDate, 'yyyy-MM-dd')}`);
+  };
   const prevHandler = () => {
-    type === 'month'
-      ? setCurrentDate(
-          prevDate => new Date(prevDate.getFullYear(), prevDate.getMonth() - 1)
-        )
-      : setCurrentDate(prevDate => addDays(prevDate, -1));
+    type === 'month' ? prevHandleMonth() : prevHandleDay();
   };
   const nextHandler = () => {
-    type === 'month'
-      ? setCurrentDate(
-          prevDate => new Date(prevDate.getFullYear(), prevDate.getMonth() + 1)
-        )
-      : setCurrentDate(prevDate => addDays(prevDate, 1));
+    type === 'month' ? nextHandleMonth() : nextHandleDay();
   };
 
   return (
@@ -77,6 +105,7 @@ export const CalendarToolbar = ({ type = 'day' }) => {
           );
         })}
       </SC.DaysOfWeekWrapper>
+      {type === 'month' && <CalendarTable currentDate={currentDate} />}
     </>
   );
 };
