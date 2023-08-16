@@ -107,7 +107,7 @@ export const StyledAvatarText = styled.p`
   font-size: 20px;
   line-height: 18px;
   letter-spacing: 0em;
-  color: 343434;
+  color: #3e85f3;
 `;
 
 export const StyledBtnLink = styled.a`

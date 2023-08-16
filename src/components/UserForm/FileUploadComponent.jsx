@@ -6,14 +6,14 @@ import {
   StyledBtnLink,
 } from './UserForm.styled';
 import { AddIcon } from './AddIcon';
+import useAuth from 'hooks/useAuth';
 
 export const FileUploadComponent = ({
   handleFiles,
   fileInputRef,
   fileListRef,
 }) => {
-  //   const fileInputRef = useRef(null);
-  //   const fileListRef = useRef(null);
+  const { user } = useAuth();
 
   const handleFileSelect = () => {
     if (fileInputRef.current) {
@@ -30,12 +30,19 @@ export const FileUploadComponent = ({
         accept="image/*"
         style={{ display: 'none' }}
         onChange={handleFiles}
+        name="avatar"
       />
       <StyledBtnLink href="#" onClick={handleFileSelect}>
         <AddIcon color="#fff" size={8} />
       </StyledBtnLink>
       <StyledAvatarContainer id="fileList" ref={fileListRef}>
-        <StyledAvatarText>N</StyledAvatarText>
+        {user.avatarURL ? (
+          <img src={user.avatarURL} alt="avatar" />
+        ) : (
+          <StyledAvatarText>
+            {user.name.charAt(0).toUpperCase()}
+          </StyledAvatarText>
+        )}
       </StyledAvatarContainer>
     </StyledAvatarWrapper>
   );
@@ -44,18 +51,12 @@ export const FileUploadComponent = ({
 export const createElement = event => {
   const files = event.target.files;
 
-  // if (!files.length) {
-  //   fileListRef.current.innerHTML = '<p>No files selected!</p>';
-
-  // const wrapp = document.createElement('div');
-
   const img = document.createElement('img');
   img.src = window.URL.createObjectURL(files[0]);
   img.height = 60;
   img.onload = function () {
     window.URL.revokeObjectURL(this.src);
   };
-  // wrapp.appendChild(img);
 
   return img;
 };

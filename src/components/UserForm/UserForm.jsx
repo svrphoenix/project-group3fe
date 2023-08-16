@@ -1,5 +1,6 @@
 import 'react-datepicker/dist/react-datepicker.css';
 import { Formik, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import {
   FormField,
   Field,
@@ -19,17 +20,30 @@ import { formatDate } from './formatDate';
 import { useDispatch } from 'react-redux';
 import { updateUser } from 'redux/auth/operations';
 
+const UserSchema = Yup.object().shape({
+  // name: Yup.string().required('Please enter your name'),
+  // phone: Yup.string().required(),
+  // email: Yup.string()
+  //   .email('This is an ERROR email')
+  //   .required('Please enter your email')
+  //   .matches(/^[a-z0-9.]+@[a-z]+\.[a-z]{2,3}$/),
+});
+
 export const UserForm = () => {
   const { user } = useAuth();
   const dispatch = useDispatch();
 
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(
+    new Date() || new Date(user.birthday)
+  );
   const [userName, setUserName] = useState(user.name);
   const [userEmail, setUserEmail] = useState(user.email);
   const [userPhone, setUserPhone] = useState(user.phone || '');
   const [userSype, setUserSype] = useState(user.skype || '');
+  const [userAvatar, setUserAvatar] = useState(null);
   const fileInputRef = useRef(null);
   const fileListRef = useRef(null);
+  const form = useRef(null);
 
   // const todayDate = new Date().toISOString().slice(0, 10);
   // console.log(todayDate);
@@ -40,6 +54,8 @@ export const UserForm = () => {
     const img = createElement(event);
     fileListRef.current.innerHTML = '';
     fileListRef.current.appendChild(img);
+
+    setUserAvatar(event.currentTarget.files[0]);
   };
 
   return (
@@ -47,15 +63,20 @@ export const UserForm = () => {
       <Formik
         initialValues={{
           avatarURL: '',
-          addavatar: '',
           name: '',
           birthday: '',
           email: '',
           phone: '',
           skype: '',
         }}
+        validationSchema={UserSchema}
         onSubmit={async values => {
-          console.log(typeof userName, userName);
+          const data = new FormData(form.current);
+          dispatch(updateUser(data));
+          // for (let obj of data) {
+          //   console.log(obj);
+          // }
+          // console.log(userAvatar);
           // console.log(startDate);
           // console.log(userEmail);
           // console.log(userPhone);
@@ -72,10 +93,10 @@ export const UserForm = () => {
             skype: userSype,
           };
 
-          dispatch(updateUser(body));
+          // dispatch(updateUser(data));
         }}
       >
-        <Form>
+        <Form ref={form}>
           <FormField>
             <FileUploadComponent
               handleFiles={handleFiles}
@@ -83,7 +104,7 @@ export const UserForm = () => {
               fileListRef={fileListRef}
             />
           </FormField>
-          <StyledUserName>Nadiia Doe</StyledUserName>
+          <StyledUserName>{user.name}</StyledUserName>
           <StyledUserDiscription>User</StyledUserDiscription>
           <StyledLabelWrapp>
             <FormField>
@@ -109,7 +130,7 @@ export const UserForm = () => {
               <StyledDatePicker
                 selected={startDate}
                 onChange={date => setStartDate(date)}
-                dateFormat="yyyy/MM/dd"
+                dateFormat="yyyy-MM-dd"
                 name="birthday"
               />
               <ErrorMessage name="birthday" component="div" />

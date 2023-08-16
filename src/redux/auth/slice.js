@@ -53,6 +53,29 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.user = payload.user;
       })
+      .addCase(updateUser.pending, (state, _) => {
+        state.isLoading = true;
+        state.error = '';
+      })
+      .addCase(
+        updateUser.fulfilled,
+        (
+          state,
+          { payload: { name, email, phone, birthday, skype, avatarURL } }
+        ) => {
+          state.isLoading = false;
+          state.user.name = name;
+          state.user.email = email;
+          state.user.phone = phone;
+          state.user.birthday = birthday;
+          state.user.skype = skype;
+          state.user.avatarURL = avatarURL;
+        }
+      )
+      .addCase(updateUser.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
       .addMatcher(
         isAnyOf(
           register.pending,
