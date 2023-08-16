@@ -12,7 +12,7 @@ const CalendarPage = () => {
 
   useEffect(() => {
     navigateToChoosedMonth(navigate);
-  }, []); // eslint-disable-line
+  }, [navigate]);
 
   return (
     <>

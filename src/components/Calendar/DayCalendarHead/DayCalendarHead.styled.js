@@ -5,6 +5,7 @@ export const Day = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
   &:nth-last-child(-n + 2) {
     color: #3e85f3;
   }
