@@ -1,12 +1,21 @@
+import { useNavigate } from 'react-router';
 import { Button, ButtonGroup } from './PeriodTypeSelect.styled';
 import PropTypes from 'prop-types';
+import { format } from 'date-fns';
 
 export const PeriodTypeSelect = ({ type }) => {
+  const navigate = useNavigate();
+  const formattedCurrentDay =
+    type === 'month'
+      ? format(new Date(), 'yyyy-MM-dd')
+      : format(new Date(), 'MMMM').toLowerCase();
+
   const BtnDayHandler = () => {
-    console.log('Click day button');
+    navigate(`/calendar/month/day/${formattedCurrentDay}`);
   };
+
   const BtnMonthHandler = () => {
-    console.log('Click month button');
+    navigate(`/calendar/month/${formattedCurrentDay}`);
   };
 
   return (
