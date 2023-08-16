@@ -8,14 +8,16 @@ import {
     StyledButton,
     StyledButtonVisibility,
     StyledContainer,
-    StyledContainerPassword,
+    // StyledContainerPassword,
     StyledCorrect,
     StyledError,
     StyledField,
-    StyledFieldPassword,
+    StyledFieldContainer,
+    // StyledFieldPassword,
     StyledForm,
     StyledFormDiv,
     StyledHeader,
+    StyledIcon,
     Styledlabel,
     StyledRequired,
 } from './RegisterLoginForm.styled';
@@ -112,17 +114,29 @@ const RegisterForm = () => {
                                 >
                                     Name
                                 </Styledlabel>
-                                <StyledField
-                                    name="name"
-                                    placeholder="Enter your name"
-                                    $validate={
+                                <StyledFieldContainer $validate={
                                         (errors.name === 'Please enter your name' &&
                                             touched.name &&
                                             'empty') ||
                                         (errors.name && touched.name && 'error') ||
                                         (touched.name && 'okay')
-                                    }
-                                />
+                                    }>
+                                    <StyledField
+                                    name="name"
+                                    placeholder="Enter your name"
+                                    />
+                                    {(errors.naem && errors.name!=='Please enter your name' && touched.name) &&
+                                        (<StyledIcon>
+                                            <SVG.ErrorAuth />
+                                        </StyledIcon>
+                                        )}
+                                    {(touched.email && !errors.name) &&
+                                        (<StyledIcon>
+                                            <SVG.GoodAuth />
+                                        </StyledIcon>
+                                        )}
+                                </StyledFieldContainer>
+                                
                                 {(errors.name === 'Please enter your name' && touched.name && (
                                     <StyledRequired>{errors.name}</StyledRequired>
                                 )) ||
@@ -144,18 +158,29 @@ const RegisterForm = () => {
                                 >
                                     Email
                                 </Styledlabel>
-                                <StyledField
-                                    name="email"
-                                    type="email"
-                                    placeholder="Enter email"
-                                    $validate={
+                                <StyledFieldContainer $validate={
                                         (errors.email === 'Please enter your email' &&
                                             touched.email &&
                                             'empty') ||
                                         (((errors.email && (errors.email === "This is an ERROR email" || errors.email.includes("match"))) || usedEmail) && 'error') ||
                                         (touched.email && 'okay')
-                                    }
-                                />
+                                    }>
+                                    <StyledField
+                                    name="email"
+                                    type="email"
+                                    placeholder="Enter email"
+                                    />
+                                    {((errors.email && (errors.email === "This is an ERROR email" || errors.email.includes("match"))) || usedEmail) &&
+                                        (<StyledIcon>
+                                            <SVG.ErrorAuth />
+                                        </StyledIcon>
+                                        )}
+                                    {(touched.email && !errors.email && !usedEmail) &&
+                                        (<StyledIcon>
+                                            <SVG.GoodAuth />
+                                        </StyledIcon>
+                                        )}
+                                </StyledFieldContainer>
                                 {(errors.email === 'Please enter your email' && touched.email && (
                                     <StyledRequired>{errors.email}</StyledRequired>
                                 )) ||
@@ -180,14 +205,14 @@ const RegisterForm = () => {
                                 >
                                     Password
                                 </Styledlabel>
-                                <StyledContainerPassword $validate={
+                                <StyledFieldContainer $validate={
                                     (errors.password === 'Please enter your password' &&
                                         touched.password &&
                                         'empty') ||
                                     (errors.password && touched.password && 'error') ||
                                     (touched.password && 'okay')
                                 }>
-                                    <StyledFieldPassword
+                                    <StyledField
                                         name="password"
                                         type={!visibility ? "password" : "text"}
                                         placeholder="Enter password"
@@ -197,7 +222,7 @@ const RegisterForm = () => {
                                             {!visibility ? <Visibility color="primary" /> : <VisibilityOff color="primary" />}
                                         </ThemeProvider>
                                     </StyledButtonVisibility>
-                                </StyledContainerPassword>
+                                </StyledFieldContainer>
                                 {(errors.password === 'Please enter your password' &&
                                     touched.password && (
                                         <StyledRequired>{errors.password}</StyledRequired>

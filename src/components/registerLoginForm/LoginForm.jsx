@@ -8,14 +8,16 @@ import {
   StyledButton,
   StyledButtonVisibility,
   StyledContainer,
-  StyledContainerPassword,
+  // StyledContainerPassword,
   StyledCorrect,
   StyledError,
   StyledField,
-  StyledFieldPassword,
+  StyledFieldContainer,
+  // StyledFieldPassword,
   StyledForm,
   StyledFormDiv,
   StyledHeader,
+  StyledIcon,
   Styledlabel,
   StyledRequired,
 } from './RegisterLoginForm.styled';
@@ -112,11 +114,7 @@ const LoginForm = () => {
                   >
                     Email
                   </Styledlabel>
-                  <StyledField
-                    name="email"
-                    type="email"
-                    placeholder="nadiia@gmail.com"
-                    $validate={
+                  <StyledFieldContainer $validate={
                       (errors.email === 'Please enter your email' &&
                         touched.email &&
                         'empty') ||
@@ -126,8 +124,26 @@ const LoginForm = () => {
                         noUser) &&
                         'error') ||
                       (touched.email && 'okay')
-                    }
-                  />
+                    }>
+                    <StyledField
+                    name="email"
+                    type="email"
+                    placeholder="nadiia@gmail.com"
+                    />
+                    {((errors.email &&
+                        (errors.email === 'This is an ERROR email' ||
+                          errors.email.includes('match'))) ||
+                      noUser) && (<StyledIcon>
+                      <SVG.ErrorAuth />
+                      </StyledIcon>
+                      )}
+                    {(touched.email && !errors.email && !noUser) &&
+                      (<StyledIcon>
+                          <SVG.GoodAuth />
+                      </StyledIcon>
+                      )}
+                  </StyledFieldContainer>
+                  
                   {(errors.email === 'Please enter your email' &&
                     touched.email && (
                       <StyledRequired>{errors.email}</StyledRequired>
@@ -156,14 +172,14 @@ const LoginForm = () => {
                   >
                     Password
                   </Styledlabel>
-                  <StyledContainerPassword $validate={
+                  <StyledFieldContainer $validate={
                     (errors.password === 'Please enter your password' &&
                       touched.password &&
                       'empty') ||
                     (((errors.password && touched.password)||noUser) && 'error') ||
                     (touched.password && 'okay')
                   }>
-                    <StyledFieldPassword
+                    <StyledField
                       name="password"
                       type={!visibility ? "password" : "text"}
                       placeholder="• • • • • • •"
@@ -173,7 +189,7 @@ const LoginForm = () => {
                         {!visibility ? <Visibility color="primary" /> : <VisibilityOff color="primary" />}
                       </ThemeProvider>
                     </StyledButtonVisibility>
-                  </StyledContainerPassword>
+                  </StyledFieldContainer>
                   {(errors.password === 'Please enter your password' &&
                     touched.password && (
                       <StyledRequired>{errors.password}</StyledRequired>

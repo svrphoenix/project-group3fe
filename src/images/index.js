@@ -31,6 +31,8 @@ import { ReactComponent as RarrIcon } from '../images/icons/rarrow.svg';
 import { ReactComponent as LoginWhiteIcon } from '../images/icons/loginWhite.svg';
 import { ReactComponent as LeftChevron } from '../images/icons/chevron-left.svg';
 import { ReactComponent as RightChevron } from '../images/icons/chevron-right.svg';
+import { ReactComponent as ErrorAuth } from '../images/icons/errorAuth.svg';
+import { ReactComponent as GoodAuth } from '../images/icons/goodAuth.svg';
 
 export const SVG = {
   LoginIcon,
@@ -40,6 +42,8 @@ export const SVG = {
   LoginWhiteIcon,
   LeftChevron,
   RightChevron,
+  ErrorAuth,
+  GoodAuth,
 };
 export const IMG = {
   all,
