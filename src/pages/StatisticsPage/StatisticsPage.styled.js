@@ -5,13 +5,16 @@ export const StatisticsDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
-  width: 780px;
+  width: 860px;
   justify-content: centre;
 `;
 
 export const StatisticsHeaderDiv = styled.div`
   display: flex;
   justify-content: space-between;
+  width: 780px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export const ChartLegend = styled.ul`
