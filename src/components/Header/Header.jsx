@@ -8,6 +8,8 @@ import {
   Motivator,
   HeaderMenuWrapper,
   UserInfoWrapper,
+  BurgerBtn,
+  Vector,
 } from './Header.styled';
 import GooseMentor1x from './header-img/goose-mentor-desktop@1x.webp';
 import GooseMentor2x from './header-img/goose-mentor-desktop@2x.webp';
@@ -17,8 +19,10 @@ import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectTasks } from 'redux/tasks/selectors';
 import { FeedbackButton } from 'components/FeedbackButton/FeedbackButton';
+import SVG from './header-img/header-icons.svg';
+import AddSvg from 'components/AddSvg/AddSvg';
 
-const Header = () => {
+const Header = ({ openSideBar }) => {
   const tasks = useSelector(selectTasks);
   const location = useLocation();
 
@@ -63,6 +67,14 @@ const Header = () => {
           </TxtWrapper>
         </HeaderTitleWrapperGoose>
       )}
+
+      <BurgerBtn
+        type="button"
+        aria-label="Open mobile menu"
+        onClick={openSideBar}
+      >
+        <AddSvg component={Vector} sprite={SVG} spriteId="burger-icon" />
+      </BurgerBtn>
 
       <HeaderMenuWrapper>
         <FeedbackButton />
