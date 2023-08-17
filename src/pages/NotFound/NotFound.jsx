@@ -1,39 +1,66 @@
 import React from 'react';
 import { ReactComponent as Gus } from 'images/404NotFound/Gus_svg.svg';
-import Gusbig from 'images/404NotFound/Gus.jpg';
+import GusBig from '../../images/404NotFound/Group_1966.png';
 import {
   Container,
   ErrorImagesContainer,
   Heading,
   Button,
-  // StyledErrorImage,
-  Errortext,
+  ErrortextLeft,
+  ImgMob,
+  Images,
+  ErrortextRight,
 } from './NotFound.styled';
+import { useNavigate } from 'react-router-dom';
 
 const NotFound = () => {
+  const navigate = useNavigate();
+
   const handleBackToHome = () => {
-    window.location.href = '/';
+    navigate('/');
   };
 
   const isMobile = window.innerWidth <= 375;
 
   return (
     <Container>
-      <ErrorImagesContainer>
-        <Errortext> 4</Errortext>
+      <ErrorImagesContainer
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          marginBottom: '30px',
+        }}
+      >
+        <ErrortextLeft> 4</ErrortextLeft>
         {isMobile ? (
-          <div styled={{ width: '24px', height: '24px' }}>
-            <Gus />
-          </div>
+          <ImgMob>
+            <Gus
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+              }}
+            />
+          </ImgMob>
         ) : (
-          <div styled={{ width: '24px', height: '24px' }}>
-            <Gus />
-          </div>
+          <Images>
+            <img
+              alt="NotFound"
+              src={GusBig}
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+              }}
+            />
+          </Images>
         )}
 
-        <Errortext> 4</Errortext>
+        <ErrortextRight> 4</ErrortextRight>
       </ErrorImagesContainer>
-      <Heading>
+      <Heading width={'281px'} height={'54px'}>
         We're sorry, the page you requested could not be found. Please go back
         to the homepage.
       </Heading>
