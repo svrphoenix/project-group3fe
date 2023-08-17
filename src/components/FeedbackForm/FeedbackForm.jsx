@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectError, selectUser } from 'redux/review/selectors';
+import { selectError, selectUserReview } from 'redux/review/selectors';
 import * as reviewOperations from 'redux/review/operations';
 import { useState } from 'react';
 import { ReactComponent as CloseIcon } from 'images/icons/x-close.svg';
@@ -8,44 +8,40 @@ import { ReactComponent as Trash } from 'images/icons/trash-2.svg';
 import { StarRating } from './StarRating';
 import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import * as SC from './FeedbackForm.style';
+import * as SC from './FeedbackForm.styled';
 
 export const FeedbackForm = ({ close }) => {
-  const currentUser = useSelector(selectUser);
+  const currentUser = useSelector(selectUserReview);
   const error = useSelector(selectError);
   const dispatch = useDispatch();
 
   const [readOnly, setReadOnly] = useState(!!currentUser.comment);
 
-  const initialValues = {
-    comment: currentUser.comment,
-    rating: currentUser.rating,
+  const checkErrorForCloseModal = ({ meta }) => {
+    if (meta.requestStatus === 'fulfilled') {
+      close();
+    }
   };
 
   const onSubmitFeedback = values => {
+    const credentials = {
+      comment: values.comment,
+      rating: values.rating,
+    };
+
     if (!currentUser.comment) {
-      dispatch(
-        reviewOperations.postReview({
-          comment: values.comment,
-          rating: values.rating,
-        })
+      dispatch(reviewOperations.postReview(credentials)).then(
+        checkErrorForCloseModal
       );
     } else {
-      dispatch(
-        reviewOperations.updateReview({
-          id: currentUser.id,
-          comment: values.comment,
-          rating: values.rating,
-        })
+      dispatch(reviewOperations.updateReview(credentials)).then(
+        checkErrorForCloseModal
       );
     }
-    close();
   };
 
-  const onDeleteReview = e => {
-    e.preventDefault();
-    dispatch(reviewOperations.deleteReview(currentUser.id));
-    close();
+  const onDeleteReview = () => {
+    dispatch(reviewOperations.deleteReview()).then(checkErrorForCloseModal);
   };
 
   const reloadPage = () => {
@@ -61,6 +57,11 @@ export const FeedbackForm = ({ close }) => {
     rating: Yup.number().min(1).max(5).required(),
   });
 
+  const initialValues = {
+    comment: currentUser.comment,
+    rating: currentUser.rating,
+  };
+
   return (
     <>
       <Formik
@@ -68,9 +69,8 @@ export const FeedbackForm = ({ close }) => {
         validationSchema={FeedbackSchema}
         onSubmit={onSubmitFeedback}
         validateOnChange={false}
-        validateOnBlur={true}
       >
-        {({ errors, touched, values, setFieldValue }) => {
+        {({ values, setFieldValue }) => {
           return !error ? (
             <SC.FeedbackForm>
               <SC.CloseBtn

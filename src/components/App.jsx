@@ -4,6 +4,7 @@ import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { useDispatch } from 'react-redux';
 import { refreshCurrentUser } from 'redux/auth/operations';
+import { getReview } from 'redux/review/operations';
 import { SharedLayout } from './SharedLayout';
 // import useAuth from 'hooks/useAuth';
 // import { Loader } from './Loader/Loader';
@@ -28,6 +29,10 @@ const App = () => {
 
   useEffect(() => {
     dispatch(refreshCurrentUser());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getReview());
   }, [dispatch]);
 
   // isLoading ? (

@@ -16,7 +16,7 @@ export const getAllTasks = createAsyncThunk(
   async (date, thunkAPI) => {
     try {
       const response = await api.get(
-        `${BASE_URL}?month=${date.month}&year=${date.year}`
+        `tasks?month=${date.month}&year=${date.year}`
       );
 
       return handleResponse(
@@ -53,7 +53,7 @@ export const addTask = createAsyncThunk(
   'tasks/addTask',
   async (task, thunkAPI) => {
     try {
-      const response = await api.post(BASE_URL, task);
+      const response = await api.post('tasks', task);
 
       if (response.status !== 201) {
         throw new Error('Failed to add task due to server error');
@@ -71,7 +71,7 @@ export const deleteTask = createAsyncThunk(
   'tasks/removeTask',
   async (taskId, thunkAPI) => {
     try {
-      const response = await api.delete(`${BASE_URL}/${taskId}`);
+      const response = await api.delete(`tasks/${taskId}`);
 
       if (response.status !== 200) {
         throw new Error('Failed to delete task due to server error');
@@ -90,7 +90,7 @@ export const patchTask = createAsyncThunk(
   'tasks/updateTask',
   async ({ id, task }, thunkAPI) => {
     try {
-      const response = await api.patch(`${BASE_URL}/${id}`, task);
+      const response = await api.patch(`tasks/${id}`, task);
 
       if (response.status !== 200) {
         throw new Error('Failed to update task due to server error');
