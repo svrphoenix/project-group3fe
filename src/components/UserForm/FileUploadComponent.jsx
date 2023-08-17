@@ -5,7 +5,7 @@ import {
   StyledAvatarWrapper,
   StyledBtnLink,
 } from './UserForm.styled';
-import { AddIcon } from './Icons';
+import { AddIconMediaSizes } from './Icons';
 import useAuth from 'hooks/useAuth';
 
 export const FileUploadComponent = ({
@@ -34,7 +34,7 @@ export const FileUploadComponent = ({
         name="avatar"
       />
       <StyledBtnLink href="#" onClick={handleFileSelect}>
-        <AddIcon color="#fff" size={8} />
+        <AddIconMediaSizes />
       </StyledBtnLink>
       <StyledAvatarContainer id="fileList" ref={fileListRef}>
         {user.avatarURL ? (

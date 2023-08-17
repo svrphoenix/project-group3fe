@@ -1,5 +1,5 @@
 import 'react-datepicker/dist/react-datepicker.css';
-import { Formik, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage, useFormik } from 'formik';
 import * as Yup from 'yup';
 import {
   FormField,
@@ -12,6 +12,8 @@ import {
   StyledLabelWrapp,
   StyledBtn,
   StyledDatePicker,
+  StyledCalendar,
+  Column,
 } from './UserForm.styled';
 import { FileUploadComponent, createElement } from './FileUploadComponent';
 import { useRef, useState } from 'react';
@@ -22,12 +24,20 @@ import { updateUser } from 'redux/auth/operations';
 import { ChevronDownIcon } from './Icons';
 
 const UserSchema = Yup.object().shape({
-  // name: Yup.string().required('Please enter your name'),
-  // phone: Yup.string().required(),
+  // name: Yup.string()
+  //   .min(3, 'minimum 3 letters')
+  //   .max(20)
+  //   .required('Please enter your name'),
+  // birthday: Yup.string().matches(
+  //   /^d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[01])$/
+  // ),
   // email: Yup.string()
-  //   .email('This is an ERROR email')
-  //   .required('Please enter your email')
-  //   .matches(/^[a-z0-9.]+@[a-z]+\.[a-z]{2,3}$/),
+  //   .matches(/^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/)
+  //   .required('Please enter your email'),
+  // phone: Yup.string().matches(/^38 \(\d{3}\) \d{3} \d{2} \d{2}$/),
+  // skype: Yup.string().matches(
+  //   /^(\+\d{1,3}\s?)?(?:\(\d{1,4}\)|\d{1,4})\s?\d{1,4}-?\d{1,4}$/
+  // ),
 });
 
 export const UserForm = () => {
@@ -48,7 +58,7 @@ export const UserForm = () => {
 
   // const todayDate = new Date().toISOString().slice(0, 10);
   // console.log(todayDate);
-  console.log(user);
+  // console.log(user);
   // console.log(startDate);
 
   const handleFiles = event => {
@@ -63,8 +73,8 @@ export const UserForm = () => {
     <StyledFormWrapper>
       <Formik
         initialValues={{
-          avatarURL: '',
-          name: '',
+          avatar: '',
+          name: userName,
           birthday: '',
           email: '',
           phone: '',
@@ -74,27 +84,16 @@ export const UserForm = () => {
         onSubmit={async values => {
           const data = new FormData(form.current);
           dispatch(updateUser(data));
-          // for (let obj of data) {
-          //   console.log(obj);
-          // }
-          // console.log(userAvatar);
-          // console.log(startDate);
-          // console.log(userEmail);
-          // console.log(userPhone);
-          // console.log(userSype);
+          for (let obj of data) {
+            console.log(obj);
+          }
+          console.log(values);
+
           const formattedDate = formatDate(startDate);
           // console.log(formattedDate);
           // 38 (123) 456 78 90
           //  birthday: '',
           // birthdayRegex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[01])$/;
-          // const body = {
-          //   name: userName,
-          //   email: userEmail,
-          //   phone: userPhone,
-          //   skype: userSype,
-          // };
-
-          // dispatch(updateUser(data));
         }}
       >
         <Form ref={form}>
@@ -108,73 +107,71 @@ export const UserForm = () => {
           <StyledUserName>{user.name}</StyledUserName>
           <StyledUserDiscription>User</StyledUserDiscription>
           <StyledLabelWrapp>
-            <FormField>
-              <StyledLabelText>User Name</StyledLabelText>
-              <Field
-                id="name"
-                name="name"
-                placeholder="Name"
-                value={userName}
-                onChange={evt => setUserName(evt.target.value)}
-              />
-              <ErrorMessage name="name" component="div" />
-            </FormField>
-
-            <FormField>
-              <StyledLabelText>Birthday</StyledLabelText>
-              <StyledDatePicker
-                selected={startDate}
-                onChange={date => setStartDate(date)}
-                dateFormat="yyyy-MM-dd"
-                name="birthday"
-              />
-              <ChevronDownIcon color="#111111" size={18} />
-              <ErrorMessage name="birthday" component="div" />
-            </FormField>
-
-            <FormField>
-              <StyledLabelText>Email</StyledLabelText>
-              <Field
-                id="email"
-                name="email"
-                placeholder="example.com"
-                type="email"
-                value={userEmail}
-                onChange={evt => setUserEmail(evt.target.value)}
-              />
-              <ErrorMessage name="email" component="div" />
-            </FormField>
-
-            <FormField>
-              <StyledLabelText>Phone</StyledLabelText>
-              <Field
-                id="phone"
-                name="phone"
-                placeholder="38 (097) 222 33 77"
-                type="tel"
-                value={userPhone}
-                onChange={evt => setUserPhone(evt.target.value)}
-              />
-              <ErrorMessage name="phone" component="div" />
-            </FormField>
-
-            <FormField>
-              <StyledLabelText>Skype</StyledLabelText>
-              <Field
-                id="skype"
-                name="skype"
-                placeholder="38 (097) 222 33 77"
-                type="text"
-                value={userSype}
-                onChange={evt => setUserSype(evt.target.value)}
-              />
-              <ErrorMessage name="skype" component="div" />
-            </FormField>
-
-            <StyledBtn type="submit">Save changes</StyledBtn>
+            <Column>
+              <FormField>
+                <StyledLabelText>User Name</StyledLabelText>
+                <Field
+                  id="name"
+                  name="name"
+                  placeholder="Name"
+                  value={userName}
+                  onChange={evt => {
+                    setUserName(evt.target.value);
+                  }}
+                />
+              </FormField>
+              <StyledCalendar>
+                <StyledLabelText>Birthday</StyledLabelText>
+                <StyledDatePicker
+                  selected={startDate}
+                  onChange={date => setStartDate(date)}
+                  dateFormat="yyyy-MM-dd"
+                  name="birthday"
+                />
+                <ChevronDownIcon color="#111111" size={18} />
+              </StyledCalendar>
+              <FormField>
+                <StyledLabelText>Email</StyledLabelText>
+                <Field
+                  id="email"
+                  name="email"
+                  placeholder="example.com"
+                  type="email"
+                  value={userEmail}
+                  onChange={evt => setUserEmail(evt.target.value)}
+                />
+              </FormField>
+            </Column>
+            <Column>
+              <FormField>
+                <StyledLabelText>Phone</StyledLabelText>
+                <Field
+                  id="phone"
+                  name="phone"
+                  placeholder="38 (097) 222 33 77"
+                  type="tel"
+                  value={userPhone}
+                  onChange={evt => setUserPhone(evt.target.value)}
+                />
+              </FormField>
+              <FormField>
+                <StyledLabelText>Skype</StyledLabelText>
+                <Field
+                  id="skype"
+                  name="skype"
+                  placeholder="38 (097) 222 33 77"
+                  type="text"
+                  value={userSype}
+                  onChange={evt => setUserSype(evt.target.value)}
+                />
+              </FormField>
+            </Column>
           </StyledLabelWrapp>
+          <StyledBtn type="submit">Save changes</StyledBtn>
         </Form>
       </Formik>
     </StyledFormWrapper>
   );
 };
+
+// <ErrorMessage name="name" component="div" />;
