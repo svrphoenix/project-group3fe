@@ -21,10 +21,18 @@ import { selectTasks } from 'redux/tasks/selectors';
 import { FeedbackButton } from 'components/FeedbackButton/FeedbackButton';
 import SVG from './header-img/header-icons.svg';
 import AddSvg from 'components/AddSvg/AddSvg';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { getReview } from 'redux/review/operations';
 
 const Header = ({ openSideBar }) => {
   const tasks = useSelector(selectTasks);
   const location = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getReview());
+  }, [dispatch]);
 
   const pageConfig = [
     { path: 'account', page: 'User Profile' },
