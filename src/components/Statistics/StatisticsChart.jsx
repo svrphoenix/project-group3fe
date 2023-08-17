@@ -64,6 +64,7 @@ const StatisticsChart = () => {
           }}
           fontSize={14}
           fill={343434}
+          barGap={14}
         >
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
 
