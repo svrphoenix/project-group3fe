@@ -27,6 +27,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { SVG } from 'images';
 import { Loader } from 'components/Loader/Loader';
 import { toast } from 'react-hot-toast';
+import { selectError } from 'redux/tasks/selectors';
+import useAuth from 'hooks/useAuth';
 
 const theme = createTheme({
   palette: {
@@ -57,21 +59,23 @@ const RegisterForm = () => {
     const [usedEmail, setUsedEmail] = useState(false);
     const [visibility, setVisibility] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const errorStatus = useAuth().error.status;
 
     const handleSubmit = async (values, { resetForm }) => {
         try {
             setIsLoading(true);
-            const response = await dispatch(
+            await dispatch(
                 register({
                     name: values.name,
                     email: values.email,
                     password: values.password,
                 }));
-            if (response.meta.requestStatus !== "rejected") {
+            console.log(errorStatus)
+            if (!errorStatus) {
                 resetForm();
                 navigate("/calendar");
             } else {
-                if (response.payload.includes("409")) {
+                if (errorStatus==="409") {
                     setUsedEmail(true);
                 }
             }
@@ -96,6 +100,7 @@ const RegisterForm = () => {
             onSubmit={handleSubmit}
         >
             {({ errors, touched }) => {
+                console.log(errorStatus)
                 return (
                     <>
                         {isLoading&&<Loader/>}
