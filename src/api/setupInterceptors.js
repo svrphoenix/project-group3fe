@@ -24,18 +24,20 @@ function configureAxios({ getState, dispatch }) {
         originalConfig._retry = true;
 
         const refreshToken = getState().auth.refreshToken;
-        try {
-          const { data } = await axiosInstance.post('/users/refresh', {
-            refresh_token: refreshToken,
-          });
-          dispatch(refreshTokens(data));
-          axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
-          return axiosInstance(originalConfig);
-        } catch (error) {
-          if (error.response.status === 403) {
-            dispatch(logoutReset());
-          } else originalConfig._retry = true;
-          return Promise.reject(error);
+        if (refreshToken) {
+          try {
+            const { data } = await axiosInstance.post('/users/refresh', {
+              refresh_token: refreshToken,
+            });
+            dispatch(refreshTokens(data));
+            axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
+            return axiosInstance(originalConfig);
+          } catch (error) {
+            if (error.response.status === 403) {
+              dispatch(logoutReset());
+            } else originalConfig._retry = true;
+            return Promise.reject(error);
+          }
         }
       }
       return Promise.reject(error);
