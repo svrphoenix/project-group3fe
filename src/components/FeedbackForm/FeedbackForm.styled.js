@@ -110,8 +110,11 @@ export const DeleteBtn = styled(EditBtn)`
 export const ErrorBox = styled.div`
   display: flex;
   flex-direction: column;
+  height: 30px;
 `;
 
 export const ErrorWrapper = styled.div`
+  font-size: 16px;
+  line-height: 18px;
   color: red;
 `;

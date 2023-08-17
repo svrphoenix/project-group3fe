@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import * as SC from './Modal.style';
+import * as SC from './Modal.styled';
 
 export const Modal = ({ children, onToggleModal }) => {
   useEffect(() => {
