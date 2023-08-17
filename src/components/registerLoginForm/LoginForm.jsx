@@ -92,10 +92,9 @@ const LoginForm = () => {
         onSubmit={handleSubmit}
       >
         {({ errors, touched }) => {
-          if (isLoading) {
-            return <Loader />;
-          } else {
-            return (
+          return (
+            <>
+              {isLoading&&<Loader/>}
               <StyledForm>
                 <StyledFormDiv>
                   <Styledlabel
@@ -115,31 +114,31 @@ const LoginForm = () => {
                     Email
                   </Styledlabel>
                   <StyledFieldContainer $validate={
-                      (errors.email === 'Please enter your email' &&
-                        touched.email &&
-                        'empty') ||
-                      (((errors.email &&
-                        (errors.email === 'This is an ERROR email' ||
-                          errors.email.includes('match'))) ||
-                        noUser) &&
-                        'error') ||
-                      (touched.email && 'okay')
-                    }>
+                    (errors.email === 'Please enter your email' &&
+                      touched.email &&
+                      'empty') ||
+                    (((errors.email &&
+                      (errors.email === 'This is an ERROR email' ||
+                        errors.email.includes('match'))) ||
+                      noUser) &&
+                      'error') ||
+                    (touched.email && 'okay')
+                  }>
                     <StyledField
-                    name="email"
-                    type="email"
-                    placeholder="nadiia@gmail.com"
+                      name="email"
+                      type="email"
+                      placeholder="nadiia@gmail.com"
                     />
                     {((errors.email &&
-                        (errors.email === 'This is an ERROR email' ||
-                          errors.email.includes('match'))) ||
+                      (errors.email === 'This is an ERROR email' ||
+                        errors.email.includes('match'))) ||
                       noUser) && (<StyledIcon>
-                      <SVG.ErrorAuth />
+                        <SVG.ErrorAuth />
                       </StyledIcon>
                       )}
                     {(touched.email && !errors.email && !noUser) &&
                       (<StyledIcon>
-                          <SVG.GoodAuth />
+                        <SVG.GoodAuth />
                       </StyledIcon>
                       )}
                   </StyledFieldContainer>
@@ -178,7 +177,7 @@ const LoginForm = () => {
                     (errors.password === 'Please enter your password' &&
                       touched.password &&
                       'empty') ||
-                    (((errors.password && touched.password)||noUser) && 'error') ||
+                    (((errors.password && touched.password) || noUser) && 'error') ||
                     (touched.password && 'okay')
                   }>
                     <StyledField
@@ -230,9 +229,7 @@ const LoginForm = () => {
                   <SVG.LoginWhiteIcon />
                 </StyledButton>
               </StyledForm>
-            );
-          }
-        }}
+            </>)}}
       </Formik>
     </StyledContainer>
   );

@@ -96,10 +96,9 @@ const RegisterForm = () => {
             onSubmit={handleSubmit}
         >
             {({ errors, touched }) => {
-                if (isLoading) {
-                    return <Loader />
-                } else {
-                    return (
+                return (
+                    <>
+                        {isLoading&&<Loader/>}
                         <StyledForm>
                             <StyledFormDiv>
                                 <Styledlabel
@@ -240,10 +239,11 @@ const RegisterForm = () => {
                                 <SVG.LoginWhiteIcon />
                             </StyledButton>
                         </StyledForm>
+                        </>
                     );
                 }
             }
-            }</Formik>
+            </Formik>
     </StyledContainer>)
 }
 
