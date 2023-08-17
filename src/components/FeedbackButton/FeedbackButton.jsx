@@ -1,37 +1,19 @@
-import axios from 'axios';
-import { useState } from 'react';
 import { Modal } from 'components/Modal/Modal';
 import { FeedbackForm } from 'components/FeedbackForm/FeedbackForm';
+import useModalToggle from 'hooks/useModalToggle';
 import * as SC from './FeedbackButton.style';
 
 export const FeedbackButton = () => {
-  const [showModal, setShowModal] = useState(false);
-  let review = 'review';
-
-  const onToggleModal = () => {
-    setShowModal(!showModal);
-    document.querySelector('body').classList.toggle('hidden');
-  };
-
-  const onFeedbackModal = async e => {
-    e.preventDefault();
-
-    onToggleModal();
-
-    try {
-      const { user } = await axios.get('/user');
-      review = user.review;
-    } catch (error) {}
-  };
+  const { showModal, onToggleModal } = useModalToggle();
 
   return (
     <>
-      <SC.FeedbackButton type="submit" onClick={onFeedbackModal}>
+      <SC.FeedbackButton type="button" onClick={onToggleModal}>
         Feedback
       </SC.FeedbackButton>
       {showModal && (
         <Modal onToggleModal={onToggleModal}>
-          <FeedbackForm review={review} close={onToggleModal} />
+          <FeedbackForm close={onToggleModal} />
         </Modal>
       )}
     </>

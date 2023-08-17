@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-
 export const StyledNavigate = styled(NavLink)`
     color: #3E85F3;
     text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04), 0px 47px 355px rgba(0, 0, 0, 0.07);
@@ -24,4 +23,4 @@ export const StyledNavigate = styled(NavLink)`
     line-height: 1.33;
     margin-top: 24px;
     }
-`
+`;
