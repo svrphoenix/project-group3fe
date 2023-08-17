@@ -1,10 +1,28 @@
 import { PropTypes } from 'prop-types';
 import { ColorRing } from 'react-loader-spinner';
 import { createPortal } from 'react-dom';
+import React, { useEffect, useState } from 'react';
 
 const loaderRoot = document.querySelector('#loader-root');
 
 export const Loader = () => {
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    // Функція-обробник для оновлення ширини вьюпорту
+    const handleResize = () => {
+      setViewportWidth(window.innerWidth);
+    };
+
+    // Додати обробник події при монтажі компонента
+    window.addEventListener('resize', handleResize);
+
+    // Видалити обробник події при демонтажі компонента
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return createPortal(
     <div
       style={{
@@ -22,8 +40,8 @@ export const Loader = () => {
     >
       <ColorRing
         visible={true}
-        height="90"
-        width="90"
+        height={viewportWidth < 768 ? '90' : '120'}
+        width={viewportWidth < 768 ? '90' : '120'}
         ariaLabel="blocks-loading"
         colors={['#3e85f3', '#FDF608', '#3e85f3', '#3e85f3', '#3e85f3']}
       />
