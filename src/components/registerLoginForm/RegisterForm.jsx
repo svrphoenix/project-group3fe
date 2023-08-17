@@ -125,12 +125,12 @@ const RegisterForm = () => {
                                     name="name"
                                     placeholder="Enter your name"
                                     />
-                                    {(errors.naem && errors.name!=='Please enter your name' && touched.name) &&
+                                    {(errors.name && errors.name!=='Please enter your name' && touched.name) &&
                                         (<StyledIcon>
                                             <SVG.ErrorAuth />
                                         </StyledIcon>
                                         )}
-                                    {(touched.email && !errors.name) &&
+                                    {(touched.name && !errors.name) &&
                                         (<StyledIcon>
                                             <SVG.GoodAuth />
                                         </StyledIcon>
