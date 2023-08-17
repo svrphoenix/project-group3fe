@@ -1,6 +1,6 @@
 // import PropTypes from 'prop-types';
 import StatisticsChart from 'components/Statistics/StatisticsChart';
-// import PeriodPaginator from 'components/PeriodPaginator/PeriodPaginator';
+import { PeriodPaginator } from 'components/Calendar/PeriodPaginator/PeriodPaginator';
 import * as SC from './StatisticsPage.styled';
 
 const StatisticsPage = () => {
@@ -8,7 +8,7 @@ const StatisticsPage = () => {
     <>
       <SC.StatisticsDiv>
         <SC.StatisticsHeaderDiv>
-          {/* <PeriodPaginator /> */}
+          <PeriodPaginator />
 
           <SC.ChartLegend>
             <SC.ChartLegendItem>By day</SC.ChartLegendItem>

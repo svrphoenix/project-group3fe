@@ -9,6 +9,8 @@ import {
   LabelList,
 } from 'recharts';
 
+import * as SC from './StatisticsChart.styled';
+
 const data = [
   {
     name: 'To Do',
@@ -23,7 +25,7 @@ const data = [
   {
     name: 'Done',
     ByMonth: 20,
-    ByDay: 65,
+    ByDay: 95,
   },
 ];
 
@@ -49,34 +51,47 @@ const StatisticsChart = () => {
 
   return (
     <>
-      <BarChart
-        width={800}
-        height={440}
-        data={data}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        {/* <Legend
+      <SC.chartDiv>
+        <BarChart
+          width={760}
+          height={440}
+          data={data}
+          margin={{
+            top: 40,
+            right: 0,
+            left: 0,
+            bottom: 19,
+          }}
+          fontSize={14}
+          fill={343434}
+        >
+          <CartesianGrid strokeDasharray="3 3" vertical={false} />
+
+          <XAxis dataKey="name" />
+          <YAxis
+            label={{
+              value: 'Tasks',
+              position: 'top',
+              dy: -24,
+              fontSize: 14,
+              fill: '#343434',
+            }}
+          />
+          <Tooltip />
+          {/* <Legend
             align="right"
             verticalAlign="top"
             iconSize="8"
             iconType="circle"
           /> */}
-        <Bar dataKey="ByDay" fill="#FFD2DD" barSize={27}>
-          <LabelList dataKey="procentDay" position="top" />
-        </Bar>
-        <Bar dataKey="ByMonth" fill="#3E85F3" barSize={27}>
-          <LabelList dataKey="procentMonth" position="top" />
-        </Bar>
-      </BarChart>
+          <Bar dataKey="ByDay" fill="#FFD2DD" barSize={27} fontSize={16}>
+            <LabelList dataKey="procentDay" position="top" />
+          </Bar>
+          <Bar dataKey="ByMonth" fill="#3E85F3" barSize={27} fontSize={16}>
+            <LabelList dataKey="procentMonth" position="top" />
+          </Bar>
+        </BarChart>
+      </SC.chartDiv>
     </>
   );
 };
