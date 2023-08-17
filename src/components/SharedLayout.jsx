@@ -12,7 +12,7 @@ export const SharedLayout = () => {
   ) : (
     <Suspense fallback={<Loader />}>
       <Outlet />
-      <Toaster position="top-right" reverseOrder={false} />
+      {/* <Toaster position="top-right" reverseOrder={false} /> */}
     </Suspense>
   );
 };

@@ -9,7 +9,7 @@ import useAuth from 'hooks/useAuth';
 import { Loader } from './Loader/Loader';
 import { ChoosedMonth } from './ChoosedMonth/ChoosedMonth';
 import { ChoosedDay } from './ChoosedDay/ChoosedDay';
-import { toast } from 'react-hot-toast';
+import { toast, Toaster } from 'react-hot-toast';
 
 const MainLayout = lazy(() => import('../pages/MainLayout/MainLayout'));
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
@@ -106,6 +106,7 @@ const App = () => {
           </Route>
         </Routes>
       )}
+      <Toaster position="top-right" reverseOrder={false} />
     </>
   );
 };
