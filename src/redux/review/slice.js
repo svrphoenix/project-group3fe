@@ -18,8 +18,8 @@ const handleRejected = (state, { payload }) => {
 const handleFulfilled = (state, { payload }) => {
   state.isLoading = false;
   state.error = null;
-  state.user.comment = payload.comment;
-  state.user.rating = payload.rating;
+  state.user.comment = payload.comment || '';
+  state.user.rating = payload.rating || 0;
 };
 
 const handleDeleteFulfilled = state => {

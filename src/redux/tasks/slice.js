@@ -1,11 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  addTask,
-  deleteTask,
-  // getAllTasks,
-  getDayTasks,
-  patchTask,
-} from './operations';
+import { addTask, deleteTask, patchTask } from './operations';
 
 const startLoading = state => {
   state.isLoading = true;
@@ -22,26 +16,12 @@ export const taskSlice = createSlice({
   initialState: { tasks: [], isLoading: false, error: null },
   extraReducers: builder => {
     builder
-      .addCase(getDayTasks.pending, startLoading)
-      .addCase(getDayTasks.fulfilled, (state, { payload }) => {
-        state.tasks = payload;
-        state.isLoading = false;
-      })
-      .addCase(getDayTasks.rejected, loadingFailed)
-
       .addCase(addTask.pending, startLoading)
       .addCase(addTask.fulfilled, (state, { payload }) => {
         state.tasks.push(payload);
         state.isLoading = false;
       })
       .addCase(addTask.rejected, loadingFailed)
-
-      // .addCase(getAllTasks.pending, startLoading)
-      // .addCase(getAllTasks.fulfilled, (state, { payload }) => {
-      //   state.tasks = payload;
-      //   state.isLoading = false;
-      // })
-      // .addCase(getAllTasks.rejected, loadingFailed)
 
       .addCase(deleteTask.pending, startLoading)
       .addCase(deleteTask.fulfilled, (state, { payload }) => {

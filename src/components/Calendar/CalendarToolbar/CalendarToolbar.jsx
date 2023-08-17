@@ -16,7 +16,7 @@ import {
 import PropTypes from 'prop-types';
 import { useNavigate, useParams } from 'react-router';
 import { CalendarTable } from '../CalendarTable/CalendarTable';
-import { ComponentChooseDay } from 'components/ComponentChooseDay/ComponentChooseDay';
+import { ComponentChooseDay } from 'components/ChoosedDay/TasksColumnsList/TasksColumnsList';
 
 export const CalendarToolbar = ({ type = 'month' }) => {
   const params = useParams();

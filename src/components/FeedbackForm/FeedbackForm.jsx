@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { selectError, selectUserReview } from 'redux/review/selectors';
 import * as reviewOperations from 'redux/review/operations';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ReactComponent as CloseIcon } from 'images/icons/x-close.svg';
 import { ReactComponent as Pencil } from 'images/icons/pencil-01.svg';
 import { ReactComponent as Trash } from 'images/icons/trash-2.svg';
@@ -17,13 +17,8 @@ export const FeedbackForm = ({ close }) => {
 
   const [readOnly, setReadOnly] = useState(!!currentUser.comment);
 
-  useEffect(() => {
-    dispatch(reviewOperations.getReview());
-  }, [dispatch]);
-
-  const checkErrorForCloseModal = ({ type }) => {
-    const operation = null;
-    if (type === `reviews/${operation}/fulfilled`) {
+  const checkErrorForCloseModal = ({ meta }) => {
+    if (meta.requestStatus === 'fulfilled') {
       close();
     }
   };

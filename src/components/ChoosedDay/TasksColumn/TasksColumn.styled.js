@@ -1,18 +1,14 @@
 import { styled } from 'styled-components';
 
-export const DaystasksWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  width: 100%;
-  gap: 25px;
-  padding-top: 20px;
-`;
-
 export const DaysTasksContainer = styled.div`
+  width: 335px;
   padding: 20px;
   border-radius: 8px;
   border: 1px solid rgba(220, 227, 229, 0.5);
   background: #fff;
+  @media screen and (min-width: 768px) {
+    width: 344px;
+  }
 `;
 
 export const TasksHeader = styled.div`
