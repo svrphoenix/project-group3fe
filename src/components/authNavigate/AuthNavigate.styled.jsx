@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
+import variables from '../../utils/variables';
+
+const { secondMainColor, hoverBtnMAinColor, cubic } = variables;
+
 export const StyledNavigate = styled(NavLink)`
-    color: #3E85F3;
+    color: ${secondMainColor};
     text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04), 0px 47px 355px rgba(0, 0, 0, 0.07);
     font-family: Inter SemiBold;
     font-size: 12px;
@@ -13,9 +17,9 @@ export const StyledNavigate = styled(NavLink)`
     display: block;
     text-align: center;
     margin-top: 18px;
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    transition: color ${cubic},
     &:hover, &:focus {
-        color: #2b78ef;
+        color: ${hoverBtnMAinColor};
         text-decoration-line: none;
     }
     @media (min-width: 768px) {
