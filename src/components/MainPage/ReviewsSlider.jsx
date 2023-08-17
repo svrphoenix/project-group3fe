@@ -51,10 +51,7 @@ export const ReviewsSlider = () => {
           }}
         >
           {reviews.map(({ owner: { name, avatarURL }, rating, comment }) => (
-            <SwiperSlide
-              key={name}
-              style={{ display: 'flex', justifyContent: 'center' }}
-            >
+            <SwiperSlide key={name} style={{ display: 'flex', height: 'auto' }}>
               <Review
                 avatar={avatarURL}
                 rating={rating}
