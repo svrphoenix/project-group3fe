@@ -11,7 +11,7 @@ export const PeriodTypeSelect = ({ type }) => {
       : format(new Date(), 'MMMM').toLowerCase();
 
   const BtnDayHandler = () => {
-    navigate(`/calendar/month/day/${formattedCurrentDay}`);
+    navigate(`/calendar/day/${formattedCurrentDay}`);
   };
 
   const BtnMonthHandler = () => {

@@ -1,13 +1,17 @@
-const selectIsLoggedIn = state => Boolean(state.auth.user && state.auth.token);
-const selectUser = state => state.auth.user;
-const selectIsLoading = state => state.auth.isLoading;
-const selectToken = state => state.auth.token;
-const selectRefreshToken = state => state.auth.refreshToken;
+const selectIsLoggedIn = ({ auth }) =>
+  Boolean(auth.user && auth.token && auth.refreshToken);
+const selectUser = ({ auth }) => auth.user;
+const selectIsLoading = ({ auth }) => auth.isLoading;
+const selectTokens = ({ auth }) => ({
+  token: auth.token,
+  refreshToken: auth.refreshToken,
+});
+const selectError = ({ auth }) => auth.error;
 
 export {
   selectIsLoggedIn,
   selectIsLoading,
   selectUser,
-  selectToken,
-  selectRefreshToken,
+  selectTokens,
+  selectError,
 };

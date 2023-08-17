@@ -19,7 +19,7 @@ export const Description = () => {
                   <source
                     srcSet={`${images.desc.x1} 1x, ${images.desc.x2} 2x`}
                     type="image/jpg"
-                    media="(min-width: 1200px)"
+                    media="(min-width: 1440px)"
                   />
                   <source
                     srcSet={`${images.tab.x1} 1x, ${images.tab.x2} 2x`}
