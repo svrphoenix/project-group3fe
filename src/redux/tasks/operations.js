@@ -4,6 +4,13 @@ import api from '../../api/api';
 
 const BASE_URL = 'api/tasks';
 
+const handleResponse = (response, errorMessage) => {
+  if (response.status !== 200) {
+    throw new Error(errorMessage);
+  }
+  return response.data;
+};
+
 export const getAllTasks = createAsyncThunk(
   'tasks/getAll',
   async (date, thunkAPI) => {
@@ -12,33 +19,31 @@ export const getAllTasks = createAsyncThunk(
         `${BASE_URL}?month=${date.month}&year=${date.year}`
       );
 
-      if (response.status !== 200) {
-        throw new Error('Failed to fetch tasks due to server error');
-      }
-
-      return response.data;
+      return handleResponse(
+        response,
+        'Failed to fetch tasks due to server error'
+      );
     } catch (error) {
-      toast.error('Failed to fetch all tasks: ' + error.message);
+      toast.error(`Failed to fetch all tasks: ${error.message}`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
 export const getDayTasks = createAsyncThunk(
-  'tasks/getAll',
+  'tasks/getDay',
   async (date, thunkAPI) => {
     try {
       const response = await api.get(
         `${BASE_URL}?month=${date.month}&day=${date.day}&year=${date.year}`
       );
 
-      if (response.status !== 200) {
-        throw new Error('Failed to fetch daily tasks due to server error');
-      }
-
-      return response.data;
+      return handleResponse(
+        response,
+        'Failed to fetch daily tasks due to server error'
+      );
     } catch (error) {
-      toast.error('Failed to fetch tasks for the day: ' + error.message);
+      toast.error(`Failed to fetch tasks for the day: ${error.message}`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -56,7 +61,7 @@ export const addTask = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      toast.error('Failed to add task: ' + error.message);
+      toast.error(`Failed to add task: ${error.message}`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -75,7 +80,7 @@ export const deleteTask = createAsyncThunk(
       toast.success('Task deleted successfully');
       return response.data;
     } catch (error) {
-      toast.error('Sorry, task wasn’t deleted: ' + error.message);
+      toast.error(`Sorry, task wasn’t deleted: ${error.message}`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -94,7 +99,7 @@ export const patchTask = createAsyncThunk(
       toast.success('Task has been successfully corrected');
       return response.data;
     } catch (error) {
-      toast.error('Sorry, something went wrong: ' + error.message);
+      toast.error(`Sorry, something went wrong: ${error.message}`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

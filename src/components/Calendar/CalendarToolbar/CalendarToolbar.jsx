@@ -57,7 +57,7 @@ export const CalendarToolbar = ({ type = 'month' }) => {
   const prevHandleDay = () => {
     const prevDate = addDays(currentDate, -1);
     setCurrentDate(prevDate);
-    navigate(`/calendar/month/day/${format(prevDate, 'yyyy-MM-dd')}`);
+    navigate(`/calendar/day/${format(prevDate, 'yyyy-MM-dd')}`);
   };
 
   const nextHandleMonth = () => {
@@ -72,13 +72,17 @@ export const CalendarToolbar = ({ type = 'month' }) => {
   const nextHandleDay = () => {
     const nextDate = addDays(currentDate, 1);
     setCurrentDate(nextDate);
-    navigate(`/calendar/month/day/${format(nextDate, 'yyyy-MM-dd')}`);
+    navigate(`/calendar/day/${format(nextDate, 'yyyy-MM-dd')}`);
   };
   const prevHandler = () => {
     type === 'month' ? prevHandleMonth() : prevHandleDay();
   };
   const nextHandler = () => {
     type === 'month' ? nextHandleMonth() : nextHandleDay();
+  };
+  const onClickDay = day => {
+    setCurrentDate(day);
+    navigate(`/calendar/day/${format(day, 'yyyy-MM-dd')}`);
   };
 
   return (
@@ -103,7 +107,7 @@ export const CalendarToolbar = ({ type = 'month' }) => {
               day={day}
               width={width}
               isActive={isActive}
-              onClick={() => setCurrentDate(day)}
+              onClick={() => onClickDay(day)}
             />
           );
         })}
