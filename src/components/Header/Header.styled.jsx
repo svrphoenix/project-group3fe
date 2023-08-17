@@ -5,11 +5,12 @@ const accentColor = '#3E85F3';
 
 export const HeaderContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  /* justify-content: space-between; */
+  align-items: center;
   margin-bottom: 64px;
 
   @media screen and (min-width: 1440px) {
+    align-items: flex-start;
     margin-bottom: 32px;
   }
 `;
@@ -67,6 +68,30 @@ export const Motivator = styled.p`
   }
 `;
 
+export const BurgerBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+
+  @media screen and (min-width: 1440px) {
+    display: none;
+  }
+`;
+
+export const Vector = styled.svg`
+  width: 24px;
+  height: 24px;
+
+  @media screen and (min-width: 768px) {
+    width: 34px;
+    height: 34px;
+  }
+`;
+
 export const HeaderMenuWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -77,9 +102,9 @@ export const HeaderMenuWrapper = styled.div`
     gap: 24px;
   }
 
-  @media screen and (min-width: 1440px) {
+  /* @media screen and (min-width: 1440px) {
     margin-left: 0;
-  }
+  } */
 `;
 
 export const UserInfoWrapper = styled.div`

@@ -50,17 +50,27 @@ export const LogoTxt = styled.p`
   }
 `;
 
-export const Vector = styled.svg`
+export const CloseSideBarBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
   margin-left: auto;
+
+  @media screen and (min-width: 1440px) {
+    display: none;
+  }
+`;
+
+export const Vector = styled.svg`
   width: 24px;
   height: 24px;
 
   @media screen and (min-width: 768px) {
     width: 34px;
     height: 34px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    display: none;
   }
 `;
