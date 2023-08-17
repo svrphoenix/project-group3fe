@@ -5,8 +5,8 @@ import { RestrictedRoute } from './RestrictedRoute';
 import { useDispatch } from 'react-redux';
 import { refreshCurrentUser } from 'redux/auth/operations';
 import { SharedLayout } from './SharedLayout';
-import useAuth from 'hooks/useAuth';
-import { Loader } from './Loader/Loader';
+// import useAuth from 'hooks/useAuth';
+// import { Loader } from './Loader/Loader';
 import { ChoosedMonth } from './ChoosedMonth/ChoosedMonth';
 import { ChoosedDay } from './ChoosedDay/ChoosedDay';
 
@@ -24,15 +24,17 @@ const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 const App = () => {
   const dispatch = useDispatch();
 
-  const { isLoading } = useAuth();
+  // const { isLoading } = useAuth();
 
   useEffect(() => {
     dispatch(refreshCurrentUser());
   }, [dispatch]);
 
-  return isLoading ? (
-    <Loader />
-  ) : (
+  // return
+  // isLoading ? (
+  //   <Loader />
+  // ) :
+    return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route
