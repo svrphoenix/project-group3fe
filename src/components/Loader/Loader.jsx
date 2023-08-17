@@ -34,7 +34,9 @@ export const Loader = () => {
         alignItems: 'center',
         width: '100vw',
         height: '100vh',
-        backgroundColor: '#ffffff6d',
+        // backgroundColor: '#e6f2fc94',
+        backgroundImage:
+          'linear-gradient(rgba(220, 235, 247, 0.56), #a4d4f8a9)',
         backdropFilter: 'blur(1px)',
       }}
     >
@@ -43,7 +45,7 @@ export const Loader = () => {
         height={viewportWidth < 768 ? '90' : '120'}
         width={viewportWidth < 768 ? '90' : '120'}
         ariaLabel="blocks-loading"
-        colors={['#3e85f3', '#FDF608', '#3e85f3', '#3e85f3', '#3e85f3']}
+        colors={['#3E85F3', '#b1ddff', '#FFD2DD', '#3E85F3', '#DCEBF7']}
       />
     </div>,
     loaderRoot
