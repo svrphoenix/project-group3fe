@@ -1,6 +1,10 @@
 import { Form } from 'formik';
 import { styled } from 'styled-components';
 
+import variables from '../../utils/variables';
+
+const { firstFormColor,firstBtnTextColor,secondMainColor,secondBtnMainColor, secondTextColor, secondFormColor} = variables;
+
 export const FeedbackForm = styled(Form)`
   position: relative;
 `;
@@ -24,7 +28,7 @@ export const Label = styled.label`
   display: grid;
   gap: 8px;
   margin-bottom: 14px;
-  color: rgba(52, 52, 52, 0.8);
+  color: ${firstFormColor};
   font-size: 12px;
   font-weight: 500;
   line-height: 14px;
@@ -40,8 +44,8 @@ export const Textarea = styled.textarea`
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
-  color: #343434;
-  background: #f6f6f6;
+  color: ${secondTextColor};
+  background: ${secondFormColor};
   &:focus-visible {
     outline: none;
   }
@@ -67,13 +71,13 @@ const ReviewBtn = styled.button`
 `;
 
 export const MainReviewBtn = styled(ReviewBtn)`
-  background: #3e85f3;
-  color: #fff;
+  background: ${secondMainColor};
+  color: ${firstBtnTextColor};
 `;
 
 export const CancelReviewBtn = styled(ReviewBtn)`
-  background: #e5edfa;
-  color: #343434;
+  background: ${secondBtnMainColor};
+  color: ${secondTextColor};
 `;
 
 export const EditBtnWrapper = styled.div`
