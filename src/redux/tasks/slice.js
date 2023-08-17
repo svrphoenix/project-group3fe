@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { addTask, deleteTask, patchTask } from './operations';
+import { logout } from 'api/authServices';
 
 const startLoading = state => {
   state.isLoading = true;

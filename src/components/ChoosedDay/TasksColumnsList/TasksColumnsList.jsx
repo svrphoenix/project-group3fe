@@ -1,6 +1,6 @@
 import { getMonth, getYear, parseISO } from 'date-fns';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import * as tasksOperations from 'redux/tasks/operations';
 import { useParams } from 'react-router-dom';
 import * as SC from './TasksColumnsList.styled';
