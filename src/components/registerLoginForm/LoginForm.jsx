@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
@@ -27,6 +27,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { SVG } from 'images';
 import { Loader } from 'components/Loader/Loader';
 import { toast } from 'react-hot-toast';
+import useAuth from 'hooks/useAuth';
 
 const theme = createTheme({
   palette: {
@@ -50,33 +51,26 @@ const LoginSchema = Yup.object().shape({
 const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [noUser, setNoUser] = useState(false);
-  const [visibility, setVisibility] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [noUser, setNoUser] = useState(false); //юзер береться із стейта - const { isLoading, isLoggedIn, error } = useAuth(); а саме isLoggedIn
+  
 
-  const handleSubmit = async (values, { resetForm }) => {
-    try {
-            setIsLoading(true);
-            const response = await dispatch(
-              login({
-                email: values.email,
-                password: values.password,
-              })
-            );
-            if (response.meta.requestStatus !== 'rejected') {
-              resetForm();
-              navigate('/calendar/month/:currentDate');
-            } else {
-              if (response.payload.includes('401')||response.payload.includes('403')) {
-                setNoUser(true);
-              } 
-            }
-            setIsLoading(false);
-          } catch (error) {
-            setIsLoading(false);
-            toast.error("Sorry, problem at server");
-          }
-  }
+  const [visibility, setVisibility] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
+  const { isLoading, isLoggedIn, error } = useAuth();
+
+  const handleSubmit = (values, { resetForm }) => {
+    dispatch(login({ email: values.email, password: values.password }));
+    if (isLoggedIn) {
+      resetForm();
+      navigate('/calendar/month/:currentDate');
+    }
+  };
+
+  useEffect(() => {
+    if (error.status) {
+      toast.error(error.message);
+    }
+  }, [error.message, error.status]);
 
   return (
     <StyledContainer>
@@ -94,7 +88,7 @@ const LoginForm = () => {
         {({ errors, touched }) => {
           return (
             <>
-              {isLoading&&<Loader/>}
+              {isLoading && <Loader />}
               <StyledForm>
                 <StyledFormDiv>
                   <Styledlabel
@@ -113,17 +107,19 @@ const LoginForm = () => {
                   >
                     Email
                   </Styledlabel>
-                  <StyledFieldContainer $validate={
-                    (errors.email === 'Please enter your email' &&
-                      touched.email &&
-                      'empty') ||
-                    (((errors.email &&
-                      (errors.email === 'This is an ERROR email' ||
-                        errors.email.includes('match'))) ||
-                      noUser) &&
-                      'error') ||
-                    (touched.email && 'okay')
-                  }>
+                  <StyledFieldContainer
+                    $validate={
+                      (errors.email === 'Please enter your email' &&
+                        touched.email &&
+                        'empty') ||
+                      (((errors.email &&
+                        (errors.email === 'This is an ERROR email' ||
+                          errors.email.includes('match'))) ||
+                        noUser) &&
+                        'error') ||
+                      (touched.email && 'okay')
+                    }
+                  >
                     <StyledField
                       name="email"
                       type="email"
@@ -132,17 +128,18 @@ const LoginForm = () => {
                     {((errors.email &&
                       (errors.email === 'This is an ERROR email' ||
                         errors.email.includes('match'))) ||
-                      noUser) && (<StyledIcon>
+                      noUser) && (
+                      <StyledIcon>
                         <SVG.ErrorAuth />
                       </StyledIcon>
-                      )}
-                    {(touched.email && !errors.email && !noUser) &&
-                      (<StyledIcon>
+                    )}
+                    {touched.email && !errors.email && !noUser && (
+                      <StyledIcon>
                         <SVG.GoodAuth />
                       </StyledIcon>
-                      )}
+                    )}
                   </StyledFieldContainer>
-                  
+
                   {(errors.email === 'Please enter your email' &&
                     touched.email && (
                       <StyledRequired>{errors.email}</StyledRequired>
@@ -173,13 +170,16 @@ const LoginForm = () => {
                   >
                     Password
                   </Styledlabel>
-                  <StyledFieldContainer $validate={
-                    (errors.password === 'Please enter your password' &&
-                      touched.password &&
-                      'empty') ||
-                    (((errors.password && touched.password) || noUser) && 'error') ||
-                    (touched.password && 'okay')
-                  }>
+                  <StyledFieldContainer
+                    $validate={
+                      (errors.password === 'Please enter your password' &&
+                        touched.password &&
+                        'empty') ||
+                      (((errors.password && touched.password) || noUser) &&
+                        'error') ||
+                      (touched.password && 'okay')
+                    }
+                  >
                     <StyledField
                       name="password"
                       type={!visibility ? 'password' : 'text'}
@@ -229,7 +229,9 @@ const LoginForm = () => {
                   <SVG.LoginWhiteIcon />
                 </StyledButton>
               </StyledForm>
-            </>)}}
+            </>
+          );
+        }}
       </Formik>
     </StyledContainer>
   );

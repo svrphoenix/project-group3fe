@@ -31,8 +31,6 @@ const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
 });
 
 const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
-  thunkAPI.dispatch(logoutReset());
-  thunkAPI.dispatch(resetReviewState());
   try {
     await authService.logout();
   } catch ({ response: { status, data } }) {
@@ -42,6 +40,7 @@ const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     });
   } finally {
     thunkAPI.dispatch(logoutReset());
+    thunkAPI.dispatch(resetReviewState());
   }
 });
 

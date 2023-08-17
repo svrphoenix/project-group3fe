@@ -27,7 +27,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { SVG } from 'images';
 import { Loader } from 'components/Loader/Loader';
 import { toast } from 'react-hot-toast';
-import { selectError } from 'redux/tasks/selectors';
+// import { selectError } from 'redux/tasks/selectors';
 import useAuth from 'hooks/useAuth';
 
 const theme = createTheme({

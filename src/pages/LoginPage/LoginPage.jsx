@@ -7,10 +7,9 @@ const LoginPage = () => {
     <StyledLayout>
       <StyledSharedContainer>
         <LoginForm />
-        <AuthNavigate path="/register" text="Sign Up"/>
+        <AuthNavigate path="/register" text="Sign Up" />
       </StyledSharedContainer>
     </StyledLayout>
-      
   );
 };
 
