@@ -3,23 +3,23 @@ import {
   selectUser,
   selectIsLoggedIn,
   selectIsLoading,
-  selectToken,
-  selectRefreshToken,
+  selectTokens,
+  selectError,
 } from 'redux/auth/selectors';
 
 const useAuth = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isLoading = useSelector(selectIsLoading);
   const user = useSelector(selectUser);
-  const token = useSelector(selectToken);
-  const refreshToken = useSelector(selectRefreshToken);
+  const tokens = useSelector(selectTokens);
+  const error = useSelector(selectError);
 
   return {
     isLoggedIn,
     isLoading,
     user,
-    token,
-    refreshToken,
+    tokens,
+    error,
   };
 };
 

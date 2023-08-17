@@ -9,8 +9,11 @@ const register = createAsyncThunk(
     try {
       const data = await authService.register(credentials);
       return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+    } catch ({ response: { status, data } }) {
+      return thunkAPI.rejectWithValue({
+        status,
+        message: data.message,
+      });
     }
   }
 );
@@ -19,8 +22,11 @@ const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   try {
     const data = await authService.login(credentials);
     return data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+  } catch ({ response: { status, data } }) {
+    return thunkAPI.rejectWithValue({
+      status,
+      message: data.message,
+    });
   }
 });
 
@@ -29,8 +35,11 @@ const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   thunkAPI.dispatch(resetReviewState());
   try {
     await authService.logout();
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+  } catch ({ response: { status, data } }) {
+    return thunkAPI.rejectWithValue({
+      status,
+      message: data.message,
+    });
   } finally {
     thunkAPI.dispatch(logoutReset());
   }
@@ -43,14 +52,20 @@ const refreshCurrentUser = createAsyncThunk(
     const persistedToken = state.auth.token;
 
     if (persistedToken === null) {
-      return thunkAPI.rejectWithValue('Unable to fetch user');
+      return thunkAPI.rejectWithValue({
+        status: null,
+        message: 'No access token',
+      });
     }
 
     try {
       const data = await authService.getCurrent(persistedToken);
       return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+    } catch ({ response: { status, data } }) {
+      return thunkAPI.rejectWithValue({
+        status,
+        message: data.message,
+      });
     }
   }
 );
