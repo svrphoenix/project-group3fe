@@ -36,6 +36,9 @@ export const HeroTitle = styled.h1`
   font-size: 44px;
   line-height: 1.1;
   margin-bottom: 32px;
+  @media screen and (max-width: 320px) {
+    font-size: 13.75vw;
+  }
   @media screen and (min-width: 768px) and (max-width: 1439px) {
     font-size: 100px;
     line-height: 1.3;
@@ -103,6 +106,10 @@ export const NavLinkBtn = styled(Link)`
 
 export const Section = styled.section`
   padding-top: 64px;
+  padding-bottom: 64px;
+  @media screen and (min-width: 1440px) {
+    padding-top: 100px;
+  }
 `;
 
 export const ListItem = styled.li`
@@ -197,13 +204,13 @@ export const ItemImg = styled.img`
 `;
 
 export const SectionReview = styled.section`
-  padding-top: 64px;
+  /* padding-top: 64px; */
   padding-bottom: 64px;
   @media screen and (min-width: 768px) and (max-width: 1439px) {
     padding-bottom: 100px;
   }
   @media screen and (min-width: 1440px) {
-    padding-top: 100px;
+    /* padding-top: 100px; */
     padding-bottom: 120px;
   }
 `;
