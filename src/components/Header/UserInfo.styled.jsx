@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import variables from '../../utils/variables';
 
-const {  secondMainColor,secondTextColor, firstBtntnTextColor} = variables;
+const {  secondMainColor,secondTextColor, firstBtnTextColor} = variables;
 
 export const UserInfoWrapper = styled.div`
   display: flex;
@@ -34,7 +34,7 @@ export const UserAvatar = styled.p`
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  color: ${firstBtntnTextColor};
+  color: ${firstBtnTextColor};
   background-color: ${secondMainColor};
   font-family: 'Inter Bold';
   font-size: 14px;

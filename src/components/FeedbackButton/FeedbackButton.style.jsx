@@ -2,15 +2,15 @@ import { styled } from 'styled-components';
 
 import variables from '../../utils/variables';
 
-const { firstBtntnTextColor, btnMainColor, hoverBtnMAinColor,cubic } = variables;
+const { firstBtnTextColor, firstBtnMainColor, hoverBtnMAinColor,cubic } = variables;
 
 export const FeedbackButton = styled.button`
  cursor: pointer;
   padding: 8px 20px;
   border: none;
   border-radius: 10px;
-  color: ${firstBtntnTextColor};
-  background-color: ${btnMainColor};
+  color: ${firstBtnTextColor};
+  background-color: ${firstBtnMainColor};
   text-align: center;
   font-family: 'Inter SemiBold';
   font-size: 12px;
