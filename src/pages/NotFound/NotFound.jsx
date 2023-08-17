@@ -69,6 +69,4 @@ const NotFound = () => {
   );
 };
 
-// NotFound.propTypes = {};
-
 export default NotFound;
