@@ -4,12 +4,13 @@ import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { useDispatch } from 'react-redux';
 import { refreshCurrentUser } from 'redux/auth/operations';
+import { getReview } from 'redux/review/operations';
 import { SharedLayout } from './SharedLayout';
 import useAuth from 'hooks/useAuth';
-import { Loader } from './Loader/Loader';
+// import { Loader } from './Loader/Loader';
 import { ChoosedMonth } from './ChoosedMonth/ChoosedMonth';
 import { ChoosedDay } from './ChoosedDay/ChoosedDay';
-import { toast, Toaster } from 'react-hot-toast';
+import { Toaster, toast } from 'react-hot-toast';
 
 const MainLayout = lazy(() => import('../pages/MainLayout/MainLayout'));
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
@@ -25,87 +26,92 @@ const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 const App = () => {
   const dispatch = useDispatch();
 
-  const { isLoading, error } = useAuth();
+  const { error, isLoggedIn } = useAuth();
 
   useEffect(() => {
     dispatch(refreshCurrentUser());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (isLoggedIn) dispatch(getReview());
+  }, [dispatch, isLoggedIn]);
+
+  const makeExpiredError = () => {
+    if (error.status === 403)
+      toast.error(
+        'Your session has expired, please relogin again to continue using the app!'
+      );
+  };
+
   return (
     <>
-      {error.status === 403
-        ? toast.error(
-            'Your session has expired, please relogin again to continue using the app'
-          )
-        : null}
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
+      {makeExpiredError()}
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route
+            index
+            element={
+              <RestrictedRoute
+                redirectTo="/calendar"
+                component={<MainPage />}
+              />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                redirectTo="/calendar"
+                component={<RegisterPage />}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute
+                redirectTo="/calendar"
+                component={<LoginPage />}
+              />
+            }
+          />
+
+          <Route element={<MainLayout />}>
             <Route
-              index
+              path="/calendar"
               element={
-                <RestrictedRoute
-                  redirectTo="/calendar"
-                  component={<MainPage />}
-                />
+                <PrivateRoute redirectTo="/" component={<CalendarPage />} />
               }
             />
             <Route
-              path="/register"
+              path="/calendar/month/:currentDate"
               element={
-                <RestrictedRoute
-                  redirectTo="/calendar"
-                  component={<RegisterPage />}
-                />
+                <PrivateRoute redirectTo="/" component={<ChoosedMonth />} />
               }
             />
             <Route
-              path="/login"
+              path="/calendar/day/:currentDay"
               element={
-                <RestrictedRoute
-                  redirectTo="/calendar"
-                  component={<LoginPage />}
-                />
+                <PrivateRoute redirectTo="/" component={<ChoosedDay />} />
               }
             />
-            <Route element={<MainLayout />}>
-              <Route
-                path="/calendar"
-                element={
-                  <PrivateRoute redirectTo="/" component={<CalendarPage />} />
-                }
-              />
-              <Route
-                path="/calendar/month/:currentDate"
-                element={
-                  <PrivateRoute redirectTo="/" component={<ChoosedMonth />} />
-                }
-              />
-              <Route
-                path="/calendar/day/:currentDay"
-                element={
-                  <PrivateRoute redirectTo="/" component={<ChoosedDay />} />
-                }
-              />
-              <Route
-                path="/account"
-                element={
-                  <PrivateRoute redirectTo="/" component={<AccountPage />} />
-                }
-              />
-              <Route
-                path="/statistics"
-                element={
-                  <PrivateRoute redirectTo="/" component={<StatisticsPage />} />
-                }
-              />
-            </Route>
-            <Route path="*" element={<NotFound />} />
+            <Route
+              path="/account"
+              element={
+                <PrivateRoute redirectTo="/" component={<AccountPage />} />
+              }
+            />
+            <Route
+              path="/statistics"
+              element={
+                <PrivateRoute redirectTo="/" component={<StatisticsPage />} />
+              }
+            />
           </Route>
-        </Routes>
-      )}
+
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
       <Toaster position="top-right" reverseOrder={false} />
     </>
   );

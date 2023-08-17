@@ -2,10 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   addTask,
   deleteTask,
-  // getAllTasks,
+  getAllTasks,
   getDayTasks,
   patchTask,
 } from './operations';
+import { logout } from 'api/authServices';
 
 const startLoading = state => {
   state.isLoading = true;
@@ -35,14 +36,12 @@ export const taskSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(addTask.rejected, loadingFailed)
-
-      // .addCase(getAllTasks.pending, startLoading)
-      // .addCase(getAllTasks.fulfilled, (state, { payload }) => {
-      //   state.tasks = payload;
-      //   state.isLoading = false;
-      // })
-      // .addCase(getAllTasks.rejected, loadingFailed)
-
+      .addCase(getAllTasks.pending, startLoading)
+      .addCase(getAllTasks.fulfilled, (state, { payload }) => {
+        state.tasks = payload;
+        state.isLoading = false;
+      })
+      .addCase(getAllTasks.rejected, loadingFailed)
       .addCase(deleteTask.pending, startLoading)
       .addCase(deleteTask.fulfilled, (state, { payload }) => {
         state.tasks = state.tasks.filter(task => task._id !== payload);
@@ -57,7 +56,12 @@ export const taskSlice = createSlice({
         );
         state.isLoading = false;
       })
-      .addCase(patchTask.rejected, loadingFailed);
+      .addCase(patchTask.rejected, loadingFailed)
+      .addCase(logout, state => {
+        state.tasks = [];
+        state.isLoading = false;
+        state.error = null;
+      });
   },
 });
 

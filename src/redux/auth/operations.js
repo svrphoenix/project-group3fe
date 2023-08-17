@@ -1,6 +1,7 @@
 import * as authService from 'api/authServices';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { logoutReset } from './slice';
+import { resetReviewState } from '../review/slice';
 
 const register = createAsyncThunk(
   'auth/register',
@@ -30,6 +31,8 @@ const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
 });
 
 const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  thunkAPI.dispatch(logoutReset());
+  thunkAPI.dispatch(resetReviewState());
   try {
     await authService.logout();
   } catch ({ response: { status, data } }) {
