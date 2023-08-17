@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
-const titleColor = '#111';
-const accentColor = '#3E85F3';
+import variables from '../../utils/variables';
+
+const { firstTextColor, secondMainColor } = variables;
 
 export const HeaderContainer = styled.div`
   display: flex;
@@ -23,7 +24,7 @@ export const HeaderTitleWrapperNoGoose = styled.div`
 `;
 
 export const Title = styled.h1`
-  color: ${titleColor};
+  color: ${firstTextColor};
   text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
     0px 47px 355px rgba(0, 0, 0, 0.07);
   font-family: 'Inter Bold';
@@ -55,7 +56,7 @@ export const TxtWrapper = styled.div`
 `;
 
 export const Motivator = styled.p`
-  color: ${titleColor};
+  color: ${firstTextColor};
   font-family: 'Inter SemiBold';
   font-size: 14px;
   font-style: normal;
@@ -63,7 +64,7 @@ export const Motivator = styled.p`
   line-height: 18px;
 
   & > span {
-    color: ${accentColor};
+    color: ${secondMainColor};
   }
 `;
 

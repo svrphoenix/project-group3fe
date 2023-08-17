@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-const accentColor = '#3E85F3';
-const nameColor = '#343434';
-const whiteColor = '#fff';
+import variables from '../../utils/variables';
+
+const {  secondMainColor,secondTextColor, firstBtntnTextColor} = variables;
 
 export const UserInfoWrapper = styled.div`
   display: flex;
@@ -15,7 +15,7 @@ export const UserInfoWrapper = styled.div`
 `;
 
 export const UserName = styled.p`
-  color: ${nameColor};
+  color: ${secondTextColor};
   font-family: 'Inter Bold';
   font-size: 14px;
   font-style: normal;
@@ -34,8 +34,8 @@ export const UserAvatar = styled.p`
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  color: ${whiteColor};
-  background-color: ${accentColor};
+  color: ${firstBtntnTextColor};
+  background-color: ${secondMainColor};
   font-family: 'Inter Bold';
   font-size: 14px;
   font-style: normal;
@@ -52,7 +52,7 @@ export const UserAvatar = styled.p`
 export const UserAvatarImg = styled.img`
   width: 32px;
   height: 32px;
-  border: 1.8px solid ${accentColor};
+  border: 1.8px solid ${secondMainColor};
   border-radius: 50%;
 
   @media screen and (min-width: 768px) {

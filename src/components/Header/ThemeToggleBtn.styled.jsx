@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-const accentColor = '#3E85F3';
+import variables from '../../utils/variables';
+
+const { toogleIconColor } = variables;
 
 export const Button = styled.button`
   cursor: pointer;
@@ -11,7 +13,7 @@ export const Button = styled.button`
 export const Vector = styled.svg`
   width: 24px;
   height: 24px;
-  fill: ${accentColor};
+  fill: ${toogleIconColor};
 
   @media screen and (min-width: 768px) {
     width: 32px;
