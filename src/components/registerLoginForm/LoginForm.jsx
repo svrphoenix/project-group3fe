@@ -31,8 +31,8 @@ import { toast } from 'react-hot-toast';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#8D9698'
-    }
+      main: '#8D9698',
+    },
   },
 });
 
@@ -93,7 +93,7 @@ const LoginForm = () => {
       >
         {({ errors, touched }) => {
           if (isLoading) {
-            return <Loader />
+            return <Loader />;
           } else {
             return (
               <StyledForm>
@@ -155,8 +155,10 @@ const LoginForm = () => {
                       )) ||
                     (noUser && (
                       <StyledError>Email or password is uncorrect</StyledError>
-                    )) || (touched.email &&
-                      <StyledCorrect>This is an CORRECT email</StyledCorrect>)}
+                    )) ||
+                    (touched.email && (
+                      <StyledCorrect>This is an CORRECT email</StyledCorrect>
+                    ))}
                 </StyledFormDiv>
                 <StyledFormDiv>
                   <Styledlabel
@@ -181,12 +183,21 @@ const LoginForm = () => {
                   }>
                     <StyledField
                       name="password"
-                      type={!visibility ? "password" : "text"}
+                      type={!visibility ? 'password' : 'text'}
                       placeholder="• • • • • • •"
                     />
-                    <StyledButtonVisibility type="button" onClick={() => { setVisibility(!visibility) }}>
+                    <StyledButtonVisibility
+                      type="button"
+                      onClick={() => {
+                        setVisibility(!visibility);
+                      }}
+                    >
                       <ThemeProvider theme={theme}>
-                        {!visibility ? <Visibility color="primary" /> : <VisibilityOff color="primary" />}
+                        {!visibility ? (
+                          <Visibility color="primary" />
+                        ) : (
+                          <VisibilityOff color="primary" />
+                        )}
                       </ThemeProvider>
                     </StyledButtonVisibility>
                   </StyledFieldContainer>
@@ -209,8 +220,10 @@ const LoginForm = () => {
                     )) ||
                     (noUser && (
                       <StyledError>Email or password is uncorrect</StyledError>
-                    )) || (touched.password &&
-                      <StyledCorrect>This is an CORRECT password</StyledCorrect>)}
+                    )) ||
+                    (touched.password && (
+                      <StyledCorrect>This is an CORRECT password</StyledCorrect>
+                    ))}
                 </StyledFormDiv>
                 <StyledButton type="submit">
                   Log In
