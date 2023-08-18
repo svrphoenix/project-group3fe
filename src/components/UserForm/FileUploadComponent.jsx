@@ -8,7 +8,7 @@ import {
 import { AddIconMediaSizes } from './Icons';
 import useAuth from 'hooks/useAuth';
 
-export const FileUploadComponent = ({ handleFiles, fileListRef }) => {
+const FileUploadComponent = ({ handleFiles, fileListRef }) => {
   const { user } = useAuth();
   const fileInputRef = useRef(null);
 
@@ -44,3 +44,5 @@ export const FileUploadComponent = ({ handleFiles, fileListRef }) => {
     </StyledAvatarWrapper>
   );
 };
+
+export default FileUploadComponent;

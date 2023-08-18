@@ -18,7 +18,7 @@ import {
   StyledErrorText,
   FileInputLabel,
 } from './UserForm.styled';
-import { FileUploadComponent } from './FileUploadComponent';
+import FileUploadComponent from './FileUploadComponent';
 import { useRef, useState } from 'react';
 import useAuth from 'hooks/useAuth';
 import { useDispatch } from 'react-redux';
