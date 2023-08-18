@@ -4,12 +4,13 @@ import {
   SideBarLogoWrapper,
   LogoImg,
   LogoTxt,
+  CloseSideBarBtn,
   Vector,
 } from './SideBarLogo.styled';
 import SVG from './sidebar-and-header-images/sidebar-nav-icons.svg';
 import AddSvg from 'components/AddSvg/AddSvg';
 
-const SideBarLogo = () => {
+const SideBarLogo = ({ closeSideBar }) => {
   return (
     <SideBarLogoWrapper>
       <picture>
@@ -23,7 +24,13 @@ const SideBarLogo = () => {
       <LogoTxt>
         G<span>oo</span>seTrack
       </LogoTxt>
-      <AddSvg component={Vector} sprite={SVG} spriteId="cross-icon" />
+      <CloseSideBarBtn
+        type="button"
+        aria-label="Close sidebar"
+        onClick={closeSideBar}
+      >
+        <AddSvg component={Vector} sprite={SVG} spriteId="cross-icon" />
+      </CloseSideBarBtn>
     </SideBarLogoWrapper>
   );
 };

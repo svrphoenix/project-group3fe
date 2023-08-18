@@ -4,13 +4,15 @@ export const ReviewWrapper = styled.div`
   display: flex;
   padding: 24px;
   flex-direction: column;
-  justify-content: center;
   gap: 24px;
-  max-width: 335px;
+  width: 335px;
   border-radius: 8px;
   border: 1px solid rgba(17, 17, 17, 0.1);
+  @media screen and (max-width: 335px) {
+    width: auto;
+  }
   @media screen and (min-width: 768px) {
-    max-width: 580px;
+    width: 580px;
   }
 `;
 export const ReviewWrapperUser = styled.div`

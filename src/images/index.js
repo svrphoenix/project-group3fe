@@ -29,6 +29,8 @@ import { ReactComponent as StarIcon } from '../images/icons/star.svg';
 import { ReactComponent as LarrIcon } from '../images/icons/larrow.svg';
 import { ReactComponent as RarrIcon } from '../images/icons/rarrow.svg';
 import { ReactComponent as LoginWhiteIcon } from '../images/icons/loginWhite.svg';
+import { ReactComponent as LeftChevron } from '../images/icons/chevron-left.svg';
+import { ReactComponent as RightChevron } from '../images/icons/chevron-right.svg';
 
 export const SVG = {
   LoginIcon,
@@ -36,6 +38,8 @@ export const SVG = {
   LarrIcon,
   RarrIcon,
   LoginWhiteIcon,
+  LeftChevron,
+  RightChevron,
 };
 export const IMG = {
   all,

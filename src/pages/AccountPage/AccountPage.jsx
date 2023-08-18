@@ -1,12 +1,7 @@
 import { UserForm } from 'components/UserForm/UserForm';
-import { StyledPageWrapper } from 'components/UserForm/UserForm.styled';
 
 const AccountPage = () => {
-  return (
-    <StyledPageWrapper>
-      <UserForm />
-    </StyledPageWrapper>
-  );
+  return <UserForm />;
 };
 
 export default AccountPage;

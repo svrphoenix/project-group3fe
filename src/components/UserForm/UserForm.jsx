@@ -15,6 +15,8 @@ import {
   StyledCalendar,
   Column,
   ErrorMessage,
+  StyledErrorText,
+  FileInputLabel,
 } from './UserForm.styled';
 import { FileUploadComponent } from './FileUploadComponent';
 import { useRef, useState } from 'react';
@@ -51,7 +53,7 @@ const UserSchema = Yup.object().shape({
 });
 
 export const UserForm = () => {
-  const { user } = useAuth();
+  const { user, error } = useAuth();
   const dispatch = useDispatch();
 
   const [startDate, setStartDate] = useState(
@@ -80,6 +82,9 @@ export const UserForm = () => {
 
   return (
     <StyledFormWrapper>
+      {error && (
+        <StyledErrorText>Something went wrong, try again!</StyledErrorText>
+      )}
       <Formik
         initialValues={{
           avatar: userAvatar,
@@ -98,12 +103,12 @@ export const UserForm = () => {
         }}
       >
         <Form ref={form}>
-          <FormField>
+          <FileInputLabel>
             <FileUploadComponent
               handleFiles={handleFiles}
               fileListRef={fileListRef}
             />
-          </FormField>
+          </FileInputLabel>
           <StyledUserName>{user.name}</StyledUserName>
           <StyledUserDiscription>User</StyledUserDiscription>
           <StyledLabelWrapp>

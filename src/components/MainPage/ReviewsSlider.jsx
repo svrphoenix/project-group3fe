@@ -2,19 +2,39 @@ import * as SC from './MainPage.styled';
 import { Review } from 'components/Reviews/Review';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
-import { reviews } from './constant';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import 'swiper/css';
 import 'swiper/css/autoplay';
 import { SVG } from 'images';
+import api from 'api/api';
+import { toast } from 'react-hot-toast';
+
+const getAllReviews = async () => {
+  try {
+    const data = await api('/reviews');
+    return data;
+  } catch (error) {
+    toast.error('Oops something went wrong!!!.');
+    console.log(error);
+  }
+};
 
 export const ReviewsSlider = () => {
+  const [reviews, setReviews] = useState([]);
+  useEffect(() => {
+    (async function () {
+      const { data } = await getAllReviews();
+      setReviews(data);
+    })();
+  }, []);
+
   const swiperRef = useRef(null);
   const sliderSettings = {
     1439: {
       slidesPerView: 2,
     },
   };
+  if (!reviews.length) return;
 
   return (
     <SC.SectionReview>
@@ -30,16 +50,13 @@ export const ReviewsSlider = () => {
             swiperRef.current = swiper;
           }}
         >
-          {reviews.map(({ avatar, rating, name, review }) => (
-            <SwiperSlide
-              key={name}
-              style={{ display: 'flex', justifyContent: 'center' }}
-            >
+          {reviews.map(({ owner: { name, avatarURL }, rating, comment }) => (
+            <SwiperSlide key={name} style={{ display: 'flex', height: 'auto' }}>
               <Review
-                avatar={avatar}
+                avatar={avatarURL}
                 rating={rating}
                 name={name}
-                review={review}
+                review={comment}
               />
             </SwiperSlide>
           ))}

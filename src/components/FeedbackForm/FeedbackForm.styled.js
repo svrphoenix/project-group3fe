@@ -1,6 +1,7 @@
+import { Form } from 'formik';
 import { styled } from 'styled-components';
 
-export const Form = styled.form`
+export const FeedbackForm = styled(Form)`
   position: relative;
 `;
 
@@ -83,7 +84,7 @@ export const EditBtnWrapper = styled.div`
   right: 0;
 `;
 
-const EditBtnGroup = styled.button`
+export const EditBtn = styled.button`
   display: flex;
   width: 30px;
   height: 30px;
@@ -102,10 +103,18 @@ const EditBtnGroup = styled.button`
   }
 `;
 
-export const EditBtn = styled(EditBtnGroup)`
-  background: #e5edfa;
+export const DeleteBtn = styled(EditBtn)`
+  background: rgba(234, 61, 101, 0.2);
 `;
 
-export const DeleteBtn = styled(EditBtnGroup)`
-  background: rgba(234, 61, 101, 0.2);
+export const ErrorBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 30px;
+`;
+
+export const ErrorWrapper = styled.div`
+  font-size: 16px;
+  line-height: 18px;
+  color: red;
 `;

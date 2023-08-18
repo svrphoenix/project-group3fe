@@ -1,4 +1,3 @@
-import { FeedbackButton } from 'components/FeedbackButton/FeedbackButton';
 import * as SC from './MainPage.styled';
 const { descriptions } = require('./constant');
 
@@ -11,7 +10,6 @@ export const Description = () => {
             return (
               <SC.ListItem key={title}>
                 <SC.ItemWrapper>
-                  <FeedbackButton />
                   <SC.ItemNumber>{inx + 1}.</SC.ItemNumber>
                   {badge && <SC.ItemBadge>{badge}</SC.ItemBadge>}
                   <SC.ItemTitle>{title}</SC.ItemTitle>
@@ -21,7 +19,7 @@ export const Description = () => {
                   <source
                     srcSet={`${images.desc.x1} 1x, ${images.desc.x2} 2x`}
                     type="image/jpg"
-                    media="(min-width: 1200px)"
+                    media="(min-width: 1440px)"
                   />
                   <source
                     srcSet={`${images.tab.x1} 1x, ${images.tab.x2} 2x`}
