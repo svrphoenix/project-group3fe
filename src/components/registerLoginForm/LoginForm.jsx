@@ -1,30 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import {
-  StyledButton,
-  StyledButtonVisibility,
-  StyledContainer,
-  StyledContainerPassword,
-  StyledCorrect,
-  StyledError,
-  StyledField,
-  StyledFieldPassword,
-  StyledForm,
-  StyledFormDiv,
-  StyledHeader,
-  Styledlabel,
-  StyledRequired,
-} from './RegisterLoginForm.styled';
+import * as SC from './RegisterLoginForm.styled';
 import { login } from 'redux/auth/operations';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { SVG } from 'images';
 import { Loader } from 'components/Loader/Loader';
 import { toast } from 'react-hot-toast';
+import useAuth from 'hooks/useAuth';
 
 const theme = createTheme({
   palette: {
@@ -50,11 +37,29 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const [noUser, setNoUser] = useState(false);
   const [visibility, setVisibility] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const { isLoading, isLoggedIn, error } = useAuth();
+
+  const handleSubmit = (values, { resetForm }) => {
+    dispatch(login({ email: values.email, password: values.password }));
+    if (isLoggedIn) {
+      resetForm();
+      navigate('/calendar');
+    }
+  };
+
+  useEffect(() => {
+    if (error.status) {
+      if (error.status === 401 || error.status === 403) {
+        setNoUser(true);
+      } else {
+        toast.error(error.message);
+      }
+    }
+  }, [error.message, error.status]);
 
   return (
-    <StyledContainer>
-      <StyledHeader>Log In</StyledHeader>
+    <SC.StyledContainer>
+      <SC.StyledHeader>Log In</SC.StyledHeader>
       <Formik
         initialValues={{
           email: '',
@@ -63,44 +68,15 @@ const LoginForm = () => {
         validateOnChange={false}
         validateOnBlur={true}
         validationSchema={LoginSchema}
-        onSubmit={async (values, { resetForm }) => {
-          try {
-            setIsLoading(true);
-            const response = await dispatch(
-              login({
-                email: values.email,
-                password: values.password,
-              })
-            );
-            console.log(response)
-            if (response.meta.requestStatus !== 'rejected') {
-              resetForm();
-              navigate('/calendar');
-            } else {
-              if (response.payload.includes('401')) {
-                console.log("emaiiil")
-                toast.error("Email or password is uncorrect");
-                setNoUser(true);
-              } else {
-                toast.error("Sorry, problem at server");
-              }
-              
-            }
-            setIsLoading(false);
-          } catch (error) {
-            setIsLoading(false);
-            toast.error("Sorry, problem at server");
-          }
-        }}
+        onSubmit={handleSubmit}
       >
         {({ errors, touched }) => {
-          if (isLoading) {
-            return <Loader />;
-          } else {
-            return (
-              <StyledForm>
-                <StyledFormDiv>
-                  <Styledlabel
+          return (
+            <>
+              {isLoading && <Loader />}
+              <SC.StyledForm>
+                <SC.StyledFormDiv>
+                  <SC.Styledlabel
                     htmlFor="email"
                     $validate={
                       (errors.email === 'Please enter your email' &&
@@ -115,11 +91,8 @@ const LoginForm = () => {
                     }
                   >
                     Email
-                  </Styledlabel>
-                  <StyledField
-                    name="email"
-                    type="email"
-                    placeholder="nadiia@gmail.com"
+                  </SC.Styledlabel>
+                  <SC.StyledFieldContainer
                     $validate={
                       (errors.email === 'Please enter your email' &&
                         touched.email &&
@@ -131,25 +104,49 @@ const LoginForm = () => {
                         'error') ||
                       (touched.email && 'okay')
                     }
-                  />
+                  >
+                    <SC.StyledField
+                      name="email"
+                      type="email"
+                      placeholder="nadiia@gmail.com"
+                    />
+                    {((errors.email &&
+                      (errors.email === 'This is an ERROR email' ||
+                        errors.email.includes('match'))) ||
+                      noUser) && (
+                      <SC.StyledIcon>
+                        <SVG.ErrorAuth />
+                      </SC.StyledIcon>
+                    )}
+                    {touched.email && !errors.email && !noUser && (
+                      <SC.StyledIcon>
+                        <SVG.GoodAuth />
+                      </SC.StyledIcon>
+                    )}
+                  </SC.StyledFieldContainer>
+
                   {(errors.email === 'Please enter your email' &&
                     touched.email && (
-                      <StyledRequired>{errors.email}</StyledRequired>
+                      <SC.StyledRequired>{errors.email}</SC.StyledRequired>
                     )) ||
                     (errors.email &&
                       (errors.email === 'This is an ERROR email' ||
                         errors.email.includes('match')) && (
-                        <StyledError>This is an ERROR email</StyledError>
+                        <SC.StyledError>This is an ERROR email</SC.StyledError>
                       )) ||
                     (noUser && (
-                      <StyledError>Email or password is uncorrect</StyledError>
+                      <SC.StyledError>
+                        Email or password is uncorrect
+                      </SC.StyledError>
                     )) ||
                     (touched.email && (
-                      <StyledCorrect>This is an CORRECT email</StyledCorrect>
+                      <SC.StyledCorrect>
+                        This is an CORRECT email
+                      </SC.StyledCorrect>
                     ))}
-                </StyledFormDiv>
-                <StyledFormDiv>
-                  <Styledlabel
+                </SC.StyledFormDiv>
+                <SC.StyledFormDiv>
+                  <SC.Styledlabel
                     htmlFor="password"
                     $validate={
                       (errors.password === 'Please enter your password' &&
@@ -161,22 +158,23 @@ const LoginForm = () => {
                     }
                   >
                     Password
-                  </Styledlabel>
-                  <StyledContainerPassword
+                  </SC.Styledlabel>
+                  <SC.StyledFieldContainer
                     $validate={
                       (errors.password === 'Please enter your password' &&
                         touched.password &&
                         'empty') ||
-                      (errors.password && touched.password && 'error') ||
+                      (((errors.password && touched.password) || noUser) &&
+                        'error') ||
                       (touched.password && 'okay')
                     }
                   >
-                    <StyledFieldPassword
+                    <SC.StyledField
                       name="password"
                       type={!visibility ? 'password' : 'text'}
                       placeholder="• • • • • • •"
                     />
-                    <StyledButtonVisibility
+                    <SC.StyledButtonVisibility
                       type="button"
                       onClick={() => {
                         setVisibility(!visibility);
@@ -189,42 +187,46 @@ const LoginForm = () => {
                           <VisibilityOff color="primary" />
                         )}
                       </ThemeProvider>
-                    </StyledButtonVisibility>
-                  </StyledContainerPassword>
+                    </SC.StyledButtonVisibility>
+                  </SC.StyledFieldContainer>
                   {(errors.password === 'Please enter your password' &&
                     touched.password && (
-                      <StyledRequired>{errors.password}</StyledRequired>
+                      <SC.StyledRequired>{errors.password}</SC.StyledRequired>
                     )) ||
                     (errors.password &&
                       errors.password.includes(
                         'password must match the following'
                       ) &&
                       touched.password && (
-                        <StyledError>
+                        <SC.StyledError>
                           This password should contain at least eight characters
                           and at least one number and one letter
-                        </StyledError>
+                        </SC.StyledError>
                       )) ||
                     (errors.password && touched.password && (
-                      <StyledError>{errors.password}</StyledError>
+                      <SC.StyledError>{errors.password}</SC.StyledError>
                     )) ||
                     (noUser && (
-                      <StyledError>Email or password is uncorrect</StyledError>
+                      <SC.StyledError>
+                        Email or password is uncorrect
+                      </SC.StyledError>
                     )) ||
                     (touched.password && (
-                      <StyledCorrect>This is an CORRECT password</StyledCorrect>
+                      <SC.StyledCorrect>
+                        This is an CORRECT password
+                      </SC.StyledCorrect>
                     ))}
-                </StyledFormDiv>
-                <StyledButton type="submit">
+                </SC.StyledFormDiv>
+                <SC.StyledButton type="submit">
                   Log In
                   <SVG.LoginWhiteIcon />
-                </StyledButton>
-              </StyledForm>
-            );
-          }
+                </SC.StyledButton>
+              </SC.StyledForm>
+            </>
+          );
         }}
       </Formik>
-    </StyledContainer>
+    </SC.StyledContainer>
   );
 };
 

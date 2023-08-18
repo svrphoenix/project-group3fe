@@ -40,8 +40,6 @@ const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
       status,
       message: data.message,
     });
-  } finally {
-    thunkAPI.dispatch(logoutReset());
   }
 });
 
