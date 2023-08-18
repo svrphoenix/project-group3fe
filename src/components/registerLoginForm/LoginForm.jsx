@@ -41,7 +41,6 @@ const LoginForm = () => {
 
   const handleSubmit = (values, { resetForm }) => {
     dispatch(login({ email: values.email, password: values.password }));
-    console.log(isLoggedIn)
     if (isLoggedIn) {
       resetForm();
       navigate('/calendar/month/:currentDate');
