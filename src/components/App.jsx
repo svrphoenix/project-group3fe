@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
@@ -83,6 +83,10 @@ const App = () => {
                 <PrivateRoute redirectTo="/" component={<CalendarPage />} />
               }
             >
+              <Route
+                index
+                element={<Navigate to="month/:currentDate" replace />}
+              />
               <Route
                 path="/calendar/month/:currentDate"
                 element={
