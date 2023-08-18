@@ -4,21 +4,22 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import {
-    StyledButton,
-    StyledButtonVisibility,
-    StyledContainer,
-    StyledCorrect,
-    StyledError,
-    StyledField,
-    StyledFieldContainer,
-    StyledForm,
-    StyledFormDiv,
-    StyledHeader,
-    StyledIcon,
-    Styledlabel,
-    StyledRequired,
-} from './RegisterLoginForm.styled';
+// import {
+//     StyledButton,
+//     StyledButtonVisibility,
+//     StyledContainer,
+//     StyledCorrect,
+//     StyledError,
+//     StyledField,
+//     StyledFieldContainer,
+//     StyledForm,
+//     StyledFormDiv,
+//     StyledHeader,
+//     StyledIcon,
+//     Styledlabel,
+//     StyledRequired,
+// } from './RegisterLoginForm.styled';
+import * as SC from './RegisterLoginForm.styled';
 import { register } from 'redux/auth/operations';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -76,8 +77,8 @@ const RegisterForm = () => {
     }
   }, [error.message, error.status]);
 
-    return (<StyledContainer>
-        <StyledHeader>Sign Up</StyledHeader>
+    return (<SC.StyledContainer>
+        <SC.StyledHeader>Sign Up</SC.StyledHeader>
         <Formik
             initialValues={{
                 name: '',
@@ -93,9 +94,9 @@ const RegisterForm = () => {
                 return (
                     <>
                         {isLoading&&<Loader/>}
-                        <StyledForm>
-                            <StyledFormDiv>
-                                <Styledlabel
+                        <SC.StyledForm>
+                            <SC.StyledFormDiv>
+                                <SC.Styledlabel
                                     htmlFor="name"
                                     $validate={
                                         (errors.name === 'Please enter your name' &&
@@ -106,40 +107,40 @@ const RegisterForm = () => {
                                     }
                                 >
                                     Name
-                                </Styledlabel>
-                                <StyledFieldContainer $validate={
+                                </SC.Styledlabel>
+                                <SC.StyledFieldContainer $validate={
                                         (errors.name === 'Please enter your name' &&
                                             touched.name &&
                                             'empty') ||
                                         (errors.name && touched.name && 'error') ||
                                         (touched.name && 'okay')
                                     }>
-                                    <StyledField
+                                    <SC.StyledField
                                     name="name"
                                     placeholder="Enter your name"
                                     />
                                     {(errors.name && errors.name!=='Please enter your name' && touched.name) &&
-                                        (<StyledIcon>
+                                        (<SC.StyledIcon>
                                             <SVG.ErrorAuth />
-                                        </StyledIcon>
+                                        </SC.StyledIcon>
                                         )}
                                     {(touched.name && !errors.name) &&
-                                        (<StyledIcon>
+                                        (<SC.StyledIcon>
                                             <SVG.GoodAuth />
-                                        </StyledIcon>
+                                        </SC.StyledIcon>
                                         )}
-                                </StyledFieldContainer>
+                                </SC.StyledFieldContainer>
                                 
                                 {(errors.name === 'Please enter your name' && touched.name && (
-                                    <StyledRequired>{errors.name}</StyledRequired>
+                                    <SC.StyledRequired>{errors.name}</SC.StyledRequired>
                                 )) ||
                                     (errors.name && touched.name && (
-                                        <StyledError>{errors.name}</StyledError>
+                                        <SC.StyledError>{errors.name}</SC.StyledError>
                                     )) || (touched.name &&
-                                        <StyledCorrect>This is an CORRECT name</StyledCorrect>)}
-                            </StyledFormDiv>
-                            <StyledFormDiv>
-                                <Styledlabel
+                                        <SC.StyledCorrect>This is an CORRECT name</SC.StyledCorrect>)}
+                            </SC.StyledFormDiv>
+                            <SC.StyledFormDiv>
+                                <SC.Styledlabel
                                     htmlFor="email"
                                     $validate={
                                         (errors.email === 'Please enter your email' &&
@@ -150,43 +151,43 @@ const RegisterForm = () => {
                                     }
                                 >
                                     Email
-                                </Styledlabel>
-                                <StyledFieldContainer $validate={
+                                </SC.Styledlabel>
+                                <SC.StyledFieldContainer $validate={
                                         (errors.email === 'Please enter your email' &&
                                             touched.email &&
                                             'empty') ||
                                         (((errors.email && (errors.email === "This is an ERROR email" || errors.email.includes("match"))) || usedEmail) && 'error') ||
                                         (touched.email && 'okay')
                                     }>
-                                    <StyledField
+                                    <SC.StyledField
                                     name="email"
                                     type="email"
                                     placeholder="Enter email"
                                     />
                                     {((errors.email && (errors.email === "This is an ERROR email" || errors.email.includes("match"))) || usedEmail) &&
-                                        (<StyledIcon>
+                                        (<SC.StyledIcon>
                                             <SVG.ErrorAuth />
-                                        </StyledIcon>
+                                        </SC.StyledIcon>
                                         )}
                                     {(touched.email && !errors.email && !usedEmail) &&
-                                        (<StyledIcon>
+                                        (<SC.StyledIcon>
                                             <SVG.GoodAuth />
-                                        </StyledIcon>
+                                        </SC.StyledIcon>
                                         )}
-                                </StyledFieldContainer>
+                                </SC.StyledFieldContainer>
                                 {(errors.email === 'Please enter your email' && touched.email && (
-                                    <StyledRequired>{errors.email}</StyledRequired>
+                                    <SC.StyledRequired>{errors.email}</SC.StyledRequired>
                                 )) ||
                                     (errors.email && (errors.email === "This is an ERROR email" || errors.email.includes("match")) && (
-                                        <StyledError>This is an ERROR email</StyledError>
+                                        <SC.StyledError>This is an ERROR email</SC.StyledError>
                                     )) ||
                                     (usedEmail && (
-                                        <StyledError>This user is already exist</StyledError>
+                                        <SC.StyledError>This user is already exist</SC.StyledError>
                                     )) || (touched.email &&
-                                        <StyledCorrect>This is an CORRECT email</StyledCorrect>)}
-                            </StyledFormDiv>
-                            <StyledFormDiv >
-                                <Styledlabel
+                                        <SC.StyledCorrect>This is an CORRECT email</SC.StyledCorrect>)}
+                            </SC.StyledFormDiv>
+                            <SC.StyledFormDiv >
+                                <SC.Styledlabel
                                     htmlFor="password"
                                     $validate={
                                         (errors.password === 'Please enter your password' &&
@@ -197,48 +198,48 @@ const RegisterForm = () => {
                                     }
                                 >
                                     Password
-                                </Styledlabel>
-                                <StyledFieldContainer $validate={
+                                </SC.Styledlabel>
+                                <SC.StyledFieldContainer $validate={
                                     (errors.password === 'Please enter your password' &&
                                         touched.password &&
                                         'empty') ||
                                     (errors.password && touched.password && 'error') ||
                                     (touched.password && 'okay')
                                 }>
-                                    <StyledField
+                                    <SC.StyledField
                                         name="password"
                                         type={!visibility ? "password" : "text"}
                                         placeholder="Enter password"
                                     />
-                                    <StyledButtonVisibility type="button" onClick={() => { setVisibility(!visibility) }}>
+                                    <SC.StyledButtonVisibility type="button" onClick={() => { setVisibility(!visibility) }}>
                                         <ThemeProvider theme={theme}>
                                             {!visibility ? <Visibility color="primary" /> : <VisibilityOff color="primary" />}
                                         </ThemeProvider>
-                                    </StyledButtonVisibility>
-                                </StyledFieldContainer>
+                                    </SC.StyledButtonVisibility>
+                                </SC.StyledFieldContainer>
                                 {(errors.password === 'Please enter your password' &&
                                     touched.password && (
-                                        <StyledRequired>{errors.password}</StyledRequired>
+                                        <SC.StyledRequired>{errors.password}</SC.StyledRequired>
                                     )) ||
                                     (errors.password && errors.password.includes('password must match the following') && touched.password && (
-                                        <StyledError>This password should contain  at least eight characters and at least one number and one letter</StyledError>
+                                        <SC.StyledError>This password should contain  at least eight characters and at least one number and one letter</SC.StyledError>
                                     )) ||
                                     (errors.password && touched.password && (
-                                        <StyledError>{errors.password}</StyledError>
+                                        <SC.StyledError>{errors.password}</SC.StyledError>
                                     )) || (touched.password &&
-                                        <StyledCorrect>This is an CORRECT password</StyledCorrect>)
+                                        <SC.StyledCorrect>This is an CORRECT password</SC.StyledCorrect>)
                                 }
-                            </StyledFormDiv>
-                            <StyledButton type="submit">Sign Up
+                            </SC.StyledFormDiv>
+                            <SC.StyledButton type="submit">Sign Up
                                 <SVG.LoginWhiteIcon />
-                            </StyledButton>
-                        </StyledForm>
+                            </SC.StyledButton>
+                        </SC.StyledForm>
                         </>
                     );
                 }
             }
             </Formik>
-    </StyledContainer>)
+    </SC.StyledContainer>)
 }
 
 

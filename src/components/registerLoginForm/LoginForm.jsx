@@ -4,21 +4,7 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import {
-  StyledButton,
-  StyledButtonVisibility,
-  StyledContainer,
-  StyledCorrect,
-  StyledError,
-  StyledField,
-  StyledFieldContainer,
-  StyledForm,
-  StyledFormDiv,
-  StyledHeader,
-  StyledIcon,
-  Styledlabel,
-  StyledRequired,
-} from './RegisterLoginForm.styled';
+import * as SC from './RegisterLoginForm.styled';
 import { login } from 'redux/auth/operations';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -73,8 +59,8 @@ const LoginForm = () => {
   }, [error.message, error.status]);
 
   return (
-    <StyledContainer>
-      <StyledHeader>Log In</StyledHeader>
+    <SC.StyledContainer>
+      <SC.StyledHeader>Log In</SC.StyledHeader>
       <Formik
         initialValues={{
           email: '',
@@ -89,9 +75,9 @@ const LoginForm = () => {
           return (
             <>
               {isLoading && <Loader />}
-              <StyledForm>
-                <StyledFormDiv>
-                  <Styledlabel
+              <SC.StyledForm>
+                <SC.StyledFormDiv>
+                  <SC.Styledlabel
                     htmlFor="email"
                     $validate={
                       (errors.email === 'Please enter your email' &&
@@ -106,8 +92,8 @@ const LoginForm = () => {
                     }
                   >
                     Email
-                  </Styledlabel>
-                  <StyledFieldContainer
+                  </SC.Styledlabel>
+                  <SC.StyledFieldContainer
                     $validate={
                       (errors.email === 'Please enter your email' &&
                         touched.email &&
@@ -120,7 +106,7 @@ const LoginForm = () => {
                       (touched.email && 'okay')
                     }
                   >
-                    <StyledField
+                    <SC.StyledField
                       name="email"
                       type="email"
                       placeholder="nadiia@gmail.com"
@@ -129,35 +115,35 @@ const LoginForm = () => {
                       (errors.email === 'This is an ERROR email' ||
                         errors.email.includes('match'))) ||
                       noUser) && (
-                      <StyledIcon>
+                      <SC.StyledIcon>
                         <SVG.ErrorAuth />
-                      </StyledIcon>
+                      </SC.StyledIcon>
                     )}
                     {touched.email && !errors.email && !noUser && (
-                      <StyledIcon>
+                      <SC.StyledIcon>
                         <SVG.GoodAuth />
-                      </StyledIcon>
+                      </SC.StyledIcon>
                     )}
-                  </StyledFieldContainer>
+                  </SC.StyledFieldContainer>
 
                   {(errors.email === 'Please enter your email' &&
                     touched.email && (
-                      <StyledRequired>{errors.email}</StyledRequired>
+                      <SC.StyledRequired>{errors.email}</SC.StyledRequired>
                     )) ||
                     (errors.email &&
                       (errors.email === 'This is an ERROR email' ||
                         errors.email.includes('match')) && (
-                        <StyledError>This is an ERROR email</StyledError>
+                        <SC.StyledError>This is an ERROR email</SC.StyledError>
                       )) ||
                     (noUser && (
-                      <StyledError>Email or password is uncorrect</StyledError>
+                      <SC.StyledError>Email or password is uncorrect</SC.StyledError>
                     )) ||
                     (touched.email && (
-                      <StyledCorrect>This is an CORRECT email</StyledCorrect>
+                      <SC.StyledCorrect>This is an CORRECT email</SC.StyledCorrect>
                     ))}
-                </StyledFormDiv>
-                <StyledFormDiv>
-                  <Styledlabel
+                </SC.StyledFormDiv>
+                <SC.StyledFormDiv>
+                  <SC.Styledlabel
                     htmlFor="password"
                     $validate={
                       (errors.password === 'Please enter your password' &&
@@ -169,8 +155,8 @@ const LoginForm = () => {
                     }
                   >
                     Password
-                  </Styledlabel>
-                  <StyledFieldContainer
+                  </SC.Styledlabel>
+                  <SC.StyledFieldContainer
                     $validate={
                       (errors.password === 'Please enter your password' &&
                         touched.password &&
@@ -180,12 +166,12 @@ const LoginForm = () => {
                       (touched.password && 'okay')
                     }
                   >
-                    <StyledField
+                    <SC.StyledField
                       name="password"
                       type={!visibility ? 'password' : 'text'}
                       placeholder="• • • • • • •"
                     />
-                    <StyledButtonVisibility
+                    <SC.StyledButtonVisibility
                       type="button"
                       onClick={() => {
                         setVisibility(!visibility);
@@ -198,42 +184,42 @@ const LoginForm = () => {
                           <VisibilityOff color="primary" />
                         )}
                       </ThemeProvider>
-                    </StyledButtonVisibility>
-                  </StyledFieldContainer>
+                    </SC.StyledButtonVisibility>
+                  </SC.StyledFieldContainer>
                   {(errors.password === 'Please enter your password' &&
                     touched.password && (
-                      <StyledRequired>{errors.password}</StyledRequired>
+                      <SC.StyledRequired>{errors.password}</SC.StyledRequired>
                     )) ||
                     (errors.password &&
                       errors.password.includes(
                         'password must match the following'
                       ) &&
                       touched.password && (
-                        <StyledError>
+                        <SC.StyledError>
                           This password should contain at least eight characters
                           and at least one number and one letter
-                        </StyledError>
+                        </SC.StyledError>
                       )) ||
                     (errors.password && touched.password && (
-                      <StyledError>{errors.password}</StyledError>
+                      <SC.StyledError>{errors.password}</SC.StyledError>
                     )) ||
                     (noUser && (
-                      <StyledError>Email or password is uncorrect</StyledError>
+                      <SC.StyledError>Email or password is uncorrect</SC.StyledError>
                     )) ||
                     (touched.password && (
-                      <StyledCorrect>This is an CORRECT password</StyledCorrect>
+                      <SC.StyledCorrect>This is an CORRECT password</SC.StyledCorrect>
                     ))}
-                </StyledFormDiv>
-                <StyledButton type="submit">
+                </SC.StyledFormDiv>
+                <SC.StyledButton type="submit">
                   Log In
                   <SVG.LoginWhiteIcon />
-                </StyledButton>
-              </StyledForm>
+                </SC.StyledButton>
+              </SC.StyledForm>
             </>
           );
         }}
       </Formik>
-    </StyledContainer>
+    </SC.StyledContainer>
   );
 };
 
