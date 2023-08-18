@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { PeriodPaginator } from '../ChoosedMonth/PeriodPaginator/PeriodPaginator';
-import { PeriodTypeSelect } from '../ChoosedMonth/PeriodTypeSelect/PeriodTypeSelect';
+import { PeriodPaginator } from './PeriodPaginator/PeriodPaginator';
+import { PeriodTypeSelect } from './PeriodTypeSelect/PeriodTypeSelect';
 import * as SC from './CalendarToolbar.styled';
 import { format, addDays, parse } from 'date-fns';
 import PropTypes from 'prop-types';
@@ -9,10 +9,12 @@ import { useNavigate, useParams } from 'react-router';
 export const CalendarToolbar = ({ type = 'month' }) => {
   const params = useParams();
   const navigate = useNavigate();
-  const initialDate =
-    type === 'day'
-      ? parse(params.currentDate || params.currentDay, 'yyyy-MM-dd', new Date())
-      : new Date();
+
+  console.log(Boolean(params.currentDay));
+  const initialDate = params.currentDay
+    ? parse(params.currentDay, 'yyyy-MM-dd', new Date())
+    : new Date();
+
   const [currentDate, setCurrentDate] = useState(initialDate);
 
   const formatedDate =

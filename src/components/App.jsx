@@ -11,6 +11,7 @@ import useAuth from 'hooks/useAuth';
 import { ChoosedMonth } from './ChoosedMonth/ChoosedMonth';
 import { ChoosedDay } from './ChoosedDay/ChoosedDay';
 import { Toaster, toast } from 'react-hot-toast';
+import { format } from 'date-fns';
 
 const MainLayout = lazy(() => import('../pages/MainLayout/MainLayout'));
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
@@ -85,16 +86,21 @@ const App = () => {
             >
               <Route
                 index
-                element={<Navigate to="month/:currentDate" replace />}
+                element={
+                  <Navigate
+                    to={`month/${format(new Date(), 'MMMM').toLowerCase()}`}
+                    replace
+                  />
+                }
               />
               <Route
-                path="/calendar/month/:currentDate"
+                path="month/:currentDate"
                 element={
                   <PrivateRoute redirectTo="/" component={<ChoosedMonth />} />
                 }
               />
               <Route
-                path="/calendar/day/:currentDay"
+                path="day/:currentDay"
                 element={
                   <PrivateRoute redirectTo="/" component={<ChoosedDay />} />
                 }
