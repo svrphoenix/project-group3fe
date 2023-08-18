@@ -76,8 +76,11 @@ const updateUser = createAsyncThunk(
     try {
       const data = await authService.updateUser(credentials);
       return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+    } catch ({ response: { status, data } }) {
+      return thunkAPI.rejectWithValue({
+        status,
+        message: data.message,
+      });
     }
   }
 );
