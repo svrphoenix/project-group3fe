@@ -112,10 +112,19 @@ const App = () => {
                 <PrivateRoute redirectTo="/" component={<AccountPage />} />
               }
             />
+
             <Route
               path="/statistics"
               element={
-                <PrivateRoute redirectTo="/" component={<StatisticsPage />} />
+                <>
+                  <Navigate
+                    to={`?month=${
+                      new Date().getMonth() + 1
+                    }&day=${new Date().getDate()}`}
+                    replace
+                  />
+                  <StatisticsPage />
+                </>
               }
             />
           </Route>
