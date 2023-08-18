@@ -37,7 +37,7 @@ export const ChoosedDay = () => {
   return (
     <>
       <DayCalendarHead dateObject={dateObject} />
-      <ColumnsTasksList currentDay={currentDay} />
+      <ColumnsTasksList currentDay={currentDay} daysTasks={daysTasks} />
     </>
   );
 };

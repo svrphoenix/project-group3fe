@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { eachDayOfInterval, endOfWeek, startOfWeek } from 'date-fns';
 import { MonthCalendarHead } from 'components/ChoosedMonth/MonthCalendarHead/MonthCalendarHead';
 import { CalendarTable } from 'components/ChoosedMonth/CalendarTable/CalendarTable';
-import * as SC from './ChoosedMonth.styled';
 
 export const ChoosedMonth = () => {
   const currentDate = new Date();

@@ -31,7 +31,6 @@ export const MonthCalendarHead = ({ currentDate }) => {
   );
 };
 
-// MonthCalendarHead.propTypes = {
-//   width: PropTypes.number.isRequired,
-//   day: PropTypes.instanceOf(Date).isRequired,
-// };
+MonthCalendarHead.propTypes = {
+  currentDate: PropTypes.object.isRequired,
+};
