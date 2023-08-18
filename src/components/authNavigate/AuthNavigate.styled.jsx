@@ -14,13 +14,18 @@ export const StyledNavigate = styled(NavLink)`
     text-align: center;
     margin-top: 18px;
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    height: 30px;
+    padding: 10px 0px; 
+    width: 70px;
+    
     &:hover, &:focus {
         color: #2b78ef;
-        text-decoration-line: none;
+        text-decoration: none;
     }
     @media (min-width: 768px) {
     font-size: 18px;
     line-height: 1.33;
     margin-top: 24px;
+    width: 100px;
     }
 `;

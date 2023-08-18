@@ -3,18 +3,15 @@ import { Btn, Txt, Vector } from './LogoutBtn.styled';
 import { logout } from 'redux/auth/operations';
 import { useDispatch } from 'react-redux';
 import AddSvg from 'components/AddSvg/AddSvg';
-import { useNavigate } from 'react-router';
 
 const LogoutBtn = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   return (
     <Btn
-      type="submit"
+      type="button"
       onClick={() => {
         dispatch(logout());
-        navigate('/');
       }}
     >
       <Txt>Log out </Txt>
