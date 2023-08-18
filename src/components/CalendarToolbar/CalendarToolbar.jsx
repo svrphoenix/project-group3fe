@@ -7,20 +7,19 @@ import PropTypes from 'prop-types';
 import { useNavigate, useParams } from 'react-router';
 
 export const CalendarToolbar = ({ type = 'month' }) => {
-  const params = useParams();
+  const { currentDay } = useParams();
   const navigate = useNavigate();
 
-  console.log(Boolean(params.currentDay));
-  const initialDate = params.currentDay
-    ? parse(params.currentDay, 'yyyy-MM-dd', new Date())
+  console.log(Boolean(currentDay));
+  const initialDate = currentDay
+    ? parse(currentDay, 'yyyy-MM-dd', new Date())
     : new Date();
 
   const [currentDate, setCurrentDate] = useState(initialDate);
 
-  const formatedDate =
-    type === 'month'
-      ? format(currentDate, 'MMMM yyyy')
-      : format(currentDate, 'dd MMMM yyyy');
+  const formatedDate = currentDay
+    ? format(currentDate, 'dd MMMM yyyy')
+    : format(currentDate, 'MMMM yyyy');
 
   const prevHandleMonth = () => {
     const prevDate = new Date(
@@ -52,10 +51,10 @@ export const CalendarToolbar = ({ type = 'month' }) => {
     navigate(`/calendar/day/${format(nextDate, 'yyyy-MM-dd')}`);
   };
   const prevHandler = () => {
-    type === 'month' ? prevHandleMonth() : prevHandleDay();
+    currentDay ? prevHandleDay() : prevHandleMonth();
   };
   const nextHandler = () => {
-    type === 'month' ? nextHandleMonth() : nextHandleDay();
+    currentDay ? nextHandleDay() : nextHandleMonth();
   };
 
   return (
