@@ -1,19 +1,16 @@
+import { CalendarToolbar } from 'components/CalendarToolbar/CalendarToolbar';
 import { Loader } from 'components/Loader/Loader';
-import { format } from 'date-fns';
-import { Suspense, useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router';
+import { Suspense } from 'react';
+import { Outlet } from 'react-router';
 
 const CalendarPage = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    navigate(`/calendar/month/${format(new Date(), 'MM-yyyy').toLowerCase()}`);
-  }, [navigate]);
-
   return (
-    <Suspense fallback={<Loader />}>
-      <Outlet />
-    </Suspense>
+    <>
+      <CalendarToolbar />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
+    </>
   );
 };
 
