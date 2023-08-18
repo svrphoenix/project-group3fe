@@ -6,71 +6,8 @@ import { DayCalendarHead } from 'components/ChoosedDay/DayCalendarHead/DayCalend
 import { TasksColumnsList } from './TasksColumnsList/TasksColumnsList';
 
 export const ChoosedDay = () => {
-  const dispatch = useDispatch();
-  // const tasks = useSelector(selectTasks);
-  const tasks = [
-    {
-      title: 'Do a morning exercise Do a morning exercise',
-      start: '09:00',
-      end: '09:10',
-      priority: 'low',
-      date: '2023-08-18',
-      category: 'to-do',
-      owner: {
-        _id: 'tyd5eb99a3ed01b542412a78',
-        avatarURL:
-          'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/avatar-icon.png',
-      },
-    },
-    {
-      title: 'Buy milk',
-      start: '09:00',
-      end: '09:10',
-      priority: 'high',
-      date: '2023-08-18',
-      category: 'to-do',
-      owner: {
-        _id: 'tyd5eb99a3ed01b542412a87',
-        avatarURL: 'https://vrt.com/upload/avatar.jpg',
-      },
-    },
-    {
-      title: 'Buy bread',
-      start: '09:00',
-      end: '09:10',
-      priority: 'high',
-      date: '2023-08-18',
-      category: 'to-do',
-      owner: {
-        _id: 'tyd5eb99a3ed01b542412387',
-        avatarURL: 'https://vrt.com/upload/avatar.jpg',
-      },
-    },
-    {
-      title: 'Do something bad',
-      start: '09:00',
-      end: '09:10',
-      priority: 'medium',
-      date: '2023-08-18',
-      category: 'in-progress',
-      owner: {
-        _id: 'tyd5eb99a3ed01b542412a79',
-        avatarURL: 'https://vrt.com/upload/avatar.jpg',
-      },
-    },
-    {
-      title: 'Do something bad',
-      start: '09:00',
-      end: '09:10',
-      priority: 'medium',
-      date: '2023-08-18',
-      category: 'to-do',
-      owner: {
-        _id: 'tyd5eb99a3ed01b531412a79',
-        avatarURL: 'https://vrt.com/upload/avatar.jpg',
-      },
-    },
-  ];
+  const tasks = useSelector(selectTasks);
+
   const { currentDay } = useParams();
 
   const daysTasks = {
