@@ -8,12 +8,10 @@ import {
   StyledButton,
   StyledButtonVisibility,
   StyledContainer,
-  // StyledContainerPassword,
   StyledCorrect,
   StyledError,
   StyledField,
   StyledFieldContainer,
-  // StyledFieldPassword,
   StyledForm,
   StyledFormDiv,
   StyledHeader,
@@ -51,15 +49,13 @@ const LoginSchema = Yup.object().shape({
 const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [noUser, setNoUser] = useState(false); //юзер береться із стейта - const { isLoading, isLoggedIn, error } = useAuth(); а саме isLoggedIn
-  
-
+  const [noUser, setNoUser] = useState(false);
   const [visibility, setVisibility] = useState(false);
-  // const [isLoading, setIsLoading] = useState(false);
   const { isLoading, isLoggedIn, error } = useAuth();
 
   const handleSubmit = (values, { resetForm }) => {
     dispatch(login({ email: values.email, password: values.password }));
+    console.log(isLoggedIn)
     if (isLoggedIn) {
       resetForm();
       navigate('/calendar/month/:currentDate');
@@ -68,7 +64,11 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (error.status) {
-      toast.error(error.message);
+      if (error.status === 401||error.status === 403) {
+        setNoUser(true);
+      } else {
+        toast.error(error.message);
+      }
     }
   }, [error.message, error.status]);
 

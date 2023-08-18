@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
@@ -8,12 +8,10 @@ import {
     StyledButton,
     StyledButtonVisibility,
     StyledContainer,
-    // StyledContainerPassword,
     StyledCorrect,
     StyledError,
     StyledField,
     StyledFieldContainer,
-    // StyledFieldPassword,
     StyledForm,
     StyledFormDiv,
     StyledHeader,
@@ -27,7 +25,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { SVG } from 'images';
 import { Loader } from 'components/Loader/Loader';
 import { toast } from 'react-hot-toast';
-// import { selectError } from 'redux/tasks/selectors';
 import useAuth from 'hooks/useAuth';
 
 const theme = createTheme({
@@ -58,33 +55,26 @@ const RegisterForm = () => {
     const dispatch = useDispatch();
     const [usedEmail, setUsedEmail] = useState(false);
     const [visibility, setVisibility] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-    const errorStatus = useAuth().error.status;
+    const { isLoading, isLoggedIn, error } = useAuth();
 
-    const handleSubmit = async (values, { resetForm }) => {
-        try {
-            setIsLoading(true);
-            await dispatch(
-                register({
-                    name: values.name,
-                    email: values.email,
-                    password: values.password,
-                }));
-            console.log(errorStatus)
-            if (!errorStatus) {
-                resetForm();
-                navigate("/calendar");
-            } else {
-                if (errorStatus==="409") {
-                    setUsedEmail(true);
-                }
-            }
-            setIsLoading(false);
-        } catch (error) {
-            setIsLoading(false);
-            toast.error("Sorry, problem at server");
+
+    const handleSubmit = (values, { resetForm }) => {
+        dispatch(register({ name: values.name, email: values.email, password: values.password }));
+        if (isLoggedIn) {
+            resetForm();
+            navigate('/calendar/month/:currentDate');
         }
     }
+
+    useEffect(() => {
+    if (error.status) {
+      if (error.status === 409) {
+        setUsedEmail(true);
+      } else {
+        toast.error(error.message);
+      }
+    }
+  }, [error.message, error.status]);
 
     return (<StyledContainer>
         <StyledHeader>Sign Up</StyledHeader>
@@ -100,7 +90,6 @@ const RegisterForm = () => {
             onSubmit={handleSubmit}
         >
             {({ errors, touched }) => {
-                console.log(errorStatus)
                 return (
                     <>
                         {isLoading&&<Loader/>}
