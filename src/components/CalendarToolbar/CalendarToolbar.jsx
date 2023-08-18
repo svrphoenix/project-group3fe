@@ -10,7 +10,6 @@ export const CalendarToolbar = ({ type = 'month' }) => {
   const { currentDay } = useParams();
   const navigate = useNavigate();
 
-  console.log(Boolean(currentDay));
   const initialDate = currentDay
     ? parse(currentDay, 'yyyy-MM-dd', new Date())
     : new Date();
