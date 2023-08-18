@@ -20,3 +20,16 @@ export const StyledSharedContainer = styled.div`
   transform: translate(-50%, -50%);
   margin: 0 auto;
 `
+
+export const StyledPicture = styled.picture`
+  position: absolute;
+  bottom: 19px;
+  right: 60px;
+`
+
+export const StyledImg = styled.img`
+  display:none;
+  @media (min-width: 1440px) {
+    display:block;
+  }
+`

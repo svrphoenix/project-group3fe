@@ -22,6 +22,11 @@ import logox2 from '../images/logo/webp/GOOSE-m@2.webp';
 import logoXl from '../images/logo/webp/GOOSE.webp';
 import logox2Xl from '../images/logo/webp/GOOSE@2.webp';
 
+import registerx1 from '../images/desc/webp/sign-up-1x.webp';
+import registerx2 from '../images/desc/webp/sign-up-2x.webp';
+import loginx1 from '../images/desc/webp/log-in-1x.webp';
+import loginx2 from '../images/desc/webp/log-in-2x.webp';
+
 import defaultAvatar from '../images/icons/avatarDefault.svg';
 
 import { ReactComponent as LoginIcon } from '../images/icons/login.svg';
@@ -69,4 +74,8 @@ export const IMG = {
   logoXl,
   logox2Xl,
   defaultAvatar,
+  registerx1,
+  registerx2,
+  loginx1,
+  loginx2,
 };
