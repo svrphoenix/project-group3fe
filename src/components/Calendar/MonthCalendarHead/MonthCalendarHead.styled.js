@@ -8,4 +8,8 @@ export const Day = styled.div`
   &:nth-last-child(-n + 2) {
     color: #3e85f3;
   }
+  @media screen and (max-width: 335px) {
+    font-size: 4.776vw;
+    padding: 16px 8px;
+  }
 `;

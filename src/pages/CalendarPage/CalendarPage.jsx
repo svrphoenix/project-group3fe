@@ -7,7 +7,7 @@ const CalendarPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate(`/calendar/month/${format(new Date(), 'MMMM').toLowerCase()}`);
+    navigate(`/calendar/month/${format(new Date(), 'MM-yyyy').toLowerCase()}`);
   }, [navigate]);
 
   return (
