@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-import { Field as FieldFormik, Form as FormFormik } from 'formik';
+import {
+  Field as FieldFormik,
+  Form as FormFormik,
+  ErrorMessage as FormikErrorMessage,
+} from 'formik';
 import DatePicker from 'react-datepicker';
 
-//  @media screen and (min-width: 768px) and (max-width: 1439px)
 export const StyledPageWrapper = styled.div`
-  /* flex: 1; */
-  /* display: flex; */
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -62,7 +63,6 @@ export const Column = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 10px;
 
   @media screen and (min-width: 1440px) {
     &:nth-child(1) {
@@ -202,6 +202,11 @@ export const StyledBtnLink = styled.a`
   height: 14px;
   background-color: #3e85f3;
   border-radius: 50%;
+  &:hover,
+  &:focus {
+    background-color: #2b78ef;
+    box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
+  }
   @media screen and (min-width: 768px) {
     width: 18px;
     height: 18px;
@@ -251,11 +256,17 @@ export const StyledBtn = styled.button`
   line-height: 18px;
   letter-spacing: 0em;
   text-align: center;
-  background-color: #3e85f3;
+  background-color: ${props => (props.disabled ? '#ccc' : '#3e85f3')};
   color: #fff;
   border-width: 0;
   margin: 0 auto;
   margin-top: 18px;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    background-color: ${props => (props.disabled ? '#ccc' : '#2b78ef')};
+    box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
+  }
   @media screen and (min-width: 768px) {
     width: 262px;
   }
@@ -294,4 +305,14 @@ export const StyledDatePicker = styled(DatePicker)`
     width: 354px;
     font-size: 16px;
   }
+`;
+
+export const ErrorMessage = styled(FormikErrorMessage)`
+  color: #e74a3b;
+  font-family: 'Inter Regular';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  margin-top: 8px;
 `;

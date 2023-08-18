@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   StyledAvatarContainer,
   StyledAvatarText,
@@ -8,12 +8,10 @@ import {
 import { AddIconMediaSizes } from './Icons';
 import useAuth from 'hooks/useAuth';
 
-export const FileUploadComponent = ({
-  handleFiles,
-  fileInputRef,
-  fileListRef,
-}) => {
+export const FileUploadComponent = ({ handleFiles, fileListRef }) => {
   const { user } = useAuth();
+  const fileInputRef = useRef(null);
+
   const firstLetterUserName = user.name.charAt(0).toUpperCase();
 
   const handleFileSelect = () => {
@@ -45,17 +43,4 @@ export const FileUploadComponent = ({
       </StyledAvatarContainer>
     </StyledAvatarWrapper>
   );
-};
-
-export const createElement = event => {
-  const files = event.target.files;
-
-  const img = document.createElement('img');
-  img.src = window.URL.createObjectURL(files[0]);
-  img.height = 60;
-  img.onload = function () {
-    window.URL.revokeObjectURL(this.src);
-  };
-
-  return img;
 };

@@ -1,5 +1,5 @@
 import 'react-datepicker/dist/react-datepicker.css';
-import { Formik, ErrorMessage, useFormik } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 import {
   FormField,
@@ -14,30 +14,40 @@ import {
   StyledDatePicker,
   StyledCalendar,
   Column,
+  ErrorMessage,
 } from './UserForm.styled';
-import { FileUploadComponent, createElement } from './FileUploadComponent';
+import { FileUploadComponent } from './FileUploadComponent';
 import { useRef, useState } from 'react';
 import useAuth from 'hooks/useAuth';
-import { formatDate } from './formatDate';
 import { useDispatch } from 'react-redux';
 import { updateUser } from 'redux/auth/operations';
 import { ChevronDownIcon } from './Icons';
+import { createIMGElement } from './createIMGElement';
 
 const UserSchema = Yup.object().shape({
-  // name: Yup.string()
-  //   .min(3, 'minimum 3 letters')
-  //   .max(20)
-  //   .required('Please enter your name'),
-  // birthday: Yup.string().matches(
-  //   /^d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[01])$/
-  // ),
-  // email: Yup.string()
-  //   .matches(/^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/)
-  //   .required('Please enter your email'),
-  // phone: Yup.string().matches(/^38 \(\d{3}\) \d{3} \d{2} \d{2}$/),
-  // skype: Yup.string().matches(
-  //   /^(\+\d{1,3}\s?)?(?:\(\d{1,4}\)|\d{1,4})\s?\d{1,4}-?\d{1,4}$/
-  // ),
+  avatar: Yup.string().nullable(),
+  name: Yup.string()
+    .min(3, 'minimum 3 letters')
+    .max(20)
+    .required('Please enter your name'),
+  birthday: Yup.string().matches(
+    /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[01])$/,
+    'Please enter your birthday in format yyyy-mm-dd'
+  ),
+  email: Yup.string()
+    .matches(
+      /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/,
+      'Please enter your email in format example@gmail.com'
+    )
+    .required('Please enter your email'),
+  phone: Yup.string().matches(
+    /^(\+\d{1,3}|\d{1,3}) \(\d{3}\) \d{3} \d{2} \d{2}$/,
+    'Please enter your phone in format +38 (333) 444 77 99'
+  ),
+  skype: Yup.string().matches(
+    /^(\+\d{1,3}|\d{1,3}) \(\d{3}\) \d{3} \d{2} \d{2}$/,
+    'Please enter your skype number in format +38 (333) 444 77 99'
+  ),
 });
 
 export const UserForm = () => {
@@ -45,62 +55,52 @@ export const UserForm = () => {
   const dispatch = useDispatch();
 
   const [startDate, setStartDate] = useState(
-    new Date() || new Date(user.birthday)
+    new Date(user.birthday) || new Date()
   );
-  const [userName, setUserName] = useState(user.name);
-  const [userEmail, setUserEmail] = useState(user.email);
-  const [userPhone, setUserPhone] = useState(user.phone || '');
-  const [userSype, setUserSype] = useState(user.skype || '');
   const [userAvatar, setUserAvatar] = useState(null);
-  const fileInputRef = useRef(null);
-  const fileListRef = useRef(null);
-  const form = useRef(null);
+  const [formChanged, setFormChanged] = useState(false);
 
-  // const todayDate = new Date().toISOString().slice(0, 10);
-  // console.log(todayDate);
-  // console.log(user);
-  // console.log(startDate);
+  const form = useRef(null);
+  const fileListRef = useRef(null);
+
+  const todayDate = startDate.toISOString().slice(0, 10);
+
+  const handleFormChange = () => {
+    setFormChanged(true);
+  };
 
   const handleFiles = event => {
-    const img = createElement(event);
+    const img = createIMGElement(event);
     fileListRef.current.innerHTML = '';
     fileListRef.current.appendChild(img);
 
     setUserAvatar(event.currentTarget.files[0]);
+    handleFormChange();
   };
 
   return (
     <StyledFormWrapper>
       <Formik
         initialValues={{
-          avatar: '',
-          name: userName,
-          birthday: '',
-          email: '',
-          phone: '',
-          skype: '',
+          avatar: userAvatar,
+          name: user.name,
+          birthday: todayDate || user.birthday,
+          email: user.email,
+          phone: user.phone || '',
+          skype: user.skype || '',
         }}
         validationSchema={UserSchema}
-        onSubmit={async values => {
-          const data = new FormData(form.current);
-          dispatch(updateUser(data));
-          for (let obj of data) {
-            console.log(obj);
+        onSubmit={async (values, { setSubmitting }) => {
+          if (formChanged) {
+            const data = new FormData(form.current);
+            dispatch(updateUser(data));
           }
-          console.log(values);
-
-          const formattedDate = formatDate(startDate);
-          // console.log(formattedDate);
-          // 38 (123) 456 78 90
-          //  birthday: '',
-          // birthdayRegex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[01])$/;
         }}
       >
         <Form ref={form}>
           <FormField>
             <FileUploadComponent
               handleFiles={handleFiles}
-              fileInputRef={fileInputRef}
               fileListRef={fileListRef}
             />
           </FormField>
@@ -114,17 +114,18 @@ export const UserForm = () => {
                   id="name"
                   name="name"
                   placeholder="Name"
-                  value={userName}
-                  onChange={evt => {
-                    setUserName(evt.target.value);
-                  }}
+                  onBlur={() => handleFormChange()}
                 />
+                <ErrorMessage name="name" component="div" />
               </FormField>
               <StyledCalendar>
                 <StyledLabelText>Birthday</StyledLabelText>
                 <StyledDatePicker
                   selected={startDate}
-                  onChange={date => setStartDate(date)}
+                  onChange={date => {
+                    setStartDate(date);
+                  }}
+                  onBlur={() => handleFormChange()}
                   dateFormat="yyyy-MM-dd"
                   name="birthday"
                 />
@@ -137,9 +138,9 @@ export const UserForm = () => {
                   name="email"
                   placeholder="example.com"
                   type="email"
-                  value={userEmail}
-                  onChange={evt => setUserEmail(evt.target.value)}
+                  onBlur={() => handleFormChange()}
                 />
+                <ErrorMessage name="email" component="div" />
               </FormField>
             </Column>
             <Column>
@@ -150,28 +151,28 @@ export const UserForm = () => {
                   name="phone"
                   placeholder="38 (097) 222 33 77"
                   type="tel"
-                  value={userPhone}
-                  onChange={evt => setUserPhone(evt.target.value)}
+                  onBlur={() => handleFormChange()}
                 />
+                <ErrorMessage name="phone" component="div" />
               </FormField>
               <FormField>
                 <StyledLabelText>Skype</StyledLabelText>
                 <Field
                   id="skype"
                   name="skype"
-                  placeholder="38 (097) 222 33 77"
+                  placeholder="Add a skype number"
                   type="text"
-                  value={userSype}
-                  onChange={evt => setUserSype(evt.target.value)}
+                  onBlur={() => handleFormChange()}
                 />
+                <ErrorMessage name="skype" component="div" />
               </FormField>
             </Column>
           </StyledLabelWrapp>
-          <StyledBtn type="submit">Save changes</StyledBtn>
+          <StyledBtn type="submit" disabled={!formChanged}>
+            Save changes
+          </StyledBtn>
         </Form>
       </Formik>
     </StyledFormWrapper>
   );
 };
-
-// <ErrorMessage name="name" component="div" />;

@@ -53,10 +53,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.user = payload.user;
       })
-      .addCase(updateUser.pending, (state, _) => {
-        state.isLoading = true;
-        state.error = '';
-      })
+      .addCase(updateUser.pending, handlePending)
       .addCase(
         updateUser.fulfilled,
         (
@@ -72,10 +69,7 @@ const authSlice = createSlice({
           state.user.avatarURL = avatarURL;
         }
       )
-      .addCase(updateUser.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload;
-      })
+      .addCase(updateUser.rejected, handleRejected)
       .addMatcher(
         isAnyOf(
           register.pending,
