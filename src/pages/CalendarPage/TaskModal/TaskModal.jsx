@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal } from 'components/Modal/Modal';
 import TaskForm from '../TaskForm/TaskForm';
-
+import { TaskBtn } from './TaskModal.styled';
 
 export const TaskModal = ({ status, ...props }) => {
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
@@ -16,7 +16,7 @@ export const TaskModal = ({ status, ...props }) => {
 
   return (
     <>
-      <button onClick={openModal}>+ Add task</button>
+      <TaskBtn onClick={openModal}>+ Add task</TaskBtn>
       {isTaskModalOpen && (
         <Modal onToggleModal={closeModal}>
           <TaskForm closeModal={closeModal} {...props} />

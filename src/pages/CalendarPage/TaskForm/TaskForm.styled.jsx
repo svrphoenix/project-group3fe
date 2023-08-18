@@ -2,15 +2,22 @@ import styled from 'styled-components';
 
 
 export const TaskFormStyled = styled.form`
-  width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 16px;
+
+  @media screen and (min-width: 768px) {
+    gap: 18px;
+  }
 `;
 
 export const TaskLabelStyled = styled.label`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+  font-family: 'Inter';
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  margin-bottom: 8px;
+  color: rgba(250, 250, 250, 0.3);
 `;
 
 export const TaskInputStyled = styled.input`
