@@ -82,19 +82,20 @@ const App = () => {
               element={
                 <PrivateRoute redirectTo="/" component={<CalendarPage />} />
               }
-            />
-            <Route
-              path="/calendar/month/:currentDate"
-              element={
-                <PrivateRoute redirectTo="/" component={<ChoosedMonth />} />
-              }
-            />
-            <Route
-              path="/calendar/day/:currentDay"
-              element={
-                <PrivateRoute redirectTo="/" component={<ChoosedDay />} />
-              }
-            />
+            >
+              <Route
+                path="/calendar/month/:currentDate"
+                element={
+                  <PrivateRoute redirectTo="/" component={<ChoosedMonth />} />
+                }
+              />
+              <Route
+                path="/calendar/day/:currentDay"
+                element={
+                  <PrivateRoute redirectTo="/" component={<ChoosedDay />} />
+                }
+              />
+            </Route>
             <Route
               path="/account"
               element={

@@ -1,11 +1,9 @@
+import { eachDayOfInterval, endOfWeek, format, startOfWeek } from 'date-fns';
+import * as SC from './MonthCalendarHead.styled';
+import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-import { eachDayOfInterval, endOfWeek, startOfWeek } from 'date-fns';
-import { MonthCalendarHead } from 'components/ChoosedMonth/MonthCalendarHead/MonthCalendarHead';
-import { CalendarTable } from 'components/ChoosedMonth/CalendarTable/CalendarTable';
-import * as SC from './ChoosedMonth.styled';
 
-export const ChoosedMonth = () => {
-  const currentDate = new Date();
+export const MonthCalendarHead = ({ currentDate }) => {
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -23,13 +21,17 @@ export const ChoosedMonth = () => {
   });
 
   return (
-    <>
-      <MonthCalendarHead
-        currentDate={currentDate}
-        width={width}
-        daysOfWeek={daysOfWeek}
-      />
-      <CalendarTable currentDate={currentDate} />
-    </>
+    <SC.DaysOfWeekWrapper>
+      {daysOfWeek.map(day => (
+        <SC.Day key={day}>
+          {width > 768 ? format(day, 'EEE') : format(day, 'EEEEE')}
+        </SC.Day>
+      ))}
+    </SC.DaysOfWeekWrapper>
   );
 };
+
+// MonthCalendarHead.propTypes = {
+//   width: PropTypes.number.isRequired,
+//   day: PropTypes.instanceOf(Date).isRequired,
+// };
