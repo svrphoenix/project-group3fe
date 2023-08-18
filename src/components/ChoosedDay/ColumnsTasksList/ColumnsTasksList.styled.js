@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+
 export const ScrollableContainer = styled.div`
   display: grid;
   justify-content: center;

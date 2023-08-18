@@ -1,22 +1,10 @@
-import { useEffect, useState } from 'react';
-import { PeriodPaginator } from '../PeriodPaginator/PeriodPaginator';
-import { PeriodTypeSelect } from '../PeriodTypeSelect/PeriodTypeSelect';
-import { MonthCalendarHead } from '../MonthCalendarHead/MonthCalendarHead';
-import { DayCalendarHead } from '../DayCalendarHead/DayCalendarHead';
+import { useState } from 'react';
+import { PeriodPaginator } from '../ChoosedMonth/PeriodPaginator/PeriodPaginator';
+import { PeriodTypeSelect } from '../ChoosedMonth/PeriodTypeSelect/PeriodTypeSelect';
 import * as SC from './CalendarToolbar.styled';
-import {
-  startOfWeek,
-  endOfWeek,
-  eachDayOfInterval,
-  format,
-  isSameDay,
-  addDays,
-  parse,
-} from 'date-fns';
+import { format, addDays, parse } from 'date-fns';
 import PropTypes from 'prop-types';
 import { useNavigate, useParams } from 'react-router';
-import { CalendarTable } from '../CalendarTable/CalendarTable';
-import { ComponentChooseDay } from 'components/ChoosedDay/TasksColumnsList/TasksColumnsList';
 
 export const CalendarToolbar = ({ type = 'month' }) => {
   const params = useParams();
@@ -26,26 +14,12 @@ export const CalendarToolbar = ({ type = 'month' }) => {
       ? parse(params.currentDate || params.currentDay, 'yyyy-MM-dd', new Date())
       : new Date();
   const [currentDate, setCurrentDate] = useState(initialDate);
-  const [width, setWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleWindowResize = () => setWidth(window.innerWidth);
-    window.addEventListener('resize', handleWindowResize);
-
-    return () => window.removeEventListener('resize', handleWindowResize);
-  }, []);
 
   const formatedDate =
     type === 'month'
       ? format(currentDate, 'MMMM yyyy')
       : format(currentDate, 'dd MMMM yyyy');
 
-  const startDayOfWeek = startOfWeek(currentDate, { weekStartsOn: 1 });
-  const endDayOfWeek = endOfWeek(currentDate, { weekStartsOn: 1 });
-  const daysOfWeek = eachDayOfInterval({
-    start: startDayOfWeek,
-    end: endDayOfWeek,
-  });
   const prevHandleMonth = () => {
     const prevDate = new Date(
       currentDate.getFullYear(),
@@ -81,10 +55,6 @@ export const CalendarToolbar = ({ type = 'month' }) => {
   const nextHandler = () => {
     type === 'month' ? nextHandleMonth() : nextHandleDay();
   };
-  const onClickDay = day => {
-    setCurrentDate(day);
-    navigate(`/calendar/day/${format(day, 'yyyy-MM-dd')}`);
-  };
 
   return (
     <>
@@ -94,27 +64,8 @@ export const CalendarToolbar = ({ type = 'month' }) => {
           prevHandler={prevHandler}
           nextHandler={nextHandler}
         />
-        <PeriodTypeSelect type={type} />
+        <PeriodTypeSelect />
       </SC.CalendarToolbarWrapper>
-      <SC.DaysOfWeekWrapper>
-        {daysOfWeek.map(day => {
-          const isActive = isSameDay(day, currentDate);
-
-          return type === 'month' ? (
-            <MonthCalendarHead key={day} day={day} width={width} />
-          ) : (
-            <DayCalendarHead
-              key={day}
-              day={day}
-              width={width}
-              isActive={isActive}
-              onClick={() => onClickDay(day)}
-            />
-          );
-        })}
-      </SC.DaysOfWeekWrapper>
-      {type === 'month' && <CalendarTable currentDate={currentDate} />}
-      {type === 'day' && <ComponentChooseDay />}
     </>
   );
 };

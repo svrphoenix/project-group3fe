@@ -1,6 +1,11 @@
 import { styled } from 'styled-components';
 
-export const Day = styled.div`
+export const WeekdayBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const Weekday = styled.div`
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -10,7 +15,7 @@ export const Day = styled.div`
     color: #3e85f3;
   }
 `;
-export const DayNumber = styled.span`
+export const DayNumber = styled.div`
   color: #343434;
   font-family: 'Inter Bold';
   font-size: 12px;

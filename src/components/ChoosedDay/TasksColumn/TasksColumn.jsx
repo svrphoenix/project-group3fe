@@ -79,7 +79,7 @@ export const TasksColumn = ({ currentDay }) => {
         </SC.TasksBox>
         <SC.CreateTasksBtn onClick={onToggleModal}>Add task</SC.CreateTasksBtn>
       </SC.DaysTasksContainer>
-      <SC.DaysTasksContainer onClick={onSetCategory} data-custom="add-task">
+      <SC.DaysTasksContainer onClick={onSetCategory} data-custom="in-progress">
         <SC.TasksHeader>
           <SC.TasksTitle>In progress</SC.TasksTitle>
           <SC.IconBtn onClick={onToggleModal} aria-label="add task">
@@ -88,7 +88,7 @@ export const TasksColumn = ({ currentDay }) => {
         </SC.TasksHeader>
         <SC.TasksBox>
           {tasks
-            .filter(task => task.category === 'add-task')
+            .filter(task => task.category === 'in-progress')
             .map(task => (
               <SC.TaskItem key={task._id}>
                 <SC.TaskDescr>{task.title}</SC.TaskDescr>
