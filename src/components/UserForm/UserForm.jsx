@@ -34,21 +34,21 @@ const UserSchema = Yup.object().shape({
     .required('Please enter your name'),
   birthday: Yup.string().matches(
     /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[01])$/,
-    'Please enter your birthday in format yyyy-mm-dd'
+    'Please use format yyyy-mm-dd'
   ),
   email: Yup.string()
     .matches(
       /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/,
-      'Please enter your email in format example@gmail.com'
+      'Please use format example@gmail.com'
     )
     .required('Please enter your email'),
   phone: Yup.string().matches(
     /^(\+\d{1,3}|\d{1,3}) \(\d{3}\) \d{3} \d{2} \d{2}$/,
-    'Please enter your phone in format +38 (333) 444 77 99'
+    'Please use format +38 (333) 444 77 99'
   ),
   skype: Yup.string().matches(
     /^(\+\d{1,3}|\d{1,3}) \(\d{3}\) \d{3} \d{2} \d{2}$/,
-    'Please enter your skype number in format +38 (333) 444 77 99'
+    'Please use  format +38 (333) 444 77 99'
   ),
 });
 
