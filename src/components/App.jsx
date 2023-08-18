@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
@@ -11,6 +11,7 @@ import useAuth from 'hooks/useAuth';
 import { ChoosedMonth } from './ChoosedMonth/ChoosedMonth';
 import { ChoosedDay } from './ChoosedDay/ChoosedDay';
 import { Toaster, toast } from 'react-hot-toast';
+import { format } from 'date-fns';
 
 const MainLayout = lazy(() => import('../pages/MainLayout/MainLayout'));
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
@@ -82,19 +83,29 @@ const App = () => {
               element={
                 <PrivateRoute redirectTo="/" component={<CalendarPage />} />
               }
-            />
-            <Route
-              path="/calendar/month/:currentDate"
-              element={
-                <PrivateRoute redirectTo="/" component={<ChoosedMonth />} />
-              }
-            />
-            <Route
-              path="/calendar/day/:currentDay"
-              element={
-                <PrivateRoute redirectTo="/" component={<ChoosedDay />} />
-              }
-            />
+            >
+              <Route
+                index
+                element={
+                  <Navigate
+                    to={`month/${format(new Date(), 'MMMM').toLowerCase()}`}
+                    replace
+                  />
+                }
+              />
+              <Route
+                path="month/:currentDate"
+                element={
+                  <PrivateRoute redirectTo="/" component={<ChoosedMonth />} />
+                }
+              />
+              <Route
+                path="day/:currentDay"
+                element={
+                  <PrivateRoute redirectTo="/" component={<ChoosedDay />} />
+                }
+              />
+            </Route>
             <Route
               path="/account"
               element={
