@@ -43,13 +43,13 @@ const LoginForm = () => {
     dispatch(login({ email: values.email, password: values.password }));
     if (isLoggedIn) {
       resetForm();
-      navigate('/calendar/month/:currentDate');
+      navigate('/calendar');
     }
   };
 
   useEffect(() => {
     if (error.status) {
-      if (error.status === 401||error.status === 403) {
+      if (error.status === 401 || error.status === 403) {
         setNoUser(true);
       } else {
         toast.error(error.message);
@@ -135,10 +135,14 @@ const LoginForm = () => {
                         <SC.StyledError>This is an ERROR email</SC.StyledError>
                       )) ||
                     (noUser && (
-                      <SC.StyledError>Email or password is uncorrect</SC.StyledError>
+                      <SC.StyledError>
+                        Email or password is uncorrect
+                      </SC.StyledError>
                     )) ||
                     (touched.email && (
-                      <SC.StyledCorrect>This is an CORRECT email</SC.StyledCorrect>
+                      <SC.StyledCorrect>
+                        This is an CORRECT email
+                      </SC.StyledCorrect>
                     ))}
                 </SC.StyledFormDiv>
                 <SC.StyledFormDiv>
@@ -203,10 +207,14 @@ const LoginForm = () => {
                       <SC.StyledError>{errors.password}</SC.StyledError>
                     )) ||
                     (noUser && (
-                      <SC.StyledError>Email or password is uncorrect</SC.StyledError>
+                      <SC.StyledError>
+                        Email or password is uncorrect
+                      </SC.StyledError>
                     )) ||
                     (touched.password && (
-                      <SC.StyledCorrect>This is an CORRECT password</SC.StyledCorrect>
+                      <SC.StyledCorrect>
+                        This is an CORRECT password
+                      </SC.StyledCorrect>
                     ))}
                 </SC.StyledFormDiv>
                 <SC.StyledButton type="submit">
