@@ -1,10 +1,9 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
 import { toast } from 'react-hot-toast';
-
 import {
   TaskFormStyled,
   TaskContainer,
@@ -19,9 +18,9 @@ import {
   AddButton,
   CancelBtn,
   EditButton,
-  EditIcon,
+  StyledAddIcon,
+  StyledEditIcon,
 } from './TaskForm.styled';
-import { AddIcon } from 'components/UserForm/AddIcon';
 
 import { addTask, patchTask } from 'redux/tasks/operations';
 import { selectTasks } from 'redux/tasks/selectors';
@@ -58,9 +57,20 @@ const TaskForm = ({
   const validDate = useDateValidation();
   const currentDay = format(validDate, 'yyyy-MM-dd');
 
+  useEffect(() => {
+    if (editTask) {
+      setTitle(editTask.title);
+      setStart(editTask.start);
+      setEnd(editTask.end);
+      setPriority(editTask.priority);
+      setSelectedOption(editTask.priority);
+    }
+  }, [editTask]);
+
   const handleOptionChange = event => {
-    setSelectedOption(event.target.value);
-    setPriority(event.target.value);
+    const value = event.target.value;
+    setSelectedOption(value);
+    setPriority(value);
   };
 
   const handleSubmit = async e => {
@@ -257,14 +267,13 @@ const TaskForm = ({
       <ButtonContainer>
         {editBtnVisible ? (
           <EditButton type="submit">
-            <EditIcon>
-              <use xlinkHref="/sprite.svg#icon-pencil"></use>
-            </EditIcon>
+            <StyledEditIcon color="#fff" size={14.5} />
+            Edit
           </EditButton>
         ) : (
           <>
             <AddButton type="submit">
-              <AddIcon color="#fff" size={16} />
+              <StyledAddIcon color="#fff" size={11.7} />
               Add
             </AddButton>
             <CancelBtn type="button" onClick={onCloseModal}>
