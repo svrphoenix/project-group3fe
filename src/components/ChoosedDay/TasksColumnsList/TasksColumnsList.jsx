@@ -10,7 +10,7 @@ export const TasksColumnsList = ({ daysTasks }) => {
 
   return (
     <SC.ScrollableContainer>
-      <SC.DaystasksWrapper>
+      <SC.TasksColumnWrapper>
         <TasksColumn
           columnTasks={daysTasks.todo}
           columnTitle={columnsTitles.todo}
@@ -23,7 +23,7 @@ export const TasksColumnsList = ({ daysTasks }) => {
           columnTasks={daysTasks.done}
           columnTitle={columnsTitles.done}
         />
-      </SC.DaystasksWrapper>
+      </SC.TasksColumnWrapper>
     </SC.ScrollableContainer>
   );
 };
