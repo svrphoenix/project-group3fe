@@ -68,4 +68,19 @@ const refreshCurrentUser = createAsyncThunk(
   }
 );
 
-export { register, logout, login, refreshCurrentUser };
+const updateUser = createAsyncThunk(
+  'auth/user',
+  async (credentials, thunkAPI) => {
+    try {
+      const data = await authService.updateUser(credentials);
+      return data;
+    } catch ({ response: { status, data } }) {
+      return thunkAPI.rejectWithValue({
+        status,
+        message: data.message,
+      });
+    }
+  }
+);
+
+export { register, logout, login, refreshCurrentUser, updateUser };

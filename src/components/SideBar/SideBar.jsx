@@ -4,8 +4,6 @@ import UserNav from './UserNav';
 import LogoutBtn from './LogoutBtn';
 
 const SideBar = ({ isSideBarOpened, openSideBar, closeSideBar }) => {
-  console.log('Show state: ', isSideBarOpened);
-
   return (
     <>
       <SideBarBox

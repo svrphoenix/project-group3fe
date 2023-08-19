@@ -34,3 +34,8 @@ export const getCurrent = async persistedToken => {
   const { data } = await api.get('/users/current');
   return data;
 };
+
+export const updateUser = async credentials => {
+  const { data } = await api.patch('/users/user', credentials);
+  return data;
+};
