@@ -19,7 +19,7 @@ const getAllReviews = async () => {
   }
 };
 
-export const ReviewsSlider = () => {
+const ReviewsSlider = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
     (async function () {
@@ -44,6 +44,7 @@ export const ReviewsSlider = () => {
           modules={[Autoplay]}
           spaceBetween={24}
           slidesPerView={1}
+          loop={true}
           autoplay={{ delay: 2500 }}
           breakpoints={sliderSettings}
           onBeforeInit={swiper => {
@@ -81,3 +82,5 @@ export const ReviewsSlider = () => {
     </SC.SectionReview>
   );
 };
+
+export default ReviewsSlider;

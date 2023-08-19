@@ -12,11 +12,12 @@ export const Cells = styled.ul`
   margin-top: 14px;
 `;
 export const Cell = styled.li`
+  position: relative;
   display: flex;
   height: 94px;
   padding: 8px 4px 2px 4px;
   border: 1px solid #eff2f3;
-  overflow: hidden;
+  /* overflow: hidden; */
 
   @media screen and (min-width: 768px) {
     min-height: 144px;
