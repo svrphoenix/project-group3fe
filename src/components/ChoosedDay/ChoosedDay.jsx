@@ -37,6 +37,18 @@ export const ChoosedDay = () => {
       },
     },
     {
+      title: 'Buy bread',
+      start: '09:00',
+      end: '09:10',
+      priority: 'high',
+      date: '2023-08-18',
+      category: 'to-do',
+      owner: {
+        _id: 'tyd5eb99a3ed01b542412387',
+        avatarURL: 'https://vrt.com/upload/avatar.jpg',
+      },
+    },
+    {
       title: 'Do something bad',
       start: '09:00',
       end: '09:10',
@@ -45,6 +57,18 @@ export const ChoosedDay = () => {
       category: 'in-progress',
       owner: {
         _id: 'tyd5eb99a3ed01b542412a79',
+        avatarURL: 'https://vrt.com/upload/avatar.jpg',
+      },
+    },
+    {
+      title: 'Do something bad',
+      start: '09:00',
+      end: '09:10',
+      priority: 'medium',
+      date: '2023-08-18',
+      category: 'to-do',
+      owner: {
+        _id: 'tyd5eb99a3ed01b531412a79',
         avatarURL: 'https://vrt.com/upload/avatar.jpg',
       },
     },

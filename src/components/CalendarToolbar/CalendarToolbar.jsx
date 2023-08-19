@@ -3,10 +3,9 @@ import { PeriodPaginator } from './PeriodPaginator/PeriodPaginator';
 import { PeriodTypeSelect } from './PeriodTypeSelect/PeriodTypeSelect';
 import * as SC from './CalendarToolbar.styled';
 import { format, addDays, parse } from 'date-fns';
-import PropTypes from 'prop-types';
 import { useNavigate, useParams } from 'react-router';
 
-export const CalendarToolbar = ({ type = 'month' }) => {
+export const CalendarToolbar = () => {
   const { currentDay } = useParams();
   const navigate = useNavigate();
 
@@ -68,8 +67,4 @@ export const CalendarToolbar = ({ type = 'month' }) => {
       </SC.CalendarToolbarWrapper>
     </>
   );
-};
-
-CalendarToolbar.propTypes = {
-  type: PropTypes.string,
 };
