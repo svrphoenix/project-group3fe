@@ -25,7 +25,6 @@ const MainLayout = () => {
 
   function addScrollLock() {
     const lockedWidth = document.documentElement.clientWidth;
-    console.log(lockedWidth);
     document.body.style.width = `${lockedWidth}px`;
     document.body.classList.add('add-scroll-lock');
   }
