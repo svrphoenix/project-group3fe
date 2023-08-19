@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-const accentColor = '#3E85F3';
-
 export const Button = styled.button`
   cursor: pointer;
   border: none;
@@ -11,7 +9,7 @@ export const Button = styled.button`
 export const Vector = styled.svg`
   width: 24px;
   height: 24px;
-  fill: ${accentColor};
+  fill: var(--first-Icon-Color);
 
   @media screen and (min-width: 768px) {
     width: 32px;
