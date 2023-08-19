@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 
-const accentColor = '#3E85F3';
 const accentHoverColor = '#2B78EF';
 const whiteColor = '#FFFFFF';
-const animate = '250ms cubic-bezier(0.4, 0, 0.2, 1)';
 
 export const Btn = styled.button`
   cursor: pointer;
@@ -14,9 +12,9 @@ export const Btn = styled.button`
   padding: 14px 28px;
   border: none;
   border-radius: 16px;
-  background-color: ${accentColor};
+  background-color: var(--first-Bckg-Btn-Color);
   box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
-  transition: background-color ${animate};
+  transition: background-color var(--cubic);
 
   @media screen and (min-width: 768px) {
     gap: 11px;
@@ -31,7 +29,7 @@ export const Btn = styled.button`
 `;
 
 export const Txt = styled.p`
-  color: ${whiteColor};
+  color: var(--first-Btn-Text-Color);
   font-family: 'Inter SemiBold';
   font-size: 14px;
   font-style: normal;
