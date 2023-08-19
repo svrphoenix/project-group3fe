@@ -54,6 +54,10 @@ body[data-theme='light'] {
   --first-Input-Border-Color: #1111111a;
   --second-Input-Border-Color: #111;
   --placeholder-Color: #11111126;
+
+  --sidebar-logo-title: #3e85f3;
+  --user-nav-item-hover: #3e85f3;
+  --user-nav-item-bg-active: #e3f3ff;
 }
 
 body[data-theme='dark'] {
@@ -112,4 +116,8 @@ body[data-theme='dark'] {
   --first-Input-Border-Color: #ffffff26;
   --second-Input-Border-Color: #fff;
   --placeholder-Color: #fafafa4d;
+
+  --sidebar-logo-title: #e3f3ff;
+  --user-nav-item-hover: #fff;
+  --user-nav-item-bg-active: #3e85f3;
 }

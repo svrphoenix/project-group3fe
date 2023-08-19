@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-const animate = '250ms cubic-bezier(0.4, 0, 0.2, 1)';
-
 export const SideBarBox = styled.div`
   position: fixed;
   top: 0;
@@ -11,12 +9,13 @@ export const SideBarBox = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  background-color: #fff;
+  background-color: var(--third-Bckg-Color);
   width: 225px;
-  min-height: 100vh;
+  /* min-height: 100vh; */
+  min-height: 100%;
   padding: 24px 20px;
   transform: translateX(-225px);
-  transition: transform ${animate};
+  transition: transform var(--cubic);
 
   &.is-sidebar-opened {
     transform: translateX(0);
@@ -29,7 +28,7 @@ export const SideBarBox = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    position: static;
+    z-index: 0;
     padding: 32px 24px 24px 24px;
     transform: translateX(0);
   }
@@ -55,8 +54,10 @@ export const SideBarBackdrop = styled.div`
   left: 0;
   z-index: 998;
   display: none;
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw;
+  height: 100vh; */
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   background-color: rgba(0, 0, 0, 0.3);
 

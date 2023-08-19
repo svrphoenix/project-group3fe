@@ -1,16 +1,11 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-const accentColor = '#3E85F3';
-const grayscaleColor = 'rgba(52, 52, 52, 0.50)';
-const activePageColor = '#E3F3FF';
-const animate = '250ms cubic-bezier(0.4, 0, 0.2, 1)';
-
 export const UserNavWrapper = styled.div``;
 
 export const UserNavHeading = styled.p`
   margin-bottom: 24px;
-  color: ${grayscaleColor};
+  color: var(--fourth-Text-Color);
   font-family: 'Inter SemiBold';
   font-size: 12px;
   font-style: normal;
@@ -57,8 +52,8 @@ export const UserNavLink = styled(NavLink)`
   gap: 8px;
   padding: 10px 12px;
   border-radius: 8px;
-  color: ${grayscaleColor};
-  transition: color ${animate};
+  color: var(--third-Text-Color);
+  transition: color var(--cubic);
 
   @media screen and (min-width: 768px) {
     gap: 10px;
@@ -67,12 +62,12 @@ export const UserNavLink = styled(NavLink)`
 
   &:hover,
   &:focus {
-    color: ${accentColor};
+    color: var(--user-nav-item-hover);
   }
 
   &.active {
-    color: ${accentColor};
-    background-color: ${activePageColor};
+    color: var(--user-nav-item-hover);
+    background-color: var(--user-nav-item-bg-active);
   }
 `;
 

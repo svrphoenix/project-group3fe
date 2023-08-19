@@ -3,17 +3,15 @@ import SideBarLogo from './SideBarLogo';
 import UserNav from './UserNav';
 import LogoutBtn from './LogoutBtn';
 
-const SideBar = ({ isSideBarOpened, openSideBar, closeSideBar }) => {
+const SideBar = ({ isSideBarOpened, closeSideBar }) => {
   return (
     <>
-      <SideBarBox
-        className={`${isSideBarOpened === true ? 'is-sidebar-opened' : ''}`}
-      >
+      <SideBarBox className={`${isSideBarOpened ? 'is-sidebar-opened' : ''}`}>
         <TopWrapper>
           <SideBarLogo closeSideBar={closeSideBar} />
           <UserNav closeSideBar={closeSideBar} />
         </TopWrapper>
-        <LogoutBtn />
+        <LogoutBtn closeSideBar={closeSideBar} />
       </SideBarBox>
       <SideBarBackdrop
         className={`${isSideBarOpened ? 'is-sidebar-backdrop-opened' : ''}`}

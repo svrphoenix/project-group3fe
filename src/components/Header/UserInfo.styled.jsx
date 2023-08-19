@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-const accentColor = '#3E85F3';
-const nameColor = '#343434';
 const whiteColor = '#fff';
 
 export const UserInfoWrapper = styled.div`
@@ -15,7 +13,7 @@ export const UserInfoWrapper = styled.div`
 `;
 
 export const UserName = styled.p`
-  color: ${nameColor};
+  color: var(--second-Text-Color);
   font-family: 'Inter Bold';
   font-size: 14px;
   font-style: normal;
@@ -35,7 +33,7 @@ export const UserAvatar = styled.p`
   height: 32px;
   border-radius: 50%;
   color: ${whiteColor};
-  background-color: ${accentColor};
+  background-color: var(--fourth-Bckg-Color);
   font-family: 'Inter Bold';
   font-size: 14px;
   font-style: normal;
@@ -52,7 +50,7 @@ export const UserAvatar = styled.p`
 export const UserAvatarImg = styled.img`
   width: 32px;
   height: 32px;
-  border: 1.8px solid ${accentColor};
+  border: 1.8px solid var(--fourth-Bckg-Color);
   border-radius: 50%;
 
   @media screen and (min-width: 768px) {

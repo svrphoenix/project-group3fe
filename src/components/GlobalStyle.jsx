@@ -92,6 +92,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--first-Bckg-Color);
 }
 
 ul,li,h1,h2,h3,h4,p {
