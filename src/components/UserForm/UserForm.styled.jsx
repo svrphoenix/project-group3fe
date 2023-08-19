@@ -11,10 +11,6 @@ export const StyledFormWrapper = styled.div`
   justify-content: center;
   align-items: center;
   background-color: var(--second-Bckg-Color);
-
-  @media screen and (min-width: 1440px) {
-    height: calc(100vh - 148px);
-  }
 `;
 
 export const Form = styled(FormFormik)`
@@ -22,13 +18,11 @@ export const Form = styled(FormFormik)`
   position: relative;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
   @media screen and (min-width: 768px) {
     padding: 40px 175px 40px 175px;
   }
   @media screen and (min-width: 1440px) {
-    padding: 40px 165px 20px 165px;
-    height: calc(100vh - 148px);
+    padding: 60px 165px 60px 165px;
   }
 `;
 
@@ -91,6 +85,7 @@ export const StyledUserDiscription = styled.p`
   letter-spacing: 0em;
   text-align: center;
   margin-bottom: 40px;
+  color: var(--sixth-Text-Color);
   @media screen and (min-width: 1440px) {
     margin-bottom: 44px;
   }
@@ -108,6 +103,7 @@ export const FormField = styled.label`
   color: var(--fiveth-Text-Color);
   margin: 0 auto;
   width: fit-content;
+  position: relative;
 `;
 
 export const StyledCalendar = styled.label`
@@ -128,7 +124,18 @@ export const StyledCalendar = styled.label`
     right: 14px;
   }
 `;
-export const FileInputLabel = styled(FormField)`
+export const FileInputLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Inter';
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: var(--fiveth-Text-Color);
+  margin: 0 auto;
+  width: fit-content;
   margin-bottom: 0px;
 `;
 
@@ -136,25 +143,26 @@ export const Column = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 18px;
+  gap: 24px;
+
+  @media screen and (min-width: 768px) {
+    gap: 26px;
+  }
 
   &:nth-child(1) {
-    margin-bottom: 18px;
+    margin-bottom: 24px;
     @media screen and (min-width: 768px) {
-      margin-bottom: 24px;
+      margin-bottom: 26px;
     }
   }
   &:nth-child(2) {
     margin-bottom: 40px;
-    @media screen and (min-width: 768px) {
-      margin-bottom: 24px;
-    }
   }
 
   @media screen and (min-width: 1440px) {
     &:nth-child(1) {
       flex: 2;
-      margin-bottom: 18px;
+      margin-bottom: 26px;
     }
 
     &:nth-child(2) {
@@ -317,7 +325,8 @@ export const ErrorMessage = styled(FormikErrorMessage)`
   font-size: 14px;
   font-style: normal;
   line-height: 18px;
-  margin-top: 8px;
+  position: absolute;
+  bottom: -22px;
 `;
 
 export const StyledErrorText = styled.div`
@@ -327,4 +336,7 @@ export const StyledErrorText = styled.div`
   font-style: normal;
   line-height: 18px;
   margin-top: 8px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
 `;
