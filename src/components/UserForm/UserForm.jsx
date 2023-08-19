@@ -19,9 +19,9 @@ import {
   FileInputLabel,
 } from './UserForm.styled';
 import FileUploadComponent from './FileUploadComponent';
-import { useRef, useState } from 'react';
-import useAuth from 'hooks/useAuth';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import useAuth from 'hooks/useAuth';
 import { updateUser } from 'redux/auth/operations';
 import { ChevronDownIcon } from './Icons';
 import { createIMGElement } from './createIMGElement';
@@ -44,11 +44,11 @@ const UserSchema = Yup.object().shape({
     .required('Please enter your email'),
   phone: Yup.string().matches(
     /^(\+\d{1,3}|\d{1,3}) \(\d{3}\) \d{3} \d{2} \d{2}$/,
-    'Please use format +38 (333) 444 77 99'
+    'Please use format 38 (097) 256 34 77'
   ),
   skype: Yup.string().matches(
     /^(\+\d{1,3}|\d{1,3}) \(\d{3}\) \d{3} \d{2} \d{2}$/,
-    'Please use  format +38 (333) 444 77 99'
+    'Please use  format 38 (097) 256 34 77'
   ),
 });
 
@@ -80,11 +80,27 @@ export const UserForm = () => {
     handleFormChange();
   };
 
+  useEffect(() => {
+    const formFields = form.current.querySelectorAll('input');
+    const formFieldsArray = Array.from(formFields);
+
+    const fieldChangeHandler = () => {
+      setFormChanged(true);
+    };
+
+    formFieldsArray.forEach(field => {
+      field.addEventListener('change', fieldChangeHandler);
+    });
+
+    return () => {
+      formFieldsArray.forEach(field => {
+        field.removeEventListener('change', fieldChangeHandler);
+      });
+    };
+  }, [user.name, startDate, user.email, user.phone, user.skype]);
+
   return (
     <StyledFormWrapper>
-      {error && (
-        <StyledErrorText>Something went wrong, try again!</StyledErrorText>
-      )}
       <Formik
         initialValues={{
           avatar: userAvatar,
@@ -112,16 +128,14 @@ export const UserForm = () => {
           </FileInputLabel>
           <StyledUserName>{user.name}</StyledUserName>
           <StyledUserDiscription>User</StyledUserDiscription>
+          {error && (
+            <StyledErrorText>Something went wrong, try again!</StyledErrorText>
+          )}
           <StyledLabelWrapp>
             <Column>
               <FormField>
                 <StyledLabelText>User Name</StyledLabelText>
-                <Field
-                  id="name"
-                  name="name"
-                  placeholder="Name"
-                  onBlur={() => handleFormChange()}
-                />
+                <Field id="name" name="name" placeholder="Name" />
                 <ErrorMessage name="name" component="div" />
               </FormField>
               <StyledCalendar>
@@ -129,11 +143,14 @@ export const UserForm = () => {
                 <StyledDatePicker
                   selected={startDate}
                   onChange={date => {
-                    setStartDate(date);
+                    if (date) {
+                      setStartDate(date);
+                      handleFormChange();
+                    }
                   }}
-                  onBlur={() => handleFormChange()}
                   dateFormat="yyyy-MM-dd"
                   name="birthday"
+                  placeholderText="yyyy-mm-dd"
                 />
                 <ChevronDownIcon color="var(--first-Text-Color)" size={18} />
               </StyledCalendar>
@@ -144,7 +161,6 @@ export const UserForm = () => {
                   name="email"
                   placeholder="example.com"
                   type="email"
-                  onBlur={() => handleFormChange()}
                 />
                 <ErrorMessage name="email" component="div" />
               </FormField>
@@ -157,7 +173,6 @@ export const UserForm = () => {
                   name="phone"
                   placeholder="38 (097) 222 33 77"
                   type="tel"
-                  onBlur={() => handleFormChange()}
                 />
                 <ErrorMessage name="phone" component="div" />
               </FormField>
@@ -168,7 +183,6 @@ export const UserForm = () => {
                   name="skype"
                   placeholder="Add a skype number"
                   type="text"
-                  onBlur={() => handleFormChange()}
                 />
                 <ErrorMessage name="skype" component="div" />
               </FormField>
