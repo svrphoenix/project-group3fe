@@ -56,6 +56,8 @@ body[data-theme='light'] {
   --placeholder-Color: #11111126;
 
   --sidebar-logo-title: #3e85f3;
+  --user-nav-item-hover: #3e85f3;
+  --user-nav-item-bg-active: #e3f3ff;
 }
 
 body[data-theme='dark'] {
@@ -116,4 +118,6 @@ body[data-theme='dark'] {
   --placeholder-Color: #fafafa4d;
 
   --sidebar-logo-title: #e3f3ff;
+  --user-nav-item-hover: #fff;
+  --user-nav-item-bg-active: #3e85f3;
 }

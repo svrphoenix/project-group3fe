@@ -7,8 +7,10 @@ import {
   Vector,
   UserNavTxt,
 } from './UserNav.styled';
-import SVG from './sidebar-and-header-images/sidebar-nav-icons.svg';
 import AddSvg from 'components/AddSvg/AddSvg';
+import getSvg from '../../utils/getSvg';
+
+const SVG = getSvg();
 
 const UserNav = ({ closeSideBar }) => {
   const navListConfig = [
