@@ -1,18 +1,10 @@
 import { eachDayOfInterval, endOfWeek, format, startOfWeek } from 'date-fns';
 import * as SC from './MonthCalendarHead.styled';
-import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import useResize from 'hooks/useResize';
 
-export const MonthCalendarHead = ({ currentDate }) => {
-  const [width, setWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleWindowResize = () => setWidth(window.innerWidth);
-    window.addEventListener('resize', handleWindowResize);
-
-    return () => window.removeEventListener('resize', handleWindowResize);
-  }, []);
-
+export const MonthCalendarHead = () => {
+  const currentDate = new Date();
+  const width = useResize();
   const startDayOfWeek = startOfWeek(currentDate, { weekStartsOn: 1 });
   const endDayOfWeek = endOfWeek(currentDate, { weekStartsOn: 1 });
   const daysOfWeek = eachDayOfInterval({
@@ -29,8 +21,4 @@ export const MonthCalendarHead = ({ currentDate }) => {
       ))}
     </SC.DaysOfWeekWrapper>
   );
-};
-
-MonthCalendarHead.propTypes = {
-  currentDate: PropTypes.object.isRequired,
 };
