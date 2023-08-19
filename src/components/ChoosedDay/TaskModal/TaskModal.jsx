@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Modal } from 'components/Modal/Modal';
-import TaskForm from '../TaskForm/TaskForm';
+import { TaskForm } from '../TaskForm/TaskForm';
 import { TaskBtn } from './TaskModal.styled';
 
-export const TaskModal = ({ status, ...props }) => {
+const TaskModal = ({ status, ...props }) => {
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
 
   const openModal = () => {
@@ -25,3 +25,5 @@ export const TaskModal = ({ status, ...props }) => {
     </>
   );
 };
+
+export { TaskModal };

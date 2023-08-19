@@ -51,7 +51,7 @@ const TaskForm = ({
   const [end, setEnd] = useState(editTask?.end || '09:30');
   const [selectedOption, setSelectedOption] = useState(editTask?.priority);
   const [priority, setPriority] = useState(editTask?.priority || 'low');
-  const category = addCategory?.category || 'to-do';
+  const category = editTask?.category || 'to-do';
   const dispatch = useDispatch();
   const tasks = useSelector(selectTasks);
 
@@ -147,7 +147,7 @@ const TaskForm = ({
           end,
           priority,
           date: currentDay,
-          category: category,
+          category: addCategory,
         })
       );
       toast.success('Successfully! Task added');
@@ -277,4 +277,4 @@ const TaskForm = ({
   );
 };
 
-export default TaskForm;
+export { TaskForm };
