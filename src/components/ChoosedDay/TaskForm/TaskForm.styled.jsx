@@ -1,6 +1,8 @@
 import styled from 'styled-components';
-import { AddIcon } from 'components/UserForm/AddIcon';
+
 import { EditIconSvg } from './EditIconSvg';
+import { AddIcon } from 'components/UserForm/Icons';
+
 
 export const TaskFormStyled = styled.form`
   display: flex;

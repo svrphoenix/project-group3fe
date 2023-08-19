@@ -1,4 +1,4 @@
-import { AddIcon } from 'components/UserForm/AddIcon';
+import { AddIcon } from 'components/UserForm/Icons';
 import { styled } from 'styled-components';
 
 export const TaskBtn = styled.button`
