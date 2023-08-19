@@ -11,7 +11,7 @@ const SideBar = ({ isSideBarOpened, closeSideBar }) => {
           <SideBarLogo closeSideBar={closeSideBar} />
           <UserNav closeSideBar={closeSideBar} />
         </TopWrapper>
-        <LogoutBtn />
+        <LogoutBtn closeSideBar={closeSideBar} />
       </SideBarBox>
       <SideBarBackdrop
         className={`${isSideBarOpened ? 'is-sidebar-backdrop-opened' : ''}`}

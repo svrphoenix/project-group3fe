@@ -15,11 +15,14 @@ import { IMG } from '../../images';
 import ThemeToggleBtn from './ThemeToggleBtn';
 import UserInfo from './UserInfo';
 import { useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectTasks } from 'redux/tasks/selectors';
 import { FeedbackButton } from 'components/FeedbackButton/FeedbackButton';
 import AddSvg from 'components/AddSvg/AddSvg';
 import getSvg from '../../utils/getSvg';
+import { useEffect } from 'react';
+import useAuth from 'hooks/useAuth';
+import { getReview } from 'redux/review/operations';
 
 const { gooseMentor1x, gooseMentor2x } = IMG;
 const SVG = getSvg();
@@ -37,6 +40,13 @@ const Header = ({ isSideBarOpened, openSideBar }) => {
   const activePage = pageConfig.find(item =>
     location.pathname.includes(item.path)
   ).page;
+
+  const dispatch = useDispatch();
+  const { isLoggedIn } = useAuth();
+
+  useEffect(() => {
+    if (isLoggedIn) dispatch(getReview());
+  }, [dispatch, isLoggedIn]);
 
   return (
     <HeaderContainer>

@@ -82,6 +82,7 @@ export const BurgerBtn = styled.button`
 export const Vector = styled.svg`
   width: 24px;
   height: 24px;
+  fill: var(--second-Text-Color);
 
   @media screen and (min-width: 768px) {
     width: 34px;

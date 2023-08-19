@@ -6,16 +6,16 @@ import getSvg from '../../utils/getSvg';
 
 const SVG = getSvg();
 
-const LogoutBtn = () => {
+const LogoutBtn = ({ closeSideBar }) => {
   const dispatch = useDispatch();
 
+  function handleClick() {
+    closeSideBar();
+    dispatch(logout());
+  }
+
   return (
-    <Btn
-      type="button"
-      onClick={() => {
-        dispatch(logout());
-      }}
-    >
+    <Btn type="button" onClick={handleClick}>
       <Txt>Log out </Txt>
       <AddSvg component={Vector} sprite={SVG} spriteId="logout-icon" />
     </Btn>

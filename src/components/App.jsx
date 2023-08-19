@@ -4,7 +4,7 @@ import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { useDispatch } from 'react-redux';
 import { refreshCurrentUser } from 'redux/auth/operations';
-import { getReview } from 'redux/review/operations';
+// import { getReview } from 'redux/review/operations';
 import { SharedLayout } from './SharedLayout';
 import useAuth from 'hooks/useAuth';
 // import { Loader } from './Loader/Loader';
@@ -33,9 +33,9 @@ const App = () => {
     dispatch(refreshCurrentUser());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (isLoggedIn) dispatch(getReview());
-  }, [dispatch, isLoggedIn]);
+  // useEffect(() => {
+  //   if (isLoggedIn) dispatch(getReview());
+  // }, [dispatch, isLoggedIn]);
 
   const makeExpiredError = () => {
     if (error.status === 403)
