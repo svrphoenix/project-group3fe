@@ -11,16 +11,18 @@ import {
   BurgerBtn,
   Vector,
 } from './Header.styled';
-import GooseMentor1x from './header-img/goose-mentor-desktop@1x.webp';
-import GooseMentor2x from './header-img/goose-mentor-desktop@2x.webp';
+import { IMG } from '../../images';
 import ThemeToggleBtn from './ThemeToggleBtn';
 import UserInfo from './UserInfo';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectTasks } from 'redux/tasks/selectors';
 import { FeedbackButton } from 'components/FeedbackButton/FeedbackButton';
-import SVG from './header-img/header-icons.svg';
 import AddSvg from 'components/AddSvg/AddSvg';
+import getSvg from '../../utils/getSvg';
+
+const { gooseMentor1x, gooseMentor2x } = IMG;
+const SVG = getSvg();
 
 const Header = ({ isSideBarOpened, openSideBar }) => {
   const tasks = useSelector(selectTasks);
@@ -49,12 +51,12 @@ const Header = ({ isSideBarOpened, openSideBar }) => {
         <HeaderTitleWrapperGoose>
           <picture>
             <source
-              srcSet={`${GooseMentor1x} 1x, ${GooseMentor2x} 2x`}
+              srcSet={`${gooseMentor1x} 1x, ${gooseMentor2x} 2x`}
               media="(min-width: 1440px)"
               type="image/webp"
             />
             <GooseMentorImg
-              src={`${GooseMentor1x}`}
+              src={`${gooseMentor1x}`}
               alt="GooseMentor"
               width="64"
             />
