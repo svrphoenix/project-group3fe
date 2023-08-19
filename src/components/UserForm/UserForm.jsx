@@ -135,7 +135,7 @@ export const UserForm = () => {
                   dateFormat="yyyy-MM-dd"
                   name="birthday"
                 />
-                <ChevronDownIcon color="#111111" size={18} />
+                <ChevronDownIcon color="var(--first-Text-Color)" size={18} />
               </StyledCalendar>
               <FormField>
                 <StyledLabelText>Email</StyledLabelText>
