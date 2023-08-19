@@ -1,52 +1,53 @@
 // import PropTypes from 'prop-types';
-import StatisticsChart from 'components/Statistics/StatisticsChart';
-// import { PeriodPaginator } from 'components/Calendar/PeriodPaginator/PeriodPaginator';
-import * as SC from './StatisticsPage.styled';
-
 import { useState } from 'react';
 import { PeriodPaginator } from 'components/CalendarToolbar/PeriodPaginator/PeriodPaginator';
-import { format, addDays, parse } from 'date-fns';
-import { useNavigate, useParams } from 'react-router';
+import { format, addDays } from 'date-fns';
 import { useSearchParams } from 'react-router-dom';
+
+import StatisticsChart from 'components/Statistics/StatisticsChart';
+import * as SC from './StatisticsPage.styled';
 
 const StatisticsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const navigate = useNavigate();
 
-  const currentDay = searchParams.get('day');
-  const currentMonth = searchParams.get('month');
+  const initialDate = new Date();
 
-  // const initialDate = currentDay
-  //   ? parse(currentDay, 'yyyy-MM-dd', new Date())
-  //   : new Date();
+  const [currentDate, setCurrentDate] = useState(initialDate);
 
-  // const [currentDate, setCurrentDate] = useState(initialDate);
+  const formatedDate = format(currentDate, 'dd MMMM yyyy');
 
-  // const formatedDate = currentDay
-  //   ? format(currentDate, 'dd MMMM yyyy')
-  //   : format(currentDate, 'MMMM yyyy');
+  console.log(currentDate.getDate());
+  console.log(currentDate.getMonth() + 1);
 
-  // const prevHandler = () => {
-  //   const prevDate = addDays(currentDate, -1);
-  //   setCurrentDate(prevDate);
-  //   navigate(`/statistics/day/${format(prevDate, 'yyyy-MM-dd')}`);
-  // };
+  const prevHandler = () => {
+    const prevDate = addDays(currentDate, -1);
+    setCurrentDate(prevDate);
 
-  // const nextHandler = () => {
-  //   const nextDate = addDays(currentDate, 1);
-  //   setCurrentDate(nextDate);
-  //   navigate(`/statistics/day/${format(nextDate, 'yyyy-MM-dd')}`);
-  // };
+    setSearchParams({
+      month: prevDate.getMonth() + 1,
+      day: prevDate.getDate(),
+    });
+  };
+
+  const nextHandler = () => {
+    const nextDate = addDays(currentDate, 1);
+    setCurrentDate(nextDate);
+
+    setSearchParams({
+      month: nextDate.getMonth() + 1,
+      day: nextDate.getDate(),
+    });
+  };
 
   return (
     <>
       <SC.StatisticsDiv>
         <SC.StatisticsHeaderDiv>
-          {/* <PeriodPaginator
+          <PeriodPaginator
             date={formatedDate}
             prevHandler={prevHandler}
             nextHandler={nextHandler}
-          /> */}
+          />
 
           <SC.ChartLegend>
             <SC.ChartLegendItem>By day</SC.ChartLegendItem>
