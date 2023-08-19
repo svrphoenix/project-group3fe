@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
 import { parse, parseISO } from 'date-fns';
 
-export const PeriodPaginator = ({ date, prevHandler, nextHandler }) => {
+const PeriodPaginator = ({ date, prevHandler, nextHandler }) => {
   const { createdAt } = useSelector(selectUser);
   return (
     <SC.PeriodPaginatorWrapper>
@@ -24,6 +24,7 @@ export const PeriodPaginator = ({ date, prevHandler, nextHandler }) => {
     </SC.PeriodPaginatorWrapper>
   );
 };
+export default PeriodPaginator;
 
 PeriodPaginator.propTypes = {
   date: PropTypes.string.isRequired,

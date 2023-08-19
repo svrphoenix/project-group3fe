@@ -1,7 +1,7 @@
 import * as SC from './MainPage.styled';
 const { descriptions } = require('./constant');
 
-export const Description = () => {
+const Description = () => {
   return (
     <SC.Section>
       <SC.Container>
@@ -41,3 +41,4 @@ export const Description = () => {
     </SC.Section>
   );
 };
+export default Description;
