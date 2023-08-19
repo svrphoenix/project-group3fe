@@ -1,6 +1,6 @@
 import { IMG } from 'images';
 import { AuthNavigate } from 'components/authNavigate/AuthNavigate';
-import RegisterForm from 'components/RegisterLoginForm/RegisterForm';
+import RegisterForm from 'components/registerLoginForm/RegisterForm';
 import * as SC from './RegisterPage.styled';
 
 const RegisterPage = () => {
@@ -8,7 +8,7 @@ const RegisterPage = () => {
     <SC.StyledLayout>
       <SC.StyledSharedContainer>
         <RegisterForm />
-        <AuthNavigate path="/login" text="Log In"/>
+        <AuthNavigate path="/login" text="Log In" />
       </SC.StyledSharedContainer>
       <SC.StyledPicture>
         <source
