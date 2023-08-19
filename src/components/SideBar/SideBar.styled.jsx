@@ -11,7 +11,8 @@ export const SideBarBox = styled.div`
   align-items: flex-start;
   background-color: var(--third-Bckg-Color);
   width: 225px;
-  min-height: 100vh;
+  /* min-height: 100vh; */
+  min-height: 100%;
   padding: 24px 20px;
   transform: translateX(-225px);
   transition: transform var(--cubic);
@@ -53,8 +54,10 @@ export const SideBarBackdrop = styled.div`
   left: 0;
   z-index: 998;
   display: none;
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw;
+  height: 100vh; */
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   background-color: rgba(0, 0, 0, 0.3);
 
