@@ -193,7 +193,7 @@ font-size: 12px;
 line-height: 1.17; 
 margin-left: 14px;
   position: absolute;
-  bottom: -23px;
+  bottom: -25px;
 @media (min-width: 768px) {
     font-size: 14px;
     line-height: 1.3;
@@ -204,6 +204,13 @@ export const StyledError = styled(StyledRequired)`
   color: rgba(231, 74, 59, 1);
   margin-left: 14px;
 `;
+
+export const StyledErrorPassword = styled(StyledError)`
+  bottom: -35px;
+  @media (min-width: 768px) {
+      bottom: -25px;
+  }
+`
 
 export const StyledButton = styled.button`
   display: flex;

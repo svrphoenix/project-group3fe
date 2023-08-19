@@ -258,10 +258,9 @@ const RegisterForm = () => {
                         'password must match the following'
                       ) &&
                       touched.password && (
-                        <SC.StyledError>
-                          This password should contain at least eight characters
-                          and at least one number and one letter
-                        </SC.StyledError>
+                        <SC.StyledErrorPassword>
+                          Password should contain at least 1 number and 1 letter
+                        </SC.StyledErrorPassword>
                       )) ||
                     (errors.password && touched.password && (
                       <SC.StyledError>{errors.password}</SC.StyledError>
