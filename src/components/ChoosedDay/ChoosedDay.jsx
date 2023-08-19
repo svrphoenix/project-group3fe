@@ -1,14 +1,11 @@
-import { getMonth, getYear, parseISO } from 'date-fns';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import * as tasksOperations from 'redux/tasks/operations';
+import { parseISO } from 'date-fns';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { selectTasks } from 'redux/tasks/selectors';
 import { ColumnsTasksList } from './ColumnsTasksList/ColumnsTasksList';
 import { DayCalendarHead } from 'components/ChoosedDay/DayCalendarHead/DayCalendarHead';
 
 export const ChoosedDay = () => {
-  const dispatch = useDispatch();
   const tasks = useSelector(selectTasks);
   const { currentDay } = useParams();
 
@@ -25,14 +22,6 @@ export const ChoosedDay = () => {
   };
 
   const dateObject = parseISO(currentDay);
-  const month = getMonth(dateObject);
-  const year = getYear(dateObject);
-
-  const formattedMonth = String(month + 1).padStart(2, '0');
-
-  useEffect(() => {
-    dispatch(tasksOperations.getAllTasks({ year, month: formattedMonth }));
-  }, [dispatch, formattedMonth, year]);
 
   return (
     <>

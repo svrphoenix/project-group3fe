@@ -88,7 +88,7 @@ const App = () => {
                 index
                 element={
                   <Navigate
-                    to={`month/${format(new Date(), 'MMMM').toLowerCase()}`}
+                    to={`month/${format(new Date(), 'yyyy-MM')}`}
                     replace
                   />
                 }

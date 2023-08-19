@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   StyledAvatarContainer,
   StyledAvatarText,
   StyledAvatarWrapper,
   StyledBtnLink,
 } from './UserForm.styled';
-import { AddIcon } from './AddIcon';
+import { AddIconMediaSizes } from './Icons';
+import useAuth from 'hooks/useAuth';
 
-export const FileUploadComponent = ({
-  handleFiles,
-  fileInputRef,
-  fileListRef,
-}) => {
-  //   const fileInputRef = useRef(null);
-  //   const fileListRef = useRef(null);
+const FileUploadComponent = ({ handleFiles, fileListRef }) => {
+  const { user } = useAuth();
+  const fileInputRef = useRef(null);
+
+  const firstLetterUserName = user.name.charAt(0).toUpperCase();
 
   const handleFileSelect = () => {
     if (fileInputRef.current) {
@@ -30,32 +29,20 @@ export const FileUploadComponent = ({
         accept="image/*"
         style={{ display: 'none' }}
         onChange={handleFiles}
+        name="avatar"
       />
       <StyledBtnLink href="#" onClick={handleFileSelect}>
-        <AddIcon color="#fff" size={8} />
+        <AddIconMediaSizes />
       </StyledBtnLink>
       <StyledAvatarContainer id="fileList" ref={fileListRef}>
-        <StyledAvatarText>N</StyledAvatarText>
+        {user.avatarURL ? (
+          <img src={user.avatarURL} alt="avatar" />
+        ) : (
+          <StyledAvatarText>{firstLetterUserName}</StyledAvatarText>
+        )}
       </StyledAvatarContainer>
     </StyledAvatarWrapper>
   );
 };
 
-export const createElement = event => {
-  const files = event.target.files;
-
-  // if (!files.length) {
-  //   fileListRef.current.innerHTML = '<p>No files selected!</p>';
-
-  // const wrapp = document.createElement('div');
-
-  const img = document.createElement('img');
-  img.src = window.URL.createObjectURL(files[0]);
-  img.height = 60;
-  img.onload = function () {
-    window.URL.revokeObjectURL(this.src);
-  };
-  // wrapp.appendChild(img);
-
-  return img;
-};
+export default FileUploadComponent;

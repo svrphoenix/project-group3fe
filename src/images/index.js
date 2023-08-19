@@ -22,6 +22,11 @@ import logox2 from '../images/logo/webp/GOOSE-m@2.webp';
 import logoXl from '../images/logo/webp/GOOSE.webp';
 import logox2Xl from '../images/logo/webp/GOOSE@2.webp';
 
+import registerx1 from '../images/desc/webp/sign-up-1x.webp';
+import registerx2 from '../images/desc/webp/sign-up-2x.webp';
+import loginx1 from '../images/desc/webp/log-in-1x.webp';
+import loginx2 from '../images/desc/webp/log-in-2x.webp';
+
 import defaultAvatar from '../images/icons/avatarDefault.svg';
 
 import { ReactComponent as LoginIcon } from '../images/icons/login.svg';
@@ -31,6 +36,8 @@ import { ReactComponent as RarrIcon } from '../images/icons/rarrow.svg';
 import { ReactComponent as LoginWhiteIcon } from '../images/icons/loginWhite.svg';
 import { ReactComponent as LeftChevron } from '../images/icons/chevron-left.svg';
 import { ReactComponent as RightChevron } from '../images/icons/chevron-right.svg';
+import { ReactComponent as ErrorAuth } from '../images/icons/errorAuth.svg';
+import { ReactComponent as GoodAuth } from '../images/icons/goodAuth.svg';
 
 export const SVG = {
   LoginIcon,
@@ -40,6 +47,8 @@ export const SVG = {
   LoginWhiteIcon,
   LeftChevron,
   RightChevron,
+  ErrorAuth,
+  GoodAuth,
 };
 export const IMG = {
   all,
@@ -65,4 +74,8 @@ export const IMG = {
   logoXl,
   logox2Xl,
   defaultAvatar,
+  registerx1,
+  registerx2,
+  loginx1,
+  loginx2,
 };

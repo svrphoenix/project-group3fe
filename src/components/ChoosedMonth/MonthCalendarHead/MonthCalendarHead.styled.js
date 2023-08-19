@@ -5,6 +5,7 @@ export const DaysOfWeekWrapper = styled.div`
   justify-content: space-around;
   border-radius: 8px;
   border: 1px solid rgba(220, 227, 229, 0.5);
+  background-color: #fff;
 `;
 
 export const Day = styled.div`

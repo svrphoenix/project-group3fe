@@ -86,59 +86,6 @@ export const Styledlabel = styled.label`
 `;
 
 export const StyledField = styled(Field)`
-  ${props => {
-    switch (props.$validate) {
-      case 'error':
-        return css`
-          border: 1px solid rgba(231, 74, 59, 1);
-        `;
-      case 'okay':
-        return css`
-          border: 1px solid rgba(60, 188, 129, 1);
-        `;
-      case 'empty':
-        return css`
-          border: 1px solid #3e85f3;
-        `;
-      default:
-        return css`
-          border: 1px solid rgba(220, 227, 229, 0.6);
-        `;
-    }
-  }}
-  width: 100%;
-  height: 46px;
-  border-radius: 8px;
-  box-sizing: border-box;
-  background: #fff;
-  padding: 14px;
-  color: #111;
-  font-family: Inter, sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  line-height: 1.3;
-  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  &:hover,
-  &:focus {
-    border: 1px solid #111;
-  }
-  &::placeholder {
-    color: #dce3e5;
-    font-family: Inter Regular;
-    font-size: 14px;
-    line-height: 1.28;
-  }
-  @media (min-width: 768px) {
-    font-size: 16px;
-    line-height: 1.13;
-    height: 54px;
-    &::placeholder {
-    font-size: 16px;
-  }
-  }
-`;
-
-export const StyledFieldPassword = styled(Field)`
   font-family: Inter Regular;
   font-size: 14px;
   border: none;
@@ -150,9 +97,12 @@ export const StyledFieldPassword = styled(Field)`
   @media (min-width: 768px) {
     font-size: 16px;
   }
+  &:-webkit-autofill {
+  transition: all 5000s ease-in-out 0s;
+}
 `
 
-export const StyledContainerPassword = styled.div`
+export const StyledFieldContainer = styled.div`
   ${props => {
     switch (props.$validate) {
       case 'error':
@@ -215,13 +165,10 @@ export const StyledButtonVisibility = styled.button`
   right: 14px;
 `
 
-export const StyledFieldPasswordLogin = styled(StyledFieldPassword)`
-  &::placeholder {
-    font-family: Inter Bold;
-    font-weight: 900;
-    letter-spacing: 6px;
-    line-height: 1.28;
-  }
+export const StyledIcon = styled.div`
+  position: absolute;
+  padding-top: 3.3px;
+  right: 14px;
 `
 
 export const StyledRequired = styled.div`

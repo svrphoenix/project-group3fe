@@ -8,6 +8,7 @@ import { ReactComponent as Remove } from 'images/icons/arrow-circle-broken-right
 import { ReactComponent as Pencil } from 'images/icons/pencil-task.svg';
 import { ReactComponent as Trash } from 'images/icons/trash-task.svg';
 import * as SC from './TasksColumn.styled';
+import { TaskModal } from '../TaskModal/TaskModal';
 
 export const TasksColumn = ({ currentDay }) => {
   const { showModal, onToggleModal } = useModalToggle();
@@ -77,7 +78,7 @@ export const TasksColumn = ({ currentDay }) => {
               </SC.TaskItem>
             ))}
         </SC.TasksBox>
-        <SC.CreateTasksBtn onClick={onToggleModal}>Add task</SC.CreateTasksBtn>
+        <TaskModal addCategory="to-do" />
       </SC.DaysTasksContainer>
       <SC.DaysTasksContainer onClick={onSetCategory} data-custom="in-progress">
         <SC.TasksHeader>
@@ -125,7 +126,7 @@ export const TasksColumn = ({ currentDay }) => {
               </SC.TaskItem>
             ))}
         </SC.TasksBox>
-        <SC.CreateTasksBtn onClick={onToggleModal}>Add task</SC.CreateTasksBtn>
+        <TaskModal addCategory="in-progress" />
       </SC.DaysTasksContainer>
       <SC.DaysTasksContainer onClick={onSetCategory} data-custom="done">
         <SC.TasksHeader>
@@ -173,7 +174,7 @@ export const TasksColumn = ({ currentDay }) => {
               </SC.TaskItem>
             ))}
         </SC.TasksBox>
-        <SC.CreateTasksBtn onClick={onToggleModal}>Add task</SC.CreateTasksBtn>
+        <TaskModal addCategory="done" />
       </SC.DaysTasksContainer>
       {showModal && (
         <Modal
