@@ -16,13 +16,10 @@ const sharedStyle = css`
   padding: 8px 12px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   background-color: #fff;
-  ${
-    '' /* &.active {
-    background-color: #cae8ff;
-  } */
+  &:disabled {
+    color: #dce3e5;
   }
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: #f8f8f8;
   }
 `;
