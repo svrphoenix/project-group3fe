@@ -10,8 +10,8 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { SVG } from 'images';
 import { Loader } from 'components/Loader/Loader';
-import { toast } from 'react-hot-toast';
 import useAuth from 'hooks/useAuth';
+import { toast } from 'react-hot-toast';
 
 const theme = createTheme({
   palette: {
@@ -38,8 +38,10 @@ const LoginForm = () => {
   const [noUser, setNoUser] = useState(false);
   const [visibility, setVisibility] = useState(false);
   const { isLoading, isLoggedIn, error } = useAuth();
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (values, { resetForm }) => {
+    setIsSubmitted(true);
     dispatch(login({ email: values.email, password: values.password }));
     if (isLoggedIn) {
       resetForm();
@@ -48,14 +50,14 @@ const LoginForm = () => {
   };
 
   useEffect(() => {
-    if (error.status) {
+    if (error.status&&isSubmitted) {
       if (error.status === 401 || error.status === 403) {
         setNoUser(true);
       } else {
-        toast.error(error.message);
+        toast(error.message)
       }
-    }
-  }, [error.message, error.status]);
+    } 
+  }, [error.message, error.status, isSubmitted]);
 
   return (
     <SC.StyledContainer>
