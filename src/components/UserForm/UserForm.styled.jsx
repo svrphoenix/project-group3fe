@@ -10,7 +10,7 @@ export const StyledFormWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
+  background-color: var(--second-Bckg-Color);
   @media screen and (min-width: 1440px) {
     height: calc(100vh - 148px);
   }
@@ -34,7 +34,6 @@ export const Form = styled(FormFormik)`
 export const StyledAvatarWrapper = styled.div`
   display: flex;
   justify-content: center;
-
   position: absolute;
   top: -40px;
   left: 50%;
@@ -50,12 +49,12 @@ export const StyledAvatarWrapper = styled.div`
 export const StyledAvatarContainer = styled.div`
   width: 72px;
   height: 76px;
-  border: 2px solid #3e85f3;
+  border: 2px solid var(--first-Icon-Color);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #e3f3ff;
+  background-color: var(--second-Toogle-Month-Day-Bckg-Color);
   @media screen and (min-width: 768px) {
     width: 124px;
     height: 124px;
@@ -76,7 +75,7 @@ export const StyledUserName = styled.p`
   font-size: 14px;
   line-height: 18px;
   letter-spacing: 0em;
-  color: #343434;
+  color: var(--second-Text-Color);
   margin-bottom: 4px;
   @media screen and (min-width: 768px) {
     margin-bottom: 8px;
@@ -105,7 +104,7 @@ export const FormField = styled.label`
   line-height: 14px;
   letter-spacing: 0em;
   text-align: left;
-  color: #111111;
+  color: var(--fiveth-Text-Color);
   margin: 0 auto;
   width: fit-content;
 `;
@@ -119,7 +118,7 @@ export const StyledCalendar = styled.label`
   line-height: 14px;
   letter-spacing: 0em;
   text-align: left;
-  color: #111111;
+  color: var(--fiveth-Text-Color);
   width: fit-content;
   position: relative;
   svg {
@@ -191,19 +190,20 @@ export const Field = styled(FieldFormik)`
   letter-spacing: 0em;
   text-align: left;
   padding: 0px 14px;
-  border: 1px solid #1111111a;
+  border: 1px solid var(--first-Input-Border-Color);
   border-radius: 8px;
   width: 100%;
   height: 42px;
+  color: var(--first-Text-Color);
+  background-color: var(--second-Bckg-Color);
   &::placeholder {
-    color: #11111126;
+    color: var(--placeholder-Color);
     font-size: 12px;
   }
   &:hover,
   &:focus {
-    border: 1px solid #111;
+    border: 1px solid var(--second-Input-Border-Color);
     outline: none;
-    background-color: #fff;
   }
 
   @media screen and (min-width: 375px) {
@@ -222,20 +222,20 @@ export const StyledDatePicker = styled(DatePicker)`
   letter-spacing: 0em;
   text-align: left;
   padding: 0px 14px;
-  border: 1px solid #1111111a;
+  border: 1px solid var(--first-Input-Border-Color);
   border-radius: 8px;
   width: 100%;
   height: 42px;
-
+  color: var(--first-Text-Color);
+  background-color: var(--second-Bckg-Color);
   &::placeholder {
-    color: #11111126;
+    color: var(--placeholder-Color);
     font-size: 12px;
   }
   &:hover,
   &:focus {
-    border: 1px solid #111;
+    border: 1px solid var(--second-Input-Border-Color);
     outline: none;
-    background-color: #fff;
   }
 
   @media screen and (min-width: 375px) {
@@ -252,7 +252,7 @@ export const StyledAvatarText = styled.p`
   font-size: 20px;
   line-height: 18px;
   letter-spacing: 0em;
-  color: #3e85f3;
+  color: var(--first-Icon-Color);
 `;
 
 export const StyledBtnLink = styled.a`
@@ -264,12 +264,12 @@ export const StyledBtnLink = styled.a`
   left: 60%;
   width: 14px;
   height: 14px;
-  background-color: #3e85f3;
+  background-color: var(--first-Bckg-Btn-Color);
   border-radius: 50%;
   &:hover,
   &:focus {
-    background-color: #2b78ef;
-    box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
+    background-color: var(--hover-Bckg-Btn-Color);
+    box-shadow: 4px 2px 16px 0px var(--hover-Btn-Shadow);
   }
   @media screen and (min-width: 768px) {
     width: 18px;
@@ -293,15 +293,17 @@ export const StyledBtn = styled.button`
   line-height: 18px;
   letter-spacing: 0em;
   text-align: center;
-  background-color: ${props => (props.disabled ? '#ccc' : '#3e85f3')};
-  color: #fff;
+  background-color: ${props =>
+    props.disabled ? '#ccc' : 'var(--first-Bckg-Btn-Color)'};
+  color: var(--first-Btn-Text-Color);
   border-width: 0;
   margin: 0 auto;
   cursor: pointer;
   &:hover,
   &:focus {
-    background-color: ${props => (props.disabled ? '#ccc' : '#2b78ef')};
-    box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
+    background-color: ${props =>
+      props.disabled ? '#ccc' : 'var(--hover-Bckg-Btn-Color)'};
+    box-shadow: 4px 2px 16px 0px var(--hover-Btn-Shadow);
   }
   @media screen and (min-width: 768px) {
     width: 262px;
@@ -309,7 +311,7 @@ export const StyledBtn = styled.button`
 `;
 
 export const ErrorMessage = styled(FormikErrorMessage)`
-  color: #e74a3b;
+  color: var(--error-Text-Color);
   font-family: 'Inter Regular';
   font-size: 14px;
   font-style: normal;
@@ -318,7 +320,7 @@ export const ErrorMessage = styled(FormikErrorMessage)`
 `;
 
 export const StyledErrorText = styled.div`
-  color: #e74a3b;
+  color: var(--error-Text-Color);
   font-family: 'Inter Regular';
   font-size: 14px;
   font-style: normal;

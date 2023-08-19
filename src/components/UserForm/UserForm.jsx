@@ -95,6 +95,7 @@ export const UserForm = () => {
           skype: user.skype || '',
         }}
         validationSchema={UserSchema}
+        validateOnChange={true}
         onSubmit={async (values, { setSubmitting }) => {
           if (formChanged) {
             const data = new FormData(form.current);
