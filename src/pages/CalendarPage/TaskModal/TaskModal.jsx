@@ -19,7 +19,7 @@ export const TaskModal = ({ status, ...props }) => {
       <TaskBtn onClick={openModal}>+ Add task</TaskBtn>
       {isTaskModalOpen && (
         <Modal onToggleModal={closeModal}>
-          <TaskForm onCloseModal={closeModal} {...props} />
+          <TaskForm closeModal={closeModal} {...props} />
         </Modal>
       )}
     </>
