@@ -1,19 +1,21 @@
-import SVG from './sidebar-and-header-images/sidebar-nav-icons.svg';
 import { Btn, Txt, Vector } from './LogoutBtn.styled';
 import { logout } from 'redux/auth/operations';
 import { useDispatch } from 'react-redux';
 import AddSvg from 'components/AddSvg/AddSvg';
+import getSvg from '../../utils/getSvg';
 
-const LogoutBtn = () => {
+const SVG = getSvg();
+
+const LogoutBtn = ({ closeSideBar }) => {
   const dispatch = useDispatch();
 
+  function handleClick() {
+    closeSideBar();
+    dispatch(logout());
+  }
+
   return (
-    <Btn
-      type="button"
-      onClick={() => {
-        dispatch(logout());
-      }}
-    >
+    <Btn type="button" onClick={handleClick}>
       <Txt>Log out </Txt>
       <AddSvg component={Vector} sprite={SVG} spriteId="logout-icon" />
     </Btn>
