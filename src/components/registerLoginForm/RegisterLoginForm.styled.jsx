@@ -44,16 +44,17 @@ export const StyledFormDiv = styled.div`
   align-items: flex-start;
   width: 100%;
   gap: 8px;
+  position: relative;
 `;
 
 export const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 24px;
+  gap: 36px;
   width: 100%;
   @media (min-width: 768px) {
-    gap: 18px;
+    gap: 40px;
   }
 `;
 
@@ -177,6 +178,8 @@ export const StyledRequired = styled.div`
   font-size: 12px;
   line-height: 1.16;
   margin-left: 14px;
+  position: absolute;
+  bottom: -23px;
   @media (min-width: 768px) {
     font-size: 14px;
     line-height: 1.3;
@@ -189,6 +192,8 @@ font-family: Inter Regular;
 font-size: 12px;
 line-height: 1.17; 
 margin-left: 14px;
+  position: absolute;
+  bottom: -23px;
 @media (min-width: 768px) {
     font-size: 14px;
     line-height: 1.3;
