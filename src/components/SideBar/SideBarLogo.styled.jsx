@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-const accentColor = '#3E85F3';
-
 export const SideBarLogoWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -28,7 +26,7 @@ export const LogoImg = styled.img`
 `;
 
 export const LogoTxt = styled.p`
-  color: ${accentColor};
+  color: var(--sidebar-logo-title);
   text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
     0px 47px 355px rgba(0, 0, 0, 0.07);
   font-family: 'Inter Bold';
@@ -68,6 +66,7 @@ export const CloseSideBarBtn = styled.button`
 export const Vector = styled.svg`
   width: 24px;
   height: 24px;
+  fill: var(--second-Text-Color);
 
   @media screen and (min-width: 768px) {
     width: 34px;

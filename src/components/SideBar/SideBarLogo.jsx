@@ -1,5 +1,3 @@
-import gooseDesktop1x from './sidebar-and-header-images/goose-desktop@1x.webp';
-import gooseDesktop2x from './sidebar-and-header-images/goose-desktop@2x.webp';
 import {
   SideBarLogoWrapper,
   LogoImg,
@@ -7,8 +5,19 @@ import {
   CloseSideBarBtn,
   Vector,
 } from './SideBarLogo.styled';
-import SVG from './sidebar-and-header-images/sidebar-nav-icons.svg';
 import AddSvg from 'components/AddSvg/AddSvg';
+import getSvg from '../../utils/getSvg';
+import { IMG } from '../../images';
+
+const {
+  gooseMobile1x,
+  gooseMobile2x,
+  gooseTablet1x,
+  gooseTablet2x,
+  gooseDesktop1x,
+  gooseDesktop2x,
+} = IMG;
+const SVG = getSvg();
 
 const SideBarLogo = ({ closeSideBar }) => {
   return (
@@ -17,6 +26,16 @@ const SideBarLogo = ({ closeSideBar }) => {
         <source
           srcSet={`${gooseDesktop1x} 1x, ${gooseDesktop2x} 2x`}
           media="(min-width: 1440px)"
+          type="image/webp"
+        />
+        <source
+          srcSet={`${gooseTablet1x} 1x, ${gooseTablet2x} 2x`}
+          media="(min-width: 768px)"
+          type="image/webp"
+        />
+        <source
+          srcSet={`${gooseMobile1x} 1x, ${gooseMobile2x} 2x`}
+          media="(max-width: 767px)"
           type="image/webp"
         />
         <LogoImg src={`${gooseDesktop1x}`} alt="Logo" width="71" />
