@@ -4,29 +4,14 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-// import {
-//     StyledButton,
-//     StyledButtonVisibility,
-//     StyledContainer,
-//     StyledCorrect,
-//     StyledError,
-//     StyledField,
-//     StyledFieldContainer,
-//     StyledForm,
-//     StyledFormDiv,
-//     StyledHeader,
-//     StyledIcon,
-//     Styledlabel,
-//     StyledRequired,
-// } from './RegisterLoginForm.styled';
 import * as SC from './RegisterLoginForm.styled';
 import { register } from 'redux/auth/operations';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { SVG } from 'images';
 import { Loader } from 'components/Loader/Loader';
-import { toast } from 'react-hot-toast';
 import useAuth from 'hooks/useAuth';
+import { toast } from 'react-hot-toast';
 
 const theme = createTheme({
   palette: {
@@ -57,8 +42,10 @@ const RegisterForm = () => {
   const [usedEmail, setUsedEmail] = useState(false);
   const [visibility, setVisibility] = useState(false);
   const { isLoading, isLoggedIn, error } = useAuth();
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (values, { resetForm }) => {
+    setIsSubmitted(true);
     dispatch(
       register({
         name: values.name,
@@ -73,14 +60,14 @@ const RegisterForm = () => {
   };
 
   useEffect(() => {
-    if (error.status) {
+    if (error.status&&isSubmitted) {
       if (error.status === 409) {
         setUsedEmail(true);
       } else {
-        toast.error(error.message);
+        toast(error.message)
       }
     }
-  }, [error.message, error.status]);
+  }, [error.message, error.status, isSubmitted]);
 
   return (
     <SC.StyledContainer>
@@ -271,10 +258,9 @@ const RegisterForm = () => {
                         'password must match the following'
                       ) &&
                       touched.password && (
-                        <SC.StyledError>
-                          This password should contain at least eight characters
-                          and at least one number and one letter
-                        </SC.StyledError>
+                        <SC.StyledErrorPassword>
+                          Password should contain at least 1 number and 1 letter
+                        </SC.StyledErrorPassword>
                       )) ||
                     (errors.password && touched.password && (
                       <SC.StyledError>{errors.password}</SC.StyledError>
