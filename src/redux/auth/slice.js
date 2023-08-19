@@ -1,5 +1,11 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { register, login, logout, refreshCurrentUser } from './operations';
+import {
+  register,
+  login,
+  logout,
+  refreshCurrentUser,
+  updateUser,
+} from './operations';
 
 const initialState = {
   user: null,
@@ -54,6 +60,23 @@ const authSlice = createSlice({
         const { refresh_token, ...user } = payload.user;
         state.user = user;
       })
+      .addCase(updateUser.pending, handlePending)
+      .addCase(
+        updateUser.fulfilled,
+        (
+          state,
+          { payload: { name, email, phone, birthday, skype, avatarURL } }
+        ) => {
+          state.isLoading = false;
+          state.user.name = name;
+          state.user.email = email;
+          state.user.phone = phone;
+          state.user.birthday = birthday;
+          state.user.skype = skype;
+          state.user.avatarURL = avatarURL;
+        }
+      )
+      .addCase(updateUser.rejected, handleRejected)
       .addMatcher(
         isAnyOf(
           register.pending,

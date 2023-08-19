@@ -29,6 +29,8 @@ body[data-theme='light'] {
   --second-Text-Color: #343434;
   --third-Text-Color: rgba(52, 52, 52, 0.5);
   --fourth-Text-Color: rgba(52, 52, 52, 0.5);
+  --fiveth-Text-Color: #111111;
+  --error-Text-Color: #e74a3b;
 
   --first-Btn-Text-Color: #ffffff;
   --second-Btn-Text-Color: #343434;
@@ -42,10 +44,16 @@ body[data-theme='light'] {
 
   --first-Bckg-Btn-Color: #3e85f3;
   --second-Bckg-Btn-color: #e3f3ff;
+  --hover-Bckg-Btn-Color: #2b78ef;
+  --hover-Btn-Shadow: rgba(136, 165, 191, 0.48);
 
   --first-Icon-Color: #3e85f3;
 
   --cubic: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  --first-Input-Border-Color: #1111111a;
+  --second-Input-Border-Color: #111;
+  --placeholder-Color: #11111126;
 
   --sidebar-logo-title: #3e85f3;
 }
@@ -81,6 +89,8 @@ body[data-theme='dark'] {
   --second-Text-Color: #ffffff;
   --third-Text-Color: #ffffff;
   --fourth-Text-Color: rgba(250, 250, 250, 0.3);
+  --fiveth-Text-Color: rgba(250, 250, 250, 0.3);
+  --error-Text-Color: #e74a3b;
 
   --first-Btn-Text-Color: #ffffff;
   --second-Btn-Text-Color: #ffffff;
@@ -94,10 +104,16 @@ body[data-theme='dark'] {
 
   --first-Bckg-Btn-Color: #3e85f3;
   --second-Bckg-Btn-color: #21222c;
+  --hover-Bckg-Btn-Color: #2b78ef;
+  --hover-Btn-Shadow: rgba(136, 165, 191, 0.48);
 
   --first-Icon-Color: #3e85f3;
 
   --cubic: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  --first-Input-Border-Color: #ffffff26;
+  --second-Input-Border-Color: #fff;
+  --placeholder-Color: #fafafa4d;
 
   --sidebar-logo-title: #e3f3ff;
 }
