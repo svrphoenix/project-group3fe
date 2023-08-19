@@ -59,6 +59,32 @@ body[data-theme='light'] {
   --sidebar-logo-title: #3e85f3;
   --user-nav-item-hover: #3e85f3;
   --user-nav-item-bg-active: #e3f3ff;
+
+  --modal-bckg-color: #fff;
+
+  --addtask-Bckg-Btn-color: #e3f3ff;
+  --addtask-Label-text-color: #343434;
+  --addtask-Input-Bckg-color: #f6f6f6;
+  --addtask-Input-Border-color: #f6f6f6;
+  --addtask-Input-Text-color: #343434;
+  --addtask-Input-Hover-color: #3e85f3;
+  --addtask-RadioButtonLabel-color: #343434;
+  --addtask-RadioButton-low-color: #72c2f8;
+  --addtask-RadioButton-middle-color: #f3b249;
+  --addtask-RadioButton-high-color: #ea3d65;
+  --addtask-RadioButton-low-checked-color: rgba(114, 194, 248, 0.5);
+  --addtask-RadioButton-middle-checked-color: rgba(243, 178, 73, 0.5);
+  --addtask-RadioButton-high-checked-color: rgba(234, 61, 101, 0.5);
+  --addtask-RadioButton-outline-default-color: #ffffff;
+  --addtask-EditBtn-text-color: #ffffff;
+  --addtask-EditBtn-Bckg-color: #3e85f3;
+  --addtask-EditBtn-hover-color: #2b78ef;
+  --addtask-AddBtn-text-color: #ffffff;
+  --addtask-AddBtn-Bckg-color: #3e85f3;
+  --addtask-AddBtn-hover-color: #2b78ef;
+  --addtask-Cancel-Btn-text-color: #343434;
+  --addtask-Cancel-Bckg-color: #e5edfa;
+  --addtask-Cancel-hover-color: #f7f7f7;
 }
 
 body[data-theme='dark'] {
@@ -122,4 +148,31 @@ body[data-theme='dark'] {
   --sidebar-logo-title: #e3f3ff;
   --user-nav-item-hover: #fff;
   --user-nav-item-bg-active: #3e85f3;
+
+  --modal-bckg-color: #13151a;
+
+  --addtask-Bckg-Btn-color: #3e85f3;
+  --addtask-Label-text-color: #fafafa;
+  --addtask-Input-Bckg-color: #13151a;
+  --addtask-Input-Border-color: #ffffff;
+  --addtask-Input-Text-color: #ffffff;
+  --addtask-Input-Hover-color: #3e85f3;
+  --addtask-RadioButtonLabel-color: #ffffff;
+  --addtask-RadioButtonLabel-color: #343434;
+  --addtask-RadioButton-low-color: #72c2f8;
+  --addtask-RadioButton-middle-color: #f3b249;
+  --addtask-RadioButton-high-color: #ea3d65;
+  --addtask-RadioButton-low-checked-color: rgba(114, 194, 248, 0.5);
+  --addtask-RadioButton-middle-checked-color: rgba(243, 178, 73, 0.5);
+  --addtask-RadioButton-high-checked-color: rgba(234, 61, 101, 0.5);
+  --addtask-RadioButton-outline-default-color: #13151a;
+  --addtask-EditBtn-text-color: #ffffff;
+  --addtask-EditBtn-Bckg-color: #3e85f3;
+  --addtask-EditBtn-hover-color: #2b78ef;
+  --addtask-AddBtn-text-color: #ffffff;
+  --addtask-AddBtn-Bckg-color: #3e85f3;
+  --addtask-AddBtn-hover-color: #2b78ef;
+  --addtask-Cancel-Btn-text-color: #343434;
+  --addtask-Cancel-Bckg-color: #e5edfa;
+  --addtask-Cancel-hover-color: #f7f7f7;
 }
