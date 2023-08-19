@@ -11,6 +11,7 @@ export const StyledFormWrapper = styled.div`
   justify-content: center;
   align-items: center;
   background-color: var(--second-Bckg-Color);
+
   @media screen and (min-width: 1440px) {
     height: calc(100vh - 148px);
   }
@@ -21,7 +22,7 @@ export const Form = styled(FormFormik)`
   position: relative;
   display: flex;
   flex-direction: column;
-
+  overflow-y: auto;
   @media screen and (min-width: 768px) {
     padding: 40px 175px 40px 175px;
   }
