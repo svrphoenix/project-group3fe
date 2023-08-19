@@ -7,7 +7,7 @@ export const TaskColumnCard = ({ task }) => {
       <SC.TaskDescr>{task.title}</SC.TaskDescr>
       <SC.TaskInfo>
         <SC.AvatarWrapper>
-          <SC.Avatar url={task.owner.avatarURL} />
+          <SC.Avatar $url={task.owner.avatarURL} />
           <SC.Priority
             style={{
               background:

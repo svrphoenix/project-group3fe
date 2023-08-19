@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
 export const TaskItem = styled.li`
-  width: 300px;
+  width: 100%;
   height: 108px;
   padding: 14px;
   border-radius: 8px;
@@ -36,7 +36,7 @@ export const Avatar = styled.div`
   height: 32px;
   border-radius: 32px;
   border: 1.8px solid #3e85f3;
-  background-image: url(${props => props.url});
+  background-image: $url(${props => props.url});
 `;
 
 export const Priority = styled.div`
