@@ -1,20 +1,29 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PeriodPaginator } from './PeriodPaginator/PeriodPaginator';
 import { PeriodTypeSelect } from './PeriodTypeSelect/PeriodTypeSelect';
 import * as SC from './CalendarToolbar.styled';
 import { format, addDays, parse } from 'date-fns';
-import PropTypes from 'prop-types';
 import { useNavigate, useParams } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { getAllTasks } from 'redux/tasks/operations';
 
-export const CalendarToolbar = ({ type = 'month' }) => {
+export const CalendarToolbar = () => {
   const { currentDay } = useParams();
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const initialDate = currentDay
     ? parse(currentDay, 'yyyy-MM-dd', new Date())
     : new Date();
 
   const [currentDate, setCurrentDate] = useState(initialDate);
+
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth();
+  const formattedMonth = String(month + 1).padStart(2, '0');
+
+  useEffect(() => {
+    dispatch(getAllTasks({ year, month: formattedMonth }));
+  }, [dispatch, year, formattedMonth]);
 
   const formatedDate = currentDay
     ? format(currentDate, 'dd MMMM yyyy')
@@ -26,7 +35,7 @@ export const CalendarToolbar = ({ type = 'month' }) => {
       currentDate.getMonth() - 1
     );
     setCurrentDate(prevDate);
-    navigate(`/calendar/month/${format(prevDate, 'MMMM').toLowerCase()}`);
+    navigate(`/calendar/month/${format(prevDate, 'yyyy-MM')}`);
   };
 
   const prevHandleDay = () => {
@@ -41,7 +50,7 @@ export const CalendarToolbar = ({ type = 'month' }) => {
       currentDate.getMonth() + 1
     );
     setCurrentDate(nextDate);
-    navigate(`/calendar/month/${format(nextDate, 'MMMM').toLowerCase()}`);
+    navigate(`/calendar/month/${format(nextDate, 'yyyy-MM')}`);
   };
 
   const nextHandleDay = () => {
@@ -68,8 +77,4 @@ export const CalendarToolbar = ({ type = 'month' }) => {
       </SC.CalendarToolbarWrapper>
     </>
   );
-};
-
-CalendarToolbar.propTypes = {
-  type: PropTypes.string,
 };

@@ -13,7 +13,7 @@ export const PeriodTypeSelect = () => {
     const formattedCurrentDay =
       newSwitcher === 'day'
         ? format(new Date(), 'yyyy-MM-dd')
-        : format(new Date(), 'MMMM').toLowerCase();
+        : format(new Date(), 'yyyy-MM').toLowerCase();
 
     navigate(`/calendar/${newSwitcher}/${formattedCurrentDay}`);
   };
@@ -24,7 +24,6 @@ export const PeriodTypeSelect = () => {
         className={switcher === 'month' ? 'active' : null}
         type="button"
         onClick={btnHandler}
-        // disabled={switcher === 'month' ? 'disabled' : null}
         data-type="month"
       >
         Month
@@ -33,7 +32,6 @@ export const PeriodTypeSelect = () => {
         className={switcher === 'day' ? 'active' : null}
         type="button"
         onClick={btnHandler}
-        // disabled={switcher === 'day' ? 'disabled' : null}
         data-type="day"
       >
         Day
