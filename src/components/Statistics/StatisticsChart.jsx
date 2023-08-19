@@ -9,6 +9,11 @@ import {
   LabelList,
 } from 'recharts';
 
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getAllTasks, getDayTasks } from 'redux/tasks/operations';
+import { useSearchParams } from 'react-router-dom';
+
 import * as SC from './StatisticsChart.styled';
 
 const data = [
@@ -48,6 +53,42 @@ const renderLabelMonth = () => {
 const StatisticsChart = () => {
   renderLabelDay();
   renderLabelMonth();
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [monthTasks, setMonthTasks] = useState([]);
+
+  const day = searchParams.get('day');
+  const month = searchParams.get('month');
+  const formattedMonth = String(month).padStart(2, '0');
+  const year = searchParams.get('year');
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllTasks({ month: formattedMonth, year })).then(res =>
+      setMonthTasks(res.payload)
+    );
+  }, [day]);
+
+  console.log(monthTasks);
+
+  if (monthTasks && monthTasks.length > 0) {
+    let toDoByMonth = [];
+    toDoByMonth = monthTasks.filter(task => task.category === 'to-do');
+    console.log(toDoByMonth);
+
+    let inProgressByMonth = [];
+    toDoByMonth = monthTasks.filter(task => task.category === 'in-progress');
+    console.log(inProgressByMonth);
+
+    let doneByMonth = [];
+    toDoByMonth = monthTasks.filter(task => task.category === 'done');
+    console.log(doneByMonth);
+  }
+
+  // useEffect(() => {
+  //   dispatch(getDayTasks({ month: formattedMonth, day, year }));
+  // }, [day]);
 
   return (
     <>

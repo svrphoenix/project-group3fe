@@ -23,6 +23,7 @@ const StatisticsPage = () => {
     setSearchParams({
       month: prevDate.getMonth() + 1,
       day: prevDate.getDate(),
+      year: prevDate.getFullYear(),
     });
   };
 
@@ -33,6 +34,7 @@ const StatisticsPage = () => {
     setSearchParams({
       month: nextDate.getMonth() + 1,
       day: nextDate.getDate(),
+      year: nextDate.getFullYear(),
     });
   };
 

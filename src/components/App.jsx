@@ -115,7 +115,7 @@ const App = () => {
                   <Navigate
                     to={`?month=${
                       new Date().getMonth() + 1
-                    }&day=${new Date().getDate()}`}
+                    }&day=${new Date().getDate()}&year=${new Date().getFullYear()}`}
                     replace
                   />
                   <StatisticsPage />
