@@ -29,7 +29,7 @@ export const SideBarBox = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    position: static;
+    /* position: static; */
     padding: 32px 24px 24px 24px;
     transform: translateX(0);
   }

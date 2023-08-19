@@ -22,7 +22,7 @@ import { FeedbackButton } from 'components/FeedbackButton/FeedbackButton';
 import SVG from './header-img/header-icons.svg';
 import AddSvg from 'components/AddSvg/AddSvg';
 
-const Header = ({ openSideBar }) => {
+const Header = ({ isSideBarOpened, openSideBar }) => {
   const tasks = useSelector(selectTasks);
   const location = useLocation();
 
@@ -68,13 +68,15 @@ const Header = ({ openSideBar }) => {
         </HeaderTitleWrapperGoose>
       )}
 
-      <BurgerBtn
-        type="button"
-        aria-label="Open mobile menu"
-        onClick={openSideBar}
-      >
-        <AddSvg component={Vector} sprite={SVG} spriteId="burger-icon" />
-      </BurgerBtn>
+      {!isSideBarOpened && (
+        <BurgerBtn
+          type="button"
+          aria-label="Open mobile menu"
+          onClick={openSideBar}
+        >
+          <AddSvg component={Vector} sprite={SVG} spriteId="burger-icon" />
+        </BurgerBtn>
+      )}
 
       <HeaderMenuWrapper>
         <FeedbackButton />
