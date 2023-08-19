@@ -8,16 +8,13 @@ import StatisticsChart from 'components/Statistics/StatisticsChart';
 import * as SC from './StatisticsPage.styled';
 
 const StatisticsPage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [_, setSearchParams] = useSearchParams();
 
   const initialDate = new Date();
 
   const [currentDate, setCurrentDate] = useState(initialDate);
 
   const formatedDate = format(currentDate, 'dd MMMM yyyy');
-
-  console.log(currentDate.getDate());
-  console.log(currentDate.getMonth() + 1);
 
   const prevHandler = () => {
     const prevDate = addDays(currentDate, -1);
