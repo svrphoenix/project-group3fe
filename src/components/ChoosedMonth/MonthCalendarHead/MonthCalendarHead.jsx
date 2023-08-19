@@ -2,7 +2,7 @@ import { eachDayOfInterval, endOfWeek, format, startOfWeek } from 'date-fns';
 import * as SC from './MonthCalendarHead.styled';
 import useResize from 'hooks/useResize';
 
-export const MonthCalendarHead = () => {
+const MonthCalendarHead = () => {
   const currentDate = new Date();
   const width = useResize();
   const startDayOfWeek = startOfWeek(currentDate, { weekStartsOn: 1 });
@@ -22,3 +22,5 @@ export const MonthCalendarHead = () => {
     </SC.DaysOfWeekWrapper>
   );
 };
+
+export default MonthCalendarHead;

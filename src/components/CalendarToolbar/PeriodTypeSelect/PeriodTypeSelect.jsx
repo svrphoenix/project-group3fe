@@ -3,7 +3,7 @@ import { Button, ButtonGroup } from './PeriodTypeSelect.styled';
 import { format } from 'date-fns';
 import { useState } from 'react';
 
-export const PeriodTypeSelect = () => {
+const PeriodTypeSelect = () => {
   const [switcher, setSwitcher] = useState('month');
   const navigate = useNavigate();
 
@@ -39,3 +39,5 @@ export const PeriodTypeSelect = () => {
     </ButtonGroup>
   );
 };
+
+export default PeriodTypeSelect;
