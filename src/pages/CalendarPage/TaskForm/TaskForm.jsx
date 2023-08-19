@@ -1,9 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
-
-
+import { toast } from 'react-hot-toast';
 
 import {
   TaskFormStyled,
@@ -18,12 +18,162 @@ import {
   ButtonContainer,
   AddButton,
   CancelBtn,
-  ButtonIcon,
+  EditButton,
+  EditIcon,
 } from './TaskForm.styled';
+import { AddIcon } from 'components/UserForm/AddIcon';
 
-const TaskForm = () => {
+import { addTask, patchTask } from 'redux/tasks/operations';
+import { selectTasks } from 'redux/tasks/selectors';
+
+const useDateValidation = () => {
+  const params = useParams();
+  const date = new Date(params.currentDay);
+
+  if (Object.prototype.toString.call(date) === '[object Date]') {
+    if (isNaN(date)) {
+      return new Date();
+    } else {
+      return date;
+    }
+  }
+};
+
+const TaskForm = ({
+  onCloseModal,
+  editBtnVisible,
+  id,
+  editTask,
+  addCategory,
+}) => {
+  const [title, setTitle] = useState(editTask?.title || '');
+  const [start, setStart] = useState(editTask?.start || '09:00');
+  const [end, setEnd] = useState(editTask?.end || '09:30');
+  const [selectedOption, setSelectedOption] = useState(editTask?.priority);
+  const [priority, setPriority] = useState(editTask?.priority || 'low');
+  const category = addCategory?.category || 'to-do';
+  const dispatch = useDispatch();
+  const tasks = useSelector(selectTasks);
+
+  const validDate = useDateValidation();
+  const currentDay = format(validDate, 'yyyy-MM-dd');
+
+  const handleOptionChange = event => {
+    setSelectedOption(event.target.value);
+    setPriority(event.target.value);
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const edit = {
+      title,
+      start,
+      end,
+      priority,
+      date: currentDay,
+      category,
+    };
+
+    const startTime = start.split(':');
+    const endTime = end.split(':');
+
+    const startHour = parseInt(startTime[0], 10);
+    const endHour = parseInt(endTime[0], 10);
+    const startMinute = parseInt(startTime[1], 10);
+    const endMinute = parseInt(endTime[1], 10);
+
+    if (
+      startHour > endHour ||
+      (startHour === endHour && startMinute >= endMinute)
+    ) {
+      toast.error('The start time must be earlier than the end time', {
+        style: {
+          background: 'orange',
+          overflow: 'hidden',
+        },
+        icon: '❗',
+        iconTheme: {
+          primary: '#fff',
+          secondary: 'orange',
+        },
+      });
+
+      return;
+    }
+
+    if (title.trim() === '' || start.trim() === '' || end.trim() === '') {
+      toast.error('All fields must be filled', {
+        style: {
+          background: 'orange',
+          overflow: 'hidden',
+        },
+        icon: '❗',
+        iconTheme: {
+          primary: '#fff',
+          secondary: 'orange',
+        },
+      });
+      return;
+    }
+
+    if (
+      title === editTask?.title &&
+      end === editTask?.end &&
+      start === editTask?.start &&
+      priority === editTask?.priority
+    ) {
+      toast.error('Change at least one field', {
+        style: {
+          background: 'orange',
+          overflow: 'hidden',
+        },
+        icon: '❗',
+        iconTheme: {
+          primary: '#fff',
+          secondary: 'orange',
+        },
+      });
+      return;
+    }
+
+    if (tasks.find(task => task._id === id)) {
+      dispatch(patchTask({ id, task: edit }));
+      toast.success('Successfully! The task has been changed');
+    } else {
+      dispatch(
+        addTask({
+          title,
+          start,
+          end,
+          priority,
+          date: currentDay,
+          category: category,
+        })
+      );
+      toast.success('Successfully! Task added');
+    }
+
+    onCloseModal();
+  };
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+
+    switch (name) {
+      case 'title':
+        return setTitle(value);
+      case 'start':
+        return setStart(value);
+      case 'end':
+        return setEnd(value);
+
+      default:
+        return value;
+    }
+  };
+
   return (
-    <TaskFormStyled>
+    <TaskFormStyled onSubmit={handleSubmit}>
       <TaskContainer>
         <TaskLabelStyled htmlFor="title">
           Title
@@ -32,68 +182,96 @@ const TaskForm = () => {
             name="title"
             id="title"
             placeholder="Enter text"
+            maxLength={250}
+            onChange={handleChange}
+            value={title}
           />
         </TaskLabelStyled>
       </TaskContainer>
 
       <TimeWrapper>
-        <TimeWrapper>
-          <TaskLabelStyled htmlFor="start">
-            Start
-            <TaskInputStyled
-              type="time"
-              step="60"
-              name="start"
-              id="start"
-              placeholder="Select time"
-            />
-          </TaskLabelStyled>
-        </TimeWrapper>
+        <TaskContainer>
+          <TaskLabelStyled htmlFor="start">Start</TaskLabelStyled>
+          <TaskInputStyled
+            type="time"
+            name="start"
+            id="timeInput"
+            value={start}
+            onChange={handleChange}
+            step="900"
+          />
+        </TaskContainer>
 
-        <TimeWrapper>
-          <TaskLabelStyled htmlFor="end">
-            End
-            <TaskInputStyled
-              type="time"
-              step="60"
-              name="end"
-              id="end"
-              placeholder="Select time"
-            />
-          </TaskLabelStyled>
-        </TimeWrapper>
+        <TaskContainer>
+          <TaskLabelStyled htmlFor="end">End</TaskLabelStyled>
+          <TaskInputStyled
+            type="time"
+            name="end"
+            id="timeInput"
+            value={end}
+            onChange={handleChange}
+            step="900"
+          />
+        </TaskContainer>
       </TimeWrapper>
 
       <RadioButtonContainer>
         <RadioButtonGorup>
           <RadioButtonLabel>
-            <RadioButtonInput type="radio" name="option" value="low" />
+            <RadioButtonInput
+              type="radio"
+              name="option"
+              value="low"
+              checked={selectedOption === 'low'}
+              onChange={handleOptionChange}
+            />
+            Low
           </RadioButtonLabel>
         </RadioButtonGorup>
         <RadioButtonGorup>
           <RadioButtonLabel>
-            <RadioButtonInput type="radio" name="option" value="medium" />
+            <RadioButtonInput
+              type="radio"
+              name="option"
+              value="medium"
+              checked={selectedOption === 'medium'}
+              onChange={handleOptionChange}
+            />
+            Medium
           </RadioButtonLabel>
         </RadioButtonGorup>
         <RadioButtonGorup>
           <RadioButtonLabel>
-            <RadioButtonInput type="radio" name="option" value="high" />
+            <RadioButtonInput
+              type="radio"
+              name="option"
+              value="high"
+              checked={selectedOption === 'high'}
+              onChange={handleOptionChange}
+            />
+            High
           </RadioButtonLabel>
         </RadioButtonGorup>
       </RadioButtonContainer>
 
       <ButtonContainer>
-        <ButtonIcon>
-          {/* <Pencil width="18" height="18" fill="none" stroke="#ffffff" /> */}
-          Edit
-        </ButtonIcon>
-        <AddButton aria-label="Button add" type="submit">
-          {/* <Plus width="20" height="20" fill="none" stroke="#ffffff" /> */}
-          Add
-        </AddButton>
-        <CancelBtn aria-label="Button cancel" type="button">
-          Cancel
-        </CancelBtn>
+        {editBtnVisible ? (
+          <EditButton type="submit">
+            <EditIcon>
+              <use xlinkHref="/sprite.svg#icon-pencil"></use>
+            </EditIcon>
+          </EditButton>
+        ) : (
+          <>
+            <AddButton type="submit">
+              <AddIcon color="#fff" size={16} />
+              Add
+            </AddButton>
+            <CancelBtn type="button" onClick={onCloseModal}>
+              Cancel
+            </CancelBtn>
+          </>
+        )}
       </ButtonContainer>
     </TaskFormStyled>
   );

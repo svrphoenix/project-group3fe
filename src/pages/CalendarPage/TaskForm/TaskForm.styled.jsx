@@ -129,7 +129,7 @@ export const RadioButtonInput = styled.input`
   border: 1px solid
     ${props => {
       if (props.checked) {
-        return '#21222c';
+        return '#ffffff';
       }
 
       switch (props.value) {
@@ -163,7 +163,7 @@ export const RadioButtonInput = styled.input`
     border: 2px solid
       ${props => {
         if (props.checked) {
-          return '#21222c';
+          return '#ffffff';
         }
 
         switch (props.value) {
@@ -248,6 +248,20 @@ export const EditButton = styled.button`
   }
 `;
 
+export const EditIcon = styled.svg`
+  display: block;
+  stroke: #ffffff;
+  fill: transparent;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+
+  @media screen and (min-width: 768px) {
+    width: 18px;
+    height: 18px;
+  }
+`;
+
 export const AddButton = styled.button`
   cursor: pointer;
   display: flex;
@@ -301,11 +315,6 @@ export const CancelBtn = styled.button`
   @media screen and (min-width: 768px) {
     padding: 14px 48px;
   }
-`;
-
-export const ClockWrapp = styled.div`
-  width: 17px;
-  height: 17px;
 `;
 
 export const ButtonIcon = styled.button`
