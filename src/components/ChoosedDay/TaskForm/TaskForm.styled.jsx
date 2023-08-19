@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { AddIcon } from 'components/UserForm/AddIcon';
+import { EditIconSvg } from './EditIconSvg';
 
 export const TaskFormStyled = styled.form`
   display: flex;
@@ -17,7 +19,7 @@ export const TaskContainer = styled.div`
 `;
 
 export const TaskLabelStyled = styled.label`
-  font-family: 'Inter';
+  font-family: 'Inter Medium';
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
@@ -31,7 +33,7 @@ export const TaskInputStyled = styled.input`
   margin-bottom: 8px;
   padding: 15px 15px;
 
-  font-family: 'Inter';
+  font-family: 'Inter SemiBold';
   font-weight: 600;
   font-size: 14px;
   line-height: 18px;
@@ -81,7 +83,7 @@ export const RadioButtonGorup = styled.div`
 `;
 
 export const RadioButtonLabel = styled.label`
-  font-family: 'Inter';
+  font-family: 'Inter SemiBold';
   font-weight: 600;
   font-size: 12px;
   line-height: 14px;
@@ -94,7 +96,7 @@ export const RadioButtonLabel = styled.label`
 `;
 
 export const RadioButtonInput = styled.input`
-  margin-right: 6px;
+  margin-right: 16px;
   appearance: none;
   width: 8px;
   height: 8px;
@@ -221,11 +223,12 @@ export const ButtonContainer = styled.div`
 `;
 
 export const EditButton = styled.button`
+  gap: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  font-family: 'Inter';
+  font-family: 'Inter SemiBold';
   font-weight: 600;
   font-size: 14px;
   line-height: 18px;
@@ -248,27 +251,14 @@ export const EditButton = styled.button`
   }
 `;
 
-export const EditIcon = styled.svg`
-  display: block;
-  stroke: #ffffff;
-  fill: transparent;
-  width: 16px;
-  height: 16px;
-  margin-right: 8px;
-
-  @media screen and (min-width: 768px) {
-    width: 18px;
-    height: 18px;
-  }
-`;
-
 export const AddButton = styled.button`
+  gap: 8px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  font-family: 'Inter';
+  font-family: 'Inter SemiBold';
   font-weight: 600;
   font-size: 14px;
   line-height: 18px;
@@ -294,7 +284,7 @@ export const AddButton = styled.button`
 export const CancelBtn = styled.button`
   cursor: pointer;
   width: 100%;
-  font-family: 'Inter';
+  font-family: 'Inter SemiBold';
   font-weight: 600;
   font-size: 14px;
   line-height: 18px;
@@ -334,4 +324,12 @@ export const ButtonIcon = styled.button`
   font-size: 14px;
   line-height: 1.29;
   letter-spacing: -0.02em;
+`;
+
+export const StyledAddIcon = styled(AddIcon)`
+  align-self: center;
+`;
+
+export const StyledEditIcon = styled(EditIconSvg)`
+  align-self: center;
 `;
