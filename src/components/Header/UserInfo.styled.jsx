@@ -52,6 +52,7 @@ export const UserAvatarImg = styled.img`
   height: 32px;
   border: 1.8px solid var(--fourth-Bckg-Color);
   border-radius: 50%;
+  object-fit: cover;
 
   @media screen and (min-width: 768px) {
     width: 44px;
