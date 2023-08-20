@@ -5,16 +5,31 @@ export const StatisticsDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
-  width: 860px;
+  width:335px
   justify-content: centre;
+  border-radius: 16px;
+  background: var(--white, #FFF);
+
+  @media screen and (min-width: 768px) {
+   width: 704px;
+
+  }
+  @media screen and (min-width: 1440px) {
+    width: 1087px;
+    padding-top: 134px
+  }
 `;
 
 export const StatisticsHeaderDiv = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 780px;
+  width: 704px;
   margin-left: auto;
   margin-right: auto;
+
+  @media screen and (min-width: 1440px) {
+    width: 780px;
+  }
 `;
 
 export const ChartLegend = styled.ul`
