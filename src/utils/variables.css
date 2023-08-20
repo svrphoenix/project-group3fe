@@ -85,6 +85,7 @@ body[data-theme='light'] {
   --addtask-Cancel-Btn-text-color: #343434;
   --addtask-Cancel-Bckg-color: #e5edfa;
   --addtask-Cancel-hover-color: #f7f7f7;
+  --addtask-Btn-border: 1px dashed #3e85f3;
 }
 
 body[data-theme='dark'] {
@@ -175,4 +176,5 @@ body[data-theme='dark'] {
   --addtask-Cancel-Btn-text-color: #343434;
   --addtask-Cancel-Bckg-color: #e5edfa;
   --addtask-Cancel-hover-color: #f7f7f7;
+  --addtask-Btn-border: none;
 }
