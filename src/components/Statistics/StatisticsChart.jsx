@@ -96,26 +96,28 @@ const StatisticsChart = () => {
     },
   ];
 
-  const renderLabelDay = () => {
-    const allByDay = data.reduce((acc, value) => acc + value.ByDay, 0);
-
-    data.map(value => {
-      value.procentDay = `${parseInt((value.ByDay / allByDay) * 100)}%`;
-    });
-  };
-
-  const renderLabelMonth = () => {
-    const allByMonth = data.reduce((acc, value) => acc + value.ByMonth, 0);
-
-    data.map(value => {
-      value.procentMonth = `${parseInt((value.ByMonth / allByMonth) * 100)}%`;
-    });
-  };
-
   useEffect(() => {
+    const renderLabelDay = () => {
+      const allByDay = data.reduce((acc, value) => acc + value.ByDay, 0);
+
+      data.map(value => {
+        value.procentDay = `${parseInt((value.ByDay / allByDay) * 100)}%`;
+        return value.procentDay;
+      });
+    };
+
+    const renderLabelMonth = () => {
+      const allByMonth = data.reduce((acc, value) => acc + value.ByMonth, 0);
+
+      data.map(value => {
+        value.procentMonth = `${parseInt((value.ByMonth / allByMonth) * 100)}%`;
+        return value.procentMonth;
+      });
+    };
+
     renderLabelDay();
     renderLabelMonth();
-  }, [renderLabelDay, renderLabelMonth]);
+  });
 
   return (
     <>
