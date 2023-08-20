@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
@@ -69,106 +69,125 @@ const TaskForm = ({
     }
   }, [editTask]);
 
-  const handleOptionChange = event => {
+  const handleOptionChange = useCallback(event => {
     const value = event.target.value;
     setSelectedOption(value);
     setPriority(value);
-  };
+  }, []);
 
-  const handleSubmit = async e => {
-    e.preventDefault();
-    const edit = {
+  const handleSubmit = useCallback(
+    async e => {
+      e.preventDefault();
+      const edit = {
+        title,
+        start,
+        end,
+        priority,
+        date: currentDay,
+        category,
+      };
+
+      const startTime = start.split(':');
+      const endTime = end.split(':');
+
+      const startHour = parseInt(startTime[0], 10);
+      const endHour = parseInt(endTime[0], 10);
+      const startMinute = parseInt(startTime[1], 10);
+      const endMinute = parseInt(endTime[1], 10);
+
+      if (
+        startHour > endHour ||
+        (startHour === endHour && startMinute >= endMinute)
+      ) {
+        toast.error('The start time must be earlier than the end time', {
+          style: {
+            background: 'orange',
+            overflow: 'hidden',
+          },
+          icon: '❗',
+          iconTheme: {
+            primary: '#fff',
+            secondary: 'orange',
+          },
+        });
+
+        return;
+      }
+
+      if (title.trim() === '' || start.trim() === '' || end.trim() === '') {
+        toast.error('All fields must be filled', {
+          style: {
+            background: 'orange',
+            overflow: 'hidden',
+          },
+          icon: '❗',
+          iconTheme: {
+            primary: '#fff',
+            secondary: 'orange',
+          },
+        });
+        return;
+      }
+
+      if (
+        title === editTask?.title &&
+        end === editTask?.end &&
+        start === editTask?.start &&
+        priority === editTask?.priority
+      ) {
+        toast.error('Change at least one field', {
+          style: {
+            background: 'orange',
+            overflow: 'hidden',
+          },
+          icon: '❗',
+          iconTheme: {
+            primary: '#fff',
+            secondary: 'orange',
+          },
+        });
+        return;
+      }
+
+      if (tasks.find(task => task._id === id)) {
+        dispatch(patchTask({ id, task: edit }));
+        toast.success('Successfully! The task has been changed');
+      } else {
+        dispatch(
+          addTask({
+            title,
+            start,
+            end,
+            priority,
+            date: currentDay,
+            category: addCategory,
+          })
+        );
+        toast.success('Successfully! Task added');
+      }
+
+      onCloseModal();
+    },
+    [
       title,
       start,
       end,
       priority,
-      date: currentDay,
+      currentDay,
       category,
-    };
+      editTask?.title,
+      editTask?.end,
+      editTask?.start,
+      editTask?.priority,
+      tasks,
+      dispatch,
+      id,
+      addCategory,
+      onCloseModal,
+    ]
+  );
 
-    const startTime = start.split(':');
-    const endTime = end.split(':');
-
-    const startHour = parseInt(startTime[0], 10);
-    const endHour = parseInt(endTime[0], 10);
-    const startMinute = parseInt(startTime[1], 10);
-    const endMinute = parseInt(endTime[1], 10);
-
-    if (
-      startHour > endHour ||
-      (startHour === endHour && startMinute >= endMinute)
-    ) {
-      toast.error('The start time must be earlier than the end time', {
-        style: {
-          background: 'orange',
-          overflow: 'hidden',
-        },
-        icon: '❗',
-        iconTheme: {
-          primary: '#fff',
-          secondary: 'orange',
-        },
-      });
-
-      return;
-    }
-
-    if (title.trim() === '' || start.trim() === '' || end.trim() === '') {
-      toast.error('All fields must be filled', {
-        style: {
-          background: 'orange',
-          overflow: 'hidden',
-        },
-        icon: '❗',
-        iconTheme: {
-          primary: '#fff',
-          secondary: 'orange',
-        },
-      });
-      return;
-    }
-
-    if (
-      title === editTask?.title &&
-      end === editTask?.end &&
-      start === editTask?.start &&
-      priority === editTask?.priority
-    ) {
-      toast.error('Change at least one field', {
-        style: {
-          background: 'orange',
-          overflow: 'hidden',
-        },
-        icon: '❗',
-        iconTheme: {
-          primary: '#fff',
-          secondary: 'orange',
-        },
-      });
-      return;
-    }
-
-    if (tasks.find(task => task._id === id)) {
-      dispatch(patchTask({ id, task: edit }));
-      toast.success('Successfully! The task has been changed');
-    } else {
-      dispatch(
-        addTask({
-          title,
-          start,
-          end,
-          priority,
-          date: currentDay,
-          category: addCategory,
-        })
-      );
-      toast.success('Successfully! Task added');
-    }
-
-    onCloseModal();
-  };
-
-  const handleChange = e => {
+  const handleChange = useCallback(e => {
     const { name, value } = e.target;
 
     switch (name) {
@@ -178,11 +197,10 @@ const TaskForm = ({
         return setStart(value);
       case 'end':
         return setEnd(value);
-
       default:
         return value;
     }
-  };
+  }, []);
 
   return (
     <TaskFormStyled onSubmit={handleSubmit}>
@@ -270,7 +288,7 @@ const TaskForm = ({
         {editBtnVisible ? (
           <>
             <EditButton type="submit">
-              <StyledEditIcon color="#fff" size={14.5} />
+              <StyledEditIcon color="#fff" size={18} />
               Edit
             </EditButton>
             <CancelBtn type="button" onClick={onCloseModal}>
@@ -280,7 +298,7 @@ const TaskForm = ({
         ) : (
           <>
             <AddButton type="submit">
-              <StyledAddIcon color="#fff" size={11.7} />
+              <StyledAddIcon color="#fff" size={20} />
               Add
             </AddButton>
             <CancelBtn type="button" onClick={onCloseModal}>
