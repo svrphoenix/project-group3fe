@@ -85,6 +85,11 @@ body[data-theme='light'] {
   --addtask-Cancel-Btn-text-color: #343434;
   --addtask-Cancel-Bckg-color: #e5edfa;
   --addtask-Cancel-hover-color: #f7f7f7;
+
+  --loader-Gradient: linear-gradient(
+    rgba(220, 235, 247, 0.56),
+    rgba(164, 212, 248, 0.663)
+  );
 }
 
 body[data-theme='dark'] {
@@ -175,4 +180,9 @@ body[data-theme='dark'] {
   --addtask-Cancel-Btn-text-color: #343434;
   --addtask-Cancel-Bckg-color: #e5edfa;
   --addtask-Cancel-hover-color: #f7f7f7;
+
+  --loader-Gradient: linear-gradient(
+    rgba(59, 130, 236, 0.609),
+    rgba(33, 34, 44, 0.609)
+  );
 }
