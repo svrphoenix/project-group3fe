@@ -4,7 +4,7 @@ export const ScrollableContainer = styled.div`
   display: grid;
   justify-content: center;
 `;
-export const DaystasksWrapper = styled.div`
+export const TasksColumnWrapper = styled.div`
   display: grid;
   grid-auto-flow: column;
   grid-gap: 16px;
