@@ -11,7 +11,7 @@ const initialState = {
   user: null,
   token: null,
   refreshToken: null,
-  isLoading: false,
+  isLoading: true,
   error: '',
 };
 
@@ -41,6 +41,7 @@ const authSlice = createSlice({
       state.user = null;
       state.token = null;
       state.refreshToken = null;
+      state.isLoading = true;
     },
 
     refreshTokens(state, { payload }) {

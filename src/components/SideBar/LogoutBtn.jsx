@@ -14,7 +14,7 @@ const LogoutBtn = ({ closeSideBar }) => {
   function handleClick() {
     closeSideBar();
     dispatch(logout());
-    navigate('/');
+    navigate('/', { replace: true });
   }
 
   return (
