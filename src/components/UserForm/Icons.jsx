@@ -24,7 +24,7 @@ const AddIconMediaSizes = () => {
   } else if (window.innerWidth <= 1440) {
     iconSize = 18;
   }
-  return <AddIcon color="#fff" size={iconSize} />;
+  return <AddIcon color="#fff" width={iconSize} height={iconSize} />;
 };
 
 export { ChevronDownIcon, AddIconMediaSizes };
