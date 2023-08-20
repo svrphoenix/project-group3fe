@@ -3,6 +3,7 @@ import { ColumnHeadBar } from '../ColumnHeadBar/ColumnHeadBar';
 import { ColumnTasksList } from '../ColumnTasksList/ColumnTasksList';
 import { AddTaskBtn } from '../AddTaskBtn/AddTaskBtn';
 import * as SC from './TasksColumn.styled';
+import { TaskModal } from '../TaskModal/TaskModal';
 
 export const TasksColumn = ({ columnTitle, columnTasks }) => {
   const { showModal, onToggleModal } = useModalToggle();
@@ -14,14 +15,14 @@ export const TasksColumn = ({ columnTitle, columnTasks }) => {
           onToggleModal={onToggleModal}
           columnTitle={columnTitle}
         />
-        <ColumnTasksList
-          showModal={showModal}
-          onToggleModal={onToggleModal}
-          columnTasks={columnTasks}
-          columnTitle={columnTitle.toLowerCase()}
-        />
+        <ColumnTasksList columnTasks={columnTasks} />
         <AddTaskBtn onToggleModal={onToggleModal} />
       </SC.DaysTasksContainer>
+      <TaskModal
+        showModal={showModal}
+        onToggleModal={onToggleModal}
+        category={columnTitle.toLowerCase()}
+      />
     </>
   );
 };

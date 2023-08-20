@@ -32,7 +32,6 @@ export const addTask = createAsyncThunk(
   'tasks/addTask',
   async (task, thunkAPI) => {
     try {
-      console.log(task);
       const response = await api.post('tasks', task);
 
       if (response.status !== 201) {
@@ -58,7 +57,7 @@ export const deleteTask = createAsyncThunk(
       }
 
       toast.success('Task deleted successfully');
-      return response.data;
+      return taskId;
     } catch (error) {
       toast.error(`Sorry, task wasn’t deleted: ${error.message}`);
       return thunkAPI.rejectWithValue(error.message);
@@ -69,6 +68,7 @@ export const deleteTask = createAsyncThunk(
 export const patchTask = createAsyncThunk(
   'tasks/updateTask',
   async ({ id, task }, thunkAPI) => {
+    console.log(task);
     try {
       const response = await api.patch(`tasks/${id}`, task);
 

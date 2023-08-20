@@ -1,6 +1,5 @@
-import React from 'react';
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
 import { toast } from 'react-hot-toast';
@@ -23,7 +22,6 @@ import {
 } from './TaskForm.styled';
 
 import { addTask, patchTask } from 'redux/tasks/operations';
-import { selectTasks } from 'redux/tasks/selectors';
 
 const useDateValidation = () => {
   const params = useParams();
@@ -38,15 +36,7 @@ const useDateValidation = () => {
   }
 };
 
-const TaskForm = ({
-  onCloseModal,
-  editBtnVisible,
-  id,
-  editTask,
-  addCategory,
-  columnTitle,
-}) => {
-  console.log(columnTitle);
+const TaskForm = ({ onCloseModal, ...editTask }) => {
   const [title, setTitle] = useState(editTask?.title || '');
   const [start, setStart] = useState(editTask?.start || '09:00');
   const [end, setEnd] = useState(editTask?.end || '09:30');
@@ -54,13 +44,12 @@ const TaskForm = ({
   const [priority, setPriority] = useState(editTask?.priority || 'low');
   const category = editTask?.category || 'to-do';
   const dispatch = useDispatch();
-  const tasks = useSelector(selectTasks);
 
   const validDate = useDateValidation();
   const currentDay = format(validDate, 'yyyy-MM-dd');
 
   useEffect(() => {
-    if (editTask) {
+    if (editTask.id) {
       setTitle(editTask.title);
       setStart(editTask.start);
       setEnd(editTask.end);
@@ -148,8 +137,8 @@ const TaskForm = ({
       return;
     }
 
-    if (tasks.find(task => task._id === id)) {
-      dispatch(patchTask({ id, task: edit }));
+    if (editTask.id) {
+      dispatch(patchTask({ id: editTask.id, task: edit }));
       toast.success('Successfully! The task has been changed');
     } else {
       dispatch(
@@ -159,7 +148,7 @@ const TaskForm = ({
           end,
           priority,
           date: currentDay,
-          category: addCategory,
+          category,
         })
       );
       toast.success('Successfully! Task added');
@@ -267,7 +256,7 @@ const TaskForm = ({
       </RadioButtonContainer>
 
       <ButtonContainer>
-        {editBtnVisible ? (
+        {editTask.id ? (
           <>
             <EditButton type="submit">
               <StyledEditIcon color="#fff" size={14.5} />

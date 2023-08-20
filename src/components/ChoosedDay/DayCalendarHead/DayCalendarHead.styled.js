@@ -10,6 +10,7 @@ export const Weekday = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-transform: uppercase;
   cursor: pointer;
   &:nth-last-child(-n + 2) {
     color: #3e85f3;
