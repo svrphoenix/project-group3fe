@@ -7,7 +7,7 @@ export const StyledLayout = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #dcebf7;
+  background: var(--LogReg-Bckg-Color);
   position: relative;
 `;
 
