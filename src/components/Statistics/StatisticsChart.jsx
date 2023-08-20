@@ -19,6 +19,7 @@ const StatisticsChart = () => {
   const [monthTasks, setMonthTasks] = useState([]);
 
   const day = searchParams.get('day');
+  const formattedDay = String(day).padStart(2, '0');
   const month = searchParams.get('month');
   const formattedMonth = String(month).padStart(2, '0');
   const year = searchParams.get('year');
@@ -56,23 +57,26 @@ const StatisticsChart = () => {
     // day
     setToDoByDay(
       monthTasks.filter(
-        task => task.category === 'to-do' && task.date.split('-')[2] === day
+        task =>
+          task.category === 'to-do' && task.date.split('-')[2] === formattedDay
       ).length
     );
 
     setInProgressByDay(
       monthTasks.filter(
         task =>
-          task.category === 'in-progress' && task.date.split('-')[2] === day
+          task.category === 'in-progress' &&
+          task.date.split('-')[2] === formattedDay
       ).length
     );
 
     setDoneByDay(
       monthTasks.filter(
-        task => task.category === 'done' && task.date.split('-')[2] === day
+        task =>
+          task.category === 'done' && task.date.split('-')[2] === formattedDay
       ).length
     );
-  }, [dispatch, day, monthTasks]);
+  }, [dispatch, formattedDay, month, monthTasks]);
 
   const data = [
     {
