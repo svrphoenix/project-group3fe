@@ -5,9 +5,8 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  //   Legend,
   LabelList,
-  // ResponsiveContainer,
+  ResponsiveContainer,
 } from 'recharts';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -127,7 +126,7 @@ const StatisticsChart = () => {
   return (
     <>
       <SC.ChartDiv>
-        <SC.ResponsiveContainerStyled height={318}>
+        <ResponsiveContainer height={318}>
           <BarChart
             width={760}
             height={440}
@@ -155,12 +154,6 @@ const StatisticsChart = () => {
               }}
             />
             <Tooltip />
-            {/* <Legend
-            align="right"
-            verticalAlign="top"
-            iconSize="8"
-            iconType="circle"
-          /> */}
             <Bar dataKey="ByDay" fill="#FFD2DD" barSize={27} fontSize={16}>
               <LabelList dataKey="procentDay" position="top" />
             </Bar>
@@ -168,7 +161,7 @@ const StatisticsChart = () => {
               <LabelList dataKey="procentMonth" position="top" />
             </Bar>
           </BarChart>
-        </SC.ResponsiveContainerStyled>
+        </ResponsiveContainer>
       </SC.ChartDiv>
     </>
   );
