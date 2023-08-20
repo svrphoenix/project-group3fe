@@ -12,7 +12,7 @@ export const Weekday = styled.div`
   align-items: center;
   cursor: pointer;
   &:nth-last-child(-n + 2) {
-    color: #3e85f3;
+    color: var(--second-Text-Color);
   }
   @media screen and (max-width: 335px) {
     font-size: 4.776vw;
