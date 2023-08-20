@@ -4,6 +4,7 @@ import { Outlet } from 'react-router';
 import { Loader } from './Loader/Loader';
 
 export const SharedLayout = () => {
+  console.log('sharedlayout');
   return (
     <Suspense fallback={<Loader />}>
       <Outlet />

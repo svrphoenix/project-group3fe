@@ -71,7 +71,6 @@ const App = () => {
               />
             }
           />
-
           <Route element={<MainLayout />}>
             <Route
               path="/calendar"
@@ -104,7 +103,7 @@ const App = () => {
             <Route
               path="/account"
               element={
-                <PrivateRoute redirectTo="/" component={<AccountPage />} />
+                <PrivateRoute redirectTo="/login" component={<AccountPage />} />
               }
             />
             <Route
@@ -114,7 +113,6 @@ const App = () => {
               }
             />
           </Route>
-
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
