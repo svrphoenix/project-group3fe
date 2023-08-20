@@ -39,34 +39,57 @@ const StatisticsChart = () => {
   const [inProgressByMonth, setInProgressByMonth] = useState();
   const [doneByMonth, setDoneByMonth] = useState();
 
+  const [toDoByDay, setToDoByDay] = useState();
+  const [inProgressByDay, setInProgressByDay] = useState();
+  const [doneByDay, setDoneByDay] = useState();
+
   useEffect(() => {
+    // month
     setToDoByMonth(monthTasks.filter(task => task.category === 'to-do').length);
-    console.log(toDoByMonth);
 
     setInProgressByMonth(
       monthTasks.filter(task => task.category === 'in-progress').length
     );
-    console.log(inProgressByMonth);
 
     setDoneByMonth(monthTasks.filter(task => task.category === 'done').length);
-    console.log('doneByMonth: ', doneByMonth);
+
+    // day
+    setToDoByDay(
+      monthTasks.filter(
+        task => task.category === 'to-do' && task.date.split('-')[2] === day
+      ).length
+    );
+
+    setInProgressByDay(
+      monthTasks.filter(
+        task =>
+          task.category === 'in-progress' && task.date.split('-')[2] === day
+      ).length
+    );
+    console.log(inProgressByDay);
+
+    setDoneByDay(
+      monthTasks.filter(
+        task => task.category === 'done' && task.date.split('-')[2] === day
+      ).length
+    );
   }, [dispatch, day, monthTasks]);
 
   const data = [
     {
       name: 'To Do',
       ByMonth: toDoByMonth,
-      ByDay: 24,
+      ByDay: toDoByDay,
     },
     {
       name: 'In Progress',
       ByMonth: inProgressByMonth,
-      ByDay: 13,
+      ByDay: inProgressByDay,
     },
     {
       name: 'Done',
       ByMonth: doneByMonth,
-      ByDay: 95,
+      ByDay: doneByDay,
     },
   ];
 
@@ -85,12 +108,11 @@ const StatisticsChart = () => {
       value.procentMonth = `${parseInt((value.ByMonth / allByMonth) * 100)}%`;
     });
   };
-  renderLabelDay();
-  renderLabelMonth();
 
-  // useEffect(() => {
-  //   dispatch(getDayTasks({ month: formattedMonth, day, year }));
-  // }, [day]);
+  useEffect(() => {
+    renderLabelDay();
+    renderLabelMonth();
+  }, [dispatch, day]);
 
   return (
     <>
