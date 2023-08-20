@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const chartDiv = styled.div`
+export const ChartDiv = styled.div`
   border-radius: 8px;
   border: 1px solid rgba(220, 227, 229, 0.5);
   width: 860px;

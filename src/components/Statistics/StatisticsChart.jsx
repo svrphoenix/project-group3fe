@@ -15,7 +15,7 @@ import { useSearchParams } from 'react-router-dom';
 import * as SC from './StatisticsChart.styled';
 
 const StatisticsChart = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [monthTasks, setMonthTasks] = useState([]);
 
   const day = searchParams.get('day');
@@ -33,7 +33,7 @@ const StatisticsChart = () => {
     dispatch(getAllTasks({ month: formattedMonth, year })).then(res =>
       setMonthTasks(res.payload)
     );
-  }, [day]);
+  }, [dispatch, day, month, formattedMonth, year]);
 
   const [toDoByMonth, setToDoByMonth] = useState();
   const [inProgressByMonth, setInProgressByMonth] = useState();
@@ -111,11 +111,11 @@ const StatisticsChart = () => {
   useEffect(() => {
     renderLabelDay();
     renderLabelMonth();
-  }, [data]);
+  }, [renderLabelDay, renderLabelMonth]);
 
   return (
     <>
-      <SC.chartDiv>
+      <SC.ChartDiv>
         <BarChart
           width={760}
           height={440}
@@ -156,7 +156,7 @@ const StatisticsChart = () => {
             <LabelList dataKey="procentMonth" position="top" />
           </Bar>
         </BarChart>
-      </SC.chartDiv>
+      </SC.ChartDiv>
     </>
   );
 };
