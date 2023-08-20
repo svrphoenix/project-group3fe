@@ -12,7 +12,7 @@ export const StyledContainer = styled.div`
   align-items: flex-start;
   gap: 32px;
   border-radius: 8px;
-  background: #fff;
+  background: var(--LogReg-Form-Color);
   @media (min-width: 375px) {
     width: 335px;
     padding: 40px 24px;
@@ -63,7 +63,7 @@ export const Styledlabel = styled.label`
     switch (props.$validate) {
       case 'error':
         return css`
-          color: rgba(231, 74, 59, 1);
+          color:rgba(231, 74, 59, 1);
         `;
       case 'empty':
         return css`
@@ -75,7 +75,7 @@ export const Styledlabel = styled.label`
         `;
       default:
         return css`
-          color: #111;
+          color: var(--LogReg-Text-Color);
         `;
     }
   }}
@@ -92,13 +92,15 @@ export const StyledField = styled(Field)`
   border: none;
   outline:none;
   width: 86%;
+  background: var(--LogReg-Form-Color);
+  color: var(--LogReg-Text-Color);
   &::placeholder {
     color: #DCE3E5;
   }
   @media (min-width: 768px) {
     font-size: 16px;
   }
-  &:-webkit-autofill {
+  &:-webkit-autofill { 
   transition: all 5000s ease-in-out 0s;
 }
 `
@@ -128,9 +130,9 @@ export const StyledFieldContainer = styled.div`
   height: 46px;
   border-radius: 8px;
   box-sizing: border-box;
-  background: #fff;
+  background: var(--LogReg-Form-Color);
   padding: 14px;
-  color: #111;
+  color: var(--LogReg-Text-Color);
   align-items: center;
   position: relative;
   font-family: Inter, sans-serif;
@@ -141,7 +143,7 @@ export const StyledFieldContainer = styled.div`
   transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
-    border: 1px solid #111;
+    border: 1px solid var(--LogRef-Field-Hover);
   }
   &::placeholder {
     color: #dce3e5;
@@ -222,7 +224,7 @@ export const StyledButton = styled.button`
   border: none;
   cursor: pointer;
   background: #3e85f3;
-  box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
+  box-shadow: 4px 2px 16px 0px var(--LogRef-Btn-Shadow);
   color: #fff;
   font-family: Inter SemiBold;
   font-size: 14px;

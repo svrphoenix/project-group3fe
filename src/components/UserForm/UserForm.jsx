@@ -25,6 +25,7 @@ import useAuth from 'hooks/useAuth';
 import { updateUser } from 'redux/auth/operations';
 import { ChevronDownIcon } from './Icons';
 import { createIMGElement } from './createIMGElement';
+import { toast } from 'react-hot-toast';
 
 const UserSchema = Yup.object().shape({
   avatar: Yup.string().nullable(),
@@ -116,6 +117,8 @@ export const UserForm = () => {
           if (formChanged) {
             const data = new FormData(form.current);
             dispatch(updateUser(data));
+            toast.success('Data updated successfully!');
+            setFormChanged(false);
           }
         }}
       >
