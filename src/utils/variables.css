@@ -4,6 +4,12 @@ body[data-theme='light'] {
   --third-Bckg-Color: #ffffff;
   --fourth-Bckg-Color: #3e85f3;
 
+  --LogReg-Bckg-Color: #dcebf7;
+  --LogReg-Form-Color: #fff;
+  --LogReg-Text-Color: #111;
+  --LogRef-Btn-Shadow: rgba(136, 165, 191, 0.48);
+  --LogRef-Field-Hover: #dce3e5;
+
   --first-Feedback-Bckg-Color: #ffffff;
   --second-Feedback-Bckg-Color: #f6f6f6;
 
@@ -86,9 +92,10 @@ body[data-theme='light'] {
   --addtask-Cancel-Bckg-color: #e5edfa;
   --addtask-Cancel-hover-color: #f7f7f7;
 
-  --addtask-Btn-border: 1px dashed #3e85f3;
-  --taskitem-border: 1px solid rgba(220, 227, 229, 0.8);
-  --taskavatar-border: 1.8px solid #3e85f3;
+  --loader-Gradient: linear-gradient(
+    rgba(220, 235, 247, 0.56),
+    rgba(164, 212, 248, 0.663)
+  );
 }
 
 body[data-theme='dark'] {
@@ -96,6 +103,12 @@ body[data-theme='dark'] {
   --second-Bckg-Color: #21222c;
   --third-Bckg-Color: #13151a;
   --fourth-Bckg-Color: #3e85f3;
+
+  --LogReg-Bckg-Color: #171820;
+  --LogReg-Form-Color: #21222c;
+  --LogReg-Text-Color: #ffffff;
+  --LogRef-Btn-Shadow: rgba(84, 93, 101, 0.96);
+  --LogRef-Field-Hover: #ffffff;
 
   --first-Feedback-Bckg-Color: #171820;
   --second-Feedback-Bckg-Color: #171820;
@@ -180,7 +193,8 @@ body[data-theme='dark'] {
   --addtask-Cancel-Bckg-color: #e5edfa;
   --addtask-Cancel-hover-color: #f7f7f7;
 
-  --addtask-Btn-border: none;
-  --taskitem-border: 1px solid rgba(255, 255, 255, 0.15);
-  --taskavatar-border: 1.8px solid #3e85f3;
+  --loader-Gradient: linear-gradient(
+    rgba(59, 130, 236, 0.609),
+    rgba(33, 34, 44, 0.609)
+  );
 }
