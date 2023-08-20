@@ -3,13 +3,13 @@ import { ReactComponent as Pencil } from 'images/icons/pencil-task.svg';
 import { ReactComponent as Trash } from 'images/icons/trash-task.svg';
 import * as SC from './TaskToolbar.styled';
 
-export const TaskToolbar = () => {
+export const TaskToolbar = ({ onToggleModal, id }) => {
   const removeTask = () => {
     console.log('editTask');
   };
 
   const editTask = () => {
-    console.log('editTask');
+    onToggleModal();
   };
   const deleteTask = () => {
     console.log('deleteTask');

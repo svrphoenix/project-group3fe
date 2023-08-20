@@ -1,4 +1,3 @@
-import React from 'react';
 import * as SC from './AddTaskBtn.styled';
 
 export const AddTaskBtn = ({ onToggleModal }) => {
