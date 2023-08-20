@@ -307,12 +307,13 @@ export const StyledBtn = styled.button`
   color: var(--first-Btn-Text-Color);
   border-width: 0;
   margin: 0 auto;
-  cursor: pointer;
+  cursor: ${props => (props.disabled ? 'auto' : 'pointer')};
   &:hover,
   &:focus {
     background-color: ${props =>
       props.disabled ? '#ccc' : 'var(--hover-Bckg-Btn-Color)'};
-    box-shadow: 4px 2px 16px 0px var(--hover-Btn-Shadow);
+    box-shadow: ${props =>
+      props.disabled ? 'none' : '4px 2px 16px 0px var(--hover-Btn-Shadow)'};
   }
   @media screen and (min-width: 768px) {
     width: 262px;

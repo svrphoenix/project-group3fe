@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { lazy, useEffect } from 'react';
+import { lazy, useEffect, useState } from 'react';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { useDispatch } from 'react-redux';
@@ -23,12 +23,19 @@ const StatisticsPage = lazy(() =>
 );
 const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 
+const isDarkTheme = window?.matchMedia('(prefers-color-scheme: dark)').matches;
+const defaultTheme = isDarkTheme ? 'dark' : 'light';
+
 const App = () => {
   const dispatch = useDispatch();
+  const [theme, setTheme] = useState('');
 
   useEffect(() => {
     dispatch(refreshCurrentUser());
-  }, [dispatch]);
+    setTheme(defaultTheme);
+    document.body.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [dispatch, theme]);
 
   return (
     <>
@@ -96,10 +103,19 @@ const App = () => {
                 <PrivateRoute redirectTo="/" component={<AccountPage />} />
               }
             />
+
             <Route
               path="/statistics"
               element={
-                <PrivateRoute redirectTo="/" component={<StatisticsPage />} />
+                <>
+                  <Navigate
+                    to={`?month=${
+                      new Date().getMonth() + 1
+                    }&day=${new Date().getDate()}&year=${new Date().getFullYear()}`}
+                    replace
+                  />
+                  <StatisticsPage />
+                </>
               }
             />
           </Route>
