@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { lazy, useEffect, useState } from 'react';
+import { lazy, useEffect} from 'react';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { useDispatch } from 'react-redux';
@@ -28,14 +28,16 @@ const defaultTheme = isDarkTheme ? 'dark' : 'light';
 
 const App = () => {
   const dispatch = useDispatch();
-  const [theme, setTheme] = useState('');
+  const theme = localStorage.getItem('theme') || defaultTheme;
 
   useEffect(() => {
     dispatch(refreshCurrentUser());
-    setTheme(defaultTheme);
+  }, [dispatch]);
+
+  useEffect(() => {
     document.body.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
-  }, [dispatch, theme]);
+  }, [theme]);
 
   return (
     <>
