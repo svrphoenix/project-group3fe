@@ -3,18 +3,14 @@ import { Button, Vector } from './ThemeToggleBtn.styled';
 import AddSvg from 'components/AddSvg/AddSvg';
 import getSvg from '../../utils/getSvg';
 
-const isDarkTheme = window?.matchMedia('(prefers-color-scheme: dark)').matches;
-const defaultTheme = isDarkTheme ? 'dark' : 'light';
 const SVG = getSvg();
 
 const ThemeToggleBtn = () => {
-  const [theme, setTheme] = useState(
-    localStorage.getItem('theme') || defaultTheme
-  );
+  const [theme, setTheme] = useState(localStorage.getItem('theme'));
 
   useEffect(() => {
-    document.body.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
+    document.body.setAttribute('data-theme', theme);
   }, [theme]);
 
   const toogleTheme = () => {
