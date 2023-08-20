@@ -8,7 +8,7 @@ const ChevronDownIcon = ({ color, size }) => (
 
 export const AddIcon = ({ color, size }) => {
   return (
-    <IconWrapper color={color} size={size}>
+    <IconWrapper color={color} width={size} height={size}>
       <use href={process.env.PUBLIC_URL + '/sprite.svg#icon-plus'} />
     </IconWrapper>
   );
@@ -24,7 +24,7 @@ const AddIconMediaSizes = () => {
   } else if (window.innerWidth <= 1440) {
     iconSize = 18;
   }
-  return <AddIcon color="#fff" width={iconSize} height={iconSize} />;
+  return <AddIcon color="#fff" size={iconSize} />;
 };
 
 export { ChevronDownIcon, AddIconMediaSizes };

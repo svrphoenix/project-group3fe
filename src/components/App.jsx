@@ -103,7 +103,6 @@ const App = () => {
                 <PrivateRoute redirectTo="/" component={<AccountPage />} />
               }
             />
-
             <Route
               path="/statistics"
               element={
@@ -121,8 +120,6 @@ const App = () => {
           </Route>
           <Route path="/404" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/404" />} />
-
-          {/* <Route path="*" element={<NotFound />} /> */}
         </Route>
       </Routes>
       <Toaster
@@ -130,13 +127,9 @@ const App = () => {
         reverseOrder={false}
         toastOptions={{
           style: {
-            background: 'orange',
+            color: 'var(--toast-main-color)',
+            background: 'var(--toast-background-color)',
             overflow: 'hidden',
-          },
-          icon: '❗',
-          iconTheme: {
-            primary: '#fff',
-            secondary: 'orange',
           },
         }}
       />
