@@ -7,7 +7,7 @@ import {
   Tooltip,
   //   Legend,
   LabelList,
-  ResponsiveContainer,
+  // ResponsiveContainer,
 } from 'recharts';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -127,7 +127,7 @@ const StatisticsChart = () => {
   return (
     <>
       <SC.ChartDiv>
-        <ResponsiveContainer width="100%" height={286}>
+        <SC.ResponsiveContainerStyled height={318}>
           <BarChart
             width={760}
             height={440}
@@ -168,7 +168,7 @@ const StatisticsChart = () => {
               <LabelList dataKey="procentMonth" position="top" />
             </Bar>
           </BarChart>
-        </ResponsiveContainer>
+        </SC.ResponsiveContainerStyled>
       </SC.ChartDiv>
     </>
   );

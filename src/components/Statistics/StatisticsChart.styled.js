@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { ResponsiveContainer } from 'recharts';
 
 export const ChartDiv = styled.div`
   border-radius: 8px;
@@ -19,5 +20,15 @@ export const ChartDiv = styled.div`
     width: 860px;
     margin-bottom: 104px;
     padding: 40px;
+  }
+`;
+
+export const ResponsiveContainerStyled = styled(ResponsiveContainer)`
+  @media screen and (max-width: 768px) {
+    height: 243px;
+  }
+
+  @media screen and (min-width: 768px) {
+    height: 318px;
   }
 `;
