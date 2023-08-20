@@ -8,8 +8,9 @@ import StatisticsChart from 'components/Statistics/StatisticsChart';
 import * as SC from './StatisticsPage.styled';
 
 const StatisticsPage = () => {
+  /* eslint-disable no-unused-vars */
   const [searchParams, setSearchParams] = useSearchParams();
-
+  /* eslint-enable no-unused-vars */
   const initialDate = new Date();
 
   const [currentDate, setCurrentDate] = useState(initialDate);
