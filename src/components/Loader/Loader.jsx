@@ -9,15 +9,12 @@ export const Loader = () => {
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    // Функція-обробник для оновлення ширини вьюпорту
     const handleResize = () => {
       setViewportWidth(window.innerWidth);
     };
 
-    // Додати обробник події при монтажі компонента
     window.addEventListener('resize', handleResize);
 
-    // Видалити обробник події при демонтажі компонента
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -34,9 +31,7 @@ export const Loader = () => {
         alignItems: 'center',
         width: '100vw',
         height: '100vh',
-        // backgroundColor: '#e6f2fc94',
-        backgroundImage:
-          'linear-gradient(rgba(220, 235, 247, 0.56), #a4d4f8a9)',
+        backgroundImage: `var(--loader-Gradient)`,
         backdropFilter: 'blur(1px)',
       }}
     >
