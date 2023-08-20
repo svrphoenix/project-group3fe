@@ -101,7 +101,9 @@ const StatisticsChart = () => {
       const allByDay = data.reduce((acc, value) => acc + value.ByDay, 0);
 
       data.map(value => {
-        value.procentDay = `${parseInt((value.ByDay / allByDay) * 100)}%`;
+        value.procentDay = `${
+          allByDay !== 0 ? parseInt((value.ByDay / allByDay) * 100) : 0
+        }%`;
         return value.procentDay;
       });
     };
@@ -110,7 +112,9 @@ const StatisticsChart = () => {
       const allByMonth = data.reduce((acc, value) => acc + value.ByMonth, 0);
 
       data.map(value => {
-        value.procentMonth = `${parseInt((value.ByMonth / allByMonth) * 100)}%`;
+        value.procentMonth = `${
+          allByMonth !== 0 ? parseInt((value.ByMonth / allByMonth) * 100) : 0
+        }%`;
         return value.procentMonth;
       });
     };
