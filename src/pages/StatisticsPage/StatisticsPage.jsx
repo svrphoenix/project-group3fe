@@ -1,6 +1,6 @@
 // import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { PeriodPaginator } from 'components/CalendarToolbar/PeriodPaginator/PeriodPaginator';
+import PeriodPaginator from 'components/CalendarToolbar/PeriodPaginator/PeriodPaginator';
 import { format, addDays } from 'date-fns';
 import { useSearchParams } from 'react-router-dom';
 

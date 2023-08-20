@@ -8,52 +8,13 @@ import {
   //   Legend,
   LabelList,
 } from 'recharts';
-
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getAllTasks, getDayTasks } from 'redux/tasks/operations';
 import { useSearchParams } from 'react-router-dom';
-
 import * as SC from './StatisticsChart.styled';
 
-const data = [
-  {
-    name: 'To Do',
-    ByMonth: 40,
-    ByDay: 24,
-  },
-  {
-    name: 'In Progress',
-    ByMonth: 30,
-    ByDay: 13,
-  },
-  {
-    name: 'Done',
-    ByMonth: 20,
-    ByDay: 95,
-  },
-];
-
-const renderLabelDay = () => {
-  const allByDay = data.reduce((acc, value) => acc + value.ByDay, 0);
-
-  data.map(value => {
-    value.procentDay = `${parseInt((value.ByDay / allByDay) * 100)}%`;
-  });
-};
-
-const renderLabelMonth = () => {
-  const allByMonth = data.reduce((acc, value) => acc + value.ByMonth, 0);
-
-  data.map(value => {
-    value.procentMonth = `${parseInt((value.ByMonth / allByMonth) * 100)}%`;
-  });
-};
-
 const StatisticsChart = () => {
-  renderLabelDay();
-  renderLabelMonth();
-
   const [searchParams, setSearchParams] = useSearchParams();
   const [monthTasks, setMonthTasks] = useState([]);
 
@@ -65,26 +26,67 @@ const StatisticsChart = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (!month) {
+      return;
+    }
+
     dispatch(getAllTasks({ month: formattedMonth, year })).then(res =>
       setMonthTasks(res.payload)
     );
   }, [day]);
 
-  console.log(monthTasks);
+  const [toDoByMonth, setToDoByMonth] = useState();
+  const [inProgressByMonth, setInProgressByMonth] = useState();
+  const [doneByMonth, setDoneByMonth] = useState();
 
-  if (monthTasks && monthTasks.length > 0) {
-    let toDoByMonth = [];
-    toDoByMonth = monthTasks.filter(task => task.category === 'to-do');
+  useEffect(() => {
+    setToDoByMonth(monthTasks.filter(task => task.category === 'to-do').length);
     console.log(toDoByMonth);
 
-    let inProgressByMonth = [];
-    toDoByMonth = monthTasks.filter(task => task.category === 'in-progress');
+    setInProgressByMonth(
+      monthTasks.filter(task => task.category === 'in-progress').length
+    );
     console.log(inProgressByMonth);
 
-    let doneByMonth = [];
-    toDoByMonth = monthTasks.filter(task => task.category === 'done');
-    console.log(doneByMonth);
-  }
+    setDoneByMonth(monthTasks.filter(task => task.category === 'done').length);
+    console.log('doneByMonth: ', doneByMonth);
+  }, [dispatch, day, monthTasks]);
+
+  const data = [
+    {
+      name: 'To Do',
+      ByMonth: toDoByMonth,
+      ByDay: 24,
+    },
+    {
+      name: 'In Progress',
+      ByMonth: inProgressByMonth,
+      ByDay: 13,
+    },
+    {
+      name: 'Done',
+      ByMonth: doneByMonth,
+      ByDay: 95,
+    },
+  ];
+
+  const renderLabelDay = () => {
+    const allByDay = data.reduce((acc, value) => acc + value.ByDay, 0);
+
+    data.map(value => {
+      value.procentDay = `${parseInt((value.ByDay / allByDay) * 100)}%`;
+    });
+  };
+
+  const renderLabelMonth = () => {
+    const allByMonth = data.reduce((acc, value) => acc + value.ByMonth, 0);
+
+    data.map(value => {
+      value.procentMonth = `${parseInt((value.ByMonth / allByMonth) * 100)}%`;
+    });
+  };
+  renderLabelDay();
+  renderLabelMonth();
 
   // useEffect(() => {
   //   dispatch(getDayTasks({ month: formattedMonth, day, year }));
