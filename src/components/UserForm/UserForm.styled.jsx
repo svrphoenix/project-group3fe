@@ -312,7 +312,6 @@ export const StyledBtn = styled.button`
   &:focus {
     background-color: ${props =>
       props.disabled ? '#ccc' : 'var(--hover-Bckg-Btn-Color)'};
-    /* box-shadow: 4px 2px 16px 0px var(--hover-Btn-Shadow); */
     box-shadow: ${props =>
       props.disabled ? 'none' : '4px 2px 16px 0px var(--hover-Btn-Shadow)'};
   }
