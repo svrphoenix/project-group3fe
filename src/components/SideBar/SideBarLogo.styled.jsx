@@ -49,6 +49,7 @@ export const LogoTxt = styled.p`
 `;
 
 export const CloseSideBarBtn = styled.button`
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -9,7 +9,7 @@ import SideBar from 'components/SideBar/SideBar';
 import Header from 'components/Header/Header';
 import { Loader } from 'components/Loader/Loader';
 import useAuth from 'hooks/useAuth';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 const MainLayout = () => {
@@ -17,32 +17,29 @@ const MainLayout = () => {
   const [isSideBarOpened, setIsSideBarOpened] = useState(false);
   const isDesktop = useMediaQuery({ minWidth: 1440 });
 
-  useEffect(() => {
-    if (isDesktop) {
-      setIsSideBarOpened(false);
-    }
-  }, [isDesktop]);
-
   function addScrollLock() {
-    const lockedWidth = document.documentElement.clientWidth;
-    document.body.style.width = `${lockedWidth}px`;
     document.body.classList.add('add-scroll-lock');
   }
 
   function removeScrollLock() {
     document.body.classList.remove('add-scroll-lock');
-    document.body.style.width = '100%';
   }
 
   function openSideBar() {
-    addScrollLock();
     setIsSideBarOpened(true);
+    addScrollLock();
   }
 
-  function closeSideBar() {
-    removeScrollLock();
+  const closeSideBar = useCallback(() => {
     setIsSideBarOpened(false);
-  }
+    removeScrollLock();
+  }, []);
+
+  useEffect(() => {
+    if (isDesktop) {
+      closeSideBar();
+    }
+  }, [isDesktop, closeSideBar]);
 
   return (
     <>
