@@ -16,6 +16,7 @@ export const TaskDescr = styled.div`
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
+  color: var(--first-Text-Color);
 `;
 
 export const TaskInfo = styled.div`
