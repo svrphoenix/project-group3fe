@@ -1,5 +1,5 @@
 import { IMG } from 'images';
-import { AuthNavigate } from 'components/authNavigate/AuthNavigate';
+import { AuthNavigate } from 'components/AuthNavigate/AuthNavigate';
 import LoginForm from 'components/RegisterLoginForm/LoginForm';
 import * as SC from './LoginPage.styled';
 

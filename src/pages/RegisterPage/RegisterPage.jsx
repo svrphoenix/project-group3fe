@@ -1,5 +1,5 @@
 import { IMG } from 'images';
-import { AuthNavigate } from 'components/authNavigate/AuthNavigate';
+import { AuthNavigate } from 'components/AuthNavigate/AuthNavigate';
 import RegisterForm from 'components/RegisterLoginForm/RegisterForm';
 import * as SC from './RegisterPage.styled';
 
