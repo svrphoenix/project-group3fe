@@ -10,7 +10,7 @@ import {
 } from 'recharts';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getAllTasks, getDayTasks } from 'redux/tasks/operations';
+import { getAllTasks } from 'redux/tasks/operations';
 import { useSearchParams } from 'react-router-dom';
 import * as SC from './StatisticsChart.styled';
 
@@ -66,7 +66,6 @@ const StatisticsChart = () => {
           task.category === 'in-progress' && task.date.split('-')[2] === day
       ).length
     );
-    console.log(inProgressByDay);
 
     setDoneByDay(
       monthTasks.filter(
@@ -112,7 +111,7 @@ const StatisticsChart = () => {
   useEffect(() => {
     renderLabelDay();
     renderLabelMonth();
-  }, [dispatch, day]);
+  }, [data]);
 
   return (
     <>
