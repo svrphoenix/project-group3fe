@@ -5,21 +5,20 @@ export const StatisticsDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
-  width:335px
+  width: 335px;
   justify-content: centre;
   border-radius: 16px;
-  background: var(--white, #FFF);
+  background: var(--second-Bckg-Color);
   padding: 28px 14px 0 14px;
+  color: var(--second-Text-Color);
 
   @media screen and (min-width: 768px) {
-   width: 704px;
-  padding-top: 132px
-
-
+    width: 704px;
+    padding-top: 132px;
   }
   @media screen and (min-width: 1440px) {
     width: 1087px;
-    padding-top: 134px
+    padding-top: 134px;
   }
 `;
 

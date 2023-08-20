@@ -138,7 +138,6 @@ const StatisticsChart = () => {
               bottom: 19,
             }}
             fontSize={14}
-            fill={343434}
             barGap={14}
           >
             <CartesianGrid strokeDasharray="3 3" vertical={false} />
@@ -150,7 +149,7 @@ const StatisticsChart = () => {
                 position: 'top',
                 dy: -24,
                 fontSize: 14,
-                fill: '#343434',
+                fill: `var(--second-Text-Color)`,
               }}
             />
             <Tooltip />
