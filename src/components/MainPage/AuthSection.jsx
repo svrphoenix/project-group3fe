@@ -1,7 +1,7 @@
 import { IMG, SVG } from 'images';
 import * as SC from './MainPage.styled';
 
-export const AuthSection = () => {
+const AuthSection = () => {
   return (
     <SC.HeroSection>
       <SC.Container>
@@ -37,3 +37,5 @@ export const AuthSection = () => {
     </SC.HeroSection>
   );
 };
+
+export default AuthSection;

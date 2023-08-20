@@ -8,7 +8,7 @@ const RegisterPage = () => {
     <SC.StyledLayout>
       <SC.StyledSharedContainer>
         <RegisterForm />
-        <AuthNavigate path="/login" text="Log In"/>
+        <AuthNavigate path="/login" text="Log In" />
       </SC.StyledSharedContainer>
       <SC.StyledPicture>
         <source

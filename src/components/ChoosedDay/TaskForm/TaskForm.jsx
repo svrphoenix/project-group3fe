@@ -44,7 +44,9 @@ const TaskForm = ({
   id,
   editTask,
   addCategory,
+  columnTitle,
 }) => {
+  console.log(columnTitle);
   const [title, setTitle] = useState(editTask?.title || '');
   const [start, setStart] = useState(editTask?.start || '09:00');
   const [end, setEnd] = useState(editTask?.end || '09:30');
@@ -266,10 +268,15 @@ const TaskForm = ({
 
       <ButtonContainer>
         {editBtnVisible ? (
-          <EditButton type="submit">
-            <StyledEditIcon color="#fff" size={14.5} />
-            Edit
-          </EditButton>
+          <>
+            <EditButton type="submit">
+              <StyledEditIcon color="#fff" size={14.5} />
+              Edit
+            </EditButton>
+            <CancelBtn type="button" onClick={onCloseModal}>
+              Cancel
+            </CancelBtn>
+          </>
         ) : (
           <>
             <AddButton type="submit">

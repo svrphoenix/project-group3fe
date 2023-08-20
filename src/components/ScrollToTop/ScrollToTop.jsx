@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { ScrollToTopWrapper } from './ScrollToTop.styled';
 import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 
-export const ScrollToTop = () => {
+const ScrollToTop = () => {
   const [showTopBtn, setShowTopBtn] = useState(false);
 
   useEffect(() => {
@@ -30,3 +30,5 @@ export const ScrollToTop = () => {
     </ScrollToTopWrapper>
   );
 };
+
+export default ScrollToTop;

@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import { PeriodPaginator } from './PeriodPaginator/PeriodPaginator';
-import { PeriodTypeSelect } from './PeriodTypeSelect/PeriodTypeSelect';
+import PeriodPaginator from './PeriodPaginator/PeriodPaginator';
+import PeriodTypeSelect from './PeriodTypeSelect/PeriodTypeSelect';
 import * as SC from './CalendarToolbar.styled';
 import { format, addDays, parse } from 'date-fns';
 import { useNavigate, useParams } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { getAllTasks } from 'redux/tasks/operations';
 
-export const CalendarToolbar = () => {
+const CalendarToolbar = () => {
   const { currentDay } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -78,3 +78,5 @@ export const CalendarToolbar = () => {
     </>
   );
 };
+
+export default CalendarToolbar;

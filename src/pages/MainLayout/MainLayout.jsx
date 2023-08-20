@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import {
   MainContainer,
   ContentWrapper,
@@ -46,7 +46,6 @@ const MainLayout = () => {
 
   return (
     <>
-      {!isLoggedIn && <Navigate to={'/'} />}
       {isLoggedIn && (
         <MainContainer>
           <SideBar
