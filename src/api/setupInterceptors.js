@@ -1,3 +1,4 @@
+import { toast } from 'react-hot-toast';
 import axiosInstance from './api';
 import { logoutReset, refreshTokens } from 'redux/auth/slice';
 
@@ -35,6 +36,9 @@ function configureAxios({ getState, dispatch }) {
           } catch (error) {
             if (error.response.status === 403) {
               dispatch(logoutReset());
+              toast.error(
+                'Your session has expired, please relogin again to continue using the app!'
+              );
             } else originalConfig._retry = true;
             return Promise.reject(error);
           }

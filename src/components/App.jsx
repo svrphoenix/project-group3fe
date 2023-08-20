@@ -5,11 +5,11 @@ import { RestrictedRoute } from './RestrictedRoute';
 import { useDispatch } from 'react-redux';
 import { refreshCurrentUser } from 'redux/auth/operations';
 import { SharedLayout } from './SharedLayout';
-import useAuth from 'hooks/useAuth';
+// import useAuth from 'hooks/useAuth';
 // import { Loader } from './Loader/Loader';
 import { ChoosedMonth } from './ChoosedMonth/ChoosedMonth';
 import { ChoosedDay } from './ChoosedDay/ChoosedDay';
-import { Toaster, toast } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import { format } from 'date-fns';
 
 const MainLayout = lazy(() => import('../pages/MainLayout/MainLayout'));
@@ -26,22 +26,12 @@ const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 const App = () => {
   const dispatch = useDispatch();
 
-  const { error } = useAuth();
-
   useEffect(() => {
     dispatch(refreshCurrentUser());
   }, [dispatch]);
 
-  const makeExpiredError = () => {
-    if (error.status === 403)
-      toast.error(
-        'Your session has expired, please relogin again to continue using the app!'
-      );
-  };
-
   return (
     <>
-      {makeExpiredError()}
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route
@@ -71,8 +61,7 @@ const App = () => {
               />
             }
           />
-
-          <Route element={<MainLayout />}>
+          <Route element={<PrivateRoute component={<MainLayout />} />}>
             <Route
               path="/calendar"
               element={
@@ -114,11 +103,27 @@ const App = () => {
               }
             />
           </Route>
+          <Route path="/404" element={<NotFound />} />
+          <Route path="*" element={<Navigate to="/404" />} />
 
-          <Route path="*" element={<NotFound />} />
+          {/* <Route path="*" element={<NotFound />} /> */}
         </Route>
       </Routes>
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+        toastOptions={{
+          style: {
+            background: 'orange',
+            overflow: 'hidden',
+          },
+          icon: '❗',
+          iconTheme: {
+            primary: '#fff',
+            secondary: 'orange',
+          },
+        }}
+      />
     </>
   );
 };
