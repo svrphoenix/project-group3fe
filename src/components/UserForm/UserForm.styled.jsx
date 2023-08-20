@@ -11,6 +11,7 @@ export const StyledFormWrapper = styled.div`
   justify-content: center;
   align-items: center;
   background-color: var(--second-Bckg-Color);
+  border-radius: 16px;
 `;
 
 export const Form = styled(FormFormik)`
@@ -281,8 +282,8 @@ export const StyledBtnLink = styled.a`
     box-shadow: 4px 2px 16px 0px var(--hover-Btn-Shadow);
   }
   @media screen and (min-width: 768px) {
-    width: 18px;
-    height: 18px;
+    width: 24px;
+    height: 24px;
   }
 `;
 export const IconWrapper = styled.svg`
