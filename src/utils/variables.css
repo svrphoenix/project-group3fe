@@ -99,6 +99,10 @@ body[data-theme='light'] {
     rgba(220, 235, 247, 0.56),
     rgba(164, 212, 248, 0.663)
   );
+
+  --addtask-Btn-border: 1px dashed #3e85f3;
+  --taskitem-border: 1px solid rgba(220, 227, 229, 0.8);
+  --taskavatar-border: 1.8px solid #3e85f3;
 }
 
 body[data-theme='dark'] {
@@ -201,4 +205,8 @@ body[data-theme='dark'] {
     rgba(59, 130, 236, 0.609),
     rgba(33, 34, 44, 0.609)
   );
+
+  --addtask-Btn-border: none;
+  --taskitem-border: 1px solid rgba(255, 255, 255, 0.15);
+  --taskavatar-border: 1.8px solid #3e85f3;
 }
