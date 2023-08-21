@@ -45,18 +45,21 @@ const StatisticsPage = () => {
       <SC.StatisticsDiv>
         <SC.StatisticsHeaderDiv>
           <SC.PeriodPaginatorWrapper>
-            <SC.StyledDatePicker
-              selected={currentDate}
-              onChange={date => {
-                setCurrentDate(date);
-                setSearchParams({
-                  month: date.getMonth() + 1,
-                  day: date.getDate(),
-                  year: date.getFullYear(),
-                });
-              }}
-              dateFormat="dd MMMM yyyy"
-            />
+            <SC.customDatePickerWidth>
+              <SC.StyledDatePicker
+                selected={currentDate}
+                onChange={date => {
+                  setCurrentDate(date);
+                  setSearchParams({
+                    month: date.getMonth() + 1,
+                    day: date.getDate(),
+                    year: date.getFullYear(),
+                  });
+                }}
+                dateFormat="dd MMMM yyyy"
+              />
+            </SC.customDatePickerWidth>
+
             <SC.ButtonGroup>
               <SC.Button onClick={prevHandler}>
                 <SVG.LeftChevron />
