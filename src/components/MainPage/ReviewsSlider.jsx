@@ -15,7 +15,6 @@ const getAllReviews = async () => {
     return data;
   } catch (error) {
     toast.error('Oops something went wrong!!!.');
-    console.log(error);
   }
 };
 
