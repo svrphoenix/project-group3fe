@@ -2,18 +2,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectError, selectUserReview } from 'redux/review/selectors';
 import * as reviewOperations from 'redux/review/operations';
 import { useState } from 'react';
-import { ReactComponent as CloseIcon } from 'images/icons/x-close.svg';
-import { ReactComponent as Pencil } from 'images/icons/pencil-01.svg';
-import { ReactComponent as Trash } from 'images/icons/trash-2.svg';
-import { StarRating } from './StarRating';
 import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { ReactComponent as CloseIcon } from 'images/icons/x-close.svg';
+import { StarRating } from './StarRating';
+import AddSvg from 'components/AddSvg/AddSvg';
+import getSvg from 'utils/getSvg';
 import * as SC from './FeedbackForm.styled';
 
 export const FeedbackForm = ({ close }) => {
   const currentUser = useSelector(selectUserReview);
   const error = useSelector(selectError);
   const dispatch = useDispatch();
+
+  const SVG = getSvg();
 
   const [readOnly, setReadOnly] = useState(!!currentUser.comment);
 
@@ -100,14 +102,30 @@ export const FeedbackForm = ({ close }) => {
                       onClick={() => setReadOnly(false)}
                       aria-label="Edit review"
                     >
-                      <Pencil stroke={readOnly ? '#3e85f3' : 'white'} />
+                      {readOnly ? (
+                        <AddSvg
+                          component={SC.VectorBlue}
+                          sprite={SVG}
+                          spriteId={'pencil-icon'}
+                        />
+                      ) : (
+                        <AddSvg
+                          component={SC.VectorWhite}
+                          sprite={SVG}
+                          spriteId={'pencil-icon'}
+                        />
+                      )}
                     </SC.EditBtn>
                     <SC.DeleteBtn
                       type="button"
                       onClick={onDeleteReview}
                       aria-label="Delete review"
                     >
-                      <Trash />
+                      <AddSvg
+                        component={SC.VectorPink}
+                        sprite={SVG}
+                        spriteId={'trash-second-icon'}
+                      />
                     </SC.DeleteBtn>
                   </SC.EditBtnWrapper>
                 )}

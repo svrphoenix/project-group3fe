@@ -1,14 +1,14 @@
+import { useSelector } from 'react-redux';
+import { selectUser } from 'redux/auth/selectors';
 import { TaskToolbar } from '../TaskToolbar/TaskToolbar';
 import TaskModal from '../TaskModal/TaskModal';
-import * as SC from './TaskColumnCard.styled';
 import useModalToggle from 'hooks/useModalToggle';
-import { useSelect } from '@mui/base';
-import { selectUser } from 'redux/auth/selectors';
+import * as SC from './TaskColumnCard.styled';
 
 export const TaskColumnCard = ({ task }) => {
   const { showModal, onToggleModal } = useModalToggle();
-  const user = useSelect(selectUser);
-  console.log(user);
+
+  const user = useSelector(selectUser);
 
   return (
     <>
@@ -16,7 +16,11 @@ export const TaskColumnCard = ({ task }) => {
         <SC.TaskDescr>{task.title}</SC.TaskDescr>
         <SC.TaskInfo>
           <SC.AvatarWrapper>
-            <SC.Avatar $url={task.owner.avatarURL} />
+            {user.avatarURL ? (
+              <SC.Avatar src={user.avatarURL} />
+            ) : (
+              <SC.AvatarEmpty>{user.name.slice(0, 1)}</SC.AvatarEmpty>
+            )}
             <SC.Priority
               style={{
                 background:
