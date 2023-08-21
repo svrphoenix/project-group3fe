@@ -1,18 +1,12 @@
 import React, { useRef } from 'react';
-import {
-  StyledAvatarContainer,
-  StyledAvatarText,
-  StyledAvatarWrapper,
-  StyledBtnLink,
-} from './UserForm.styled';
+import { StyledAvatarWrapper, StyledBtnLink } from './UserForm.styled';
 import { AddIconMediaSizes } from './Icons';
 import useAuth from 'hooks/useAuth';
+import { StyledAvatar } from './StyledAvatar';
 
-const FileUploadComponent = ({ handleFiles, fileListRef }) => {
+const FileUploadComponent = ({ handleFiles, fileListRef, userAvatarUrl }) => {
   const { user } = useAuth();
   const fileInputRef = useRef(null);
-
-  const firstLetterUserName = user.name.charAt(0).toUpperCase();
 
   const handleFileSelect = () => {
     if (fileInputRef.current) {
@@ -34,13 +28,9 @@ const FileUploadComponent = ({ handleFiles, fileListRef }) => {
       <StyledBtnLink href="#" onClick={handleFileSelect}>
         <AddIconMediaSizes />
       </StyledBtnLink>
-      <StyledAvatarContainer id="fileList" ref={fileListRef}>
-        {user.avatarURL ? (
-          <img src={user.avatarURL} alt="avatar" />
-        ) : (
-          <StyledAvatarText>{firstLetterUserName}</StyledAvatarText>
-        )}
-      </StyledAvatarContainer>
+      <div id="fileList" ref={fileListRef}>
+        <StyledAvatar alt={user.name} src={userAvatarUrl} />
+      </div>
     </StyledAvatarWrapper>
   );
 };
