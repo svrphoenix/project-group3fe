@@ -73,6 +73,7 @@ export const PeriodPaginatorWrapper = styled.div`
 
   @media screen and (min-width: 768px) {
     gap: 8px;
+    margin-bottom: 0;
   }
 `;
 
@@ -141,11 +142,12 @@ export const Button = styled.button`
   min-width: 38px;
   padding: 8px 12px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: #fff;
+  background-color: var(--second-Bckg-Color);
   &:disabled {
     color: #dce3e5;
   }
   &:hover {
-    background-color: #f8f8f8;
+    background-color: var(--first-Bckg-Color);
+    color: var(--second-Text-Color);
   }
 `;
