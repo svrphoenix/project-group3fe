@@ -8,6 +8,7 @@ export const ReviewWrapper = styled.div`
   width: 335px;
   border-radius: 8px;
   border: 1px solid var(--review-border-color);
+
   @media screen and (max-width: 335px) {
     width: auto;
   }

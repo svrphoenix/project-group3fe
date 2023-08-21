@@ -40,8 +40,9 @@ export const Textarea = styled.textarea`
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
-  color: #343434;
-  background: #f6f6f6;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--second-Feedback-Text-Color);
+  background: var(--second-Feedback-Bckg-Color);
   &:focus-visible {
     outline: none;
   }
@@ -72,7 +73,7 @@ export const MainReviewBtn = styled(ReviewBtn)`
 `;
 
 export const CancelReviewBtn = styled(ReviewBtn)`
-  background: #e5edfa;
+  background: var(--second-Bckg-Btn-color);
   color: #343434;
 `;
 

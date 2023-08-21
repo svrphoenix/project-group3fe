@@ -16,9 +16,14 @@ export const TasksTitle = styled.h3`
 export const IconBtn = styled.button`
   display: flex;
   padding: 0;
+  padding-right: 13px;
   background: transparent;
   border: none;
   cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    padding-right: 14px;
+  }
 `;
 
 export const Vector = styled.svg`

@@ -320,3 +320,14 @@ export const StyledErrorText = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
 `;
+
+export const StyledAddIcon = styled.svg`
+  width: 8px;
+  height: 8px;
+  stroke: var(--first-Btn-Text-Color);
+
+  @media screen and (min-width: 768px) {
+    width: 18px;
+    height: 18px;
+  }
+`;

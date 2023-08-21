@@ -61,7 +61,7 @@ export const UserForm = () => {
   );
   const [userAvatar, setUserAvatar] = useState(null);
   const [formChanged, setFormChanged] = useState(false);
-  const [userAvatarUrl, setuserAvatarUrl] = useState(user.avatarURL);
+  const [userAvatarUrl, setuserAvatarUrl] = useState(user.avatarURL || '/');
 
   const form = useRef(null);
   const fileListRef = useRef(null);
