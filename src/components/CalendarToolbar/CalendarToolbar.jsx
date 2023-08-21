@@ -9,17 +9,17 @@ import { getAllTasks } from 'redux/tasks/operations';
 import { useCalendar } from 'pages/CalendarPage/CalendarProvider';
 
 const CalendarToolbar = () => {
-  const { currentDay } = useParams();
+  const params = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { currentDate, setCurrentDate } = useCalendar();
   useEffect(() => {
-    const initialDate = currentDay
-      ? parse(currentDay, 'yyyy-MM-dd', new Date())
+    const initialDate = params.currentDate
+      ? parse(params.currentDate, 'yyyy-MM', new Date())
       : new Date();
     setCurrentDate(initialDate);
-  }, [setCurrentDate, currentDay]);
+  }, [setCurrentDate, params.currentDate]);
 
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
@@ -29,7 +29,7 @@ const CalendarToolbar = () => {
     dispatch(getAllTasks({ year, month: formattedMonth }));
   }, [dispatch, year, formattedMonth]);
 
-  const formatedDate = currentDay
+  const formatedDate = params.currentDay
     ? format(currentDate, 'dd MMMM yyyy')
     : format(currentDate, 'MMMM yyyy');
 
@@ -63,23 +63,21 @@ const CalendarToolbar = () => {
     navigate(`/calendar/day/${format(nextDate, 'yyyy-MM-dd')}`);
   };
   const prevHandler = () => {
-    currentDay ? prevHandleDay() : prevHandleMonth();
+    params.currentDay ? prevHandleDay() : prevHandleMonth();
   };
   const nextHandler = () => {
-    currentDay ? nextHandleDay() : nextHandleMonth();
+    params.currentDay ? nextHandleDay() : nextHandleMonth();
   };
 
   return (
-    <>
-      <SC.CalendarToolbarWrapper>
-        <PeriodPaginator
-          date={formatedDate}
-          prevHandler={prevHandler}
-          nextHandler={nextHandler}
-        />
-        <PeriodTypeSelect />
-      </SC.CalendarToolbarWrapper>
-    </>
+    <SC.CalendarToolbarWrapper>
+      <PeriodPaginator
+        date={formatedDate}
+        prevHandler={prevHandler}
+        nextHandler={nextHandler}
+      />
+      <PeriodTypeSelect />
+    </SC.CalendarToolbarWrapper>
   );
 };
 

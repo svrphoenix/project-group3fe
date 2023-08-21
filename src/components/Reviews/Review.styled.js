@@ -7,8 +7,8 @@ export const ReviewWrapper = styled.div`
   gap: 24px;
   width: 335px;
   border-radius: 8px;
-  background: var(--second-Bckg-Color);
-  border: 1px solid var(--LogReg-Btn-Shadow);
+  border: 1px solid var(--review-border-color);
+
   @media screen and (max-width: 335px) {
     width: auto;
   }
@@ -32,13 +32,13 @@ export const ReviewWrapperGrade = styled.div`
   justify-content: space-between;
 `;
 export const ReviewUsername = styled.p`
-  color: #343434;
+  color: var(--review-title-color);
   font-family: 'Inter Bold';
   font-size: 18px;
   line-height: 1;
 `;
 export const ReviewText = styled.p`
-  color: var(--mainpage-description-color);
+  color: var(--review-text-color);
   font-family: 'Inter Medium';
   font-size: 14px;
   max-height: calc(14px * 1.29 * 5);

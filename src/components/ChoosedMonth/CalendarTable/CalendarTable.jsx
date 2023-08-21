@@ -59,7 +59,7 @@ const CalendarTable = () => {
                 <SC.NavLink
                   to={`/calendar/day/${format(day, 'yyyy-MM-dd')}`}
                   data-tooltip-id={
-                    dayTasks.length > 2 ? `my-tooltip-${index}` : ''
+                    dayTasks.length > 0 ? `my-tooltip-${index}` : ''
                   }
                 >
                   <SC.Number className={isActive(day) ? 'active' : ''}>

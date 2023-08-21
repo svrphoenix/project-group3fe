@@ -204,13 +204,11 @@ export const ItemImg = styled.img`
 `;
 
 export const SectionReview = styled.section`
-  /* padding-top: 64px; */
   padding-bottom: 64px;
   @media screen and (min-width: 768px) and (max-width: 1439px) {
     padding-bottom: 100px;
   }
   @media screen and (min-width: 1440px) {
-    /* padding-top: 100px; */
     padding-bottom: 120px;
   }
 `;
