@@ -10,9 +10,13 @@ export const StyledAvatar = styled(Avatar)`
   justify-content: center;
   align-items: center;
   background-color: var(--second-Toogle-Month-Day-Bckg-Color);
+  color: var(--first-Icon-Color);
+  font-family: 'Inter Bold';
+  font-size: 18px;
   @media screen and (min-width: 768px) {
     width: 124px;
     height: 124px;
+    font-size: 30px;
   }
   img {
     display: block;
