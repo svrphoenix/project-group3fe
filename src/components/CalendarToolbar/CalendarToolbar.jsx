@@ -15,9 +15,10 @@ const CalendarToolbar = () => {
 
   const { currentDate, setCurrentDate } = useCalendar();
   useEffect(() => {
-    setCurrentDate(
-      parse(params.currentDate, 'yyyy-MM', new Date()) || new Date()
-    );
+    const initialDate = params.currentDate
+      ? parse(params.currentDate, 'yyyy-MM', new Date())
+      : new Date();
+    setCurrentDate(initialDate);
   }, [setCurrentDate, params.currentDate]);
 
   const year = currentDate.getFullYear();
