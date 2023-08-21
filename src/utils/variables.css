@@ -69,9 +69,11 @@ body[data-theme='light'] {
   --user-nav-item-bg-active: #e3f3ff;
 
   --modal-bckg-color: #fff;
+  --modal-box-shadow-color: 0px 4px 16px 0px rgba(17, 17, 17, 0.10);
+  --modal-border-solid-color: rgba(220, 227, 229, 0.8);
 
   --addtask-Bckg-Btn-color: #e3f3ff;
-  --addtask-Label-text-color: #343434;
+  --addtask-Label-text-color: rgba(52, 52, 52, 0.80);
   --addtask-Input-Bckg-color: #f6f6f6;
   --addtask-Input-Border-color: #f6f6f6;
   --addtask-Input-Text-color: #343434;
@@ -91,9 +93,9 @@ body[data-theme='light'] {
   --addtask-AddBtn-text-color: #ffffff;
   --addtask-AddBtn-Bckg-color: #3e85f3;
   --addtask-AddBtn-hover-color: #2b78ef;
-  --addtask-Cancel-Btn-text-color: #343434;
-  --addtask-Cancel-Bckg-color: #e5edfa;
-  --addtask-Cancel-hover-color: #f7f7f7;
+  --addtask-Cancel-Btn-text-color: #111;
+  --addtask-Cancel-Bckg-color: #EFEFEF;
+  --addtask-Cancel-hover-color: #cccccc;  
   --toast-main-color: #fff;
   --toast-background-color: #72c2f8;
 
@@ -189,11 +191,13 @@ body[data-theme='dark'] {
   --user-nav-item-bg-active: #3e85f3;
 
   --modal-bckg-color: #13151a;
+   --modal-box-shadow-color: 0px 4px 16px 0px rgba(17, 17, 17, 0.10);
+   --modal-border-solid-color: none;
 
   --addtask-Bckg-Btn-color: #3e85f3;
-  --addtask-Label-text-color: #fafafa;
+  --addtask-Label-text-color: rgba(250, 250, 250, 0.30);
   --addtask-Input-Bckg-color: #13151a;
-  --addtask-Input-Border-color: #ffffff;
+  --addtask-Input-Border-color: rgba(255, 255, 255, 0.15);
   --addtask-Input-Text-color: #ffffff;
   --addtask-Input-Hover-color: #3e85f3;
   --addtask-icon-color-time-input: invert(1);
@@ -211,9 +215,9 @@ body[data-theme='dark'] {
   --addtask-AddBtn-text-color: #ffffff;
   --addtask-AddBtn-Bckg-color: #3e85f3;
   --addtask-AddBtn-hover-color: #2b78ef;
-  --addtask-Cancel-Btn-text-color: #343434;
-  --addtask-Cancel-Bckg-color: #e5edfa;
-  --addtask-Cancel-hover-color: #f7f7f7;
+  --addtask-Cancel-Btn-text-color: #111;
+  --addtask-Cancel-Bckg-color: #EFEFEF;
+  --addtask-Cancel-hover-color: #cccccc;
   --toast-main-color: #fff;
   --toast-background-color: #72c2f8;
   --loader-Gradient: linear-gradient(

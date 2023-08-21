@@ -41,9 +41,7 @@ export const TaskLabelStyled = styled.label`
 export const TaskInputStyled = styled.input`
   cursor: pointer;
   width: 100%;
-  margin-top: 8px;
   margin-bottom: 8px;
-    
 
   font-family: 'Inter SemiBold';
   font-weight: 600;
@@ -56,6 +54,11 @@ export const TaskInputStyled = styled.input`
   background-color: var(--addtask-Input-Bckg-color);
   color: var(--addtask-Input-Text-color);
   transition: border var(--cubic);
+
+  &::placeholder {
+    color: var(--desired-placeholder-color); /* Змініть на бажаний колір */
+    opacity: 1;
+  }
 
   &:hover,
   &:focus {
