@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { CloseIconSvg } from './CloseIcon';
 
 export const ModalBackdrop = styled.div`
   position: fixed;
@@ -25,4 +26,8 @@ export const ModalContent = styled.div`
     width: 468px;
     padding: 32px;
   }
+`;
+
+export const StyledCloseIcon = styled(CloseIconSvg)`
+  cursor: pointer;
 `;
