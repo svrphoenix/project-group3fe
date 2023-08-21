@@ -2,7 +2,7 @@ import { ReactComponent as PlusCircle } from 'images/icons/plus-circle.svg';
 import TaskModal from '../TaskModal/TaskModal';
 import * as SC from './ColumnHeadBar.styled';
 
-export const ColumnHeadBar = ({ columnTitle, onToggleModal }) => {
+export const ColumnHeadBar = ({ columnTitle, onToggleModal, category }) => {
   return (
     <>
       <SC.TasksHeader>
@@ -11,7 +11,7 @@ export const ColumnHeadBar = ({ columnTitle, onToggleModal }) => {
           <PlusCircle />
         </SC.IconBtn>
       </SC.TasksHeader>
-      <TaskModal addCategory={columnTitle} />
+      <TaskModal category={columnTitle} />
     </>
   );
 };

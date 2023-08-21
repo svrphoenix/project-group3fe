@@ -7,8 +7,14 @@ export const ControlPanel = styled.div`
 
 export const IconBtn = styled.button`
   display: flex;
+  gap: 5px;
   padding: 0;
   background: transparent;
   border: none;
   cursor: pointer;
+`;
+
+export const PopupBtn = styled(IconBtn)`
+  width: 130px;
+  justify-content: space-between;
 `;
