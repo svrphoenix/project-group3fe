@@ -17,7 +17,7 @@ export const CloseIconSvg = ({ color, size, onClick, hoverColor }) => {
         position: 'absolute',
         top: '14px',
         right: '14px',
-        transition: 'fill 250ms cubic-bezier(0.4, 0, 0.2, 1)',
+        transition: 'fill var(--cubic)',
       }}
     >
       <use href={process.env.PUBLIC_URL + '/sprite.svg#icon-x-close'} />
