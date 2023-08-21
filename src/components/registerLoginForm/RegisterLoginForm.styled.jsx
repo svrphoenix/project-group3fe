@@ -95,7 +95,7 @@ export const StyledField = styled(Field)`
   background: var(--LogReg-Form-Color);
   color: var(--LogReg-Text-Color);
   &::placeholder {
-    color: #DCE3E5;
+    color: var(--LogReg-Field-Placeholder);
   }
   @media (min-width: 768px) {
     font-size: 16px;
@@ -122,7 +122,7 @@ export const StyledFieldContainer = styled.div`
         `;
       default:
         return css`
-          border: 1px solid rgba(220, 227, 229, 0.6);
+          border: 1px solid var(--LogReg-Field-Border);
         `;
     }
   }}
@@ -143,7 +143,7 @@ export const StyledFieldContainer = styled.div`
   transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
-    border: 1px solid var(--LogRef-Field-Hover);
+    border: 1px solid var(--LogReg-Field-Hover);
   }
   &::placeholder {
     color: #dce3e5;
@@ -224,7 +224,7 @@ export const StyledButton = styled.button`
   border: none;
   cursor: pointer;
   background: #3e85f3;
-  box-shadow: 4px 2px 16px 0px var(--LogRef-Btn-Shadow);
+  box-shadow: 4px 2px 16px 0px var(--LogReg-Btn-Shadow);
   color: #fff;
   font-family: Inter SemiBold;
   font-size: 14px;
