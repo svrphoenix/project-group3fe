@@ -11,7 +11,7 @@ export const StatisticsDiv = styled.div`
   justify-content: centre;
   border-radius: 16px;
   background: var(--second-Bckg-Color);
-  padding: 28px 14px 0 14px;
+  padding-top: 28px;
   color: var(--second-Text-Color);
 
   @media screen and (min-width: 768px) {
@@ -29,12 +29,14 @@ export const StatisticsHeaderDiv = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
+  padding: 0 14px 0 14px;
 
   @media screen and (min-width: 768px) {
     width: 576px;
     margin-left: auto;
     margin-right: auto;
     flex-direction: row;
+    padding: 0;
   }
 
   @media screen and (min-width: 1440px) {

@@ -16,7 +16,6 @@ export const Cell = styled.li`
   display: flex;
   height: 94px;
   border: 1px solid var(--calendar-border);
-
   @media screen and (min-width: 768px) {
     min-height: 144px;
   }

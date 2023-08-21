@@ -130,6 +130,8 @@ body[data-theme='light'] {
   --period-type-txt-color: #3e85f3;
   --calendar-light-theme-primary: #3e85f3;
   --calendar-cell-hover: #f2f2f2;
+  --avatar-color: #3e85f3;
+  --avatar-bg-color: #e3f3ff;
 }
 
 body[data-theme='dark'] {
@@ -263,4 +265,8 @@ body[data-theme='dark'] {
   --period-type-txt-color: #3e85f3;
   --calendar-light-theme-primary: #fff;
   --calendar-cell-hover: #2c2d3a;
+
+  --avatar-color: #ffffff2e;
+  --avatar-bg-color: #171820;
+
 }
