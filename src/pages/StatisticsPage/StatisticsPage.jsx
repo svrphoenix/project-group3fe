@@ -3,6 +3,7 @@ import { useState } from 'react';
 import PeriodPaginator from 'components/CalendarToolbar/PeriodPaginator/PeriodPaginator';
 import { format, addDays } from 'date-fns';
 import { useSearchParams } from 'react-router-dom';
+// import DatePicker from 'react-datepicker';
 
 import StatisticsChart from 'components/Statistics/StatisticsChart';
 import * as SC from './StatisticsPage.styled';
@@ -47,6 +48,30 @@ const StatisticsPage = () => {
             date={formatedDate}
             prevHandler={prevHandler}
             nextHandler={nextHandler}
+          />
+
+          {/* <DatePicker
+            selected={currentDate}
+            onChange={date => {
+              setCurrentDate(date);
+              setSearchParams({
+                month: date.getMonth() + 1,
+                day: date.getDate(),
+                year: date.getFullYear(),
+              });
+            }}
+          /> */}
+
+          <SC.StyledDatePicker
+            selected={currentDate}
+            onChange={date => {
+              setCurrentDate(date);
+              setSearchParams({
+                month: date.getMonth() + 1,
+                day: date.getDate(),
+                year: date.getFullYear(),
+              });
+            }}
           />
 
           <SC.ChartLegend>

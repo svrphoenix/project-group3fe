@@ -1,4 +1,6 @@
 import { styled } from 'styled-components';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 export const StatisticsDiv = styled.div`
   font-family: 'Poppins Regular';
@@ -26,7 +28,6 @@ export const StatisticsHeaderDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   width: 100%;
 
   @media screen and (min-width: 768px) {
@@ -61,5 +62,37 @@ export const ChartLegendItem = styled.li`
   }
   &:last-child::before {
     background: #3e85f3;
+  }
+`;
+
+export const StyledDatePicker = styled(DatePicker)`
+  font-family: 'Inter SemiBold';
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+  padding: 0px 14px;
+  border: 1px solid var(--first-Input-Border-Color);
+  border-radius: 8px;
+  width: 100%;
+  height: 42px;
+  color: var(--first-Text-Color);
+  background-color: var(--second-Bckg-Color);
+  &::placeholder {
+    color: var(--placeholder-Color);
+    font-size: 12px;
+  }
+  &:hover,
+  &:focus {
+    border: 1px solid var(--second-Input-Border-Color);
+    outline: none;
+  }
+
+  @media screen and (min-width: 375px) {
+    width: 299px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 354px;
+    font-size: 16px;
   }
 `;
