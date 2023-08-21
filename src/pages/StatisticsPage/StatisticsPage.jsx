@@ -1,7 +1,6 @@
 // import PropTypes from 'prop-types';
 import { useState } from 'react';
-// import PeriodPaginator from 'components/CalendarToolbar/PeriodPaginator/PeriodPaginator';
-import { format, addDays } from 'date-fns';
+import { addDays } from 'date-fns';
 import { useSearchParams } from 'react-router-dom';
 import { SVG } from 'images';
 
@@ -15,8 +14,6 @@ const StatisticsPage = () => {
   const initialDate = new Date();
 
   const [currentDate, setCurrentDate] = useState(initialDate);
-
-  const formatedDate = format(currentDate, 'dd MMMM yyyy');
 
   const prevHandler = () => {
     const prevDate = addDays(currentDate, -1);
@@ -45,7 +42,7 @@ const StatisticsPage = () => {
       <SC.StatisticsDiv>
         <SC.StatisticsHeaderDiv>
           <SC.PeriodPaginatorWrapper>
-            <SC.customDatePickerWidth>
+            <SC.CustomDatePickerWidth>
               <SC.StyledDatePicker
                 selected={currentDate}
                 onChange={date => {
@@ -58,7 +55,7 @@ const StatisticsPage = () => {
                 }}
                 dateFormat="dd MMMM yyyy"
               />
-            </SC.customDatePickerWidth>
+            </SC.CustomDatePickerWidth>
 
             <SC.ButtonGroup>
               <SC.Button onClick={prevHandler}>

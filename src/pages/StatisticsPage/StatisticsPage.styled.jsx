@@ -77,7 +77,7 @@ export const PeriodPaginatorWrapper = styled.div`
   }
 `;
 
-export const customDatePickerWidth = styled.div`
+export const CustomDatePickerWidth = styled.div`
   > div.react-datepicker-wrapper,
   > div
     > div.react-datepicker__input-container
