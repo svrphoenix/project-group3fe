@@ -1,4 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
+import { Formik, Field} from 'formik';
+import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
@@ -19,282 +20,229 @@ import {
   EditButton,
   StyledAddIcon,
   StyledEditIcon,
+  ErrorMess,
 } from './TaskForm.styled';
-
 import { addTask, patchTask } from 'redux/tasks/operations';
 
+const showToast = (message, isError = true) => {
+  toast(message, {
+    style: {
+      background: isError ? 'orange' : 'green',
+      overflow: 'hidden',
+    },
+    icon: isError ? '❗' : '✅',
+    iconTheme: {
+      primary: '#fff',
+      secondary: isError ? 'orange' : 'green',
+    },
+  });
+};
+
 const TaskForm = ({ onCloseModal, ...editTask }) => {
-  const useDateValidation = () => {
-    const params = useParams();
-    const date = new Date(params.currentDay);
-
-    if (Object.prototype.toString.call(date) === '[object Date]') {
-      if (isNaN(date)) {
-        return new Date();
-      } else {
-        return date;
-      }
-    }
-  };
-
-  const [title, setTitle] = useState(editTask?.title || '');
-  const [start, setStart] = useState(editTask?.start || '09:00');
-  const [end, setEnd] = useState(editTask?.end || '09:30');
-  const [selectedOption, setSelectedOption] = useState(editTask?.priority);
-  const [priority, setPriority] = useState(editTask?.priority || 'low');
-  const category = editTask?.category || 'to-do';
+  const params = useParams();
+  const date = new Date(params.currentDay);
+  const validDate =
+    Object.prototype.toString.call(date) === '[object Date]' && !isNaN(date)
+      ? date
+      : new Date();
+  const currentDay = format(validDate, 'yyyy-MM-dd');
   const dispatch = useDispatch();
 
-  const validDate = useDateValidation();
-  const currentDay = format(validDate, 'yyyy-MM-dd');
+  const validationSchema = Yup.object().shape({
+    title: Yup.string()
+      .required('Title is required')
+      .trim()
+      .max(250, 'Title is too long'),
+    start: Yup.string().required('Start time is required'),
+    end: Yup.string()
+      .required('End time is required')
+      .test(
+        'is-greater',
+        'End time should be bigger than start time',
+        function (value) {
+          return this.parent.start < value;
+        }
+      ),
+    priority: Yup.string().required('Priority is required'),
+  });
 
-  useEffect(() => {
-    if (editTask.id) {
-      setTitle(editTask.title);
-      setStart(editTask.start);
-      setEnd(editTask.end);
-      setPriority(editTask.priority);
-      setSelectedOption(editTask.priority);
+  const initialValues = {
+    title: editTask?.title || '',
+    start: editTask?.start || '09:00',
+    end: editTask?.end || '09:30',
+    priority: editTask?.priority || 'low',
+    category: editTask?.category || 'to-do',
+  };
+
+  const onSubmit = async values => {
+    const { title, start, end, priority, category } = values;
+    const [startHour, startMinute] = start.split(':').map(Number);
+    const [endHour, endMinute] = end.split(':').map(Number);
+
+    if (
+      startHour > endHour ||
+      (startHour === endHour && startMinute >= endMinute)
+    ) {
+      showToast('The start time must be earlier than the end time');
+      return;
     }
-  }, [editTask.end, editTask.id, editTask.priority, editTask.start, editTask.title]);
 
-  const handleOptionChange = useCallback(event => {
-    const value = event.target.value;
-    setSelectedOption(value);
-    setPriority(value);
-  }, []);
+    if (!title.trim() || !start.trim() || !end.trim()) {
+      showToast('All fields must be filled');
+      return;
+    }
 
-  const handleSubmit = useCallback(
-    async e => {
-      e.preventDefault();
-      const edit = {
-        title,
-        start,
-        end,
-        priority,
-        date: currentDay,
-        category,
-      };
+    if (
+      title === initialValues.title &&
+      start === initialValues.start &&
+      end === initialValues.end &&
+      priority === initialValues.priority
+    ) {
+      showToast('Change at least one field');
+      return;
+    }
 
-      const startTime = start.split(':');
-      const endTime = end.split(':');
-
-      const startHour = parseInt(startTime[0], 10);
-      const endHour = parseInt(endTime[0], 10);
-      const startMinute = parseInt(startTime[1], 10);
-      const endMinute = parseInt(endTime[1], 10);
-
-      if (
-        startHour > endHour ||
-        (startHour === endHour && startMinute >= endMinute)
-      ) {
-        toast.error('The start time must be earlier than the end time', {
-          style: {
-            background: 'orange',
-            overflow: 'hidden',
-          },
-          icon: '❗',
-          iconTheme: {
-            primary: '#fff',
-            secondary: 'orange',
-          },
-        });
-
-        return;
-      }
-
-      if (title.trim() === '' || start.trim() === '' || end.trim() === '') {
-        toast.error('All fields must be filled', {
-          style: {
-            background: 'orange',
-            overflow: 'hidden',
-          },
-          icon: '❗',
-          iconTheme: {
-            primary: '#fff',
-            secondary: 'orange',
-          },
-        });
-        return;
-      }
-
-      if (
-        title === editTask?.title &&
-        end === editTask?.end &&
-        start === editTask?.start &&
-        priority === editTask?.priority
-      ) {
-        toast.error('Change at least one field', {
-          style: {
-            background: 'orange',
-            overflow: 'hidden',
-          },
-          icon: '❗',
-          iconTheme: {
-            primary: '#fff',
-            secondary: 'orange',
-          },
-        });
-        return;
-      }
-
-      if (editTask.id) {
-        dispatch(patchTask({ id: editTask.id, task: edit }));
-      } else {
-        dispatch(
-          addTask({
-            title,
-            start,
-            end,
-            priority,
-            date: currentDay,
-            category,
-          })
-        );
-        toast.success('Successfully! Task added');
-      }
-
-      onCloseModal();
-    },
-    [
-      category,
-      currentDay,
-      dispatch,
-      editTask?.end,
-      editTask.id,
-      editTask?.priority,
-      editTask?.start,
-      editTask?.title,
-      end,
-      onCloseModal,
-      priority,
-      start,
+    const taskData = {
       title,
-    ]
-  );
+      start,
+      end,
+      priority,
+      category,
+      date: currentDay,
+    };
 
-  const handleChange = useCallback(e => {
-    const { name, value } = e.target;
-    switch (name) {
-      case 'title':
-        return setTitle(value);
-      case 'start':
-        return setStart(value);
-      case 'end':
-        return setEnd(value);
-
-      default:
-        return value;
+    if (editTask.id) {
+      dispatch(patchTask({ id: editTask.id, task: taskData }));
+    } else {
+      dispatch(addTask(taskData));
+      showToast('Successfully! Task added', false);
     }
-  }, []);
+
+    onCloseModal();
+  };
 
   return (
-    <TaskFormStyled onSubmit={handleSubmit}>
-      <TaskContainer>
-        <TaskLabelStyled htmlFor="title">
-          Title
-          <TaskInputStyled
-            type="text"
-            name="title"
-            id="title"
-            placeholder="Enter text"
-            maxLength={250}
-            onChange={handleChange}
-            value={title}
-          />
-        </TaskLabelStyled>
-      </TaskContainer>
-
-      <TimeWrapper>
-        <TaskContainer>
-          <TaskLabelStyled htmlFor="start">Start</TaskLabelStyled>
-          <TaskInputStyled
-            type="time"
-            name="start"
-            id="timeInput"
-            value={start}
-            onChange={handleChange}
-            step="900"
-          />
-        </TaskContainer>
-
-        <TaskContainer>
-          <TaskLabelStyled htmlFor="end">End</TaskLabelStyled>
-          <TaskInputStyled
-            type="time"
-            name="end"
-            id="timeInput"
-            value={end}
-            onChange={handleChange}
-            step="900"
-          />
-        </TaskContainer>
-      </TimeWrapper>
-
-      <RadioButtonContainer>
-        <RadioButtonGorup>
-          <RadioButtonLabel>
-            <RadioButtonInput
-              type="radio"
-              name="option"
-              value="low"
-              checked={selectedOption === 'low'}
-              onChange={handleOptionChange}
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      {({ values, handleChange }) => (
+        <TaskFormStyled>
+          <TaskContainer>
+            <TaskLabelStyled htmlFor="title">Title</TaskLabelStyled>
+            <Field
+              as={TaskInputStyled}
+              type="text"
+              id="title"
+              name="title"
+              maxLength={250}
+              placeholder="Enter text"
+              onChange={handleChange}
+              value={values.title}
             />
-            Low
-          </RadioButtonLabel>
-        </RadioButtonGorup>
-        <RadioButtonGorup>
-          <RadioButtonLabel>
-            <RadioButtonInput
-              type="radio"
-              name="option"
-              value="medium"
-              checked={selectedOption === 'medium'}
-              onChange={handleOptionChange}
-            />
-            Medium
-          </RadioButtonLabel>
-        </RadioButtonGorup>
-        <RadioButtonGorup>
-          <RadioButtonLabel>
-            <RadioButtonInput
-              type="radio"
-              name="option"
-              value="high"
-              checked={selectedOption === 'high'}
-              onChange={handleOptionChange}
-            />
-            High
-          </RadioButtonLabel>
-        </RadioButtonGorup>
-      </RadioButtonContainer>
+            <ErrorMess name="title" component="div" />
+          </TaskContainer>
 
-      <ButtonContainer>
-        {editTask.id ? (
-          <>
-            <EditButton type="submit">
-              <StyledEditIcon color="#fff" size={18} />
-              Edit
-            </EditButton>
-            <CancelBtn type="button" onClick={onCloseModal}>
-              Cancel
-            </CancelBtn>
-          </>
-        ) : (
-          <>
-            <AddButton type="submit">
-              <StyledAddIcon color="#fff" size={20} />
-              Add
-            </AddButton>
-            <CancelBtn type="button" onClick={onCloseModal}>
-              Cancel
-            </CancelBtn>
-          </>
-        )}
-      </ButtonContainer>
-    </TaskFormStyled>
+          <TimeWrapper>
+            <TaskContainer>
+              <TaskLabelStyled htmlFor="start">Start</TaskLabelStyled>
+              <Field
+                as={TaskInputStyled}
+                type="time"
+                name="start"
+                value={values.start}
+                onChange={handleChange}
+                step="900"
+              />
+              <ErrorMess name="start" component="div" />
+            </TaskContainer>
+
+            <TaskContainer>
+              <TaskLabelStyled htmlFor="end">End</TaskLabelStyled>
+              <Field
+                as={TaskInputStyled}
+                type="time"
+                name="end"
+                value={values.end}
+                onChange={handleChange}
+                step="900"
+              />
+              <ErrorMess name="end" component="div" />
+            </TaskContainer>
+          </TimeWrapper>
+
+          <RadioButtonContainer>
+            <RadioButtonGorup>
+              <RadioButtonLabel>
+                <Field
+                  as={RadioButtonInput}
+                  type="radio"
+                  name="priority"
+                  value="low"
+                  checked={values.priority === 'low'}
+                  onChange={handleChange}
+                />
+                Low
+              </RadioButtonLabel>
+            </RadioButtonGorup>
+            <RadioButtonGorup>
+              <RadioButtonLabel>
+                <Field
+                  as={RadioButtonInput}
+                  type="radio"
+                  name="priority"
+                  value="medium"
+                  checked={values.priority === 'medium'}
+                  onChange={handleChange}
+                />
+                Medium
+              </RadioButtonLabel>
+            </RadioButtonGorup>
+            <RadioButtonGorup>
+              <RadioButtonLabel>
+                <Field
+                  as={RadioButtonInput}
+                  type="radio"
+                  name="priority"
+                  value="high"
+                  checked={values.priority === 'high'}
+                  onChange={handleChange}
+                />
+                High
+              </RadioButtonLabel>
+            </RadioButtonGorup>
+            <ErrorMess name="priority" component="div" />
+          </RadioButtonContainer>
+
+          <ButtonContainer>
+            {editTask.id ? (
+              <>
+                <EditButton type="submit">
+                  <StyledEditIcon color="#fff" size={18} />
+                  Edit
+                </EditButton>
+                <CancelBtn type="button" onClick={onCloseModal}>
+                  Cancel
+                </CancelBtn>
+              </>
+            ) : (
+              <>
+                <AddButton type="submit">
+                  <StyledAddIcon color="#fff" size={20} />
+                  Add
+                </AddButton>
+                <CancelBtn type="button" onClick={onCloseModal}>
+                  Cancel
+                </CancelBtn>
+              </>
+            )}
+          </ButtonContainer>
+        </TaskFormStyled>
+      )}
+    </Formik>
   );
 };
 
 export default TaskForm;
+
