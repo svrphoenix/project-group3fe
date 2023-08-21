@@ -23,7 +23,10 @@ const CalendarToolbar = () => {
 
   useEffect(() => {
     dispatch(getAllTasks({ year, month: formattedMonth }));
-  }, [dispatch, year, formattedMonth]);
+    setCurrentDate(
+      currentDay ? parse(currentDay, 'yyyy-MM-dd', new Date()) : new Date()
+    );
+  }, [dispatch, year, formattedMonth, currentDay]);
 
   const formatedDate = currentDay
     ? format(currentDate, 'dd MMMM yyyy')
