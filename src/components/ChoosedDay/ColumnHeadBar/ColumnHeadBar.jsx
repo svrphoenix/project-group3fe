@@ -1,4 +1,3 @@
-import { ReactComponent as PlusCircle } from 'images/icons/plus-circle.svg';
 import TaskModal from '../TaskModal/TaskModal';
 import AddSvg from 'components/AddSvg/AddSvg';
 import getSvg from 'utils/getSvg';
