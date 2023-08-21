@@ -9,14 +9,14 @@ export const StyledAvatar = styled(Avatar)`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--second-Toogle-Month-Day-Bckg-Color);
-  color: var(--first-Icon-Color);
+  background-color: var(--avatar-bg-color);
+  color: var(--avatar-color);
   font-family: 'Inter Bold';
-  font-size: 18px;
+  font-size: 35px;
   @media screen and (min-width: 768px) {
     width: 124px;
     height: 124px;
-    font-size: 30px;
+    font-size: 60px;
   }
   img {
     display: block;

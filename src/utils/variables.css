@@ -111,6 +111,9 @@ body[data-theme='light'] {
 
   --mainpage-description-color: rgba(17, 17, 17, 0.9);
   --mainpage-itemtitle-color: #171820;
+
+  --avatar-color: #3e85f3;
+  --avatar-bg-color: #e3f3ff;
 }
 
 body[data-theme='dark'] {
@@ -225,4 +228,7 @@ body[data-theme='dark'] {
 
   --mainpage-description-color: #dcebf7;
   --mainpage-itemtitle-color: #dcebf7;
+
+  --avatar-color: #ffffff2e;
+  --avatar-bg-color: #171820;
 }
