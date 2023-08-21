@@ -24,7 +24,15 @@ export const Modal = ({ children, onToggleModal }) => {
 
   return createPortal(
     <SC.ModalBackdrop onClick={onBackdropClick}>
-      <SC.ModalContent>{children}</SC.ModalContent>
+      <SC.ModalContent>
+        <SC.StyledCloseIcon
+          color="var(--first-Text-Color)"
+          hoverColor="var(--fourth-Bckg-Color)"
+          size={24}
+          onClick={onToggleModal}
+        />
+        {children}
+      </SC.ModalContent>
     </SC.ModalBackdrop>,
     document.querySelector('#modal-root')
   );
