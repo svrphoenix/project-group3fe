@@ -9,8 +9,8 @@ body[data-theme='light'] {
   --LogReg-Text-Color: #111;
   --LogReg-Btn-Shadow: rgba(136, 165, 191, 0.48);
   --LogReg-Field-Border: rgba(220, 227, 229, 0.6);
-  --LogReg-Field-Hover: #DCE3E5;
-  --LogReg-Field-Placeholder: #DCE3E5;
+  --LogReg-Field-Hover: #dce3e5;
+  --LogReg-Field-Placeholder: #dce3e5;
 
   --first-Feedback-Bckg-Color: #ffffff;
   --second-Feedback-Bckg-Color: #f6f6f6;
@@ -113,6 +113,23 @@ body[data-theme='light'] {
 
   --mainpage-description-color: rgba(17, 17, 17, 0.9);
   --mainpage-itemtitle-color: #171820;
+
+  --review-text-color: rgba(17, 17, 17, 0.9);
+  --review-title-color: #343434;
+  --review-border-color: rgba(17, 17, 17, 0.1);
+
+  --calendar-border-btn-group: rgba(220, 227, 229, 0.8);
+  --calendar-border: #eff2f3;
+  --calendar-background: #fff;
+  --calendar-text-color: #343434;
+  --calendar-btn-hover-color: #f8f8f8;
+  --calendar-btn-disabled: #dce3e5;
+  --calendar-txt-color: #343434;
+  --period-type-btn-color: #e3f3ff;
+  --period-type-btn-hover-color: #cae8ff;
+  --period-type-txt-color: #3e85f3;
+  --calendar-light-theme-primary: #3e85f3;
+  --calendar-cell-hover: #f2f2f2;
 }
 
 body[data-theme='dark'] {
@@ -122,10 +139,10 @@ body[data-theme='dark'] {
   --fourth-Bckg-Color: #3e85f3;
 
   --LogReg-Bckg-Color: #171820;
-  --LogReg-Form-Color: #21222C;
-  --LogReg-Text-Color: #FFFFFF;
+  --LogReg-Form-Color: #21222c;
+  --LogReg-Text-Color: #ffffff;
   --LogReg-Btn-Shadow: rgba(84, 93, 101, 0.96);
-  --LogReg-Field-Hover: #FFFFFF;
+  --LogReg-Field-Hover: #ffffff;
   --LogReg-Field-Border: rgba(84, 93, 101, 0.96);
   --LogReg-Field-Placeholder: rgba(84, 93, 101, 0.96);
 
@@ -229,4 +246,21 @@ body[data-theme='dark'] {
 
   --mainpage-description-color: #dcebf7;
   --mainpage-itemtitle-color: #dcebf7;
+
+  --review-text-color: #dcebf7;
+  --review-title-color: #3e85f3;
+  --review-border-color: rgba(230, 230, 230, 0.1);
+
+  --calendar-border-btn-group: rgba(255, 255, 255, 0.15);
+  --calendar-background: #21222c;
+  --calendar-text-color: #fff;
+  --calendar-border: rgba(255, 255, 255, 0.15);
+  --calendar-btn-hover-color: #202020;
+  --calendar-txt-color: #dce3e5;
+  --calendar-btn-disabled: #525555;
+  --period-type-btn-color: #21222c;
+  --period-type-btn-hover-color: #3e85f3;
+  --period-type-txt-color: #3e85f3;
+  --calendar-light-theme-primary: #fff;
+  --calendar-cell-hover: #2c2d3a;
 }

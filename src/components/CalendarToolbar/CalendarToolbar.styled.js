@@ -15,6 +15,5 @@ export const DaysOfWeekWrapper = styled.div`
   display: flex;
   justify-content: space-around;
   border-radius: 8px;
-  border: 1px solid rgba(220, 227, 229, 0.5);
-  background-color: #fff;
+  border: 1px solid var(--calendar-border-btn-group);
 `;
