@@ -100,8 +100,12 @@ export const StyledDatePicker = styled(DatePicker)`
   padding: 8px 12px;
   border: none;
   cursor: pointer;
-
   max-width: 100%;
+
+  &:focus {
+    outline: none;
+    box-shadow: rgba(62, 133, 243, 0.4) 0px 4px 12px;
+  }
 
   @media screen and (min-width: 768px) {
     font-size: 16px;
