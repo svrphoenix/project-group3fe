@@ -56,7 +56,7 @@ const TaskForm = ({ onCloseModal, ...editTask }) => {
       setPriority(editTask.priority);
       setSelectedOption(editTask.priority);
     }
-  }, []);
+  }, [editTask.end, editTask.id, editTask.priority, editTask.start, editTask.title]);
 
   const handleOptionChange = useCallback(event => {
     const value = event.target.value;
