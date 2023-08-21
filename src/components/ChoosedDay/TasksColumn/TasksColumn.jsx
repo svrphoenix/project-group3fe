@@ -3,7 +3,7 @@ import { ColumnHeadBar } from '../ColumnHeadBar/ColumnHeadBar';
 import { ColumnTasksList } from '../ColumnTasksList/ColumnTasksList';
 import { AddTaskBtn } from '../AddTaskBtn/AddTaskBtn';
 import * as SC from './TasksColumn.styled';
-import { TaskModal } from '../TaskModal/TaskModal';
+import  TaskModal  from '../TaskModal/TaskModal';
 
 export const TasksColumn = ({ columnTitle, columnTasks }) => {
   const { showModal, onToggleModal } = useModalToggle();

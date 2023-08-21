@@ -1,5 +1,5 @@
 import { TaskToolbar } from '../TaskToolbar/TaskToolbar';
-import { TaskModal } from '../TaskModal/TaskModal';
+import  TaskModal  from '../TaskModal/TaskModal';
 import * as SC from './TaskColumnCard.styled';
 import useModalToggle from 'hooks/useModalToggle';
 

@@ -3,12 +3,12 @@ body[data-theme='light'] {
   --second-Bckg-Color: #ffffff;
   --third-Bckg-Color: #ffffff;
   --fourth-Bckg-Color: #3e85f3;
-  
-  --LogReg-Bckg-Color: #DCEBF7;
-  --LogReg-Form-Color: #FFF;
+
+  --LogReg-Bckg-Color: #dcebf7;
+  --LogReg-Form-Color: #fff;
   --LogReg-Text-Color: #111;
   --LogRef-Btn-Shadow: rgba(136, 165, 191, 0.48);
-  --LogRef-Field-Hover: #DCE3E5;
+  --LogRef-Field-Hover: #dce3e5;
 
   --first-Feedback-Bckg-Color: #ffffff;
   --second-Feedback-Bckg-Color: #f6f6f6;
@@ -74,6 +74,7 @@ body[data-theme='light'] {
   --addtask-Input-Border-color: #f6f6f6;
   --addtask-Input-Text-color: #343434;
   --addtask-Input-Hover-color: #3e85f3;
+  --addtask-icon-color-time-input: invert(0);
   --addtask-RadioButtonLabel-color: #343434;
   --addtask-RadioButton-low-color: #72c2f8;
   --addtask-RadioButton-middle-color: #f3b249;
@@ -91,6 +92,8 @@ body[data-theme='light'] {
   --addtask-Cancel-Btn-text-color: #343434;
   --addtask-Cancel-Bckg-color: #e5edfa;
   --addtask-Cancel-hover-color: #f7f7f7;
+  --toast-main-color: #fff;
+  --toast-background-color: #72c2f8;
 
   --loader-Gradient: linear-gradient(
     rgba(220, 235, 247, 0.56),
@@ -105,10 +108,10 @@ body[data-theme='dark'] {
   --fourth-Bckg-Color: #3e85f3;
 
   --LogReg-Bckg-Color: #171820;
-  --LogReg-Form-Color: #21222C;
-  --LogReg-Text-Color: #FFFFFF;
+  --LogReg-Form-Color: #21222c;
+  --LogReg-Text-Color: #ffffff;
   --LogRef-Btn-Shadow: rgba(84, 93, 101, 0.96);
-  --LogRef-Field-Hover: #FFFFFF;
+  --LogRef-Field-Hover: #ffffff;
 
   --first-Feedback-Bckg-Color: #171820;
   --second-Feedback-Bckg-Color: #171820;
@@ -174,8 +177,8 @@ body[data-theme='dark'] {
   --addtask-Input-Border-color: #ffffff;
   --addtask-Input-Text-color: #ffffff;
   --addtask-Input-Hover-color: #3e85f3;
+  --addtask-icon-color-time-input: invert(1);
   --addtask-RadioButtonLabel-color: #ffffff;
-  --addtask-RadioButtonLabel-color: #343434;
   --addtask-RadioButton-low-color: #72c2f8;
   --addtask-RadioButton-middle-color: #f3b249;
   --addtask-RadioButton-high-color: #ea3d65;
@@ -192,7 +195,8 @@ body[data-theme='dark'] {
   --addtask-Cancel-Btn-text-color: #343434;
   --addtask-Cancel-Bckg-color: #e5edfa;
   --addtask-Cancel-hover-color: #f7f7f7;
-
+  --toast-main-color: #fff;
+  --toast-background-color: #72c2f8;
   --loader-Gradient: linear-gradient(
     rgba(59, 130, 236, 0.609),
     rgba(33, 34, 44, 0.609)

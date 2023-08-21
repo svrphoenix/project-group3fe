@@ -1,5 +1,5 @@
 import { Modal } from 'components/Modal/Modal';
-import { TaskForm } from '../TaskForm/TaskForm';
+import TaskForm from '../TaskForm/TaskForm';
 
 const TaskModal = ({ showModal, onToggleModal, ...props }) => {
   return (
@@ -13,4 +13,4 @@ const TaskModal = ({ showModal, onToggleModal, ...props }) => {
   );
 };
 
-export { TaskModal };
+export default TaskModal;

@@ -52,7 +52,7 @@ export const TaskInputStyled = styled.input`
   }
 
   &::-webkit-calendar-picker-indicator {
-    filter: invert(0);
+    filter: var(--addtask-icon-color-time-input);
   }
 `;
 
