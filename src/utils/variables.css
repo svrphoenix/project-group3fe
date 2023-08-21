@@ -108,6 +108,9 @@ body[data-theme='light'] {
   --vertical-scrollbar-thumb-color: #e7e5e5;
   --horizontal-scrollbar-track-color: #f2f2f2;
   --horizontal-scrollbar-thumb-color: #e7e5e5;
+
+  --mainpage-description-color: rgba(17, 17, 17, 0.9);
+  --mainpage-itemtitle-color: #171820;
 }
 
 body[data-theme='dark'] {
@@ -219,4 +222,7 @@ body[data-theme='dark'] {
   --vertical-scrollbar-thumb-color: #171820;
   --horizontal-scrollbar-track-color: #21222c;
   --horizontal-scrollbar-thumb-color: #2d3037;
+
+  --mainpage-description-color: #dcebf7;
+  --mainpage-itemtitle-color: #dcebf7;
 }
