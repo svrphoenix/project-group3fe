@@ -76,18 +76,25 @@ export const TaskToolbar = ({
           horizontal: 'left',
         }}
       >
-        <Box sx={{ p: 2 }}>
-          <Box sx={{ display: 'flex', gap: '5px' }}>
-            {first}
-            <SC.IconBtn onClick={() => removeTask(first.toLowerCase())}>
+        <Box
+          sx={{
+            p: 3,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '16px',
+          }}
+        >
+          <Box sx={{ display: 'flex' }}>
+            <SC.PopupBtn onClick={() => removeTask(first.toLowerCase())}>
+              {first.replace(/-/g, ' ')}
               <Remove />
-            </SC.IconBtn>
+            </SC.PopupBtn>
           </Box>
-          <Box sx={{ display: 'flex', gap: '5px' }}>
-            {second}
-            <SC.IconBtn onClick={() => removeTask(second.toLowerCase())}>
+          <Box sx={{ display: 'flex' }}>
+            <SC.PopupBtn onClick={() => removeTask(second.toLowerCase())}>
+              {second.replace(/-/g, ' ')}
               <Remove />
-            </SC.IconBtn>
+            </SC.PopupBtn>
           </Box>
         </Box>
       </Popover>
