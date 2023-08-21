@@ -6,6 +6,7 @@ export const CreateTasksBtn = styled.button`
   align-items: center;
   gap: 8px;
   width: 100%;
+  width: calc(100% - 13px);
   height: 48px;
   border-radius: 8px;
   border: var(--addtask-Btn-border);
@@ -15,6 +16,10 @@ export const CreateTasksBtn = styled.button`
   line-height: 18px;
   cursor: pointer;
   color: var(--first-Text-Color);
+
+  @media screen and (min-width: 768px) {
+    width: calc(100% - 14px);
+  }
 `;
 export const Vector = styled.svg`
   width: 24px;
