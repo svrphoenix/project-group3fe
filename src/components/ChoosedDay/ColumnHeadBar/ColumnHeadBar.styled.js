@@ -20,3 +20,17 @@ export const IconBtn = styled.button`
   border: none;
   cursor: pointer;
 `;
+
+export const Vector = styled.svg`
+  width: 22px;
+  height: 22px;
+  fill: var(--LogReg-Text-Color);
+
+  @media screen and (min-width: 768px) {
+    width: 24px;
+    height: 24px;
+    &:hover {
+      fill: var(--fourth-Bckg-Color);
+    }
+  }
+`;

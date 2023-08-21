@@ -5,7 +5,7 @@ export const TaskItem = styled.li`
   height: 108px;
   padding: 14px;
   border-radius: 8px;
-  border: var(--taskitem-border);
+  border: 1px solid rgba(220, 227, 229, 0.8);
   background: var(--first-Bckg-Color);
 `;
 
@@ -32,12 +32,22 @@ export const AvatarWrapper = styled.div`
   gap: 8px;
 `;
 
-export const Avatar = styled.div`
+export const Avatar = styled.img`
   width: 32px;
   height: 32px;
   border-radius: 32px;
-  border: var(--taskavatar-border);
-  background-image: $url(${props => props.url});
+  border: 1.8px solid #3e85f3;
+`;
+
+export const AvatarEmpty = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 32px;
+  background-color: var(--fourth-Bckg-Color);
+  color: #fff;
 `;
 
 export const Priority = styled.div`

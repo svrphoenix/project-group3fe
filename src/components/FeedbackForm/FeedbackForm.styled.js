@@ -120,3 +120,21 @@ export const ErrorWrapper = styled.div`
   line-height: 18px;
   color: red;
 `;
+
+export const VectorWhite = styled.svg`
+  width: 16px;
+  height: 16px;
+  fill: #fff;
+`;
+
+export const VectorBlue = styled.svg`
+  width: 16px;
+  height: 16px;
+  fill: #3e85f3;
+`;
+
+export const VectorPink = styled.svg`
+  width: 16px;
+  height: 16px;
+  fill: #ea3d65;
+`;
