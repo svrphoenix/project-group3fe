@@ -1,5 +1,5 @@
 <a href="https://svrphoenix.github.io/project-group3fe" target="_blank" rel="noopener">
-	<img src="images/logo/GOOSE@2.png" alt="GooseTrack logo" height="120" width="120" />
+	<img src="./src/images/logo/GOOSE@2.png" alt="GooseTrack logo" height="120" width="120" />
 </a>
 
 Цей проєкт містить frontend частину веб-застосунку
