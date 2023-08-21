@@ -42,29 +42,6 @@ export const StyledAvatarWrapper = styled.div`
   }
 `;
 
-export const StyledAvatarContainer = styled.div`
-  width: 72px;
-  height: 76px;
-  border: 2px solid var(--first-Icon-Color);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--second-Toogle-Month-Day-Bckg-Color);
-  @media screen and (min-width: 768px) {
-    width: 124px;
-    height: 124px;
-  }
-  img {
-    display: block;
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-    overflow: hidden;
-    object-fit: cover;
-  }
-`;
-
 export const StyledUserName = styled.p`
   text-align: center;
   font-family: 'Inter Bold';
@@ -276,6 +253,7 @@ export const StyledBtnLink = styled.a`
   height: 14px;
   background-color: var(--first-Bckg-Btn-Color);
   border-radius: 50%;
+  z-index: 1;
   &:hover,
   &:focus {
     background-color: var(--hover-Bckg-Btn-Color);
