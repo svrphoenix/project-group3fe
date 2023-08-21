@@ -117,7 +117,7 @@ export const StyledDatePicker = styled(DatePicker)`
 
 export const ButtonGroup = styled.div`
   display: inline-flex;
-  border: 1px solid rgba(220, 227, 229, 0.8);
+  border: 1px solid var(--first-Input-Border-Color);
   border-radius: 8px;
 `;
 
@@ -126,7 +126,7 @@ export const Button = styled.button`
   &:first-child {
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
-    border-right: 1px solid rgba(220, 227, 229, 0.5);
+    border-right: 1px solid var(--first-Input-Border-Color);
   }
   &:last-child {
     border-top-right-radius: 8px;
