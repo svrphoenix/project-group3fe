@@ -1,6 +1,30 @@
-import { styled } from 'styled-components';
+import { styled, css } from 'styled-components';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+
+const sharedStyle = css`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  outline: 0px;
+  border: 0px;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
+  appearance: none;
+  text-decoration: none;
+  min-width: 38px;
+  padding: 8px 12px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #fff;
+  &:disabled {
+    color: #dce3e5;
+  }
+  &:hover {
+    background-color: #f8f8f8;
+  }
+`;
 
 export const StatisticsDiv = styled.div`
   font-family: 'Poppins Regular';
@@ -65,34 +89,43 @@ export const ChartLegendItem = styled.li`
   }
 `;
 
-export const StyledDatePicker = styled(DatePicker)`
-  font-family: 'Inter SemiBold';
-  font-size: 14px;
-  line-height: 18px;
-  letter-spacing: 0em;
-  text-align: left;
-  padding: 0px 14px;
-  border: 1px solid var(--first-Input-Border-Color);
-  border-radius: 8px;
-  width: 100%;
-  height: 42px;
-  color: var(--first-Text-Color);
-  background-color: var(--second-Bckg-Color);
-  &::placeholder {
-    color: var(--placeholder-Color);
-    font-size: 12px;
-  }
-  &:hover,
-  &:focus {
-    border: 1px solid var(--second-Input-Border-Color);
-    outline: none;
-  }
+export const PeriodPaginatorWrapper = styled.div`
+  display: flex;
+  gap: 8px;
+`;
 
-  @media screen and (min-width: 375px) {
-    width: 299px;
+export const StyledDatePicker = styled(DatePicker)`
+  color: #fff;
+  text-align: center;
+  font-family: 'Inter Bold';
+  font-size: 16px;
+  line-height: 1.13;
+  text-transform: uppercase;
+  border-radius: 8px;
+  background-color: #3e85f3;
+  padding: 8px 12px;
+  border: none;
+
+  max-width: 60%;
+  cursor: pointer;
+`;
+
+export const ButtonGroup = styled.div`
+  display: inline-flex;
+  border: 1px solid rgba(220, 227, 229, 0.8);
+  border-radius: 8px;
+`;
+
+export const Button = styled.button`
+  color: #343434;
+  &:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-right: 1px solid rgba(220, 227, 229, 0.5);
   }
-  @media screen and (min-width: 768px) {
-    width: 354px;
-    font-size: 16px;
+  &:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
+  ${sharedStyle};
 `;

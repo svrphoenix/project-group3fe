@@ -1,9 +1,9 @@
 // import PropTypes from 'prop-types';
 import { useState } from 'react';
-import PeriodPaginator from 'components/CalendarToolbar/PeriodPaginator/PeriodPaginator';
+// import PeriodPaginator from 'components/CalendarToolbar/PeriodPaginator/PeriodPaginator';
 import { format, addDays } from 'date-fns';
 import { useSearchParams } from 'react-router-dom';
-// import DatePicker from 'react-datepicker';
+import { SVG } from 'images';
 
 import StatisticsChart from 'components/Statistics/StatisticsChart';
 import * as SC from './StatisticsPage.styled';
@@ -44,35 +44,28 @@ const StatisticsPage = () => {
     <>
       <SC.StatisticsDiv>
         <SC.StatisticsHeaderDiv>
-          <PeriodPaginator
-            date={formatedDate}
-            prevHandler={prevHandler}
-            nextHandler={nextHandler}
-          />
-
-          {/* <DatePicker
-            selected={currentDate}
-            onChange={date => {
-              setCurrentDate(date);
-              setSearchParams({
-                month: date.getMonth() + 1,
-                day: date.getDate(),
-                year: date.getFullYear(),
-              });
-            }}
-          /> */}
-
-          <SC.StyledDatePicker
-            selected={currentDate}
-            onChange={date => {
-              setCurrentDate(date);
-              setSearchParams({
-                month: date.getMonth() + 1,
-                day: date.getDate(),
-                year: date.getFullYear(),
-              });
-            }}
-          />
+          <SC.PeriodPaginatorWrapper>
+            <SC.StyledDatePicker
+              selected={currentDate}
+              onChange={date => {
+                setCurrentDate(date);
+                setSearchParams({
+                  month: date.getMonth() + 1,
+                  day: date.getDate(),
+                  year: date.getFullYear(),
+                });
+              }}
+              dateFormat="dd MMMM yyyy"
+            />
+            <SC.ButtonGroup>
+              <SC.Button onClick={prevHandler}>
+                <SVG.LeftChevron />
+              </SC.Button>
+              <SC.Button onClick={nextHandler}>
+                <SVG.RightChevron />
+              </SC.Button>
+            </SC.ButtonGroup>
+          </SC.PeriodPaginatorWrapper>
 
           <SC.ChartLegend>
             <SC.ChartLegendItem>By day</SC.ChartLegendItem>
