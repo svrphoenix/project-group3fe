@@ -13,6 +13,37 @@ import CoolveticaRegular from '../fonts/Coolvetica-Regular.ttf';
 import CoolveticaRegularItalic from '../fonts/Coolvetica-RegularItalic.ttf';
 
 export const GlobalStyle = createGlobalStyle`
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--horizontal-scrollbar-thumb-color)
+    var(--horizontal-scrollbar-track-color);
+
+  @media screen and (min-width: 768px) {
+    scrollbar-width: auto;
+  }
+}
+
+*::-webkit-scrollbar {
+    width: 6px;
+    height: 12px;
+
+  @media screen and (min-width: 768px) {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--horizontal-scrollbar-track-color);
+  border-radius: 50px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--horizontal-scrollbar-thumb-color);
+  border-radius: 50px;
+}
+
 @font-face {
   font-family: 'Inter SemiBold';
   src: url(${InterSemiBold}) format('truetype');
