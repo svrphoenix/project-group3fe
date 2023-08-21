@@ -7,8 +7,10 @@ body[data-theme='light'] {
   --LogReg-Bckg-Color: #DCEBF7;
   --LogReg-Form-Color: #FFF;
   --LogReg-Text-Color: #111;
-  --LogRef-Btn-Shadow: rgba(136, 165, 191, 0.48);
-  --LogRef-Field-Hover: #DCE3E5;
+  --LogReg-Btn-Shadow: rgba(136, 165, 191, 0.48);
+  --LogReg-Field-Border: rgba(220, 227, 229, 0.6);
+  --LogReg-Field-Hover: #DCE3E5;
+  --LogReg-Field-Placeholder: #DCE3E5;
 
   --first-Feedback-Bckg-Color: #ffffff;
   --second-Feedback-Bckg-Color: #f6f6f6;
@@ -107,8 +109,10 @@ body[data-theme='dark'] {
   --LogReg-Bckg-Color: #171820;
   --LogReg-Form-Color: #21222C;
   --LogReg-Text-Color: #FFFFFF;
-  --LogRef-Btn-Shadow: rgba(84, 93, 101, 0.96);
-  --LogRef-Field-Hover: #FFFFFF;
+  --LogReg-Btn-Shadow: rgba(84, 93, 101, 0.96);
+  --LogReg-Field-Hover: #FFFFFF;
+  --LogReg-Field-Border: rgba(84, 93, 101, 0.96);
+  --LogReg-Field-Placeholder: rgba(84, 93, 101, 0.96);
 
   --first-Feedback-Bckg-Color: #171820;
   --second-Feedback-Bckg-Color: #171820;
