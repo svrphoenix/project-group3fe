@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { addDays } from 'date-fns';
 import { useSearchParams } from 'react-router-dom';
@@ -78,7 +77,5 @@ const StatisticsPage = () => {
     </>
   );
 };
-
-// StatisticsPage.propTypes = {};
 
 export default StatisticsPage;
