@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import PeriodPaginator from './PeriodPaginator/PeriodPaginator';
 import PeriodTypeSelect from './PeriodTypeSelect/PeriodTypeSelect';
 import * as SC from './CalendarToolbar.styled';
@@ -6,16 +6,20 @@ import { format, addDays, parse } from 'date-fns';
 import { useNavigate, useParams } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { getAllTasks } from 'redux/tasks/operations';
+import { useCalendar } from 'pages/CalendarPage/CalendarProvider';
 
 const CalendarToolbar = () => {
   const { currentDay } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const initialDate = currentDay
-    ? parse(currentDay, 'yyyy-MM-dd', new Date())
-    : new Date();
 
-  const [currentDate, setCurrentDate] = useState(initialDate);
+  const { currentDate, setCurrentDate } = useCalendar();
+  useEffect(() => {
+    const initialDate = currentDay
+      ? parse(currentDay, 'yyyy-MM-dd', new Date())
+      : new Date();
+    setCurrentDate(initialDate);
+  }, [setCurrentDate, currentDay]);
 
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
