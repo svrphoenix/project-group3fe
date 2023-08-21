@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 import { EditIconSvg } from './EditIconSvg';
 import { AddIcon } from 'components/UserForm/Icons';
+import { Form, ErrorMessage } from 'formik';
 
-export const TaskFormStyled = styled.form`
+export const TaskFormStyled = styled(Form)`
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -11,6 +12,15 @@ export const TaskFormStyled = styled.form`
   @media screen and (min-width: 768px) {
     gap: 18px;
   }
+`;
+
+export const ErrorMess = styled(ErrorMessage)`
+  margin-left: 18px;
+  max-width: 100%;
+  color: #da1414;
+  font-size: 12px;
+  font-family: 'Inter Medium';
+  line-height: 14px;
 `;
 
 export const TaskContainer = styled.div`
@@ -52,7 +62,7 @@ export const TaskInputStyled = styled.input`
   }
 
   &::-webkit-calendar-picker-indicator {
-    filter: invert(0);
+    filter: var(--addtask-icon-color-time-input);
   }
 `;
 

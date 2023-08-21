@@ -1,20 +1,26 @@
+import { useSelector } from 'react-redux';
+import { selectUser } from 'redux/auth/selectors';
 import { TaskToolbar } from '../TaskToolbar/TaskToolbar';
-import { TaskModal } from '../TaskModal/TaskModal';
+import TaskModal from '../TaskModal/TaskModal';
+import useModalToggle from 'hooks/useModalToggle';
 import * as SC from './TaskColumnCard.styled';
 
-export const TaskColumnCard = ({
-  columnTitle,
-  task,
-  showModal,
-  onToggleModal,
-}) => {
+export const TaskColumnCard = ({ task }) => {
+  const { showModal, onToggleModal } = useModalToggle();
+
+  const user = useSelector(selectUser);
+
   return (
     <>
       <SC.TaskItem>
         <SC.TaskDescr>{task.title}</SC.TaskDescr>
         <SC.TaskInfo>
           <SC.AvatarWrapper>
-            <SC.Avatar $url={task.owner.avatarURL} />
+            {user.avatarURL ? (
+              <SC.Avatar src={user.avatarURL} />
+            ) : (
+              <SC.AvatarEmpty>{user.name.slice(0, 1)}</SC.AvatarEmpty>
+            )}
             <SC.Priority
               style={{
                 background:
@@ -30,14 +36,28 @@ export const TaskColumnCard = ({
               {task.priority}
             </SC.Priority>
           </SC.AvatarWrapper>
-          <TaskToolbar onToggleModal={onToggleModal} id={task._id} />
+          <TaskToolbar
+            onToggleModal={onToggleModal}
+            id={task._id}
+            category={task.category}
+            title={task.title}
+            date={task.date}
+            end={task.end}
+            start={task.start}
+            priority={task.priority}
+          />
         </SC.TaskInfo>
       </SC.TaskItem>
       <TaskModal
         showModal={showModal}
         onToggleModal={onToggleModal}
-        addCategory={task.category}
-        columnTitle={columnTitle}
+        id={task._id}
+        category={task.category}
+        title={task.title}
+        date={task.date}
+        end={task.end}
+        start={task.start}
+        priority={task.priority}
       />
     </>
   );

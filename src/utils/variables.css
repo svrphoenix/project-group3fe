@@ -3,9 +3,9 @@ body[data-theme='light'] {
   --second-Bckg-Color: #ffffff;
   --third-Bckg-Color: #ffffff;
   --fourth-Bckg-Color: #3e85f3;
-  
-  --LogReg-Bckg-Color: #DCEBF7;
-  --LogReg-Form-Color: #FFF;
+
+  --LogReg-Bckg-Color: #dcebf7;
+  --LogReg-Form-Color: #fff;
   --LogReg-Text-Color: #111;
   --LogReg-Btn-Shadow: rgba(136, 165, 191, 0.48);
   --LogReg-Field-Border: rgba(220, 227, 229, 0.6);
@@ -76,6 +76,7 @@ body[data-theme='light'] {
   --addtask-Input-Border-color: #f6f6f6;
   --addtask-Input-Text-color: #343434;
   --addtask-Input-Hover-color: #3e85f3;
+  --addtask-icon-color-time-input: invert(0);
   --addtask-RadioButtonLabel-color: #343434;
   --addtask-RadioButton-low-color: #72c2f8;
   --addtask-RadioButton-middle-color: #f3b249;
@@ -93,11 +94,25 @@ body[data-theme='light'] {
   --addtask-Cancel-Btn-text-color: #343434;
   --addtask-Cancel-Bckg-color: #e5edfa;
   --addtask-Cancel-hover-color: #f7f7f7;
+  --toast-main-color: #fff;
+  --toast-background-color: #72c2f8;
 
   --loader-Gradient: linear-gradient(
     rgba(220, 235, 247, 0.56),
     rgba(164, 212, 248, 0.663)
   );
+
+  --addtask-Btn-border: 1px dashed #3e85f3;
+  --taskitem-border: 1px solid rgba(220, 227, 229, 0.8);
+  --taskavatar-border: 1.8px solid #3e85f3;
+
+  --vertical-scrollbar-track-color: #f2f2f2;
+  --vertical-scrollbar-thumb-color: #e7e5e5;
+  --horizontal-scrollbar-track-color: #f2f2f2;
+  --horizontal-scrollbar-thumb-color: #e7e5e5;
+
+  --mainpage-description-color: rgba(17, 17, 17, 0.9);
+  --mainpage-itemtitle-color: #171820;
 }
 
 body[data-theme='dark'] {
@@ -178,8 +193,8 @@ body[data-theme='dark'] {
   --addtask-Input-Border-color: #ffffff;
   --addtask-Input-Text-color: #ffffff;
   --addtask-Input-Hover-color: #3e85f3;
+  --addtask-icon-color-time-input: invert(1);
   --addtask-RadioButtonLabel-color: #ffffff;
-  --addtask-RadioButtonLabel-color: #343434;
   --addtask-RadioButton-low-color: #72c2f8;
   --addtask-RadioButton-middle-color: #f3b249;
   --addtask-RadioButton-high-color: #ea3d65;
@@ -196,9 +211,22 @@ body[data-theme='dark'] {
   --addtask-Cancel-Btn-text-color: #343434;
   --addtask-Cancel-Bckg-color: #e5edfa;
   --addtask-Cancel-hover-color: #f7f7f7;
-
+  --toast-main-color: #fff;
+  --toast-background-color: #72c2f8;
   --loader-Gradient: linear-gradient(
     rgba(59, 130, 236, 0.609),
     rgba(33, 34, 44, 0.609)
   );
+
+  --addtask-Btn-border: none;
+  --taskitem-border: 1px solid rgba(255, 255, 255, 0.15);
+  --taskavatar-border: 1.8px solid #3e85f3;
+
+  --vertical-scrollbar-track-color: #2d3037;
+  --vertical-scrollbar-thumb-color: #171820;
+  --horizontal-scrollbar-track-color: #21222c;
+  --horizontal-scrollbar-thumb-color: #2d3037;
+
+  --mainpage-description-color: #dcebf7;
+  --mainpage-itemtitle-color: #dcebf7;
 }

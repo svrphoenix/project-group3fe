@@ -24,7 +24,6 @@ import { useDispatch } from 'react-redux';
 import useAuth from 'hooks/useAuth';
 import { updateUser } from 'redux/auth/operations';
 import { ChevronDownIcon } from './Icons';
-import { createIMGElement } from './createIMGElement';
 import { toast } from 'react-hot-toast';
 
 const UserSchema = Yup.object().shape({
@@ -62,6 +61,7 @@ export const UserForm = () => {
   );
   const [userAvatar, setUserAvatar] = useState(null);
   const [formChanged, setFormChanged] = useState(false);
+  const [userAvatarUrl, setuserAvatarUrl] = useState(user.avatarURL);
 
   const form = useRef(null);
   const fileListRef = useRef(null);
@@ -73,12 +73,11 @@ export const UserForm = () => {
   };
 
   const handleFiles = event => {
-    const img = createIMGElement(event);
-    fileListRef.current.innerHTML = '';
-    fileListRef.current.appendChild(img);
+    const files = event.target.files;
+    handleFormChange();
 
     setUserAvatar(event.currentTarget.files[0]);
-    handleFormChange();
+    setuserAvatarUrl(window.URL.createObjectURL(files[0]));
   };
 
   useEffect(() => {
@@ -127,6 +126,7 @@ export const UserForm = () => {
             <FileUploadComponent
               handleFiles={handleFiles}
               fileListRef={fileListRef}
+              userAvatarUrl={userAvatarUrl}
             />
           </FileInputLabel>
           <StyledUserName>{user.name}</StyledUserName>

@@ -10,6 +10,7 @@ export const TasksTitle = styled.h3`
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
+  color: var(--first-Text-Color);
 `;
 
 export const IconBtn = styled.button`
@@ -18,4 +19,18 @@ export const IconBtn = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
+`;
+
+export const Vector = styled.svg`
+  width: 22px;
+  height: 22px;
+  fill: var(--LogReg-Text-Color);
+
+  @media screen and (min-width: 768px) {
+    width: 24px;
+    height: 24px;
+    &:hover {
+      fill: var(--fourth-Bckg-Color);
+    }
+  }
 `;

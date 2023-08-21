@@ -154,7 +154,7 @@ export const ItemNumber = styled.p`
 `;
 
 export const ItemTitle = styled.p`
-  color: #171820;
+  color: var(--mainpage-itemtitle-color);
   font-family: 'Inter Bold';
   font-size: 32px;
   line-height: 1.25;
@@ -170,7 +170,7 @@ export const ItemTitle = styled.p`
   }
 `;
 export const ItemDescription = styled.p`
-  color: rgba(17, 17, 17, 0.9);
+  color: var(--mainpage-description-color);
   font-family: 'Inter Medium';
   font-size: 14px;
   line-height: 1.29;

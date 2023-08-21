@@ -1,8 +1,7 @@
-// import PropTypes from 'prop-types';
 import { useState } from 'react';
-import PeriodPaginator from 'components/CalendarToolbar/PeriodPaginator/PeriodPaginator';
-import { format, addDays } from 'date-fns';
+import { addDays } from 'date-fns';
 import { useSearchParams } from 'react-router-dom';
+import { SVG } from 'images';
 
 import StatisticsChart from 'components/Statistics/StatisticsChart';
 import * as SC from './StatisticsPage.styled';
@@ -14,8 +13,6 @@ const StatisticsPage = () => {
   const initialDate = new Date();
 
   const [currentDate, setCurrentDate] = useState(initialDate);
-
-  const formatedDate = format(currentDate, 'dd MMMM yyyy');
 
   const prevHandler = () => {
     const prevDate = addDays(currentDate, -1);
@@ -43,11 +40,31 @@ const StatisticsPage = () => {
     <>
       <SC.StatisticsDiv>
         <SC.StatisticsHeaderDiv>
-          <PeriodPaginator
-            date={formatedDate}
-            prevHandler={prevHandler}
-            nextHandler={nextHandler}
-          />
+          <SC.PeriodPaginatorWrapper>
+            <SC.CustomDatePickerWidth>
+              <SC.StyledDatePicker
+                selected={currentDate}
+                onChange={date => {
+                  setCurrentDate(date);
+                  setSearchParams({
+                    month: date.getMonth() + 1,
+                    day: date.getDate(),
+                    year: date.getFullYear(),
+                  });
+                }}
+                dateFormat="dd MMMM yyyy"
+              />
+            </SC.CustomDatePickerWidth>
+
+            <SC.ButtonGroup>
+              <SC.Button onClick={prevHandler}>
+                <SVG.LeftChevron />
+              </SC.Button>
+              <SC.Button onClick={nextHandler}>
+                <SVG.RightChevron />
+              </SC.Button>
+            </SC.ButtonGroup>
+          </SC.PeriodPaginatorWrapper>
 
           <SC.ChartLegend>
             <SC.ChartLegendItem>By day</SC.ChartLegendItem>
@@ -60,7 +77,5 @@ const StatisticsPage = () => {
     </>
   );
 };
-
-// StatisticsPage.propTypes = {};
 
 export default StatisticsPage;

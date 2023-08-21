@@ -11,6 +11,7 @@ export const StyledFormWrapper = styled.div`
   justify-content: center;
   align-items: center;
   background-color: var(--second-Bckg-Color);
+  border-radius: 16px;
 `;
 
 export const Form = styled(FormFormik)`
@@ -38,29 +39,6 @@ export const StyledAvatarWrapper = styled.div`
     transform: none;
     top: 0;
     left: 0;
-  }
-`;
-
-export const StyledAvatarContainer = styled.div`
-  width: 72px;
-  height: 76px;
-  border: 2px solid var(--first-Icon-Color);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--second-Toogle-Month-Day-Bckg-Color);
-  @media screen and (min-width: 768px) {
-    width: 124px;
-    height: 124px;
-  }
-  img {
-    display: block;
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-    overflow: hidden;
-    object-fit: cover;
   }
 `;
 
@@ -275,14 +253,15 @@ export const StyledBtnLink = styled.a`
   height: 14px;
   background-color: var(--first-Bckg-Btn-Color);
   border-radius: 50%;
+  z-index: 1;
   &:hover,
   &:focus {
     background-color: var(--hover-Bckg-Btn-Color);
     box-shadow: 4px 2px 16px 0px var(--hover-Btn-Shadow);
   }
   @media screen and (min-width: 768px) {
-    width: 18px;
-    height: 18px;
+    width: 24px;
+    height: 24px;
   }
 `;
 export const IconWrapper = styled.svg`

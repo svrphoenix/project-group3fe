@@ -5,8 +5,8 @@ export const TaskItem = styled.li`
   height: 108px;
   padding: 14px;
   border-radius: 8px;
-  border: 1px solid rgba(220, 227, 229, 0.8);
-  background: #f7f6f9;
+  border: var(--taskitem-border);
+  background: var(--first-Bckg-Color);
 `;
 
 export const TaskDescr = styled.div`
@@ -16,6 +16,7 @@ export const TaskDescr = styled.div`
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
+  color: var(--first-Text-Color);
 `;
 
 export const TaskInfo = styled.div`
@@ -31,12 +32,23 @@ export const AvatarWrapper = styled.div`
   gap: 8px;
 `;
 
-export const Avatar = styled.div`
+export const Avatar = styled.img`
   width: 32px;
   height: 32px;
   border-radius: 32px;
   border: 1.8px solid #3e85f3;
-  background-image: $url(${props => props.url});
+  object-fit: cover;
+`;
+
+export const AvatarEmpty = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 32px;
+  background-color: var(--fourth-Bckg-Color);
+  color: #fff;
 `;
 
 export const Priority = styled.div`

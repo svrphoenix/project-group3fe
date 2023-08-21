@@ -5,8 +5,8 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  //   Legend,
   LabelList,
+  ResponsiveContainer,
 } from 'recharts';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -126,46 +126,41 @@ const StatisticsChart = () => {
   return (
     <>
       <SC.ChartDiv>
-        <BarChart
-          width={760}
-          height={440}
-          data={data}
-          margin={{
-            top: 40,
-            right: 0,
-            left: 0,
-            bottom: 19,
-          }}
-          fontSize={14}
-          fill={343434}
-          barGap={14}
-        >
-          <CartesianGrid strokeDasharray="3 3" vertical={false} />
-
-          <XAxis dataKey="name" />
-          <YAxis
-            label={{
-              value: 'Tasks',
-              position: 'top',
-              dy: -24,
-              fontSize: 14,
-              fill: '#343434',
+        <ResponsiveContainer height={318}>
+          <BarChart
+            width={760}
+            height={440}
+            data={data}
+            margin={{
+              top: 40,
+              right: 0,
+              left: 0,
+              bottom: 19,
             }}
-          />
-          <Tooltip />
-          {/* <Legend
-            align="right"
-            verticalAlign="top"
-            iconSize="8"
-            iconType="circle"
-          /> */}
-          <Bar dataKey="ByDay" fill="#FFD2DD" barSize={27} fontSize={16}>
-            <LabelList dataKey="procentDay" position="top" />
-          </Bar>
-          <Bar dataKey="ByMonth" fill="#3E85F3" barSize={27} fontSize={16}>
-            <LabelList dataKey="procentMonth" position="top" />
-          </Bar>
-        </BarChart>
+            fontSize={14}
+            barGap={14}
+          >
+            <CartesianGrid strokeDasharray="3 3" vertical={false} />
+
+            <XAxis dataKey="name" />
+            <YAxis
+              label={{
+                value: 'Tasks',
+                position: 'top',
+                dy: -24,
+                fontSize: 14,
+                fill: `var(--second-Text-Color)`,
+              }}
+            />
+            <Tooltip />
+            <Bar dataKey="ByDay" fill="#FFD2DD" barSize={27} fontSize={16}>
+              <LabelList dataKey="procentDay" position="top" />
+            </Bar>
+            <Bar dataKey="ByMonth" fill="#3E85F3" barSize={27} fontSize={16}>
+              <LabelList dataKey="procentMonth" position="top" />
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
       </SC.ChartDiv>
     </>
   );
