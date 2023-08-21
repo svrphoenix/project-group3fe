@@ -18,3 +18,17 @@ export const PopupBtn = styled(IconBtn)`
   width: 130px;
   justify-content: space-between;
 `;
+
+export const Vector = styled.svg`
+  width: 14px;
+  height: 14px;
+  fill: var(--LogReg-Text-Color);
+
+  @media screen and (min-width: 768px) {
+    width: 16px;
+    height: 16px;
+    &:hover {
+      fill: var(--fourth-Bckg-Color);
+    }
+  }
+`;

@@ -2,11 +2,10 @@ import Popover from '@mui/material/Popover';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteTask, patchTask } from 'redux/tasks/operations';
-import { ReactComponent as Remove } from 'images/icons/arrow-circle-broken-right.svg';
-import { ReactComponent as Pencil } from 'images/icons/pencil-task.svg';
-import { ReactComponent as Trash } from 'images/icons/trash-task.svg';
-import * as SC from './TaskToolbar.styled';
 import { Box } from '@mui/material';
+import AddSvg from 'components/AddSvg/AddSvg';
+import getSvg from 'utils/getSvg';
+import * as SC from './TaskToolbar.styled';
 
 export const TaskToolbar = ({
   onToggleModal,
@@ -19,6 +18,8 @@ export const TaskToolbar = ({
   priority,
 }) => {
   const dispatch = useDispatch();
+
+  const SVG = getSvg();
 
   const categoryMap = {
     'to-do': ['In-progress', 'Done'],
@@ -64,7 +65,11 @@ export const TaskToolbar = ({
         onClick={handleClick}
         aria-label="remove task"
       >
-        <Remove />
+        <AddSvg
+          component={SC.Vector}
+          sprite={SVG}
+          spriteId={'arrow-circle-icon'}
+        />
       </SC.IconBtn>
       <Popover
         id={id}
@@ -87,25 +92,37 @@ export const TaskToolbar = ({
           <Box sx={{ display: 'flex' }}>
             <SC.PopupBtn onClick={() => removeTask(first.toLowerCase())}>
               {first.replace(/-/g, ' ')}
-              <Remove />
+              <AddSvg
+                component={SC.Vector}
+                sprite={SVG}
+                spriteId={'arrow-circle-icon'}
+              />
             </SC.PopupBtn>
           </Box>
           <Box sx={{ display: 'flex' }}>
             <SC.PopupBtn onClick={() => removeTask(second.toLowerCase())}>
               {second.replace(/-/g, ' ')}
-              <Remove />
+              <AddSvg
+                component={SC.Vector}
+                sprite={SVG}
+                spriteId={'arrow-circle-icon'}
+              />
             </SC.PopupBtn>
           </Box>
         </Box>
       </Popover>
       <SC.IconBtn onClick={() => onToggleModal()} aria-label="edit task">
-        <Pencil />
+        <AddSvg component={SC.Vector} sprite={SVG} spriteId={'pencil-icon'} />
       </SC.IconBtn>
       <SC.IconBtn
         onClick={() => dispatch(deleteTask(id))}
         aria-label="delete task"
       >
-        <Trash />
+        <AddSvg
+          component={SC.Vector}
+          sprite={SVG}
+          spriteId={'trash-first-icon'}
+        />
       </SC.IconBtn>
     </SC.ControlPanel>
   );
