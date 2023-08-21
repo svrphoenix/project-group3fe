@@ -1,10 +1,14 @@
 import { TaskToolbar } from '../TaskToolbar/TaskToolbar';
-import  TaskModal  from '../TaskModal/TaskModal';
+import TaskModal from '../TaskModal/TaskModal';
 import * as SC from './TaskColumnCard.styled';
 import useModalToggle from 'hooks/useModalToggle';
+import { useSelect } from '@mui/base';
+import { selectUser } from 'redux/auth/selectors';
 
 export const TaskColumnCard = ({ task }) => {
   const { showModal, onToggleModal } = useModalToggle();
+  const user = useSelect(selectUser);
+  console.log(user);
 
   return (
     <>

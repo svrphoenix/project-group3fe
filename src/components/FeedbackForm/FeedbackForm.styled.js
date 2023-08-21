@@ -94,6 +94,7 @@ export const EditBtn = styled.button`
   border-radius: 50%;
   border: none;
   transition: all 0.3s;
+  cursor: pointer;
   &:hover {
     box-shadow: 0px 1px 2px 1px rgba(62, 133, 243, 0.1),
       0px -1px 2px 1px rgba(62, 133, 243, 0.1),
@@ -104,6 +105,7 @@ export const EditBtn = styled.button`
 `;
 
 export const DeleteBtn = styled(EditBtn)`
+  cursor: pointer;
   background: rgba(234, 61, 101, 0.2);
 `;
 
