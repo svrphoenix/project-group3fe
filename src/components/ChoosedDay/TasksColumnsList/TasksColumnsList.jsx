@@ -4,7 +4,7 @@ import * as SC from './TasksColumnsList.styled';
 export const TasksColumnsList = ({ daysTasks }) => {
   const columnsTitles = {
     todo: 'To-do',
-    inProgress: 'In progress',
+    inProgress: 'In-progress',
     done: 'Done',
   };
 

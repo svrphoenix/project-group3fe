@@ -1,13 +1,11 @@
 import { TaskToolbar } from '../TaskToolbar/TaskToolbar';
-import { TaskModal } from '../TaskModal/TaskModal';
+import  TaskModal  from '../TaskModal/TaskModal';
 import * as SC from './TaskColumnCard.styled';
+import useModalToggle from 'hooks/useModalToggle';
 
-export const TaskColumnCard = ({
-  columnTitle,
-  task,
-  showModal,
-  onToggleModal,
-}) => {
+export const TaskColumnCard = ({ task }) => {
+  const { showModal, onToggleModal } = useModalToggle();
+
   return (
     <>
       <SC.TaskItem>
@@ -30,14 +28,28 @@ export const TaskColumnCard = ({
               {task.priority}
             </SC.Priority>
           </SC.AvatarWrapper>
-          <TaskToolbar onToggleModal={onToggleModal} id={task._id} />
+          <TaskToolbar
+            onToggleModal={onToggleModal}
+            id={task._id}
+            category={task.category}
+            title={task.title}
+            date={task.date}
+            end={task.end}
+            start={task.start}
+            priority={task.priority}
+          />
         </SC.TaskInfo>
       </SC.TaskItem>
       <TaskModal
         showModal={showModal}
         onToggleModal={onToggleModal}
-        addCategory={task.category}
-        columnTitle={columnTitle}
+        id={task._id}
+        category={task.category}
+        title={task.title}
+        date={task.date}
+        end={task.end}
+        start={task.start}
+        priority={task.priority}
       />
     </>
   );
