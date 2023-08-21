@@ -7,8 +7,10 @@ body[data-theme='light'] {
   --LogReg-Bckg-Color: #dcebf7;
   --LogReg-Form-Color: #fff;
   --LogReg-Text-Color: #111;
-  --LogRef-Btn-Shadow: rgba(136, 165, 191, 0.48);
-  --LogRef-Field-Hover: #dce3e5;
+  --LogReg-Btn-Shadow: rgba(136, 165, 191, 0.48);
+  --LogReg-Field-Border: rgba(220, 227, 229, 0.6);
+  --LogReg-Field-Hover: #DCE3E5;
+  --LogReg-Field-Placeholder: #DCE3E5;
 
   --first-Feedback-Bckg-Color: #ffffff;
   --second-Feedback-Bckg-Color: #f6f6f6;
@@ -111,6 +113,9 @@ body[data-theme='light'] {
 
   --mainpage-description-color: rgba(17, 17, 17, 0.9);
   --mainpage-itemtitle-color: #171820;
+
+  --avatar-color: #3e85f3;
+  --avatar-bg-color: #e3f3ff;
 }
 
 body[data-theme='dark'] {
@@ -120,10 +125,12 @@ body[data-theme='dark'] {
   --fourth-Bckg-Color: #3e85f3;
 
   --LogReg-Bckg-Color: #171820;
-  --LogReg-Form-Color: #21222c;
-  --LogReg-Text-Color: #ffffff;
-  --LogRef-Btn-Shadow: rgba(84, 93, 101, 0.96);
-  --LogRef-Field-Hover: #ffffff;
+  --LogReg-Form-Color: #21222C;
+  --LogReg-Text-Color: #FFFFFF;
+  --LogReg-Btn-Shadow: rgba(84, 93, 101, 0.96);
+  --LogReg-Field-Hover: #FFFFFF;
+  --LogReg-Field-Border: rgba(84, 93, 101, 0.96);
+  --LogReg-Field-Placeholder: rgba(84, 93, 101, 0.96);
 
   --first-Feedback-Bckg-Color: #171820;
   --second-Feedback-Bckg-Color: #171820;
@@ -225,4 +232,7 @@ body[data-theme='dark'] {
 
   --mainpage-description-color: #dcebf7;
   --mainpage-itemtitle-color: #dcebf7;
+
+  --avatar-color: #ffffff2e;
+  --avatar-bg-color: #171820;
 }

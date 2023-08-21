@@ -1,4 +1,8 @@
-import { IconWrapper } from './UserForm.styled';
+import { IconWrapper, StyledAddIcon } from './UserForm.styled';
+import AddSvg from 'components/AddSvg/AddSvg';
+import getSvg from '../../utils/getSvg';
+
+const SVG = getSvg();
 
 const ChevronDownIcon = ({ color, size }) => (
   <svg width={size} height={size} fill={color}>
@@ -15,16 +19,7 @@ export const AddIcon = ({ color, size }) => {
 };
 
 const AddIconMediaSizes = () => {
-  let iconSize = 8;
-
-  if (window.innerWidth <= 375) {
-    iconSize = 18;
-  } else if (window.innerWidth <= 768) {
-    iconSize = 18;
-  } else if (window.innerWidth <= 1440) {
-    iconSize = 18;
-  }
-  return <AddIcon color="#fff" size={iconSize} />;
+  return <AddSvg component={StyledAddIcon} sprite={SVG} spriteId="icon-plus" />;
 };
 
 export { ChevronDownIcon, AddIconMediaSizes };

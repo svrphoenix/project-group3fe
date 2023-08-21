@@ -51,7 +51,14 @@ const ReviewsSlider = () => {
           }}
         >
           {reviews.map(({ owner: { name, avatarURL }, rating, comment }) => (
-            <SwiperSlide key={name} style={{ display: 'flex', height: 'auto' }}>
+            <SwiperSlide
+              key={name}
+              style={{
+                display: 'flex',
+                height: 'auto',
+                justifyContent: 'center',
+              }}
+            >
               <Review
                 avatar={avatarURL}
                 rating={rating}
