@@ -5,7 +5,7 @@ export const DaysOfWeekWrapper = styled.div`
   justify-content: space-around;
   border-radius: 8px;
   border: 1px solid rgba(220, 227, 229, 0.5);
-  background-color: #fff;
+  background-color: var(--second-Bckg-Color);
 `;
 
 export const Day = styled.div`
@@ -13,6 +13,7 @@ export const Day = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: var(--sixth-Text-Color);
   &:nth-last-child(-n + 2) {
     color: #3e85f3;
   }
