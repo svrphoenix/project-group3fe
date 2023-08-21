@@ -21,7 +21,7 @@ export const ModalContent = styled.div`
   border: 1px solid rgba(220, 227, 229, 0.8);
   box-shadow: 0px 4px 57px 0px rgba(17, 17, 17, 0.05);
   padding: 20px;
-  background-color: var(--modal-bckg-color);
+  background-color: var(--first-Feedback-Bckg-Color);
   @media screen and (min-width: 768px) {
     width: 468px;
     padding: 32px;

@@ -7,6 +7,7 @@ export const ScrollableContainer = styled.div`
 
 export const TasksColumnWrapper = styled.div`
   display: grid;
+  align-items: start;
   grid-auto-flow: column;
   grid-gap: 16px;
   overflow-x: auto;

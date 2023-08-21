@@ -7,7 +7,7 @@ export const Cells = styled.ul`
   width: 100%;
   border: 1px solid #eff2f3;
   border-radius: 8px;
-  background-color: #fff;
+  background-color: var(--second-Bckg-Color);
   overflow: hidden;
   margin-top: 14px;
 `;
@@ -17,7 +17,6 @@ export const Cell = styled.li`
   height: 94px;
   padding: 8px 4px 2px 4px;
   border: 1px solid #eff2f3;
-  /* overflow: hidden; */
 
   @media screen and (min-width: 768px) {
     min-height: 144px;

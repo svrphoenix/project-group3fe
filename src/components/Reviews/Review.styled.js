@@ -7,7 +7,8 @@ export const ReviewWrapper = styled.div`
   gap: 24px;
   width: 335px;
   border-radius: 8px;
-  border: 1px solid rgba(17, 17, 17, 0.1);
+  background: var(--second-Bckg-Color);
+  border: 1px solid var(--LogReg-Btn-Shadow);
   @media screen and (max-width: 335px) {
     width: auto;
   }
@@ -37,7 +38,7 @@ export const ReviewUsername = styled.p`
   line-height: 1;
 `;
 export const ReviewText = styled.p`
-  color: rgba(17, 17, 17, 0.7);
+  color: var(--mainpage-description-color);
   font-family: 'Inter Medium';
   font-size: 14px;
   max-height: calc(14px * 1.29 * 5);
