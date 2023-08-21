@@ -4,6 +4,9 @@ export const TasksBoxOuter = styled.div`
   overflow: auto;
   padding-right: 7px;
   margin-bottom: 32px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--vertical-scrollbar-thumb-color)
+    var(--vertical-scrollbar-track-color);
 
   &::-webkit-scrollbar {
     width: 6px;

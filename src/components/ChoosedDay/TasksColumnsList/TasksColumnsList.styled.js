@@ -31,6 +31,7 @@ export const TasksColumnWrapper = styled.div`
     border-radius: 50px;
   }
   @media screen and (min-width: 768px) {
+    scrollbar-width: auto;
     width: 704px;
     &::-webkit-scrollbar {
       width: 8px;

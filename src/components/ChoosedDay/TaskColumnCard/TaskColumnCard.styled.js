@@ -5,7 +5,7 @@ export const TaskItem = styled.li`
   height: 108px;
   padding: 14px;
   border-radius: 8px;
-  border: 1px solid rgba(220, 227, 229, 0.8);
+  border: var(--taskitem-border);
   background: var(--first-Bckg-Color);
 `;
 
@@ -37,6 +37,7 @@ export const Avatar = styled.img`
   height: 32px;
   border-radius: 32px;
   border: 1.8px solid #3e85f3;
+  object-fit: cover;
 `;
 
 export const AvatarEmpty = styled.div`
