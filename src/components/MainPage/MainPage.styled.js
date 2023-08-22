@@ -1,5 +1,17 @@
 import { Link } from 'react-router-dom';
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
+
+const sharedStyleForBtnSlider = css`
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--review-text-color);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    color: #3e85f3;
+  }
+`;
 
 export const Container = styled.div`
   max-width: 375px;
@@ -236,15 +248,9 @@ export const SliderBtnWrapper = styled.div`
 `;
 
 export const NextBtn = styled.button`
-  background: transparent;
-  border: none;
-  padding: 0;
-  cursor: pointer;
+  ${sharedStyleForBtnSlider};
 `;
 
 export const PrevBtn = styled.button`
-  background: transparent;
-  border: none;
-  padding: 0;
-  cursor: pointer;
+  ${sharedStyleForBtnSlider};
 `;
