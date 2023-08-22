@@ -12,6 +12,7 @@ export const StyledFormWrapper = styled.div`
   align-items: center;
   background-color: var(--second-Bckg-Color);
   border-radius: 16px;
+  transition: background-color var(--theme-cubic);
 `;
 
 export const Form = styled(FormFormik)`
@@ -50,6 +51,7 @@ export const StyledUserName = styled.p`
   letter-spacing: 0em;
   color: var(--second-Text-Color);
   margin-bottom: 4px;
+  transition: color var(--theme-cubic);
   @media screen and (min-width: 768px) {
     margin-bottom: 8px;
     margin-top: 20px;
@@ -64,6 +66,7 @@ export const StyledUserDiscription = styled.p`
   text-align: center;
   margin-bottom: 40px;
   color: var(--sixth-Text-Color);
+  transition: color var(--theme-cubic);
   @media screen and (min-width: 1440px) {
     margin-bottom: 44px;
   }
@@ -82,6 +85,7 @@ export const FormField = styled.label`
   margin: 0 auto;
   width: fit-content;
   position: relative;
+  transition: color var(--theme-cubic);
 `;
 
 export const StyledCalendar = styled.label`
@@ -96,6 +100,7 @@ export const StyledCalendar = styled.label`
   color: var(--fiveth-Text-Color);
   width: fit-content;
   position: relative;
+  transition: color var(--theme-cubic);
   svg {
     position: absolute;
     top: 38px;
@@ -183,8 +188,10 @@ export const Field = styled(FieldFormik)`
   height: 42px;
   color: var(--first-Text-Color);
   background-color: var(--second-Bckg-Color);
+  transition: color var(--theme-cubic), background-color var(--theme-cubic);
   &::placeholder {
     color: var(--placeholder-Color);
+    transition: color var(--theme-cubic);
     font-size: 12px;
   }
   &:hover,
@@ -215,8 +222,10 @@ export const StyledDatePicker = styled(DatePicker)`
   height: 42px;
   color: var(--first-Text-Color);
   background-color: var(--second-Bckg-Color);
+  transition: color var(--theme-cubic), background-color var(--theme-cubic);
   &::placeholder {
     color: var(--placeholder-Color);
+    transition: color var(--theme-cubic);
     font-size: 12px;
   }
   &:hover,
