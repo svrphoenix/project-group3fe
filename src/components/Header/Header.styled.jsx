@@ -28,6 +28,7 @@ export const Title = styled.h1`
   font-style: normal;
   font-weight: 700;
   line-height: 32px;
+  transition: color var(--theme-cubic);
 `;
 
 export const HeaderTitleWrapperGoose = styled.div`
