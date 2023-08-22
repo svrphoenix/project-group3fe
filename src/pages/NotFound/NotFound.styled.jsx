@@ -25,11 +25,9 @@ export const Heading = styled.h1`
   font-style: normal;
   font-weight: 500;
   line-height: 18px;
-  margin-top: 80px;
 
   @media screen and (min-width: 768px) {
     width: 387px;
-    margin-top: 150px;
   }
   @media screen and (min-width: 1440px) {
   }
@@ -39,7 +37,6 @@ export const ErrorImage = styled.div`
   display: flex;
   align-items: center;
   font-size: 100px;
-  height: 150px;
   color: #3e85f3;
   text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
     0px 47px 355px rgba(0, 0, 0, 0.07);
