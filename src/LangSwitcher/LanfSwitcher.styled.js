@@ -20,8 +20,7 @@ export const Button = styled.button`
     font-size: 12px;
     line-height: 15px;
   }
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: #2b78ef;
   }
 `;
