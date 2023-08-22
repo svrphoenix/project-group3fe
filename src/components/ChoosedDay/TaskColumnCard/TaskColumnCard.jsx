@@ -33,7 +33,7 @@ export const TaskColumnCard = ({ task }) => {
                     : null,
               }}
             >
-              {task.priority}
+              {task.priority.replace(/^./, task.priority[0].toUpperCase())}
             </SC.Priority>
           </SC.AvatarWrapper>
           <TaskToolbar
