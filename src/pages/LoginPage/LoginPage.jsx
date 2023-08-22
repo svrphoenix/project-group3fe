@@ -1,6 +1,6 @@
 import { IMG } from 'images';
-import { AuthNavigate } from 'components/temp/AuthNavigate';
-import LoginForm from 'components/temp1/LoginForm';
+import { AuthNavigate } from 'components/AuthNavigate/AuthNavigate';
+import LoginForm from 'components/RegisterLoginForm/LoginForm';
 import * as SC from './LoginPage.styled';
 
 const LoginPage = () => {

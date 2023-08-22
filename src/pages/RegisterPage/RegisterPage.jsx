@@ -1,6 +1,6 @@
 import { IMG } from 'images';
-import { AuthNavigate } from 'components/temp/AuthNavigate';
-import RegisterForm from 'components/temp1/RegisterForm';
+import { AuthNavigate } from 'components/AuthNavigate/AuthNavigate';
+import RegisterForm from 'components/RegisterLoginForm/RegisterForm';
 import * as SC from './RegisterPage.styled';
 
 const RegisterPage = () => {
