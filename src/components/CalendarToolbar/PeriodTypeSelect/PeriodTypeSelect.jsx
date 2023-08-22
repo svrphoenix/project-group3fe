@@ -34,7 +34,6 @@ const PeriodTypeSelect = () => {
         className={switcher === 'day' ? 'active' : null}
         type="button"
         onClick={btnDayHandler}
-        disabled={switcher === 'day'}
       >
         Day
       </Button>
