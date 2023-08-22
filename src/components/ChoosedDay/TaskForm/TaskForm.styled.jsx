@@ -39,11 +39,9 @@ export const TaskLabelStyled = styled.label`
 `;
 
 export const TaskInputStyled = styled.input`
+  cursor: pointer;
   width: 100%;
-  margin-top: 8px;
   margin-bottom: 8px;
-  padding: 15px 15px;
-
   font-family: 'Inter SemiBold';
   font-weight: 600;
   font-size: 14px;
@@ -54,7 +52,12 @@ export const TaskInputStyled = styled.input`
   border-radius: 8px;
   background-color: var(--addtask-Input-Bckg-color);
   color: var(--addtask-Input-Text-color);
-  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border var(--cubic);
+
+  &::placeholder {
+    color: var(--desired-placeholder-color); /* Змініть на бажаний колір */
+    opacity: 1;
+  }
 
   &:hover,
   &:focus {
@@ -63,6 +66,9 @@ export const TaskInputStyled = styled.input`
 
   &::-webkit-calendar-picker-indicator {
     filter: var(--addtask-icon-color-time-input);
+    padding: 5px;
+    cursor: pointer;
+    transform: scale(1.3);
   }
 `;
 
@@ -89,11 +95,13 @@ export const RadioButtonContainer = styled.div`
 `;
 
 export const RadioButtonGorup = styled.div`
+  cursor: pointer;
   display: flex;
   align-items: center;
 `;
 
 export const RadioButtonLabel = styled.label`
+  cursor: pointer;
   font-family: 'Inter SemiBold';
   font-weight: 600;
   font-size: 12px;
@@ -132,6 +140,7 @@ const getOutlineByValue = (value, checked) => {
 };
 
 export const RadioButtonInput = styled.input`
+  cursor: pointer;
   margin-right: 16px;
   appearance: none;
   width: 8px;
@@ -158,8 +167,7 @@ export const RadioButtonInput = styled.input`
 
   &:hover,
   &:focus {
-    transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1),
-      outline 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: border var(--cubic), outline var(--cubic);
   }
 `;
 
@@ -171,6 +179,7 @@ export const ButtonContainer = styled.div`
 `;
 
 export const EditButton = styled.button`
+  cursor: pointer;
   gap: 8px;
   display: flex;
   align-items: center;
@@ -187,7 +196,7 @@ export const EditButton = styled.button`
   padding: 12px 40px;
   background-color: var(--addtask-EditBtn-Bckg-color);
   border-radius: 8px;
-  transition: background-color cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color var(--cubic);
 
   &:hover,
   &:focus {
@@ -217,7 +226,7 @@ export const AddButton = styled.button`
   padding: 12px 21px;
   background-color: var(--addtask-AddBtn-Bckg-color);
   border-radius: 8px;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color var(--cubic);
 
   &:hover,
   &:focus {
@@ -243,7 +252,7 @@ export const CancelBtn = styled.button`
   padding: 12px 18px;
   background-color: var(--addtask-Cancel-Bckg-color);
   border-radius: 8px;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color var(--cubic);
 
   &:hover,
   &:focus {
