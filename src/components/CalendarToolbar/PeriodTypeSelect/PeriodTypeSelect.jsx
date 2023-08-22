@@ -2,6 +2,7 @@ import { useNavigate, useLocation } from 'react-router';
 import { Button, ButtonGroup } from './PeriodTypeSelect.styled';
 import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const PeriodTypeSelect = () => {
   const location = useLocation();
@@ -12,6 +13,8 @@ const PeriodTypeSelect = () => {
 
   const [switcher, setSwitcher] = useState('month');
   const navigate = useNavigate();
+
+  const { t } = useTranslation();
 
   const btnMonthHandler = () => {
     navigate(`/calendar/month/${format(new Date(), 'yyyy-MM')}`);
@@ -28,14 +31,14 @@ const PeriodTypeSelect = () => {
         onClick={btnMonthHandler}
         disabled={switcher === 'month'}
       >
-        Month
+        {t('CalendarToolbar.Month')}
       </Button>
       <Button
         className={switcher === 'day' ? 'active' : null}
         type="button"
         onClick={btnDayHandler}
       >
-        Day
+        {t('CalendarToolbar.Day')}
       </Button>
     </ButtonGroup>
   );

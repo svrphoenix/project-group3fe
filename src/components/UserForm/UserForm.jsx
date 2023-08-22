@@ -25,6 +25,7 @@ import useAuth from 'hooks/useAuth';
 import { updateUser } from 'redux/auth/operations';
 import { ChevronDownIcon } from './Icons';
 import { toast } from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 const UserSchema = Yup.object().shape({
   avatar: Yup.string().nullable(),
@@ -55,6 +56,7 @@ const UserSchema = Yup.object().shape({
 export const UserForm = () => {
   const { user, error } = useAuth();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const [startDate, setStartDate] = useState(
     new Date(user.birthday) || new Date()
@@ -130,19 +132,19 @@ export const UserForm = () => {
             />
           </FileInputLabel>
           <StyledUserName>{user.name}</StyledUserName>
-          <StyledUserDiscription>User</StyledUserDiscription>
+          <StyledUserDiscription>{t('Account.User')}</StyledUserDiscription>
           {error && (
             <StyledErrorText>Something went wrong, try again!</StyledErrorText>
           )}
           <StyledLabelWrapp>
             <Column>
               <FormField>
-                <StyledLabelText>User Name</StyledLabelText>
+                <StyledLabelText>{t('Account.UserName')}</StyledLabelText>
                 <Field id="name" name="name" placeholder="Name" />
                 <ErrorMessage name="name" component="div" />
               </FormField>
               <StyledCalendar>
-                <StyledLabelText>Birthday</StyledLabelText>
+                <StyledLabelText>{t('Account.Birthday')}</StyledLabelText>
                 <StyledDatePicker
                   selected={startDate}
                   onChange={date => {
@@ -158,7 +160,7 @@ export const UserForm = () => {
                 <ChevronDownIcon color="var(--first-Text-Color)" size={18} />
               </StyledCalendar>
               <FormField>
-                <StyledLabelText>Email</StyledLabelText>
+                <StyledLabelText>{t('Account.Email')}</StyledLabelText>
                 <Field
                   id="email"
                   name="email"
@@ -170,7 +172,7 @@ export const UserForm = () => {
             </Column>
             <Column>
               <FormField>
-                <StyledLabelText>Phone</StyledLabelText>
+                <StyledLabelText>{t('Account.Phone')}</StyledLabelText>
                 <Field
                   id="phone"
                   name="phone"
@@ -192,7 +194,7 @@ export const UserForm = () => {
             </Column>
           </StyledLabelWrapp>
           <StyledBtn type="submit" disabled={!formChanged}>
-            Save changes
+            {t('Account.SaveChanges')}
           </StyledBtn>
         </Form>
       </Formik>

@@ -4,12 +4,15 @@ import { useDispatch } from 'react-redux';
 import AddSvg from 'components/AddSvg/AddSvg';
 import getSvg from '../../utils/getSvg';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const SVG = getSvg();
 
 const LogoutBtn = ({ closeSideBar }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { t } = useTranslation();
 
   function handleClick() {
     closeSideBar();
@@ -19,7 +22,7 @@ const LogoutBtn = ({ closeSideBar }) => {
 
   return (
     <Btn type="button" onClick={handleClick}>
-      <Txt>Log out </Txt>
+      <Txt>{t('SideBar.LogOut')} </Txt>
       <AddSvg component={Vector} sprite={SVG} spriteId="logout-icon" />
     </Btn>
   );

@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 
 export const FeedbackButton = styled.button`
+  width: 130px;
   padding: 8px 20px;
   border-radius: 10px;
   border: none;
