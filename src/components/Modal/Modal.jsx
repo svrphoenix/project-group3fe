@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import * as SC from './Modal.styled';
+import { CloseIconSvg } from './CloseIcon';
 
 export const Modal = ({ children, onToggleModal }) => {
   useEffect(() => {
@@ -24,7 +25,15 @@ export const Modal = ({ children, onToggleModal }) => {
 
   return createPortal(
     <SC.ModalBackdrop onClick={onBackdropClick}>
-      <SC.ModalContent>{children}</SC.ModalContent>
+      <SC.ModalContent>
+        <CloseIconSvg
+          color="var(--first-Text-Color)"
+          hoverColor="var(--fourth-Bckg-Color)"
+          size={24}
+          onClick={onToggleModal}
+        />
+        {children}
+      </SC.ModalContent>
     </SC.ModalBackdrop>,
     document.querySelector('#modal-root')
   );
