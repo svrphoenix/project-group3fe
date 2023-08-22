@@ -18,8 +18,8 @@ export const ModalContent = styled.div`
   width: 335px;
   min-height: 290px;
   border-radius: 8px;
-  border: 1px solid rgba(220, 227, 229, 0.8);
-  box-shadow: 0px 4px 57px 0px rgba(17, 17, 17, 0.05);
+  border: 1px solid var(--modal-border-solid-color);
+  box-shadow: var(--modal-box-shadow-color);
   padding: 20px;
   background-color: var(--first-Feedback-Bckg-Color);
   @media screen and (min-width: 768px) {

@@ -74,14 +74,14 @@ const ReviewsSlider = () => {
             aria-label="Prev button"
             onClick={() => swiperRef.current?.slidePrev()}
           >
-            <SVG.LarrIcon />
+            <SVG.LarrIcon fill="var(--review-text-color)" />
           </SC.PrevBtn>
           <SC.NextBtn
             type="button"
             aria-label="Next button"
             onClick={() => swiperRef.current?.slideNext()}
           >
-            <SVG.RarrIcon />
+            <SVG.RarrIcon fill="var(--review-text-color)" />
           </SC.NextBtn>
         </SC.SliderBtnWrapper>
       </SC.Container>

@@ -15,13 +15,12 @@ const sharedStyle = css`
   min-width: 38px;
   padding: 8px 12px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: var(--second-Bckg-Color);
-  color: var(--second-Text-Color);
+  background-color: var(--calendar-background);
   &:disabled {
-    color: #dce3e5;
+    color: var(--calendar-btn-disabled);
   }
   &:hover {
-    background-color: #f8f8f8;
+    background-color: var(--calendar-btn-hover-color);
   }
 `;
 
@@ -52,16 +51,16 @@ export const PeriodPaginatorDisplay = styled.div`
 
 export const ButtonGroup = styled.div`
   display: inline-flex;
-  border: 1px solid rgba(220, 227, 229, 0.8);
+  border: 1px solid var(--calendar-border-btn-group);
   border-radius: 8px;
 `;
 
 export const Button = styled.button`
-  color: #343434;
+  color: var(--calendar-txt-color);
   &:first-child {
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
-    border-right: 1px solid rgba(220, 227, 229, 0.5);
+    border-right: 1px solid var(--calendar-border-btn-group);
   }
   &:last-child {
     border-top-right-radius: 8px;

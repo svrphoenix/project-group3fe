@@ -17,21 +17,23 @@ const sharedStyle = css`
   line-height: 1.13;
   min-width: 82px;
   padding: 8px 16px;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   color: inherit;
-  background-color: #e3f3ff;
+  background-color: var(--period-type-btn-color);
   &.active {
-    background-color: #cae8ff;
+    color: var(--calendar-light-theme-primary);
+    background-color: var(--period-type-btn-hover-color);
   }
-  &:hover,
-  &:focus {
-    background-color: #cae8ff;
+  &:hover {
+    color: var(--calendar-light-theme-primary);
+    background-color: var(--period-type-btn-hover-color);
   }
 `;
 
 export const ButtonGroup = styled.div`
   display: inline-flex;
-  color: #3e85f3;
+  color: var(--period-type-txt-color);
   border-radius: 8px;
 `;
 

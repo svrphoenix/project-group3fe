@@ -9,8 +9,8 @@ body[data-theme='light'] {
   --LogReg-Text-Color: #111;
   --LogReg-Btn-Shadow: rgba(136, 165, 191, 0.48);
   --LogReg-Field-Border: rgba(220, 227, 229, 0.6);
-  --LogReg-Field-Hover: #DCE3E5;
-  --LogReg-Field-Placeholder: #DCE3E5;
+  --LogReg-Field-Hover: #dce3e5;
+  --LogReg-Field-Placeholder: #dce3e5;
 
   --first-Feedback-Bckg-Color: #ffffff;
   --second-Feedback-Bckg-Color: #f6f6f6;
@@ -69,9 +69,11 @@ body[data-theme='light'] {
   --user-nav-item-bg-active: #e3f3ff;
 
   --modal-bckg-color: #fff;
+  --modal-box-shadow-color: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
+  --modal-border-solid-color: rgba(220, 227, 229, 0.8);
 
   --addtask-Bckg-Btn-color: #e3f3ff;
-  --addtask-Label-text-color: #343434;
+  --addtask-Label-text-color: rgba(52, 52, 52, 0.8);
   --addtask-Input-Bckg-color: #f6f6f6;
   --addtask-Input-Border-color: #f6f6f6;
   --addtask-Input-Text-color: #343434;
@@ -91,9 +93,9 @@ body[data-theme='light'] {
   --addtask-AddBtn-text-color: #ffffff;
   --addtask-AddBtn-Bckg-color: #3e85f3;
   --addtask-AddBtn-hover-color: #2b78ef;
-  --addtask-Cancel-Btn-text-color: #343434;
-  --addtask-Cancel-Bckg-color: #e5edfa;
-  --addtask-Cancel-hover-color: #f7f7f7;
+  --addtask-Cancel-Btn-text-color: #111;
+  --addtask-Cancel-Bckg-color: #efefef;
+  --addtask-Cancel-hover-color: #cccccc;
   --toast-main-color: #fff;
   --toast-background-color: #72c2f8;
 
@@ -114,6 +116,22 @@ body[data-theme='light'] {
   --mainpage-description-color: rgba(17, 17, 17, 0.9);
   --mainpage-itemtitle-color: #171820;
 
+  --review-text-color: rgba(17, 17, 17, 0.9);
+  --review-title-color: #343434;
+  --review-border-color: rgba(17, 17, 17, 0.1);
+
+  --calendar-border-btn-group: rgba(220, 227, 229, 0.8);
+  --calendar-border: #eff2f3;
+  --calendar-background: #fff;
+  --calendar-text-color: #343434;
+  --calendar-btn-hover-color: #f8f8f8;
+  --calendar-btn-disabled: #dce3e5;
+  --calendar-txt-color: #343434;
+  --period-type-btn-color: #e3f3ff;
+  --period-type-btn-hover-color: #cae8ff;
+  --period-type-txt-color: #3e85f3;
+  --calendar-light-theme-primary: #3e85f3;
+  --calendar-cell-hover: #f2f2f2;
   --avatar-color: #3e85f3;
   --avatar-bg-color: #e3f3ff;
 }
@@ -125,10 +143,10 @@ body[data-theme='dark'] {
   --fourth-Bckg-Color: #3e85f3;
 
   --LogReg-Bckg-Color: #171820;
-  --LogReg-Form-Color: #21222C;
-  --LogReg-Text-Color: #FFFFFF;
+  --LogReg-Form-Color: #21222c;
+  --LogReg-Text-Color: #ffffff;
   --LogReg-Btn-Shadow: rgba(84, 93, 101, 0.96);
-  --LogReg-Field-Hover: #FFFFFF;
+  --LogReg-Field-Hover: #ffffff;
   --LogReg-Field-Border: rgba(84, 93, 101, 0.96);
   --LogReg-Field-Placeholder: rgba(84, 93, 101, 0.96);
 
@@ -188,32 +206,34 @@ body[data-theme='dark'] {
   --user-nav-item-hover: #fff;
   --user-nav-item-bg-active: #3e85f3;
 
-  --modal-bckg-color: #13151a;
+  --modal-bckg-color: #fff;
+  --modal-box-shadow-color: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
+  --modal-border-solid-color: none;
 
-  --addtask-Bckg-Btn-color: #3e85f3;
-  --addtask-Label-text-color: #fafafa;
-  --addtask-Input-Bckg-color: #13151a;
-  --addtask-Input-Border-color: #ffffff;
-  --addtask-Input-Text-color: #ffffff;
+  --addtask-Bckg-Btn-color: #e3f3ff;
+  --addtask-Label-text-color: rgba(250, 250, 250, 0.30);
+  --addtask-Input-Bckg-color: #171820;
+  --addtask-Input-Border-color: rgba(255, 255, 255, 0.15);
+  --addtask-Input-Text-color: #FFF;
   --addtask-Input-Hover-color: #3e85f3;
   --addtask-icon-color-time-input: invert(1);
-  --addtask-RadioButtonLabel-color: #ffffff;
+  --addtask-RadioButtonLabel-color: #FFF;
   --addtask-RadioButton-low-color: #72c2f8;
   --addtask-RadioButton-middle-color: #f3b249;
   --addtask-RadioButton-high-color: #ea3d65;
   --addtask-RadioButton-low-checked-color: rgba(114, 194, 248, 0.5);
   --addtask-RadioButton-middle-checked-color: rgba(243, 178, 73, 0.5);
   --addtask-RadioButton-high-checked-color: rgba(234, 61, 101, 0.5);
-  --addtask-RadioButton-outline-default-color: #13151a;
+  --addtask-RadioButton-outline-default-color: #ffffff;
   --addtask-EditBtn-text-color: #ffffff;
   --addtask-EditBtn-Bckg-color: #3e85f3;
   --addtask-EditBtn-hover-color: #2b78ef;
   --addtask-AddBtn-text-color: #ffffff;
   --addtask-AddBtn-Bckg-color: #3e85f3;
   --addtask-AddBtn-hover-color: #2b78ef;
-  --addtask-Cancel-Btn-text-color: #343434;
-  --addtask-Cancel-Bckg-color: #e5edfa;
-  --addtask-Cancel-hover-color: #f7f7f7;
+  --addtask-Cancel-Btn-text-color: #111;
+  --addtask-Cancel-Bckg-color: #efefef;
+  --addtask-Cancel-hover-color: #cccccc;
   --toast-main-color: #fff;
   --toast-background-color: #72c2f8;
   --loader-Gradient: linear-gradient(
@@ -232,6 +252,23 @@ body[data-theme='dark'] {
 
   --mainpage-description-color: #dcebf7;
   --mainpage-itemtitle-color: #dcebf7;
+
+  --review-text-color: #dcebf7;
+  --review-title-color: #3e85f3;
+  --review-border-color: rgba(230, 230, 230, 0.1);
+
+  --calendar-border-btn-group: rgba(255, 255, 255, 0.15);
+  --calendar-background: #21222c;
+  --calendar-text-color: #fff;
+  --calendar-border: rgba(255, 255, 255, 0.15);
+  --calendar-btn-hover-color: #202020;
+  --calendar-txt-color: #dce3e5;
+  --calendar-btn-disabled: #525555;
+  --period-type-btn-color: #21222c;
+  --period-type-btn-hover-color: #3e85f3;
+  --period-type-txt-color: #3e85f3;
+  --calendar-light-theme-primary: #fff;
+  --calendar-cell-hover: #2c2d3a;
 
   --avatar-color: #ffffff2e;
   --avatar-bg-color: #171820;
