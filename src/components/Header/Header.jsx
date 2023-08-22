@@ -20,7 +20,7 @@ import { selectTasks } from 'redux/tasks/selectors';
 import { FeedbackButton } from 'components/FeedbackButton/FeedbackButton';
 import AddSvg from 'components/AddSvg/AddSvg';
 import getSvg from '../../utils/getSvg';
-import { Suspense, useEffect } from 'react';
+import { useEffect } from 'react';
 import useAuth from 'hooks/useAuth';
 import { getReview } from 'redux/review/operations';
 import LangSwitcher from 'LangSwitcher/LangSwitcher';
@@ -92,10 +92,8 @@ const Header = ({ isSideBarOpened, openSideBar }) => {
       )}
 
       <HeaderMenuWrapper>
-        <Suspense fallback="loading">
-          <LangSwitcher />
-        </Suspense>
         <FeedbackButton />
+        <LangSwitcher />
         <UserInfoWrapper>
           <ThemeToggleBtn />
           <UserInfo />
