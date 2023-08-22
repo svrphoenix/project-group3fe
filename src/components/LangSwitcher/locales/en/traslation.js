@@ -1,7 +1,7 @@
 const resources = {
   en: {
     translation: {
-      language: 'EN',
+      language: 'UA',
       Feedback: {
         Feedback: 'Feedback',
         Raiting: 'Raiting',
@@ -40,7 +40,7 @@ const resources = {
   },
   ua: {
     translation: {
-      language: 'UA',
+      language: 'EN',
       Feedback: {
         Feedback: 'Відгук',
         Raiting: 'Рейтинг',
