@@ -44,6 +44,7 @@ const StatisticsPage = () => {
             <SC.CustomDatePickerWidth>
               <SC.StyledDatePicker
                 selected={currentDate}
+                onFocus={e => e.target.blur()}
                 onChange={date => {
                   setCurrentDate(date);
                   setSearchParams({
