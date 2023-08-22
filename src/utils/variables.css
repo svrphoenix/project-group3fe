@@ -72,6 +72,12 @@ body[data-theme='light'] {
   --modal-box-shadow-color: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
   --modal-border-solid-color: rgba(220, 227, 229, 0.8);
 
+  --addtask-Btn-Day-Bckg-color: #e3f3ff;
+  --addtask-Btn-Day-border-color: 1px dashed #3e85f3;
+  --addtask-Btn-Day-text-color: #111;
+  --addtask-Btn-Day-svg-color: #111;
+  --addtask-Btn-Day-hover-color:#DCEBF7;
+
   --addtask-Bckg-Btn-color: #e3f3ff;
   --addtask-Label-text-color: rgba(52, 52, 52, 0.8);
   --addtask-Input-Bckg-color: #f6f6f6;
@@ -210,14 +216,20 @@ body[data-theme='dark'] {
   --modal-box-shadow-color: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
   --modal-border-solid-color: none;
 
+  --addtask-Btn-Day-Bckg-color: #3E85F3;
+  --addtask-Btn-Day-border-color: #3E85F3;
+  --addtask-Btn-Day-text-color: #FFF;
+  --addtask-Btn-Day-svg-color: #FFF;
+  --addtask-Btn-Day-hover-color:#2B78EF;
+
   --addtask-Bckg-Btn-color: #e3f3ff;
-  --addtask-Label-text-color: rgba(250, 250, 250, 0.30);
+  --addtask-Label-text-color: rgba(250, 250, 250, 0.3);
   --addtask-Input-Bckg-color: #171820;
   --addtask-Input-Border-color: rgba(255, 255, 255, 0.15);
-  --addtask-Input-Text-color: #FFF;
+  --addtask-Input-Text-color: #fff;
   --addtask-Input-Hover-color: #3e85f3;
   --addtask-icon-color-time-input: invert(1);
-  --addtask-RadioButtonLabel-color: #FFF;
+  --addtask-RadioButtonLabel-color: #fff;
   --addtask-RadioButton-low-color: #72c2f8;
   --addtask-RadioButton-middle-color: #f3b249;
   --addtask-RadioButton-high-color: #ea3d65;

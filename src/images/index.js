@@ -27,7 +27,6 @@ import registerx2 from '../images/desc/webp/sign-up-2x.webp';
 import loginx1 from '../images/desc/webp/log-in-1x.webp';
 import loginx2 from '../images/desc/webp/log-in-2x.webp';
 
-// Sidebar and header images
 import gooseMobile1x from './sidebar-and-header/goose-mobile@1x.webp';
 import gooseMobile2x from './sidebar-and-header/goose-mobile@2x.webp';
 import gooseTablet1x from './sidebar-and-header/goose-tablet@1x.webp';
@@ -88,7 +87,7 @@ export const IMG = {
   registerx2,
   loginx1,
   loginx2,
-  // Sidebar and header images
+
   gooseMobile1x,
   gooseMobile2x,
   gooseTablet1x,
