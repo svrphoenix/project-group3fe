@@ -14,7 +14,7 @@ export const SideBarBox = styled.div`
   min-height: 100%;
   padding: 24px 20px;
   transform: translateX(-225px);
-  transition: transform var(--cubic);
+  transition: transform var(--cubic), background-color var(--theme-cubic);
 
   &.is-sidebar-opened {
     transform: translateX(0);
