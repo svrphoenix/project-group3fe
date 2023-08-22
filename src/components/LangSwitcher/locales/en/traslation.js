@@ -13,7 +13,7 @@ const resources = {
       },
       CalendarToolbar: {
         Month: 'Month',
-        Day: 'Month',
+        Day: 'Day',
       },
       ChoosedDay: {
         ToDo: 'To do',

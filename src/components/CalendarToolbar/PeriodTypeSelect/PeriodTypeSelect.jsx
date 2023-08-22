@@ -3,7 +3,6 @@ import { Button, ButtonGroup } from './PeriodTypeSelect.styled';
 import { format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 const PeriodTypeSelect = () => {
   const location = useLocation();
