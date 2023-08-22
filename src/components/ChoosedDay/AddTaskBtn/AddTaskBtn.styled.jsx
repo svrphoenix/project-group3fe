@@ -9,13 +9,18 @@ export const CreateTasksBtn = styled.button`
   width: calc(100% - 13px);
   height: 48px;
   border-radius: 8px;
-  border: var(--addtask-Btn-border);
-  background: var(--addtask-Bckg-Btn-color);
+  border: var(--addtask-Btn-Day-border-color);
+  background: var(--addtask-Btn-Day-Bckg-color);
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
   cursor: pointer;
-  color: var(--first-Text-Color);
+  color: var(--addtask-Btn-Day-text-color);
+
+  &:hover,
+  &:focus {
+    background-color: var(--addtask-Btn-Day-hover-color);
+  }
 
   @media screen and (min-width: 768px) {
     width: calc(100% - 14px);
@@ -24,5 +29,5 @@ export const CreateTasksBtn = styled.button`
 export const Vector = styled.svg`
   width: 24px;
   height: 24px;
-  fill: var(--LogReg-Text-Color);
+  fill: var(--addtask-Btn-Day-svg-color);
 `;
