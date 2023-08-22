@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import * as SC from './LanfSwitcher.styled';
 
 function LangSwitcher() {
   const { t, i18n } = useTranslation();
@@ -9,7 +10,7 @@ function LangSwitcher() {
 
   return (
     <>
-      <button onClick={toggle}>{t('language')}</button>
+      <SC.Button onClick={toggle}>{t('language')}</SC.Button>
     </>
   );
 }
