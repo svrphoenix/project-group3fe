@@ -4,7 +4,6 @@ import * as reviewOperations from 'redux/review/operations';
 import { useState } from 'react';
 import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { ReactComponent as CloseIcon } from 'images/icons/x-close.svg';
 import { StarRating } from './StarRating';
 import AddSvg from 'components/AddSvg/AddSvg';
 import getSvg from 'utils/getSvg';
@@ -75,13 +74,6 @@ export const FeedbackForm = ({ close }) => {
         {({ values, setFieldValue }) => {
           return !error ? (
             <SC.FeedbackForm>
-              <SC.CloseBtn
-                type="button"
-                onClick={close}
-                aria-label="Close modal"
-              >
-                <CloseIcon />
-              </SC.CloseBtn>
               <SC.Label>
                 Raiting
                 <StarRating
