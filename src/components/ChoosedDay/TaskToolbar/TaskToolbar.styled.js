@@ -17,6 +17,10 @@ export const IconBtn = styled.button`
 export const PopupBtn = styled(IconBtn)`
   width: 130px;
   justify-content: space-between;
+  color: var(--LogReg-Text-Color);
+  &:hover {
+    fill: var(--fourth-Bckg-Color);
+  }
 `;
 
 export const Vector = styled.svg`

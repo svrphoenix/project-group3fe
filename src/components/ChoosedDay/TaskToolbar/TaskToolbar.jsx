@@ -87,6 +87,7 @@ export const TaskToolbar = ({
             display: 'flex',
             flexDirection: 'column',
             gap: '16px',
+            backgroundColor: 'var(--LogReg-Form-Color)',
           }}
         >
           <Box sx={{ display: 'flex' }}>

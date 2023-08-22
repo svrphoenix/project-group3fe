@@ -8,6 +8,6 @@ export const DaysTasksContainer = styled.div`
   background: var(--second-Bckg-Color);
   @media screen and (min-width: 768px) {
     width: 344px;
-    padding: 20px 20px 20px 20px;
+    padding: 20px 6px 20px 20px;
   }
 `;
