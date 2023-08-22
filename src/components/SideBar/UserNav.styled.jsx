@@ -11,6 +11,7 @@ export const UserNavHeading = styled.p`
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  transition: color var(--theme-cubic);
 
   @media screen and (min-width: 768px) {
     margin-bottom: 32px;
@@ -68,6 +69,7 @@ export const UserNavLink = styled(NavLink)`
   &.active {
     color: var(--user-nav-item-hover);
     background-color: var(--user-nav-item-bg-active);
+    transition: color var(--theme-cubic), background-color var(--theme-cubic);
   }
 `;
 

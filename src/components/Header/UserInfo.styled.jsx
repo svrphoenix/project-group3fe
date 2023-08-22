@@ -19,6 +19,7 @@ export const UserName = styled.p`
   font-style: normal;
   font-weight: 700;
   line-height: 18px;
+  transition: color var(--theme-cubic);
 
   @media screen and (min-width: 768px) {
     font-size: 18px;
