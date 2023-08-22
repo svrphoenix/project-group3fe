@@ -22,5 +22,6 @@ export const Button = styled.button`
   }
   &:hover {
     background-color: #2b78ef;
+    color: #fff;
   }
 `;
