@@ -10,7 +10,7 @@ export const CreateTasksBtn = styled.button`
   height: 48px;
   border-radius: 8px;
   border: var(--addtask-Btn-border);
-  background-color: var(--addtask-Bckg-Btn-color);
+  background-color: var(--addtask-Btn-Day-Bckg-color);
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
@@ -20,7 +20,7 @@ export const CreateTasksBtn = styled.button`
 
   &:hover,
   &:focus {
-    background-color: var(--add-plus-color);
+    background-color: var(--addtask-Btn-Day-hover-color);
   }
 
   @media screen and (min-width: 768px) {

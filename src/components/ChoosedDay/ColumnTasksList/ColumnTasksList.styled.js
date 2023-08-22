@@ -34,6 +34,8 @@ export const TasksBoxOuter = styled.div`
 
 export const TasksBox = styled.ul`
   display: flex;
+  padding-right: 7px;
+
   flex-direction: column;
   gap: 20px;
   align-items: center;
