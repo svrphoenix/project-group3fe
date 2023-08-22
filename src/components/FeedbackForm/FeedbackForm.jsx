@@ -6,6 +6,7 @@ import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { ReactComponent as CloseIcon } from 'images/icons/x-close.svg';
 import { StarRating } from './StarRating';
+import { useTranslation } from 'react-i18next';
 import AddSvg from 'components/AddSvg/AddSvg';
 import getSvg from 'utils/getSvg';
 import * as SC from './FeedbackForm.styled';
@@ -15,6 +16,7 @@ export const FeedbackForm = ({ close }) => {
   const error = useSelector(selectError);
   const dispatch = useDispatch();
 
+  const { t } = useTranslation();
   const SVG = getSvg();
 
   const [readOnly, setReadOnly] = useState(!!currentUser.comment);
@@ -83,7 +85,7 @@ export const FeedbackForm = ({ close }) => {
                 <CloseIcon />
               </SC.CloseBtn>
               <SC.Label>
-                Raiting
+                {t('Feedback.Raiting')}
                 <StarRating
                   name="rating"
                   isSelectable={!readOnly}
@@ -129,14 +131,14 @@ export const FeedbackForm = ({ close }) => {
                     </SC.DeleteBtn>
                   </SC.EditBtnWrapper>
                 )}
-                Review
+                {t('Feedback.Review')}
                 <Field
                   id="reviewTextAreaId"
                   name="comment"
                   as={SC.Textarea}
                   rows={6}
                   cols={40}
-                  placeholder="Enter text"
+                  placeholder={t('Feedback.EnterText')}
                   maxLength={300}
                   readOnly={readOnly}
                 />
@@ -152,12 +154,16 @@ export const FeedbackForm = ({ close }) => {
               {!readOnly && (
                 <SC.ReviewBtnWrapper>
                   {!currentUser.comment ? (
-                    <SC.MainReviewBtn type="submit">Save</SC.MainReviewBtn>
+                    <SC.MainReviewBtn type="submit">
+                      {t('Feedback.Save')}
+                    </SC.MainReviewBtn>
                   ) : (
-                    <SC.MainReviewBtn type="submit">Edit</SC.MainReviewBtn>
+                    <SC.MainReviewBtn type="submit">
+                      {t('Feedback.Edit')}
+                    </SC.MainReviewBtn>
                   )}
                   <SC.CancelReviewBtn type="button" onClick={close}>
-                    Cancel
+                    {t('Feedback.Cancel')}
                   </SC.CancelReviewBtn>
                 </SC.ReviewBtnWrapper>
               )}

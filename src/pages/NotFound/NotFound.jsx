@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {
   Container,
   Heading,
@@ -20,11 +18,11 @@ const NotFound = () => {
 
   return (
     <Container>
-        <ErrorImage>
-          <ForthLeft>4</ForthLeft>
-          <Images/>
-          <ForthRight>4</ForthRight>
-        </ErrorImage>
+      <ErrorImage>
+        <ForthLeft>4</ForthLeft>
+        <Images />
+        <ForthRight>4</ForthRight>
+      </ErrorImage>
       <Heading>
         We're sorry, the page you requested could not be found. Please go back
         to the homepage.

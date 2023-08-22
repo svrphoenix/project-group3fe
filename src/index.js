@@ -10,6 +10,7 @@ import configureAxios from 'api/setupInterceptors';
 import App from 'components/App';
 import { GlobalStyle } from 'components/GlobalStyle';
 import { CalendarProvider } from 'pages/CalendarPage/CalendarProvider';
+import './LangSwitcher/i18n';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>

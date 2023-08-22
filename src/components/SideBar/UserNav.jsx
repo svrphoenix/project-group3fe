@@ -9,19 +9,25 @@ import {
 } from './UserNav.styled';
 import AddSvg from 'components/AddSvg/AddSvg';
 import getSvg from '../../utils/getSvg';
-
-const SVG = getSvg();
+import { useTranslation } from 'react-i18next';
 
 const UserNav = ({ closeSideBar }) => {
+  const SVG = getSvg();
+  const { t } = useTranslation();
+
+  const myAccount = `${t('SideBar.myAccount')}`;
+  const calendar = `${t('SideBar.calendar')}`;
+  const statistics = `${t('SideBar.statistics')}`;
+
   const navListConfig = [
-    { linkTo: 'account', iconId: 'user-icon', linkName: 'My account' },
-    { linkTo: 'calendar', iconId: 'calendar-icon', linkName: 'Calendar' },
-    { linkTo: 'statistics', iconId: 'chart-icon', linkName: 'Statistics' },
+    { linkTo: 'account', iconId: 'user-icon', linkName: myAccount },
+    { linkTo: 'calendar', iconId: 'calendar-icon', linkName: calendar },
+    { linkTo: 'statistics', iconId: 'chart-icon', linkName: statistics },
   ];
 
   return (
     <UserNavWrapper>
-      <UserNavHeading>User Panel</UserNavHeading>
+      <UserNavHeading>{t('SideBar.UserPanel')}</UserNavHeading>
       <UserNavList>
         {navListConfig.map(({ linkTo, iconId, linkName }) => (
           <UserNavItem key={`${linkTo}`}>
