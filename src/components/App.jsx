@@ -5,8 +5,6 @@ import { RestrictedRoute } from './RestrictedRoute';
 import { useDispatch } from 'react-redux';
 import { refreshCurrentUser } from 'redux/auth/operations';
 import { SharedLayout } from './SharedLayout';
-// import useAuth from 'hooks/useAuth';
-// import { Loader } from './Loader/Loader';
 import { ChoosedMonth } from './ChoosedMonth/ChoosedMonth';
 import { ChoosedDay } from './ChoosedDay/ChoosedDay';
 import { Toaster } from 'react-hot-toast';

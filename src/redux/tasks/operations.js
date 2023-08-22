@@ -68,7 +68,6 @@ export const deleteTask = createAsyncThunk(
 export const patchTask = createAsyncThunk(
   'tasks/updateTask',
   async ({ id, task }, thunkAPI) => {
-    console.log(task);
     try {
       const response = await api.patch(`tasks/${id}`, task);
 

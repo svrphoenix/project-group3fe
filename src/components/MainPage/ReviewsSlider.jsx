@@ -15,7 +15,6 @@ const getAllReviews = async () => {
     return data;
   } catch (error) {
     toast.error('Oops something went wrong!!!.');
-    console.log(error);
   }
 };
 
@@ -75,14 +74,14 @@ const ReviewsSlider = () => {
             aria-label="Prev button"
             onClick={() => swiperRef.current?.slidePrev()}
           >
-            <SVG.LarrIcon fill="var(--review-text-color)" />
+            <SVG.LarrIcon />
           </SC.PrevBtn>
           <SC.NextBtn
             type="button"
             aria-label="Next button"
             onClick={() => swiperRef.current?.slideNext()}
           >
-            <SVG.RarrIcon fill="var(--review-text-color)" />
+            <SVG.RarrIcon />
           </SC.NextBtn>
         </SC.SliderBtnWrapper>
       </SC.Container>

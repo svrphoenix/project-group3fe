@@ -124,6 +124,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--first-Bckg-Color);
+  transition: background-color var(--theme-cubic);
 }
 
 ul,li,h1,h2,h3,h4,p {

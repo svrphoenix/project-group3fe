@@ -34,6 +34,7 @@ export const LogoTxt = styled.p`
   font-style: normal;
   font-weight: 700;
   line-height: 22px;
+  transition: color var(--theme-cubic);
 
   & > span {
     font-style: italic;
