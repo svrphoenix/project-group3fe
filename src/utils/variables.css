@@ -132,6 +132,8 @@ body[data-theme='light'] {
   --calendar-cell-hover: #f2f2f2;
   --avatar-color: #3e85f3;
   --avatar-bg-color: #e3f3ff;
+
+  --add-plus-color: #72c2f8;
 }
 
 body[data-theme='dark'] {
@@ -269,4 +271,5 @@ body[data-theme='dark'] {
   --avatar-color: #ffffff2e;
   --avatar-bg-color: #171820;
 
+  --add-plus-color: #2b78ef;
 }
