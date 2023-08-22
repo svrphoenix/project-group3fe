@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
 export const FeedbackButton = styled.button`
-  width: 130px;
+  width: 80px;
   padding: 8px 20px;
   border-radius: 10px;
   border: none;
@@ -15,6 +15,7 @@ export const FeedbackButton = styled.button`
   transition: background-color var(--cubic);
   cursor: pointer;
   @media screen and (min-width: 768px) {
+    width: 130px;
     padding: 12px 32px;
     border-radius: 14px;
     font-size: 14px;
