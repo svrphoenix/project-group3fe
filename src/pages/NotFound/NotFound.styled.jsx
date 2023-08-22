@@ -45,6 +45,9 @@ export const ErrorImage = styled.div`
   @media screen and (min-width: 768px) {
     font-size: 200px;
   }
+  @media screen and (max-height: 570px){
+    padding-top: 200px;
+  }
 `;
 
 export const ForthLeft = styled.span`
