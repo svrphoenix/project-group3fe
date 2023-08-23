@@ -24,7 +24,7 @@ export const Label = styled.label`
   display: grid;
   gap: 8px;
   margin-bottom: 14px;
-  color: rgba(52, 52, 52, 0.8);
+  color: var(--first-Feedback-Text-Color);
   font-size: 12px;
   font-weight: 500;
   line-height: 14px;
