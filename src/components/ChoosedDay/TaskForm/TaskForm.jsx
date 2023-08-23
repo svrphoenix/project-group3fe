@@ -66,13 +66,23 @@ const TaskForm = ({ onCloseModal, ...editTask }) => {
     priority: Yup.string().required('Priority is required'),
   });
 
-  const initialValues = {
-    title: editTask?.title || '',
-    start: editTask?.start || '09:00',
-    end: editTask?.end || '09:30',
-    priority: editTask?.priority || 'low',
-    category: editTask?.category || 'to-do',
-  };
+const getCurrentTime = (additionalMinutes = 0) => {
+  const now = new Date();
+  now.setMinutes(now.getMinutes() + additionalMinutes);
+
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+
+  return `${hours}:${minutes}`;
+};
+
+const initialValues = {
+  title: editTask?.title || '',
+  start: editTask?.start || getCurrentTime(),
+  end: editTask?.end || getCurrentTime(30),
+  priority: editTask?.priority || 'low',
+  category: editTask?.category || 'to-do',
+};
 
   const onSubmit = async values => {
     const { title, start, end, priority, category } = values;
