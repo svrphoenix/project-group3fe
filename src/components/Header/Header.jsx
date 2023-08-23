@@ -23,6 +23,7 @@ import getSvg from '../../utils/getSvg';
 import { useEffect } from 'react';
 import useAuth from 'hooks/useAuth';
 import { getReview } from 'redux/review/operations';
+import LangSwitcher from 'components/LangSwitcher/LangSwitcher';
 
 const { gooseMentor1x, gooseMentor2x } = IMG;
 const SVG = getSvg();
@@ -92,6 +93,7 @@ const Header = ({ isSideBarOpened, openSideBar }) => {
 
       <HeaderMenuWrapper>
         <FeedbackButton />
+        <LangSwitcher />
         <UserInfoWrapper>
           <ThemeToggleBtn />
           <UserInfo />
