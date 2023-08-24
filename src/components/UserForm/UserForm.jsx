@@ -26,6 +26,7 @@ import { updateUser } from 'redux/auth/operations';
 import { ChevronDownIcon } from './Icons';
 import { toast } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
+import * as constants from '../../constants';
 
 const UserSchema = Yup.object().shape({
   avatar: Yup.string().nullable(),
@@ -34,21 +35,18 @@ const UserSchema = Yup.object().shape({
     .max(20)
     .required('Please enter your name'),
   birthday: Yup.string().matches(
-    /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[01])$/,
+    constants.birthdayRegex,
     'Please use format yyyy-mm-dd'
   ),
   email: Yup.string()
-    .matches(
-      /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/,
-      'Please use format example@gmail.com'
-    )
+    .matches(constants.emailRegex, 'Please use format example@gmail.com')
     .required('Please enter your email'),
   phone: Yup.string().matches(
-    /^(\+\d{1,3}|\d{1,3}) \(\d{3}\) \d{3} \d{2} \d{2}$/,
+    constants.phoneRegex,
     'Please use format 38 (097) 256 34 77'
   ),
   skype: Yup.string().matches(
-    /^(\+\d{1,3}|\d{1,3}) \(\d{3}\) \d{3} \d{2} \d{2}$/,
+    constants.skypeRegex,
     'Please use  format 38 (097) 256 34 77'
   ),
 });

@@ -12,6 +12,7 @@ import { SVG } from 'images';
 import { Loader } from 'components/Loader/Loader';
 import useAuth from 'hooks/useAuth';
 import { toast } from 'react-hot-toast';
+import * as constants from '../../constants';
 
 const theme = createTheme({
   palette: {
@@ -25,11 +26,11 @@ const LoginSchema = Yup.object().shape({
   email: Yup.string()
     .email('This is an ERROR email')
     .required('Please enter your email')
-    .matches(/^[a-z0-9.]+@[a-z]+\.[a-z]{2,3}$/),
+    .matches(constants.emailRegex),
   password: Yup.string()
     .min(8, 'Need to be more than 8 symbols!')
     .required('Please enter your password')
-    .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,30}$/),
+    .matches(constants.passwordRegex),
 });
 
 const LoginForm = () => {
@@ -50,13 +51,13 @@ const LoginForm = () => {
   };
 
   useEffect(() => {
-    if (error.status&&isSubmitted) {
+    if (error.status && isSubmitted) {
       if (error.status === 401 || error.status === 403) {
         setNoUser(true);
       } else {
-        toast(error.message)
+        toast(error.message);
       }
-    } 
+    }
   }, [error.message, error.status, isSubmitted]);
 
   return (

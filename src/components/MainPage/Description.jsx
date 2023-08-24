@@ -1,5 +1,5 @@
 import * as SC from './MainPage.styled';
-const { descriptions } = require('./constant');
+import { descriptions } from './constant';
 
 const Description = () => {
   return (
